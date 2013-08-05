@@ -5,8 +5,12 @@ IRC Analysis Tool
 
 Usage example:
 
-* Download Sample data: wget http://bots.wmflabs.org/~wm-bot/logs/%23wikimedia-fundraising/%23wikimedia-fundraising.tar.gz
-* Process it:
+Download Sample data: 
+ 
+    wget http://bots.wmflabs.org/~wm-bot/logs/%23wikimedia-fundraising/%23wikimedia-fundraising.tar.gz
+
+Process it:
+
     acs@lenovix:~/devel/IRCAnalysis$ mkdir data
     acs@lenovix:~/devel/IRCAnalysis$ cd data/
     acs@lenovix:~/devel/IRCAnalysis/data$ tar xfz ../#wikimedia-fundraising.tar.gz 
