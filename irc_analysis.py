@@ -77,6 +77,10 @@ def read_options():
                       dest="data_dir",
                       default="irc",
                       help="Directory with all IRC logs")
+    parser.add_option("--channel",
+                      action="store",
+                      dest="channel",
+                      help="Channel name")    
     parser.add_option("-d", "--database",
                       action="store",
                       dest="dbname",
@@ -101,9 +105,8 @@ def read_options():
     if len(args) != 0:
         parser.error("Wrong number of arguments")
 
-    if not(opts.data_dir and opts.dbname and opts.dbuser):
-        parser.error("--dir and --database are needed")
-
+    if not(opts.data_dir and opts.dbname and opts.dbuser and opts.channel):
+        parser.error("--dir --database --db-user and --channel are needed")
     return opts
 
 def escape_string (message):
@@ -114,30 +117,45 @@ def escape_string (message):
     return message
  
 
-def insert_message(cursor, date, nick, message):
+def insert_message(cursor, date, nick, message, channel_id):
     message = escape_string (message)
     nick = escape_string (nick)
-    q = "insert into irclog (date,nick,message) values (";
-    q += "'" + date + "','" + nick + "','" + message + "')"
+    q = "insert into irclog (date,nick,message,channel_id) values (";
+    q += "'" + date + "','" + nick + "','" + message + "','"+channel_id+"')"
     cursor.execute(q)
     
 def create_tables(cursor, con):
-    query = "DROP TABLE IF EXISTS irclog"
-    cursor.execute(query)
+#    query = "DROP TABLE IF EXISTS irclog"
+#    cursor.execute(query)
+#    query = "DROP TABLE IF EXISTS channels"
+#    cursor.execute(query)
 
     query = "CREATE TABLE IF NOT EXISTS irclog (" + \
            "id int(11) NOT NULL AUTO_INCREMENT," + \
            "nick VARCHAR(255) NOT NULL," + \
            "date DATETIME NOT NULL," + \
            "message TEXT," + \
+           "channel_id int," + \
            "PRIMARY KEY (id)" + \
            ") ENGINE=MyISAM DEFAULT CHARSET=utf8"
     cursor.execute(query)
-
-    query = "CREATE INDEX ircnick ON irclog (nick);"
+    
+    query = "CREATE TABLE IF NOT EXISTS channels (" + \
+           "id int(11) NOT NULL AUTO_INCREMENT," + \
+           "name VARCHAR(255) NOT NULL," + \
+           "PRIMARY KEY (id)" + \
+           ") ENGINE=MyISAM DEFAULT CHARSET=utf8"
     cursor.execute(query)
-   
-    con.commit()
+    
+    try:
+        query = "DROP INDEX ircnick ON irclog;"
+        cursor.execute(query)
+        query = "CREATE INDEX ircnick ON irclog (nick);"
+        cursor.execute(query)
+        con.commit()
+    except MySQLdb.Error:
+        print "Problems creating nick index"
+
     return
 
 
@@ -150,7 +168,13 @@ if __name__ == '__main__':
     
     cursor = con.cursor()
     create_tables(cursor, con)
-
+    
+    query = "INSERT INTO channels (name) VALUES ('"+opts.channel+"')"
+    cursor.execute(query)
+    query = "SELECT MAX(id) FROM channels limit 1"
+    cursor.execute(query)
+    channel_id = str(cursor.fetchall()[0][0])
+    
     count_msg = 0
     files = os.listdir(opts.data_dir)
     for logfile in files:
@@ -161,7 +185,7 @@ if __name__ == '__main__':
         date_nick_msg = parse_file(opts.data_dir + "/" + logfile)
 
         for i in date_nick_msg:
-            insert_message (cursor, date + " " + i[0], i[1], i[2])                
+            insert_message (cursor, date + " " + i[0], i[1], i[2], channel_id)                
             count_msg += 1
             if (count_msg % 1000 == 0): print (count_msg)
         con.commit()

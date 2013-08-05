@@ -27,6 +27,7 @@ class Config:
 class IRCTest(unittest.TestCase):
 
     def testZAll(self):
+        channel_id = "1"
         total_messages = 5552
         cursor = IRCTest.db.cursor()
         files = os.listdir(IRCTest.tests_data_dir)
@@ -38,7 +39,7 @@ class IRCTest(unittest.TestCase):
             date_nick_msg = irc_analysis.parse_file(os.path.join(IRCTest.tests_data_dir, logfile))
     
             for i in date_nick_msg:
-                irc_analysis.insert_message (cursor, date + " " + i[0], i[1], i[2])                
+                irc_analysis.insert_message (cursor, date + " " + i[0], i[1], i[2], channel_id)                
             IRCTest.db.commit()
         sql = "SELECT COUNT(*) FROM irclog"
         cursor.execute(sql)
@@ -50,13 +51,14 @@ class IRCTest(unittest.TestCase):
         self.assertEqual(len(date_nick_msg), 224)
         
     def testWriteDb(self):
+        channel_id = "1"
         filename = "20130715.txt"
         date = "2013-07-15"
         date_nick_msg = irc_analysis.parse_file(os.path.join(IRCTest.tests_data_dir, filename))
         cursor = IRCTest.db.cursor()
 
         for i in date_nick_msg:
-            irc_analysis.insert_message (cursor, date + " " + i[0], i[1], i[2])                
+            irc_analysis.insert_message (cursor, date + " " + i[0], i[1], i[2], channel_id) 
         IRCTest.db.commit()
         
         sql = "SELECT COUNT(*) FROM irclog"
