@@ -32,16 +32,16 @@ import os, sys
 import MySQLdb
 
 
-def read_file(file):
-    fd = open(file, "r")
+def read_file(filename):
+    fd = open(filename, "r")
     lines = fd.readlines()
     fd.close()
     return lines
 
 
-def parse_file(file):
+def parse_file(filename):
     date_nick_message = []
-    lines = read_file(file)
+    lines = read_file(filename)
     for l in lines:
         # [12:39:15] <wm-bot>  Infobot disabled
         aux = l.split(" ")
@@ -139,7 +139,6 @@ def create_tables(cursor, con):
    
     con.commit()
     return
-    
 
 
 if __name__ == '__main__':
