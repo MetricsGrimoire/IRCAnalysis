@@ -1,0 +1,7 @@
+[10:58:55] <whym_away>	 Is the FR team aware that people from Japan currently cannot donate via Paypal?
+[10:59:18] <whym_away>	 apparently Paypal casts this restriction
+[11:16:55] <Nemo_bis>	 whym_away: how do they arrive to PayPal?
+[11:28:42] <whym_away>	 Nemo_bis: via the banner, as I have heard from an admin on jawiki
+[11:29:13] <whym_away>	 as of now the donation link of the side bar let me go to a page with a paypal link, too
+[11:31:32] <whym_away>	 it seems that Paypal currently allows sending money from Japan for payment only, not donation
+[13:48:24] <Nemo_bis>	 whym_away: ah, I thought PayPal had been abandoned

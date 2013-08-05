@@ -1,0 +1,590 @@
+[00:38:43] * mwalker  taps wm-bot again
+[00:38:58] <mwalker>	 wm-bot: @logon
+[00:38:59] <mwalker>	 asdfasdf
+[00:39:58] <marktraceur>	 Captain's log, stardate 2013-05-16T17:37:54Z-7
+[00:41:38] <mwalker>	 !log hi!
+[00:41:43] <marktraceur>	 Wait
+[00:41:47] <marktraceur>	 Trollolol
+[00:54:06] <Ryan_Lane>	 morebots: sup?
+[00:54:06] <morebots>	 I am a logbot running on wikitech-static.
+[00:54:06] <morebots>	 Messages are logged to wikitech.wikimedia.org/wiki/Server_Admin_Log.
+[00:54:07] <morebots>	 To log a message, type !log <msg>.
+[00:56:04] <K4-713>	 !log Woohoo! Logs!
+[00:56:13] <morebots>	 Logged the message, Master
+[14:23:07] <awight>	 meganhernandez: r u still getting a broken redirect for those banners?
+[14:23:22] <meganhernandez>	 yep
+[14:23:29] <meganhernandez>	 i get the landing check page
+[14:23:46] <awight>	 the Italian one works for me, but FR broken
+[14:24:00] <awight>	 OH
+[14:24:36] <awight>	 fr has a bad Landing Page
+[14:24:45] <awight>	 it's getting the -/fr
+[14:25:37] <awight>	 https://meta.wikimedia.org/wiki/Special:CentralNoticeBanners/edit/B13_022000_survey_frYY_autohide
+[14:25:47] <awight>	 set LAnding pages to: L13_0220_surv
+[14:25:55] <meganhernandez>	 i get landing check for the IT page
+[14:25:56] <meganhernandez>	 https://wikimediafoundation.org/wiki/Special:LandingCheck?landing_page=L13_0220_surv&utm_medium=sitenotice&utm_campaign=none&utm_source=B13_022000_survey_itYY_autohide&language=it&country=FR
+[14:26:05] <awight>	 really? I'll take another look
+[14:31:56] <awight>	 meganhernandez: lol that took the longest time to find !  I discovered the difference between our URLs, but not what caused it to happen.  LandingCheck at donate.wikimedia.org vs wikimediafoundation.org
+[14:35:24] <awight>	 oh, that is just a symptom.  The real problem is still the country FR.
+[14:35:44] <awight>	 Why!
+[14:36:02] <meganhernandez>	 hmm not sure
+[14:36:44] <meganhernandez>	 i changed my IP  to the US and it still happened to me
+[14:38:53] <awight>	 meganhernandez: can you paste me that URL, actually?
+[14:39:31] <awight>	 What I see is that the config change to bring FR back into the fold has not been deployed yet
+[14:39:42] <meganhernandez>	 sure
+[14:39:53] <meganhernandez>	 http://it.wikipedia.org/?banner=B13_022000_survey_itYY_autohide&reset=1
+[14:42:06] <awight>	 sorry, the link when you right-click that, tha one with LandingCheck in it
+[14:42:45] <awight>	 I get this, https://donate.wikimedia.org/wiki/Special:LandingCheck?landing_page=L13_0220_surv&utm_medium=sitenotice&utm_campaign=none&utm_source=B13_022000_survey_itYY_autohide&language=en&country=US
+[14:43:15] <awight>	 when I switch the US to FR, redirect is broken
+[14:43:49] <awight>	 But I would like to try the URL u get.
+[14:45:34] <meganhernandez>	 i get this: https://wikimediafoundation.org/wiki/Special:LandingCheck?landing_page=L13_0220_surv&utm_medium=sitenotice&utm_campaign=none&utm_source=B13_022000_survey_itYY_autohide&language=it&country=FR
+[14:48:27] <awight>	 if you change to US, it works?
+[14:48:28] <awight>	 https://wikimediafoundation.org/wiki/Special:LandingCheck?landing_page=L13_0220_surv&utm_medium=sitenotice&utm_campaign=none&utm_source=B13_022000_survey_itYY_autohide&language=it&country=US
+[14:55:11] <meganhernandez>	 yes that page opens
+[14:58:11] <meganhernandez>	 for me
+[14:58:18] <meganhernandez>	 but not from the banner
+[14:58:27] <meganhernandez>	 it's weird that the japan banner opens
+[14:58:32] <awight>	 oko that means it is the WMFR block
+[14:58:44] <awight>	 that is really weird.  lemme try something
+[14:59:28] <awight>	 meganhernandez: https://donate.wikimedia.org/wiki/Special:LandingCheck?landing_page=L13_0220_surv&utm_medium=sitenotice&utm_campaign=none&utm_source=B13_022000_survey_jaYY_autohide&language=en&country=FR
+[15:00:55] <awight>	 US works, again
+[15:01:52] <meganhernandez>	 i get landing check there
+[15:01:59] <meganhernandez>	 for that last link
+[15:02:07] <meganhernandez>	 from france
+[16:50:48] <mwalker>	 ... oi! the topic changed back!
+[16:51:32] <mwalker>	 grrr
+[17:04:35] <marktraceur>	 I guess it was because they were having server troubles still?
+[17:04:43] <mwalker>	 probably
+[17:04:50] <mwalker>	 I couldn't change my nick earlier
+[17:05:40] <marktraceur>	 Oh, huh.
+[17:13:29] <mwalker>	 awight: want some really easy CR!? https://gerrit.wikimedia.org/r/#/c/64337/ https://gerrit.wikimedia.org/r/#/c/64334/ https://gerrit.wikimedia.org/r/#/c/64332/
+[17:13:57] <awight>	 in a few... is anything in there a rush job?
+[17:14:45] <mwalker>	 not really -- it's all git configuration changes
+[17:52:48] <K4-713>	 awight, mwalker: Hey, who wants to do a cluster settings deploy?
+[17:52:55] * K4-713  grins a bit too largely
+[17:53:02] <mwalker>	 but... its friday :)
+[17:53:07] <mwalker>	 I can do it though
+[17:53:32] <K4-713>	 I... knew that.
+[17:53:36] * K4-713  looks innocent
+[17:53:53] <K4-713>	 It is totally Friday.
+[17:54:10] <K4-713>	 We shouldn't abuse Fridays.
+[17:54:18] <mwalker>	 abuse the friday!
+[17:54:33] * K4-713  throws Friday down the stairs
+[17:54:56] <K4-713>	 So, yes. You may have seen the email about France and all its territories redirecting to nothing.
+[17:54:58] <mwalker>	 and what do you say Friday!? ... that's right, you tripped
+[17:55:06] <K4-713>	 damn skippy.
+[17:55:21] <mwalker>	 but yes -- France
+[17:55:24] <mwalker>	 territories
+[17:55:27] <mwalker>	 nothing
+[17:55:36] <mwalker>	 no victories, no monies, no existance
+[17:55:42] <mwalker>	 also no spelling
+[17:55:46] <K4-713>	 It's because the array of countries that redirect is redefined, in LandingCheck.
+[17:55:59] <mwalker>	 arhar
+[17:56:05] <K4-713>	 I made a note of it here: https://wikitech.wikimedia.org/wiki/Donate.wikimedia.org
+[17:56:15] <K4-713>	 Because I don't want to have to figure this mess out again later.
+[17:56:32] <K4-713>	 It's the $wgPriorityCountries array in the common settings.
+[17:56:44] <K4-713>	 We just have to whack FR and all the territories form that array.
+[17:58:19] <mwalker>	 arent there some other countries we should not be fundraising in?
+[17:58:52] <mwalker>	 ah yes -- re: New list of countries being blocked on payments
+[17:58:59] <mwalker>	 you want me to block them here?
+[17:59:44] <K4-713>	 Yeah, it would be cool if those lists lined up.
+[18:01:10] <K4-713>	 And, ah... if you could, just comment out FR and the territories, and add a comment denoting the date and why you commented them out ("Per WMFr Request" is fine in this case), and also add a comment with the other no-fundraising countries as well.
+[18:01:15] <K4-713>	 mwalker: ^
+[18:01:46] <K4-713>	 I don't want to have much lag time figuring out why things changed if somebody starts shouting about it later.
+[18:03:46] <jvandavier>	 K4-713: FYI we're on 2010
+[18:07:15] <mwalker>	 K4-713: https://gerrit.wikimedia.org/r/64347
+[18:16:54] <mwalker>	 Jeff_Green: if I wanted to add a git hook to all our boxes that deploy code -- how hard would that be?
+[18:17:10] <mwalker>	 e.g -- is there a standard puppet class we could just add it to?
+[18:17:26] <mwalker>	 damn -- no -- because it has to be in every git repo :(
+[18:17:35] <Jeff_Green>	 hmmm
+[18:17:43] <Jeff_Green>	 well--can't you do it in ~/.git?
+[18:17:52] <mwalker>	 maybe!
+[18:17:54] * mwalker  looks
+[18:18:06] <Jeff_Green>	 another thought, we could modify *_code_update to add it
+[18:21:29] <mwalker>	 ya -- git doesn't respect something in ~
+[18:21:37] <mwalker>	 so it would have to be in the *_code_update
+[18:21:43] <mwalker>	 hurm
+[18:21:47] * mwalker  taps fingers on desk
+[18:22:02] <Jeff_Green>	 sounds feasible
+[18:22:31] <Jeff_Green>	 what about checking something in and having *_code_update look for it and install if it's there
+[18:22:49] <mwalker>	 that's pretty much what I'm thinking of
+[18:23:15] <mwalker>	 let me get back to you on this
+[18:23:19] <Jeff_Green>	 k
+[18:24:58] <mwalker>	 awight, K4-713; revisiting yesterdays discussion re test code in the deploy branch -- I'm coming back to wanting the test code in the branch and not excising it. Two reasons a) modifying the zuul jobs to NOT run tests on our deploy branches is going to be a pain, and b) if you're going to do testing -- isn't the most important place to test what you're deploying!?
+[18:25:46] <mwalker>	 I figure we have a 'prep-for-deploy.sh' script and a '.donotdeploy' file that work together that we can run on checkout on the deploy servers
+[18:26:03] <mwalker>	 that way we can easily recreate what we're deploying locally
+[18:26:36] <mwalker>	 ... the prep-for-deploy.sh script would delete anything listed in .donotdeploy
+[18:26:44] <mwalker>	 and since they're both in CR...
+[18:26:47] <mwalker>	 profit!?
+[18:32:12] <K4-713>	 mwalker: Sorry, hella lag because of Meeting.
+[18:32:21] <K4-713>	 I +2'd the commonsettings chages
+[18:44:04] <mwalker>	 meganhernandez: ok -- in theory we are no longer redirecting france
+[18:44:07] <mwalker>	 wnat to try?
+[18:46:37] <meganhernandez>	 it worked
+[18:46:43] <meganhernandez>	 it like italian
+[18:46:46] <meganhernandez>	 testing the others
+[18:46:52] <meganhernandez>	 http://it.wikipedia.org/?banner=B13_022000_survey_itYY_autohide&reset=1
+[18:47:26] <awight>	 mwalker: Why https://gerrit.wikimedia.org/r/#/c/64337 ?
+[18:47:38] <awight>	 I don't understand why we would want to have gerrit merge to deployment
+[18:47:50] <meganhernandez>	 ja works
+[18:47:50] <meganhernandez>	 http://ja.wikipedia.org/?banner=B13_022000_survey_jaYY_autohide&reset=1
+[18:49:41] <meganhernandez>	 fr didn't work for me
+[18:49:44] <meganhernandez>	 i got landingcheck
+[18:49:45] <meganhernandez>	 http://fr.wikipedia.org/?banner=B13_022000_survey_frYY_autohide&reset=1
+[18:50:21] <mwalker>	 awight: you want gerrit to merge to deployment on the deployment branch so that Zuul can run it's automated jobs
+[18:50:49] <awight>	 meganhernandez: I get this link, and it works, https://donate.wikimedia.org/wiki/Special:LandingCheck?landing_page=L13_0220_surv&utm_medium=sitenotice&utm_campaign=none&utm_source=B13_022000_survey_frYY_autohide&language=fr&country=FR
+[18:50:50] <slander>	 #968: (AW) O:AW|TS:B|P:SH|T:TD Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/968
+[18:51:23] <meganhernandez>	 awight: you get that from clicking on this? http://fr.wikipedia.org/?banner=B13_022000_survey_frYY_autohide&reset=1
+[18:51:24] <awight>	 mwalker: aaah thanks, this is ON the deploy branch.  totally.
+[18:51:42] <awight>	 meganhernandez: no, I get country=US, but all i'm changing is the =FR
+[18:52:02] <awight>	 mwalker: will zuul fire on push as well?
+[18:52:09] <mwalker>	 no
+[18:52:15] <mwalker>	 zuul only runs on a gerrit change
+[18:52:33] <meganhernandez>	 when i click on that banner i get landing check No pages were found while performing the request.
+[18:52:38] <mwalker>	 awight: or at least -- that's how I'm reading the config and docs
+[18:52:42] <awight>	 meganhernandez: and to be clear, I'm copy n pasting the banner body link
+[18:52:56] <awight>	 meganhernandez: can you paste me the landingcheck url :(
+[18:53:15] <awight>	 mwalker: that's a big change to how we do deploy MFT
+[18:53:22] <meganhernandez>	 awight: https://donate.wikimedia.org/wiki/Special:LandingCheck?landing_page=L13_0220_surv%2Ffr&utm_medium=sitenotice&utm_campaign=none&utm_source=B13_022000_survey_frYY_autohide&language=fr&country=FR
+[18:53:27] <awight>	 mwalker: so then we self-review?
+[18:53:45] <mwalker>	 awight: yes -- it's the same with the big cluster
+[18:53:55] <awight>	 meganhernandez: that is really weird.  you're getting the -/fr landing page name, which is wrong
+[18:54:03] <awight>	 I think that's from an outdated cache thing?
+[18:54:11] <meganhernandez>	 oh maybe
+[18:54:11] <meganhernandez>	 let
+[18:54:14] <meganhernandez>	 let me see
+[18:54:20] <awight>	 mwalker: sounds like a workaround for zuul jobs not running on push
+[18:54:35] <awight>	 not that I'm opposed to it just for that reason
+[18:54:51] <mwalker>	 well -- even if zuul ran jobs on push -- how is it going to reject something that's already merged?
+[18:54:52] <awight>	 I kind of like it actually
+[18:55:55] <awight>	 mwalker: that's true -- we'll be especially grateful for the sanity check if we end up doing rm -rf tests/ surgery during merge
+[18:56:07] <awight>	 but I don't want to shit in that rabbithole right now :p
+[18:57:04] <awight>	 meganhernandez: you can usually get around cache (one time only!) by adding "debug=true" as an URL parameter to http://fr.wikipedia.org/?banner=B13_022000_survey_frYY_autohide&reset=1&debug=1
+[18:58:51] <meganhernandez>	 i got https://donate.wikimedia.org/wiki/Special:LandingCheck?landing_page=L13_0220_surv%2Ffr&utm_medium=sitenotice&utm_campaign=none&utm_source=B13_022000_survey_frYY_autohide&language=fr&country=FR
+[18:58:56] <meganhernandez>	 with debug=true
+[18:59:58] <meganhernandez>	 wait..
+[19:00:07] <meganhernandez>	 i refreshed a whole bunch of times
+[19:00:10] <meganhernandez>	 and got...
+[19:00:14] <meganhernandez>	 https://donate.wikimedia.org/w/index.php?title=L13_0220_surv/fr&utm_source=B13_022000_survey_frYY_autohide&utm_medium=sitenotice&utm_campaign=none&language=fr&uselang=fr&country=FR&referrer=http%3A%2F%2Ffr.wikipedia.org%2F%3Fbanner%3DB13_022000_survey_frYY_autohide%26reset%3D1%26debug%3D1%26debug%3Dtrue
+[19:00:40] <meganhernandez>	 yay
+[19:00:51] <K4-713>	 woooooot.
+[19:04:08] <K4-713>	 PPena: ...oh man, I just realized something about that link. The columns I'd selected aren't showing up. You should have Estimate, Tech Status, and a couple other things there as well.
+[19:04:27] <K4-713>	 ...which is why I said "Estimate and status are right there on the page".
+[19:04:29] <PPena>	 PPena oh ok… can we add that?
+[19:04:32] <K4-713>	 Trying.
+[19:04:47] <K4-713>	 In the meantime, if you click on "Add/remove columns"...
+[19:05:08] <K4-713>	 ...and check "Estimate" and "Tech Status"... it _is_ all right there.
+[19:05:15] <PPena>	 K4-713 oh yeah i see it now
+[19:05:21] <K4-713>	 That's what I'm trying to get in to the link. Default.
+[19:06:42] <marktraceur>	 K4-713: Did something change about the way DonationData validates amounts? It looks like an amount being negative is no longer cause for resetting an amount, but I'm not sure if that's a bug or just the tests being out of date.
+[19:06:52] <K4-713>	 PPena: Try this link: https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/list?columns=Priority%2CType%2CEstimate%2CTech+Status&filters[]=[Type][is][Tech+Task]&filters[]=[Type][is][Tech+Defect]&page=1&style=list&tab=Wishlist&tagged_with=Spring+2013+Wishlist
+[19:06:57] <K4-713>	 Better?
+[19:07:27] <K4-713>	 marktraceur: Yeah, something... almost certainly changed since the test was written.
+[19:07:33] <marktraceur>	 Fun times
+[19:07:36] * marktraceur  digs
+[19:07:42] <K4-713>	 There's a lower bound, defined in a global setting.
+[19:07:56] <K4-713>	 But, the default should be positive.
+[19:08:10] <K4-713>	 And... you know: existant.
+[19:08:53] <marktraceur>	 Well, testing the lower bound minus 1 would be a sane test, then
+[19:09:17] <K4-713>	 Yep.
+[19:09:25] <K4-713>	 But, negative should still explode.
+[19:09:30] <K4-713>	 ...no matter what.
+[19:09:33] <marktraceur>	 Hm, well, it definitely didn't
+[19:09:42] <K4-713>	 I'm not using the payments cluster to do refunds. ;)
+[19:11:27] <PPena>	 K4-713 yes1!! thanks
+[19:11:42] <K4-713>	 That probably makes a *lot* less nonsense.
+[19:12:55] <K4-713>	 ...sorry about the initial confusion, there.
+[19:56:25] <awight>	 mwalker: K4|lunch: I'd like to chat about using git review + self-approving on the deployment branches, before merging
+[19:57:22] <awight>	 .. the rest of Matt's config changes.  This pretty much only makes sense if we are keeping the tests/ directory.  As i remember it, we had not concluded anything.
+[20:13:39] <awight>	 K4|lunch: when you are !lunch, let me know what you think of https://gerrit.wikimedia.org/r/#/c/64348/
+[20:42:47] <awight>	 sorry to add to the sprint... it just dovetailed so nicely with the other rampage I was on.
+[20:42:50] <slander>	 #965: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/965
+[20:42:50] <slander>	 #965: (AW) ->Sprint 26 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/965
+[20:42:50] <slander>	 #965: (AW) TS:DR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/965
+[20:42:50] <slander>	 #965: (AW) AT:AW|O:AW|TS:ID -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/965
+[20:42:50] <slander>	 #965: (AW) TS:PCR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/965
+[20:45:40] <K4-713>	 awight: Ha.
+[20:46:19] <awight>	 hmm.  I have two longish branches of PCR, and want to develop futher on a merge of both...
+[20:46:27] <awight>	 any ideas?
+[20:47:09] <awight>	 I guess, I'll just merge and resolve conflicts, then we can sort of ignore the merge commit... I haven't had much luck doing this previously
+[20:49:57] * awight  's tears flow freely, confluxing with the puddle of bug blood at his feet :p
+[20:52:49] <K4-713>	 oh dear.
+[20:53:02] <K4-713>	 I'd like to help, only I'm... not going to.
+[20:53:06] <K4-713>	 *cough*
+[20:53:19] <K4-713>	 You wanted me to review a thing?
+[20:54:22] <awight>	 :)
+[20:54:38] <awight>	 um yeah but it's got a few prerequisites
+[20:54:40] <K4-713>	 awight: Does this patch make things on the board more... likely?
+[20:54:45] <K4-713>	 Wait.
+[20:54:49] <awight>	 things... on the board...
+[20:54:50] <awight>	 hehe
+[20:55:08] <awight>	 well, I put the utm_source thing on the board so yes.
+[20:55:10] <K4-713>	 it says "utm_source". So, probably.
+[20:55:12] <K4-713>	 ARGH
+[20:55:13] <awight>	 that's what it is designed for
+[20:55:20] <K4-713>	 Stop the mindmeld!
+[20:55:23] <K4-713>	 haha
+[20:55:41] <awight>	 trust me it hurts you more.  I have what they call "pure vacuum"
+[20:56:01] <awight>	 um ok so yeah I was hoping for a reality check on that utm_source patch
+[20:56:15] <awight>	 don't feel obliged to do anything binding tho
+[20:56:22] <awight>	 especially with the patch dependencies
+[20:56:26] <K4-713>	 I just had an amusing thought.
+[20:56:37] <awight>	 I just want to harden some of the quicksand
+[20:56:43] <K4-713>	 That thought was "What about the orphan slayer?" and then realized we stopped them upstream.
+[20:56:49] <awight>	 ah.  really?
+[20:56:55] <K4-713>	 We're... all out of orphans.
+[20:56:59] <awight>	 well, I made sure to fix that code too
+[20:57:05] <K4-713>	 :)
+[20:57:08] <awight>	 but that is great old news
+[20:57:27] <K4-713>	 It does still check up on everything that doesn't come back.
+[20:57:33] <K4-713>	 Like, all the 20s and 25s.
+[20:57:42] <K4-713>	 Which is, I think, still useful.
+[21:09:34] <K4-713>	 awight: I think I see a potential issue in setUtmSource in DonationData.
+[21:09:52] <awight>	 k
+[21:10:17] <K4-713>	 ...maybe not, though.
+[21:10:32] <K4-713>	 And, yes: We do still do the utm_source_id thing.
+[21:11:13] <awight>	 what... is that?  so it would look like "cc5" ?
+[21:11:32] <K4-713>	 I don't think so.
+[21:11:37] <marktraceur>	 OK, the unit tests run.
+[21:11:50] <K4-713>	 marktraceur: ...really?
+[21:11:55] <K4-713>	 Holy crizap.
+[21:11:56] <marktraceur>	 For DonationInterface.
+[21:12:07] <marktraceur>	 And it's only whatever unittest.sh is supposed to do
+[21:12:18] <marktraceur>	 And I haven't gotten the coverage reports yet
+[21:13:05] <K4-713>	 Still: woot.
+[21:13:06] <marktraceur>	 Agh, looks bad
+[21:13:12] <K4-713>	 I'm not surprised.
+[21:13:31] <K4-713>	 awight: Or maybe I'm lying about that "no".
+[21:14:17] <K4-713>	 I don't remember how a lot of this mess happened, but I'm pretty sure it's my fault. :p
+[21:14:22] <awight>	 K4-713: ?? !"do still do" ?
+[21:15:15] <K4-713>	 awight: There's a FIXME you added with a question.
+[21:15:40] <awight>	 ahahaha I will look, thanks
+[21:16:04] <K4-713>	 The question is just "do we still do that?"
+[21:16:05] <K4-713>	 Yes.
+[21:16:07] <K4-713>	 :p
+[21:29:26] <K4-713>	 awight: Woot, PaymentMethod class!
+[21:29:32] <K4-713>	 I like it.
+[21:29:46] <awight>	 thanks!
+[21:30:22] <awight>	 Yeah my evilish plan is that we can use just one name for payment method
+[21:30:41] <awight>	 any hierarchy will be part of the method spec
+[21:31:37] <K4-713>	 I'm a little... curious about your note that submethods should be deprecated, though.
+[21:32:14] <awight>	 well, the way we're doing it seems to be an artifact of how GC organizes their methods
+[21:32:25] <K4-713>	 Sort... of?
+[21:32:27] <awight>	 I'd like to have a single name for the active method, eg 'dd_nl'
+[21:32:36] <K4-713>	 That's okay.
+[21:32:37] <K4-713>	 But.
+[21:32:46] <K4-713>	 Workflows still operate in groups.
+[21:32:52] <awight>	 then do stuff like isInstanceOf( 'dd_nl', 'dd' ) to do that workflow logic
+[21:33:03] <awight>	 lemme find an example...
+[21:33:08] <K4-713>	 er...
+[21:33:32] <K4-713>	 Let's talk credit card.
+[21:33:43] <K4-713>	 It being the most popular.
+[21:34:09] <awight>	 well anyway like in https://gerrit.wikimedia.org/r/#/c/63932/5/globalcollect_gateway/globalcollect.adapter.php
+[21:34:35] <awight>	 the logic that says "if paymentmethod == 'cc'" would read "if PAymentMethod::isInstanceOf( $payment_method, 'cc' )"
+[21:34:50] <awight>	 then it could be 'cc' or 'visa'
+[21:35:04] <K4-713>	 hah.
+[21:35:22] <K4-713>	 So, you're like: Let's kill all submethods and define supermethods?
+[21:35:29] <K4-713>	 :p
+[21:35:49] <marktraceur>	 Look, up in the air
+[21:36:11] <K4-713>	 It's a _generic_ credit card! hah
+[21:36:23] <awight>	 well... sort of yeah
+[21:36:45] <awight>	 it will keep us from doing ridiculous backbends like method='paypal' submethod='paypal'
+[21:36:54] <awight>	 it's much more OOP
+[21:37:09] <awight>	 but without actually doing OOP, of course :)
+[21:37:29] <K4-713>	 So, on one level, I don't care what you call it as long as we can still group methods by type for both workflow and reporting reasons.
+[21:37:47] <K4-713>	 But, on the other hand: Legacy forms that say "payment_submethod".
+[21:38:14] <K4-713>	 Also... heh, this is a good example.
+[21:38:42] <K4-713>	 If we felt like making our own brains explode, we *could* have GC turn on a paypal account through them.
+[21:38:56] <awight>	 yyyeah... there is back-compat stuff in PaymentMethod, getCompoundMethod and parseCompoundMethod
+[21:39:22] <K4-713>	 And, ah... moneybookers.
+[21:39:25] <awight>	 ah GC:paypal is a good example.  That is exactly why I want to support polyhierarchical
+[21:39:30] <awight>	 :x let's not go there
+[21:39:36] <awight>	 MB...
+[21:39:41] <awight>	 aka Skrill
+[21:39:42] <awight>	 wtf
+[21:39:44] * marktraceur  pushed patch for unittest.sh
+[21:39:52] <K4-713>	 GC-moneybooker != moneybookers moneybookers.
+[21:39:58] <K4-713>	 Not that submethod helps us there.
+[21:40:00] <marktraceur>	 Also a WIP thing where I begin the long journey to code coverage -.-
+[21:40:15] <K4-713>	 That's gateway-method-submethod, and AAAAARGH.
+[21:40:16] <awight>	 um but a polyhierarchy would let us do stuff like GC:paypal instanceof 'pp' and pp:pp instanceof 'pp'
+[21:40:51] <awight>	 so it's the getFamily / getUtmSource stuff which breaks polyhierarchy, cos we haven't defined what the correct behavior is...
+[21:40:52] <K4-713>	 We should be able to tell the difference already.
+[21:41:02] <awight>	 but isInstanceOf is totally capable of dealing with this
+[21:41:06] <K4-713>	 because we pass gateway.
+[21:41:16] <K4-713>	 And, yes it is.
+[21:41:18] <K4-713>	 I just worry about the legacy labelling.
+[21:41:35] <awight>	 backing up a bit, gc:moneybookers will have a payment method 'mb' and submethod 'mb'
+[21:41:42] <awight>	 so actually there is no problem :)
+[21:41:47] <K4-713>	 And by "worry" I mean I don't want to have to hold off on progress because we're waiting for a good time to do a system-wide relabelling.
+[21:42:31] <awight>	 I'm pretty sure the only downstream effect of the PaymentMethod patch will be that we have to fix anything which parses utm_source
+[21:42:35] <K4-713>	 Yeah, I think we're saying the same thing asynchronously.
+[21:42:48] <awight>	 ... while we're at it, we should probably get rid of that beastly multicolumn thing
+[21:43:04] <K4-713>	 argh. I was hoping you'd... um.
+[21:43:07] <awight>	 split it into whatever the hell the components are
+[21:43:08] <K4-713>	 Make that a new thing.
+[21:43:15] <awight>	 ah
+[21:43:16] <awight>	 yes
+[21:43:18] <awight>	 backcompat
+[21:43:21] <awight>	 well that works, too
+[21:43:31] <K4-713>	 Everybody who does reporting is going to murder us with toothpicks if we try to sneak that by.
+[21:43:48] <awight>	 sneak the paymentmethod thing?  yeah.
+[21:44:04] <K4-713>	 No, the... stop exploding on dots, use columns thing.
+[21:44:08] <awight>	 OK
+[21:44:09] <awight>	 whew!
+[21:44:16] <awight>	 sorry the async thing is hurting my brain
+[21:44:19] <K4-713>	 haha
+[21:44:32] <awight>	 I think we're all caught up, somehow.
+[21:44:37] <awight>	 release semaphore.
+[21:44:40] <K4-713>	 Buffering is how.
+[21:44:42] <awight>	 wheeeee!
+[21:44:57] <awight>	 now. Problems has she now
+[21:45:02] <awight>	 two
+[21:45:24] <K4-713>	 No, ah... I *really* like the PaymentMethod class.
+[21:46:02] <awight>	 If you want to trip out on some more pretty colors, https://gerrit.wikimedia.org/r/#/c/63932/
+[21:46:11] <K4-713>	 And, if you do the thing you want to do with splitting the gateways in twain... you know what this gets us?
+[21:46:22] * K4-713  is excited about what this gets us
+[21:46:32] <awight>	 Yeah I have it working in the DonationForm patch... it's pretty rad
+[21:46:59] <K4-713>	 We can finally build, in one place, a definitive list of all payment types that are currently enabled on payments.
+[21:47:04] <awight>	 YES
+[21:47:22] * K4-713  bounces slightly in office chair
+[21:47:28] <awight>	 and freaking turn them off when they are shooting sparks
+[21:47:36] <K4-713>	 Exaaaaactly!
+[21:48:10] <K4-713>	 f(yes)
+[21:48:39] <awight>	 This moment of borrowed grandeur would be a good time to run a propane errand :)  I would love feedback on that 63932 patch if you have time.  It's the cornerstone of DonationForm
+[22:17:39] <mwalker>	 K4-713: so... priorities?
+[22:20:10] <K4-713>	 rar, Yes.
+[22:20:30] <K4-713>	 Ah, you are back.
+[22:20:35] <K4-713>	 How's the eyeballs?
+[22:21:42] <mwalker>	 expensive...
+[22:22:10] <mwalker>	 I really wish my health account thingy covered eyeballs
+[22:22:46] <marktraceur>	 mwalker: Doesn't VSP do this sort of thing?
+[22:22:58] * marktraceur  asks, since he has to go and get new glasses in -6 months
+[22:23:08] <mwalker>	 yes -- they should cover most of you
+[22:23:27] <marktraceur>	 Rockin'
+[22:23:41] <marktraceur>	 Hm, I should renew that search.
+[22:23:55] <mwalker>	 I'm just special because of how annoyingly bad my vision is
+[22:24:04] <marktraceur>	 *nod*
+[22:24:13] <marktraceur>	 mwalker: Not sure I'll be much better, but K
+[22:24:35] <mwalker>	 tiz true -- VSP only covers like 50% of your glasses
+[22:24:44] <marktraceur>	 Oh huh
+[22:24:44] <mwalker>	 and if you get contacts in the same year they dont cover any of it
+[22:24:48] <mwalker>	 so...
+[22:24:50] <mwalker>	 ya...
+[22:24:51] <marktraceur>	 That...sorta sucks
+[22:24:54] <mwalker>	 indeed
+[22:24:59] <marktraceur>	 Wait, I thought it was more than 50%
+[22:25:14] <mwalker>	 I'd have to look -- but I paid a lot of money for my glasses
+[22:25:20] <mwalker>	 somewhere in the range of 370$
+[22:25:30] <mwalker>	 and my contacts are going to cost about the same
+[22:25:43] <mwalker>	 actually -- probably more -- haven't worked that bit out yet totally
+[22:26:39] <marktraceur>	 VSP summary says "$25 copay" but I guess if it was a particularly complicated prescription it might be different
+[22:26:48] <marktraceur>	 Hopefully I don't get that news -.-
+[22:30:45] <K4-713>	 Our utm_source is all over the place.
+[22:30:54] <K4-713>	 This is sad.
+[22:31:03] <K4-713>	 And I don't even remember why.
+[22:31:21] <K4-713>	 02_PleaseRead_Powered.default~default~default~default~control.cc
+[22:31:26] * K4-713  facepalms
+[22:31:38] <mwalker>	 ya
+[22:31:46] <marktraceur>	 No, *really*, the default
+[22:31:48] <mwalker>	 I have no clue where or what ~default~default~default is
+[22:31:54] <K4-713>	 Four.
+[22:31:57] <K4-713>	 Four defaults.
+[22:32:05] <K4-713>	 Never... a different amount.
+[22:32:19] <mwalker>	 well -- at least we've got consistency!
+[22:32:22] <K4-713>	 If you've got one, you've got four.
+[22:32:46] <mwalker>	 a bargain at any price
+[22:33:27] <K4-713>	 I was going to write up a wiki page that describes what should be in utm_source, so we can beat it up until it's actually three columns in the db.
+[22:33:34] <K4-713>	 Eventually.
+[22:33:42] <K4-713>	 But, this is just silly.
+[22:34:28] <K4-713>	 First dot: original utm_source.
+[22:34:37] <K4-713>	 Second dot: big ol' pile of WTF.
+[22:34:48] <K4-713>	 Third dot: Payment method.
+[22:35:17] <K4-713>	 ...unless, apparently, it came from an email.
+[22:35:27] <K4-713>	 email1.USD.5.default~default~default~default~control.cc
+[22:35:53] <K4-713>	 How did that even.
+[22:38:57] <marktraceur>	 At least the default~default~ thing is consistent
+[22:43:10] <K4-713>	 The annoying thing is: I *know* it's got something to do with production, but I have no idea what.
+[22:43:20] <K4-713>	 Should be new in... round about the last year or so.
+[22:43:44] <K4-713>	 Oh Snap:
+[22:43:46] <K4-713>	 B11_FaceBook.default~default~FaceBook~default~control.paypal
+[22:44:24] <awight>	 LOL thanks for the backscrollz
+[22:44:38] <K4-713>	 You want to take over from here? :p
+[22:44:46] <K4-713>	 select DISTINCT utm_source from contribution_tracking where contribution_id IS NOT NULL order by id DESC limit 50;
+[22:44:50] <K4-713>	 for more lols.
+[22:45:12] <K4-713>	 Like, 50 more lols.
+[22:46:39] <awight>	 mosdef. I will have some fun
+[22:46:51] <awight>	 second... column...
+[22:47:06] * awight  starts rotating around the room horizontally on heels
+[22:47:27] <awight>	 please tell me we would have to bring the original authorz back from the dead
+[22:47:37] <awight>	 cos... that would actually save me a step ;)
+[22:49:45] <K4-713>	 I should run downstairs and demand to know what pg was up to with the tildes, before he leaves us forever.
+[22:49:59] <K4-713>	 I have a feeling that something is being abused.
+[22:50:34] <K4-713>	 Also, I have now read the word "default" so many times I have no idea what it means.
+[22:51:41] <K4-713>	 Damn it. WMFBlog.default~default~Brandon~whyyourdonation~variable1.paypal
+[22:51:50] <K4-713>	 That's... five spots.
+[22:52:20] <K4-713>	 And: "variable1" is cute.
+[22:53:04] <K4-713>	 mwalker: Want to talk priorities finally?
+[22:53:11] <mwalker>	 certainly
+[22:53:15] <K4-713>	 I guess we could all get in on it, if I do it here.
+[22:53:56] <awight>	 ok
+[22:54:30] <K4-713>	 Aw dang, I killed the wishlist view in Mangle.
+[22:54:35] <K4-713>	 ...I mean Mingle.
+[22:54:37] <K4-713>	 ;)
+[22:55:00] <marktraceur>	 Almost every other vowel is better
+[22:55:06] <K4-713>	 Mungle?
+[22:55:10] <K4-713>	 ew.
+[22:57:19] <K4-713>	 Okay, better.
+[22:57:35] <K4-713>	 I have added a "Wishlist - Lanes" view to the team favorites.
+[22:57:56] <K4-713>	 You may notice that the wishlist tab itself has gone all listy.
+[22:58:00] <K4-713>	 That's... not for us.
+[22:58:30] <K4-713>	 That's for everybody who isn't used to mingle, trying to figure out the status of their favorite cards.
+[22:59:18] <K4-713>	 In the lanes view though, they're ranked.
+[23:00:13] <K4-713>	 awight, mwalker: Have you seen the wishlist?
+[23:00:24] <K4-713>	 It's probably worth peeking at briefly.
+[23:03:15] <mwalker>	 ooh! I'll totally create a mobile banner!
+[23:03:23] <K4-713>	 They *hella* want that.
+[23:03:32] <K4-713>	 I haven't even created a card for that yet.
+[23:04:19] <K4-713>	 I think we just want to start with US, so we can do paypal and amazon with the lowest number of variables possible.
+[23:04:27] <mwalker>	 yeppers
+[23:06:03] <K4-713>	 So, yeah: If you make that card, just add the number to the wishlist doc, and tag it in Mingle so it will show up in the wishlist view.
+[23:06:15] <K4-713>	 I don't even know what kind of point value that ought to get.
+[23:07:50] <slander>	 #969: (MW) O:MW|TS:B|P:NtH|T:TT Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/969
+[23:08:39] <mwalker>	 I gave it a 4
+[23:08:47] <mwalker>	 um.. .and how do I add it to the wishlist
+[23:09:44] <mwalker>	 K4-713: ^?
+[23:09:50] <slander>	 #969: (MW) P:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/969
+[23:10:36] <K4-713>	 Oh. It's the tiny little "Add Tags" button right before the actual card content.
+[23:10:50] <slander>	 #970: (MW) O:MW|TS:B|P:SH|T:TT Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/970
+[23:10:54] <K4-713>	 I usually type "wishlist" because I can't remember the whole tag name, and autocorrect reminds me.
+[23:11:10] <K4-713>	 Or, typeahead.
+[23:11:16] <K4-713>	 Thing.
+[23:11:19] <K4-713>	 Does stuff.
+[23:11:57] <K4-713>	 Then, the only thing left to do is drag the card to the appropriate rank in the backlog lane.
+[23:12:09] <K4-713>	 You *should* be able to rank cards.
+[23:12:50] <slander>	 #971: (MW) O:MW|TS:B|P:NtH|T:TT Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/971
+[23:12:52] <awight>	 K4-713: the wishlist-lanes cards look good, lots of nice details.  I guess I'm gonna bang on the other components of utm_source, so let me know if PG confesses anything helpful re "~"
+[23:13:11] <awight>	 otherwise, I don't see too much business reason to keep pushing on Donationform
+[23:13:24] <awight>	 maybe the Thankyou extension would fit into that...
+[23:13:39] <awight>	 Shall I invent a justification ;)
+[23:14:16] <K4-713>	 heh
+[23:14:21] <awight>	 half-serious.  Did I already make a card to consolidate all the prod forms and config before I lose my freakin mind?
+[23:14:25] <awight>	 before & after...
+[23:14:50] <K4-713>	 awight: If you dig in to what the heck utm_source should look like, would you make a page on wikitech for it under fundraising?
+[23:15:09] <awight>	 absolutely
+[23:15:16] <K4-713>	 I can tell you that it was intended to build itself as it rolls through the pipe.
+[23:15:29] <K4-713>	 So, it's going to be incomplete until it hits payments.
+[23:15:54] <awight>	 DI doesn't do anything but replace payment_method
+[23:16:08] <K4-713>	 I think the original idea was that each bit of information, separated by dots, would build as a donation traveled.
+[23:16:18] <K4-713>	 So, the last thing you get is payment_method, yes.
+[23:16:22] <awight>	 the deployed code would take payment_method from the request, hence a lot of that noise
+[23:16:44] <K4-713>	 If you looked at some utm stuff in extensions meant for donate wiki, though...
+[23:16:56] <awight>	 hmm that is a strange theory, cos the format is parsed in a very strict and fragile manner, everywhere.
+[23:17:11] <K4-713>	 Well... I said "originally".
+[23:17:19] <K4-713>	 It's been battered.
+[23:17:27] <K4-713>	 ...and not the tasty fried kind.
+[23:17:29] <awight>	 yah. hehe good as new
+[23:19:19] <K4-713>	 mwalker: So, usually the next thing I do is make the new sprint, and move over all the bits of the old sprint that didn't get done yet.
+[23:19:32] <K4-713>	 awight: ^ you too
+[23:20:08] <awight>	 K4-713: you better not be quitting
+[23:20:09] <K4-713>	 After that, it's "add in all the high priority stuff from the wishlist meeting", followed by "Look at the sprint estimate total and cry"
+[23:20:42] <K4-713>	 Then it's a game of what gets dropped to make a saneish number.
+[23:21:03] <awight>	 ah I see this is "here this is what democracy looks like, but I bet nobody here is educated or even willing to carry their own suitcase"
+[23:21:09] <awight>	 :P
+[23:21:10] * marktraceur  submits all the tiny unittest.sh fixes
+[23:21:20] <K4-713>	 yaaaaaay...
+[23:21:56] <K4-713>	 Anyway. The "new sprint" part requires me mangling project vars, and I don't actually think you guys can do that.
+[23:21:57] <mwalker>	 ok K4-713 -- you do that and then we can bicker! :)
+[23:21:59] <marktraceur>	 Get your easy code review here: https://gerrit.wikimedia.org/r/64459 https://gerrit.wikimedia.org/r/64458
+[23:22:10] <marktraceur>	 Oh, wait. Damn, they depend on another patch, never mind
+[23:22:15] <K4-713>	 d'oh!
+[23:25:51] <awight>	 Yes!  the FR diagram of doom is on wikitech
+[23:26:07] <K4-713>	 I totally did that, yes. :)
+[23:26:38] <K4-713>	 The whole point of the documentation refactor was just so I could wave that thing around some more. ;P
+[23:26:50] <slander>	 #972: (K) T:S -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/972
+[23:27:50] <slander>	 #907: (K) N:S2-i -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/907
+[23:30:50] <slander>	 #973: (AW) O:AW|TS:B|P:MH|T:TT Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/973
+[23:31:26] <awight>	 ^^ self-justification.
+[23:33:50] <slander>	 #923: (K) ->Sprint 28 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/923
+[23:33:50] <slander>	 #965: (K) ->Sprint 28 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/965
+[23:35:42] <awight>	 K4-713: the second segment of utm_source is supposed to be LP
+[23:36:05] <K4-713>	 Makes sense, yeah.
+[23:36:58] <awight>	 I've mini-documented here: https://wikitech.wikimedia.org/wiki/Fundraising#Contribution_tracking
+[23:37:06] <awight>	 but the thing to do seems to be, fix all the prod forms.
+[23:37:45] <awight>	 We're just fixing data going forwards, right?  No backfill frenzy?
+[23:38:27] <K4-713>	 I have no plans to backfill.
+[23:38:30] <awight>	 :)
+[23:38:38] <awight>	 (oh look, a baby!)
+[23:38:44] <K4-713>	 hehehe
+[23:38:50] <slander>	 #966: (K) ->Sprint 28 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/966
+[23:39:13] <K4-713>	 Also: ARGH, it seems to have mangled my card ranking.
+[23:39:20] * K4-713  rebuilds it again
+[23:40:04] <K4-713>	 Or. Maybe it was new cards.
+[23:43:10] <awight>	 K4-713: https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/941
+[23:43:49] <awight>	 I still have workflow/mental problems creating cards for subtasks...
+[23:43:50] <slander>	 #941: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/941
+[23:43:50] <slander>	 #969: (K) ->Sprint 28 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/969
+[23:43:50] <slander>	 #970: (K) ->Sprint 28 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/970
+[23:43:50] <slander>	 #971: (K) ->Sprint 28 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/971
+[23:44:22] <K4-713>	 awight: Yeah... I'm not... entirely sure what to do with that...
+[23:44:30] <awight>	 I think it's just a filter
+[23:44:39] <K4-713>	 Not... quite.
+[23:44:48] <awight>	 :(
+[23:44:59] <K4-713>	 Much of the usefulness (for me) of the sprint view, is the color-coded rank on the cards.
+[23:45:29] <K4-713>	 And, because of the way mingle is a jerk, I don't think I can reuse that named property to be just a number on some cards, and an aggregate of all subcards on other cards.
+[23:46:41] <K4-713>	 *phew*
+[23:46:42] <K4-713>	 Okay.
+[23:46:50] <awight>	 yeah, Well I'd be ok if they just showed up gray...
+[23:46:50] <slander>	 #974: (AW) O:AW|TS:B|P:SH|T:TD Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/974
+[23:46:50] <slander>	 #974: (AW) ->Sprint 28 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/974
+[23:47:00] <awight>	 (the supertasks)
+[23:47:03] <K4-713>	 Sadly, it doesn't work that way.
+[23:47:09] <awight>	 hhhar
+[23:47:28] <K4-713>	 I lose the ability to color by estimate if some cards don't have a thing called "Estimate".
+[23:47:36] <K4-713>	 I mean, we could put it in manually.
+[23:48:04] <K4-713>	 Anyway.
+[23:48:08] <K4-713>	 Er.
+[23:48:09] <awight>	 maybe hardcode it to zero for supertakss?
+[23:48:16] <awight>	 yeah i will ease offa it
+[23:48:29] <K4-713>	 The problem with supertasks is that... they shouldn't show up in the sprint by themselves.
+[23:48:40] <K4-713>	 Nor should they contain any work in and of themselves...
+[23:48:42] <awight>	 it's just damage I have from micro-self-managing
+[23:48:52] <K4-713>	 hahaha
+[23:49:03] <awight>	 that makes some sense
+[23:49:29] <awight>	 Lemme go look at one so I can complain louder
+[23:49:59] <awight>	 So eg https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/757
+[23:50:11] <awight>	 where is a list of the subtasks?
+[23:50:22] <K4-713>	 Yeah, I think I know what I'm going to do.
+[23:50:51] <K4-713>	 But, ah... not right now, as we are running out of Friday.
+[23:51:05] <K4-713>	 And I have a glutted sprint to... pare down.
+[23:51:08] <awight>	 Ugh, I filtered by supertask and got zero results
+[23:51:09] <awight>	 https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards?favorite_id=359&view=Tech+-+All
+[23:51:14] <awight>	 okok i'm over it again?
+[23:51:28] <K4-713>	 I'll look at it later. Sometime.
+[23:51:33] <K4-713>	 For now:
+[23:51:38] <K4-713>	 Go to the current sprint.
+[23:51:42] <K4-713>	 Is huge.
+[23:51:55] <K4-713>	 I just added my "sprints" view to the team favorites.
+[23:52:04] <K4-713>	 If you click on that, you can see exactly how huge.
+[23:52:30] <mwalker>	 niiiice
+[23:53:05] <mwalker>	 we aren't going to get to 970
+[23:54:33] <K4-713>	 Okay. So, next thing: I've just made the "next sprint" card make sense.
+[23:54:40] <K4-713>	 We have two choices to kill the glut.
+[23:55:20] <K4-713>	 Either move stuff to the next sprint (for which there should be a slick transition in the popup thingey), or remove it from the board entirely (also a transition).
+[23:55:51] <K4-713>	 Additional: I have no idea how this is going to freak out with all of us moving cards between sprints at the same time.
+[23:55:58] <K4-713>	 So, that's cool.
+[23:56:01] <awight>	 ohey, also a side note: the popup should have an "estimate" field
+[23:56:17] <K4-713>	 It... does?
+[23:56:47] <K4-713>	 So. How about this.
+[23:56:59] <awight>	 O WTF thanks
+[23:57:20] <K4-713>	 You guys kill off stuff in the current sprint (particularly in the backlog and dev ready lanes) and I'll poke at the supertask card type to see if I can get it to play nice.
+[23:57:30] <awight>	 k
+[23:58:33] <mwalker>	 so... how do I move a card to the next sprint? I dont have a nice button for that
+[23:58:45] <mwalker>	 and it rejects my change to the 'Planning - Sprint' card
+[23:58:45] <K4-713>	 You don't?
+[23:58:55] <mwalker>	 I could be blind
+[23:59:08] <K4-713>	 Yeah, you shouldn't have to change that directly.
+[23:59:15] <mwalker>	 but it looks like all Ive got are 'to dev ready' and 'blocked
+[23:59:33] <K4-713>	 Blargh, I see it. Hang on.
+[23:59:41] <awight>	 same here, my button disappeared a few minutes ago
+[23:59:50] <slander>	 #859: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/859
+[23:59:50] <slander>	 #970: (MW) TS:DR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/970

@@ -1,0 +1,39 @@
+[14:40:42] <jeremyb>	 ugh. some ways these banners are better in vector and in some ways monobook is better
+[14:41:10] <jeremyb>	 logged in, enwiki. seems to be wiknic and board election in rotation. but i haven't really checked
+[14:41:44] <jeremyb>	 vector clips the bottom of the text of the election one
+[14:42:16] <jeremyb>	 the wiknic one has margin-bottom: -0.5em which somehow forces the <h1> to indent
+[14:42:34] <jeremyb>	 (only on monobook)
+[14:42:49] <jeremyb>	 the election one is too close to the <h1> on monobook
+[14:43:02] <jeremyb>	 this should be simpler, non?
+[14:43:06] * jeremyb  runs away
+[16:34:43] * marktraceur  continues exploring the tangles between software
+[18:59:18] <jorm>	 greetings, nerds.
+[18:59:29] <jorm>	 the link i have here to samarium seems broken.  can i get a new link? http://www.quora.com/Wikipedia/How-much-donation-does-Wikipedia-get-on-a-daily-average
+[19:04:49] <jorm>	 n/m.  it was a fuckup in the quora page.
+[19:19:30] <Theo10011>	 yw tough guy
+[21:50:48] <andrewbogott>	 pgehres, is the 'mingle' instance in the fundraising labs project still in use?
+[21:51:02] <andrewbogott>	 I am wondering if I should delete it, update it, or let it alone.
+[21:51:17] <pgehres>	 NAFAIK, but you should ask K4 and mwalker|away
+[21:52:38] <andrewbogott>	 ok, I will email.  btw, your email address in labs is pgehres@wikimedia.org and I just got a bounce...
+[21:52:41] <andrewbogott>	 typo?
+[21:52:52] <pgehres>	 no, i am no longer at the wmf
+[21:52:55] <pgehres>	 I should change that
+[21:53:31] <andrewbogott>	 Probably it should have an autoreply rather than bouncing.  Dunno who's in charge of that though :)
+[21:53:41] <pgehres>	 OIT prolly
+[21:53:44] <andrewbogott>	 can you pm me K4 and mwalker's emails please?
+[21:58:38] * marktraceur  looks, confused, at the global config code for DonationInterface
+[21:58:58] <marktraceur>	 There appear to be fifteen different places for enabling Stomp
+[21:59:51] <pgehres>	 i believe that is a known issue
+[22:00:07] <marktraceur>	 pgehres: And how should I fix it? :)
+[22:00:17] <pgehres>	 talk to k4
+[22:00:35] * pgehres  shrugs, no longer his problem
+[22:01:02] <marktraceur>	 Blargh.
+[22:01:12] <marktraceur>	 K4tabtabtab
+[22:01:48] <pgehres>	 indeed
+[22:02:59] * marktraceur  solves this problem by sending email and reviewing gsoc code
+[22:15:32] <Nemo_bis>	 marktraceur: you already have gsoc code?
+[22:15:45] <marktraceur>	 Nemo_bis: Yup, a little bit of it
+[22:16:23] <Nemo_bis>	 nice
+[22:17:03] <Nemo_bis>	 ah, right, the book uploads
+[22:18:20] <marktraceur>	 Yup yup
+[23:20:16] <marktraceur>	 Woo, message

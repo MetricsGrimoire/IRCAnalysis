@@ -1,0 +1,249 @@
+[17:36:40] <K4-713>	 meganhernandez, the-wub: Hey guys. Queue consumption into civi is exploding. I'm going to disable the job. Do anything new in the last... hour or so?
+[17:36:50] <K4-713>	 mwalker|away: ^
+[17:37:03] <meganhernandez>	 i haven't changed anything in the past hour K4-713
+[17:37:06] <the-wub>	 K4-713: nope, haven't done anything
+[17:38:20] <K4-713>	 Okay. Your data will be delayed until I figure out why it's choking.
+[17:38:37] <K4-713>	 Related: Jeff_Green: It's taking jenkins forever to log me in again.
+[17:38:39] <K4-713>	 :[
+[17:38:47] <mwalker>	 well; there's a paypal message that's apparently borked
+[17:38:51] <Jeff_Green>	 K4-713: looking
+[17:38:51] <mwalker>	 and someone used a URL as a name :(
+[17:39:36] <K4-713>	 What the Stuff.
+[17:40:05] <Jeff_Green>	 jfyi 'strance' is not a normal unix command
+[17:40:36] <K4-713>	 ...
+[17:40:44] <mwalker>	 does it come in a 'wide' variety?
+[17:40:45] <K4-713>	 Where was that one hanging out?
+[17:41:04] <Jeff_Green>	 running an strace on the two jenkins-ish processes doesn't tell me much
+[17:41:16] * K4-713  snorts
+[17:41:16] <Jeff_Green>	 select(11, [8 10], NULL, NULL, NULL)    = 1 (in [10])
+[17:41:17] <Jeff_Green>	 read(10, "Jul 2, 2013 5:40:05 PM hudson.mo"..., 8192) = 123
+[17:41:17] <Jeff_Green>	 write(5, "Jul 2, 2013 5:40:05 PM hudson.mo"..., 123) = 123
+[17:41:26] <Jeff_Green>	 that just looks like some sort of polling interval
+[17:42:03] <K4-713>	 In other news, the thing that makes my phone explode got disabled somehow.
+[17:42:27] <Jeff_Green>	 is that good or bad?
+[17:42:54] <K4-713>	 Bad. I'd have noticed sooner if it exploded like it was supposed to.
+[17:43:28] <K4-713>	 As it was, I took 13 whole minutes.
+[17:45:02] <K4-713>	 mwalker: I see the message. Poor person self-identifies as a wikipedia article.
+[17:45:09] <mwalker>	 yep
+[17:45:23] <K4-713>	 I'm... going to tunnel in and move it to a new queue.
+[17:47:31] <Jeff_Green>	 it boggles my mind that jenkins should consume 2GB of RAM
+[17:47:51] <K4-713>	 wat
+[17:48:01] <Jeff_Green>	 oh that's a known known
+[17:48:07] <Jeff_Green>	 with an unknown reason to need to be
+[17:48:11] <Jeff_Green>	 except...java
+[17:50:55] <mwalker>	 K4-713: the mobile roundtable is today I take it?
+[17:51:05] <mwalker>	 or is it moved again?
+[17:51:40] <K4-713>	 re-enabling qc
+[17:51:50] <K4-713>	 Oh, bloody hell.
+[17:54:11] <mwalker>	 they donated twice?
+[17:54:40] <K4-713>	 mwalker: not moved again, bry just pinged me. And, maybe not, if ActiveMQ is doing the thing I've seen before where you get the grudge message.
+[17:54:51] <mwalker>	 hehe
+[17:59:58] <K4-713>	 Okay, well... qc is going to stay off until after the mobile meeting, I guess.
+[18:00:22] <mwalker>	 K4-713: gift for you! https://gerrit.wikimedia.org/r/71650
+[18:03:14] <mwalker>	 K4-713: is there a hangout link?
+[18:03:18] <mwalker>	 or should I call in?
+[18:03:29] <mwalker>	 bryony: ^
+[19:10:01] <mwalker>	 K4-713: so! queue consumer! :)
+[19:10:16] <K4-713>	 Yep.
+[19:10:18] <K4-713>	 Back to it!
+[19:10:31] <mwalker>	 there is a patch for you in gerrit that fixes the issue
+[19:10:34] <mwalker>	 "fixes"
+[19:10:42] <K4-713>	 OHO.
+[19:10:58] <K4-713>	 Is that what that was?
+[19:11:10] <K4-713>	 Also, we should probably prevent, ah...
+[19:11:15] <K4-713>	 hurmf.
+[19:11:20] <K4-713>	 Names are tricky.
+[19:11:24] <K4-713>	 Trickier than they look.
+[19:11:32] <K4-713>	 Because: Global everything.
+[19:11:58] <mwalker>	 I know :(
+[19:12:26] <K4-713>	 But, ah, if somebody supplies a name that contains "//" (or even "/"), we can probably reasonably tell them to knock it off.
+[19:14:16] <mwalker>	 ooh
+[19:14:18] <mwalker>	 here's a good one!
+[19:14:22] <mwalker>	 XSS via email
+[19:14:38] <mwalker>	 donate a dollar to get us to send an email with a very small script tag as a name
+[19:14:39] <mwalker>	 eep!
+[19:14:45] <K4-713>	 mwalker: I have but one comment. Which I should probably put in the patch. But, spoiler: Did you check the display name and sort name maxlengths while you were in there?
+[19:14:57] <mwalker>	 npoe
+[19:15:41] <mwalker>	 ugh
+[19:15:43] <mwalker>	 128
+[19:17:00] <mwalker>	 and someone might conceivably use a / to say Bob/Jane
+[19:20:52] <mwalker>	 K4-713: ok -- new patch
+[19:23:30] <K4-713>	 Done, and done.
+[19:24:06] <K4-713>	 Can you deploy? I think the safest thing to do with the borked messages is to move it back and let it get consumed.
+[19:24:06] <mwalker>	 you want to push it or should I?
+[19:24:08] <mwalker>	 kk
+[19:24:13] <mwalker>	 one moment
+[19:24:18] <K4-713>	 :)
+[19:24:29] <K4-713>	 Moving the other message back now.
+[19:29:42] <mwalker>	 Jeff_Green: ... as is typical; I have apparently forgotten how to deploy civi code
+[19:29:46] <mwalker>	 I'm on al
+[19:29:55] <mwalker>	 in /srv/org.wikimedia.civicrm
+[19:29:58] <Jeff_Green>	 oic
+[19:30:05] <mwalker>	 fundraising_code_update doesn't seem to want to do anything...
+[19:30:06] <Jeff_Green>	 sudo fundraising_code_update
+[19:30:22] <Jeff_Green>	 oh, you need to specify the project b/c we have them all set manual-only
+[19:30:28] <Jeff_Green>	 probably -p civicrm ?
+[19:30:30] <mwalker>	 arhar
+[19:30:35] <Jeff_Green>	 -h for help
+[19:30:44] <mwalker>	 :)
+[19:30:44] <Jeff_Green>	 which will tell you how to list hte projects, which I forget
+[19:31:04] <Jeff_Green>	 -i maybe?
+[19:31:23] <mwalker>	 yep -i
+[19:31:33] <mwalker>	 !log updated production civi from 6e78674302b3e4189248ba8234deaf3d2ee35c54 to 5bcbab5c7d374473f05bf49b41ffd2c531541510
+[19:31:42] <morebots>	 Logged the message, Master
+[19:31:51] <Jeff_Green>	 cool
+[19:32:00] <mwalker>	 thanks :)
+[19:32:21] <K4-713>	 mwalker: We good to go?
+[19:32:39] <mwalker>	 ish; the failmail we just got is the paypal one I was talking about
+[19:32:44] <mwalker>	 looks like we're missing records or something
+[19:32:50] <mwalker>	 but! we are good to go for the name one :)
+[19:32:53] <K4-713>	 k
+[19:33:37] <K4-713>	 Seem to be unstuck. :)
+[19:33:42] <K4-713>	 Woot!
+[19:33:59] <K4-713>	 Back to stable.
+[19:35:05] <mwalker>	 so... is the badmsg queue growing?
+[19:35:15] <mwalker>	 I'm concerned about the message before the one that fails
+[19:35:19] <mwalker>	 *failed
+[19:35:24] <K4-713>	 hm.
+[19:35:29] <mwalker>	 WD recurring: Msg does not have a matching recurring record in          [notice]
+[19:35:29] <mwalker>	 civicrm_contribution_recur; requeueing for future processing.
+[19:35:29] <mwalker>	 WD php: Notice: Undefined index: gateway in                             [notice]
+[19:35:29] <mwalker>	 recurring_normalize_paypal_msg() (line 741 of
+[19:35:29] <mwalker>	 /srv/org.wikimedia.civicrm/sites/all/modules/queue2civicrm/recurring/recurring.module).
+[19:35:33] <K4-713>	 Also, hee: http://ganglia.wikimedia.org/latest/graph_all_periods.php?c=Fundraising%20eqiad&h=silicon.frack.eqiad.wmnet&r=hour&z=small&jr=&js=&st=1372793681&v=1157&m=ActiveMQ%20QueueSize%20donations&vl=Messages&z=large
+[19:35:56] <K4-713>	 mwalker: Ew.
+[19:38:33] <K4-713>	 I... wonder.
+[19:40:31] <marktraceur>	 mwalker: Hey, hey, you, you, where the hell are you
+[19:41:10] * marktraceur  just had a jamesofur wander over wanting somebody fundraisery
+[19:41:13] <mwalker>	 at home, at home, chillin in my chaaAair
+[19:41:38] <mwalker>	 ah; I'll give him a call
+[19:41:50] <K4-713>	 mwalker: I think I know what this is about.
+[19:41:58] <K4-713>	 CN banner categories.
+[19:42:20] <K4-713>	 They... have identified a need for more than just "fundraising" and "general".
+[19:42:33] <K4-713>	 But.
+[19:42:54] <mwalker>	 ruh roh
+[19:42:59] <mwalker>	 I knew this was going to happen at some point
+[19:43:02] <mwalker>	 luckily!
+[19:43:08] <mwalker>	 I planned ahead the last time I did a schema change!
+[19:43:10] <mwalker>	 ... I think
+[19:43:13] <K4-713>	 To answer your first question, there appear to be ~134 messages in the badmsg queue, and mostly from 6/25.
+[19:43:33] <K4-713>	 So, nothing catastrophic. But definitely unfortunate.
+[19:43:51] <K4-713>	 (I think 6/25 was the day I resent damn everything paypal let me)
+[19:44:44] <K4-713>	 And now, I should eat unless I want to pass out. :)
+[19:45:00] <marktraceur>	 Oh, right, food, good call
+[19:45:07] <marktraceur>	 Damn it guys
+[19:45:16] <marktraceur>	 Who am I supposed to eat lunch with
+[19:45:50] <K4|lunchfinally>	 buh... the first person you see.
+[19:46:08] <K4|lunchfinally>	 (that should be good)
+[19:46:29] <K4|lunchfinally>	 Isn't josh in there?
+[19:47:06] <marktraceur>	 He was, he is not at his desk currently
+[19:47:06] * marktraceur  shrugs, goes to find noms
+[20:49:51] <K4-713>	 Gosh, lunch during wfh is SO MUCH cheper...
+[20:50:56] <marktraceur>	 Heh
+[21:20:11] <mwalker>	 K4-713: so I'm working on some patches for jalex -- which hopefully shouldn't take too much longer
+[21:20:25] <K4-713>	 sweet.
+[21:20:30] <K4-713>	 I'm in css hell.
+[21:20:33] <mwalker>	 whoo!
+[21:21:02] <mwalker>	 for tomorrow -- is this sanctioned as a team event -- or should I request time off?
+[21:21:15] <mwalker>	 also jvandavier, if you need a ride I can pike you up from somewhere
+[21:21:32] <jvandavier>	 oooh, i may take you up on that
+[21:21:35] <jvandavier>	 i can come downtown
+[21:21:39] <jvandavier>	 mwalker: ^
+[21:21:59] <mwalker>	 kk, we can meet at the office
+[21:22:01] <mwalker>	 ?
+[21:24:49] <K4-713>	 mwalker: Sadly, it is not a sanctioned event. Because I only had a limited number of spaces and couldn't take everybody in fundraising.
+[21:25:03] <K4-713>	 ...and... sort of didn't try. :p
+[21:25:12] <jvandavier>	 mwalker: office sounds good
+[21:25:19] <jvandavier>	 what time?
+[21:26:36] <mwalker>	 say 1420?
+[21:26:58] <jvandavier>	 works for me
+[21:31:02] <jvandavier>	 K4-713: http://www.theatlantic.com/business/archive/2013/07/the-winklevoss-twins-want-you-to-invest-in-bitcoin-dont/277478/
+[21:32:13] <mwalker>	 "We have elected to put our money and faith in a mathematical framework that is free of politics and human error." hehe
+[21:32:23] <mwalker>	 specifically the free from human error part
+[21:35:12] * marktraceur  grins
+[21:35:24] <marktraceur>	 mwalker: Is it sad that I fully expect my brother to know these people
+[21:35:41] <mwalker>	 the winklevoss twins?
+[21:35:46] <marktraceur>	 *nod*
+[21:35:52] <marktraceur>	 He's not on IRC though, damn it
+[21:35:58] <marktraceur>	 He never is, when I want to bug him.
+[21:37:20] <mwalker>	 :P
+[22:06:56] <K4-713>	 heeeey, mwalker... this should be totally easy CR. https://gerrit.wikimedia.org/r/#/c/71728/
+[22:07:40] <mwalker>	 wow
+[22:07:42] <mwalker>	 -183 lines
+[22:07:55] <K4-713>	 183 remaining? :p
+[22:08:04] <K4-713>	 The file was fully _duplicated_.
+[22:08:12] <mwalker>	 niiiice
+[22:08:16] <marktraceur>	 Aw, damn
+[22:08:22] <marktraceur>	 I wish I'd been faster
+[22:08:33] <marktraceur>	 (I'm enabling unittest.sh in Jenkins)
+[22:09:49] <mwalker>	 whoo! unit tests!
+[22:12:26] <K4-713>	 yaaaaaay
+[22:13:34] <marktraceur>	 zuul is restarted, let me submit a dummy patch for it to fail
+[22:21:25] <marktraceur>	 I'm going to +2 a patch that I am reasonably sure will get -1'd by Jenkins. If it doesn't I'll revert within seconds.
+[22:22:15] <marktraceur>	 Eeeexcellent.
+[22:22:36] <marktraceur>	 I need to fix one test, I think, but else it's working
+[22:23:02] <marktraceur>	 Oh, hm
+[22:23:06] <marktraceur>	 That's why it failed
+[22:23:09] <K4-713>	 What the Stuff. I _swear_ I can hear somebody snoring behind me.
+[22:23:10] <K4-713>	 :/
+[22:23:31] <K4-713>	 Most. Boring. Ghost. Ever.
+[22:23:47] <marktraceur>	 Good band name
+[22:35:46] <mwalker>	 snoring behind me?
+[22:36:09] <mwalker>	 or most boring ghost ever?
+[22:37:16] <marktraceur>	 MBGE
+[22:37:38] <marktraceur>	 "We're Going to Haunt Your Muffler EP"
+[22:38:11] <mwalker>	 "Half-hearted dish rattling"
+[22:38:42] <marktraceur>	 "Slamming Doors Is Fun (But We'll Try Not to Wake You)"
+[22:42:40] <K4-713>	 I would totally play in MBGE.
+[23:00:00] <jvandavier>	 K4-713: thanks for being a wizard
+[23:00:46] <K4-713>	 Aw, this one was easy. :D
+[23:01:23] <jvandavier>	 the GC portal won't allow me to look donors up by first/last name, so i basically have to have an email address to perform searched
+[23:03:48] <K4_the_Beige>	 First/last and approximate time makes it pretty simple.
+[23:04:45] <K4_the_Beige>	 Heck, first OR last and approximate time, and error message? No problemo.
+[23:05:10] <jvandavier>	 cool
+[23:05:23] <jvandavier>	 it seems a little ridic i can't search that in GC…but when do they ever make sense
+[23:06:21] <K4_the_Beige>	 uh, seriously.
+[23:06:36] <K4_the_Beige>	 This brings up an interesting point, though...
+[23:06:54] <K4_the_Beige>	 Is there any field you *can* search by in GC, that we're not using?
+[23:07:31] <jvandavier>	 once i get an Order ID or email i am good
+[23:08:22] <jvandavier>	 but getting that from a donor via Twitter, or a donor that sends an email to us from a different email address than what they used in the form makes things a bit more difficult
+[23:08:31] <K4_the_Beige>	 Right... but I'm kind of wondering if there's some "customer ID" or something like that, which we don't care about, that we can put anything in.
+[23:09:10] <jvandavier>	 …wait, what do you mean? like providing donors will a random number than can come back to us with?
+[23:09:30] <K4_the_Beige>	 nah, I mean, we'd just throw their name in there so you could search on it.
+[23:09:56] <K4_the_Beige>	 There's usually >1 field like that we can throw whatever in.
+[23:10:06] <jvandavier>	 oh! i see now
+[23:10:24] <jvandavier>	 let me email GC and see what fields i can actually search by in the portal
+[23:10:30] <K4_the_Beige>	 Probably would have done this to begin with if we realized you couldn't search by name. :/
+[23:10:42] <K4_the_Beige>	 And by "we" I basically mean "me".
+[23:10:54] <K4_the_Beige>	 IF ME REALIZED.
+[23:11:00] <K4_the_Beige>	 hurrr
+[23:11:17] <jvandavier>	 hehe
+[23:11:25] <jvandavier>	 i'll get back to you when i get a list from GC
+[23:11:43] <K4_the_Beige>	 One way or another... they're going to ask me for XML.
+[23:11:47] <K4_the_Beige>	 I can feel it.
+[23:11:56] <jvandavier>	 beige xml
+[23:12:06] <K4_the_Beige>	 I can do that in beige, no problem.
+[23:12:08] <K4_the_Beige>	 <_<
+[23:12:10] <K4_the_Beige>	 >_>
+[23:18:00] <K4_the_Beige>	 "Found 1571 matches of payflowpro_gateway in 79 files"
+[23:18:09] * K4_the_Beige  sighs
+[23:21:39] <jvandavier>	 …? are we sending people there?
+[23:33:10] <K4_the_Beige>	 No. It's... got nothing to actually do with payflowpro.
+[23:33:35] <K4_the_Beige>	 It's places in the code, where things that have nothing to do with payflowpro, are called the wrong thing.
+[23:35:51] <jvandavier>	 ah, i see
+[23:38:21] <jvandavier>	 K4_the_Beige: turns out i can search by first/last name in WPC 1.0, but not in WPC 2.0
+[23:47:01] <K4_the_Beige>	 O_O
+[23:47:17] <K4_the_Beige>	 but.
+[23:47:20] <K4_the_Beige>	 butbut.
+[23:49:41] <jvandavier>	 ...yeah
+[23:53:29] <jvandavier>	 REQUEST 5734141 NULL VALUE NOT ALLOWED FOR EXPIRYDATE
+[23:55:53] <K4_the_Beige>	 jvandavier: Expiration date is on the GC form... and I have _no idea_ why they don't require it to be filled out all the time.
+[23:56:26] <K4_the_Beige>	 I mean, we'd require it, but it's on their cc form.
+[23:57:22] <K4_the_Beige>	 Seems to me, last time we said "Why don't you have a javascript validation rule for expiry date?" they said "We totally do" or "Your mother!" or something.
+[23:57:32] <K4_the_Beige>	 And then asked me for XML.
+[23:57:34] <K4_the_Beige>	 :|
+[23:58:35] <jvandavier>	 seems like they don't - from what i can tell, this donor didn't choose a month/date, so the donation failed *after* he clicked submit
+[23:59:15] <K4_the_Beige>	 yep
+[23:59:33] <jvandavier>	 sucky experience for donors
+[23:59:36] <jvandavier>	 damn GC
+[23:59:52] <K4_the_Beige>	 I think, though, that it's one of their forms. Not all of 'em.

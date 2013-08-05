@@ -1,0 +1,157 @@
+[00:12:43] * marktraceur  looks askance at drupal configuration
+[00:15:48] <marktraceur>	 I guess there's no way to change the CT config from Drupal, so...must be that we're missing that capacity...where should I submit the patch? Or am I missing something?
+[00:17:54] <marktraceur>	 Ah. Tomorrow, then.
+[17:42:46] <marktraceur>	 OK how on earth am I going to force a new ctid.
+[17:42:57] * marktraceur  has the databases connecting now, at least
+[17:45:07] <marktraceur>	 (cc K4-713, when you have a sec)
+[17:46:55] <K4-713>	 force a new ctid?
+[17:47:00] <K4-713>	 Just... don't have one.
+[17:47:12] <K4-713>	 You may have to session kill sometimes.
+[17:47:25] <marktraceur>	 Uh
+[17:47:34] <marktraceur>	 Yeah that probably makes sense
+[17:47:42] <K4-713>	 Those should persist as long as the edit token is valid, which *should* be three attempts.
+[17:47:56] <K4-713>	 After that it should regenerate on its own. :)
+[17:48:41] <marktraceur>	 *nod*
+[17:48:55] <marktraceur>	 Hrm, I guess I need the twig libraries too
+[17:49:02] <marktraceur>	 That may be causing the first errors
+[17:54:31] <K4-713>	 Where are you running code at the moment?
+[17:54:53] <K4-713>	 All that stuff I said about the edit token is DonationInterface.
+[17:56:42] <marktraceur>	 Yeah, I cleared the cookie, that worked
+[17:56:53] <marktraceur>	 But then there are still twig errors, so the email doesn't get rendered
+[21:02:01] <marktraceur>	 K4-713: OK, so I've turned off Thanks because I don't want to debug it right now, and now I see success messages dealing with my contribution but then "WD queue2civicrm: No contributions processed." at the end.
+[21:02:52] <K4-713>	 Ah, doe sit say somewhere that it's about to attempt recurring messages?
+[21:02:59] <K4-713>	 And, right before that, a different number?
+[21:03:02] <marktraceur>	 Er
+[21:03:04] <marktraceur>	 maybe
+[21:03:19] <marktraceur>	 No, it doesn't
+[21:03:23] <marktraceur>	 I've seen that message before, but no
+[21:03:38] * K4-713  goes to look at real jenkins
+[21:05:43] * K4-713  twiddles endlessly waiting to log in
+[21:05:54] <K4-713>	 ...this is silly.
+[21:06:18] <K4-713>	 Jeff_Green: It's been ages since I could log in to Jenkins on Al in anything resembling a normal amount of time.
+[21:06:45] <Jeff_Green>	 K4-713: hmmm. have you tried rebooting :-P
+[21:06:57] <K4-713>	 I tried getting a whole new computer. ;)
+[21:07:05] <Jeff_Green>	 well that explains everything
+[21:07:16] <K4-713>	 heh
+[21:07:16] <Jeff_Green>	 srsly though, what's your process to log in
+[21:07:25] <K4-713>	 Same as it ever was.
+[21:07:28] <Jeff_Green>	 you have to tunnel via ssh yes?
+[21:07:40] <K4-713>	 Er... let me find the... Yes. And getting the login page is reasonable.
+[21:08:01] <K4-713>	 And then it sits and spins, and it's only *just* logged me on.
+[21:08:22] <K4-713>	 That was, like, 5 minutes.
+[21:08:24] <Jeff_Green>	 if you close that whole session and start over, does it take a long time again?
+[21:08:39] <Jeff_Green>	 b/c I'd like to watch what's happening on the machine while you're waiting
+[21:08:39] <K4-713>	 I can try in a minute.
+[21:08:41] <Jeff_Green>	 k
+[21:09:26] <K4-713>	 marktraceur: Yup, that's a bug.
+[21:09:50] <marktraceur>	 Woo bug.
+[21:09:53] <K4-713>	 It's always saying no contributions were processed, in prod.
+[21:10:02] <marktraceur>	 OK, so I just shouldn't trust it
+[21:10:09] <marktraceur>	 What *should* I check, to make sure it worked?
+[21:10:13] <K4-713>	 (I could swear this happened in November and we fixed it. fing regressions...)
+[21:10:18] <marktraceur>	 Apart from "it's not in the queue anymore"
+[21:10:36] <K4-713>	 Er... look for it in civi's database.
+[21:10:45] <K4-713>	 Either through their frontend, or in mysql.
+[21:11:07] <K4-713>	 Jeff_Green: logging out and killing my tunnel.
+[21:11:09] * Jeff_Green  wants to transfer this sticker that says "HEY! We make BACON JERKY 2!" to my laptop, but it won't peel off the bag
+[21:11:19] <Jeff_Green>	 ok wait a sec, lemme get situated on al
+[21:11:34] <K4-713>	 Standing by. :)
+[21:11:42] <marktraceur>	 Hm, I'm not sure how the GUI works for that...
+[21:12:01] <K4-713>	 Well, you have to go to civicrm's Advanced Search.
+[21:12:10] <Jeff_Green>	 K4-713: ok go for it
+[21:12:11] <K4-713>	 Then, there are a few options.
+[21:12:31] <K4-713>	 Jeff_Green: okay, here goes.
+[21:12:45] <K4-713>	 got the tunnel
+[21:12:52] <Jeff_Green>	 19201 jenkins   20   0 2632m 956m 5932 S    2 12.0  72:00.81 java
+[21:12:56] <K4-713>	 login page hit
+[21:13:09] * Jeff_Green  loves that it takes 2GB of RAM for jenkins to do what cron does with like none
+[21:13:18] <K4-713>	 And... well, crap. Now it performed as expected.
+[21:13:31] <K4-713>	 It knows you're looking.
+[21:13:44] <Jeff_Green>	 the little javabillies are hiding
+[21:13:55] <K4-713>	 I knew it.
+[21:14:00] <K4-713>	 :p
+[21:14:43] <Jeff_Green>	 jenkins has been up since 5/21
+[21:14:59] <Jeff_Green>	 can we punch it in the face?
+[21:15:07] <K4-713>	 Should we give it a 5 minute break? ha, yes, that.
+[21:15:18] <Jeff_Green>	 good time to do so?
+[21:15:29] <K4-713>	 Sure.
+[21:18:40] <Jeff_Green>	 it's down
+[21:20:33] <Jeff_Green>	 K4-713: i wonder if this could be more openjdk fail
+[21:20:46] <K4-713>	 hm
+[21:21:19] <K4-713>	 Ah! It just took a while to log in, but... like, less than half the time it was taking before the restart.
+[21:21:57] <K4-713>	 Fascinating.
+[21:22:42] <Jeff_Green>	 oh that's interesting
+[21:23:24] <K4-713>	 I didn't kill the tunnel this time, either.
+[21:24:02] <Jeff_Green>	 i'd be surprised if the tunnel has anythign to do with it
+[21:24:46] <K4-713>	 Yeah, I'm not sure how it would be messing with anything either.
+[21:25:21] <K4-713>	 But, ah... I don't know a lot of things. :)
+[21:26:23] <Jeff_Green>	 nor do i
+[21:26:40] <Jeff_Green>	 once java gets involved my brain checks out. i think i actually go into fight-or-flight mode
+[21:26:47] <K4-713>	 hah!
+[21:28:00] <K4-713>	 Yeah, I can relate. Because: Java.
+[21:28:09] <Jeff_Green>	 it's like a blow to the head
+[21:29:07] <Jeff_Green>	 do you ever see an authentication error or anything?
+[21:29:43] <K4-713>	 Nope.
+[21:30:12] <Jeff_Green>	 how slow was the login after the restart?
+[21:30:26] <K4-713>	 Er, 2 minutes, tops.
+[21:30:29] <K4-713>	 But, about that.
+[21:30:52] <Jeff_Green>	 that's insane
+[21:31:01] <K4-713>	 It is pretty wild.
+[21:31:14] <K4-713>	 Want to restart again and watch me log in from the other side?
+[21:31:27] <Jeff_Green>	 yeah
+[21:31:41] <Jeff_Green>	 i guess I'll strace the proc, can't think of anything else to do offhand
+[21:32:13] <K4-713>	 And, yeah, if nothing jumps out... 2 minutes is way better than 5+.
+[21:32:25] <K4-713>	 Still annoying, but not maddening.
+[21:32:30] <Jeff_Green>	 for the life of me I can't think of wtf it could be doing
+[21:32:44] <Jeff_Green>	 transferring the entire java binary to your browser?
+[21:32:50] <K4-713>	 bahaha
+[21:32:54] * K4-713  frowns
+[21:33:07] <Jeff_Green>	 are you currently waiting for auth?
+[21:33:12] <K4-713>	 nope.
+[21:33:15] <K4-713>	 Should I try now?
+[21:33:18] <Jeff_Green>	 oh. yeah go for it
+[21:33:37] <K4-713>	 ...the heck. I was still logged in.
+[21:33:59] <Jeff_Green>	 cookie?
+[21:34:04] <K4-713>	 How can that happen if the whole proc restarts?
+[21:34:50] <Jeff_Green>	 which proc? jenkins or your browser?
+[21:36:05] <K4-713>	 jenkins
+[21:36:33] <Jeff_Green>	 could be storing it on disk somewhere
+[21:36:45] <Jeff_Green>	 lemme kill it again and clean up /tmp
+[21:36:55] <K4-713>	 Okay. I'm definitely logged out this time.
+[21:37:52] <Jeff_Green>	 k try now
+[21:39:27] <K4-713>	 going.
+[21:39:31] <K4-713>	 And it's not instantaneous.
+[21:39:46] <K4-713>	 Now it's in.
+[21:39:52] <K4-713>	 Well, that was much, much faster.
+[21:39:52] <Jeff_Green>	 how long that time?
+[21:40:13] <K4-713>	 22 seconds?
+[21:40:19] <Jeff_Green>	 innnnnnnnnnnteresting
+[21:40:43] <K4-713>	 crufty /tmp?
+[21:41:01] <Jeff_Green>	 maybe? that's the last thing I did
+[21:41:52] <K4-713>	 Well, when it happens again, we will hopefully not have amnesia about this whole thing.
+[21:41:57] <Jeff_Green>	 ha
+[21:41:58] <K4-713>	 ...and try that first. :)
+[21:42:03] <Jeff_Green>	 yeah just ping me if it happens again let me know
+[21:42:13] <Jeff_Green>	 I'm not at all convinced that should have fixed it but who knows
+[21:42:21] <K4-713>	 Absolutely. Thanks for poking it.
+[21:42:44] * Jeff_Green  eyes this suspiciously 361985 winstone6388219843944575818.jar
+[21:42:58] <K4-713>	 >_>
+[21:44:23] <K4-713>	 I guess it ships with jenkins.
+[21:48:24] <K4-713>	 Trying to get some basic version info, there. To find out how old it is.
+[21:49:50] <Jeff_Green>	 i assume it's the same as the one in /var/cache/jenkins/war but why does it get copied to /tmp?
+[21:50:05] <Jeff_Green>	 identical yeah
+[21:50:06] <K4-713>	 It was in /tmp?
+[21:50:15] <Jeff_Green>	 yup
+[21:50:39] <Jeff_Green>	 it's back there now after restarting jenkins. i'm not sure if it showed up on restart or on your login
+[21:50:39] <K4-713>	 No idea.
+[21:50:55] <K4-713>	 Oh, hum. That's an idea.
+[21:51:12] <Jeff_Green>	 ok. well this is all making me want to barf so let's just be happy logins are speedy and remember next time slowness happens
+[21:52:11] <K4-713>	 Yeah. I think if I spend too much time with JIT-compiler stuff, I have to go... take a shower before I associate with people again.
+[21:52:22] <Jeff_Green>	 ha
+[21:53:00] <K4-713>	 Also: My calendar informs me I have to go talk about hiring for 40 minutes now.
+[21:53:08] <Jeff_Green>	 woot.
+[21:53:18] <K4-713>	 ...kinda.
+[21:54:05] <K4-713>	 If it's anything like last time, it'll be momentarily like the argument sketch.
+[21:54:13] <K4-713>	 "You don't want that."
+[21:54:16] <K4-713>	 "Yes I do."
+[21:55:01] <Jeff_Green>	 "Actually, no."

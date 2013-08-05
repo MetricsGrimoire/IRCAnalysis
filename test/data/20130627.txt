@@ -1,0 +1,24 @@
+[00:46:33] <K4-713>	 mwalker: This is better. https://gerrit.wikimedia.org/r/#/c/70777/
+[00:50:02] <K4-713>	 mwalker: Additional: Do you remember anything about how we hide the mediawiki skin on our donation forms?
+[00:50:16] <K4-713>	 That bit of my memory has been destroyed. I suspect space rocks.
+[00:50:27] <mwalker>	 yep -- we include a resource loader module that just hides things via css
+[00:50:58] <K4-713>	 Funny thing is, it seems to have broken on my local.
+[00:51:09] <mwalker>	 fuuun
+[00:51:21] <mwalker>	 do you still have a di/modules/css/skinOverride.css file?
+[00:52:14] <K4-713>	 yes.
+[00:53:52] <K4-713>	 uh. And the module appears to be loaded in the constructor of the parent class to all the forms, too.
+[00:54:00] <K4-713>	 Freaky.
+[00:54:01] <mwalker>	 and you have a $wgResourceModules['donationInterface.skinOverride'] = array() line in donationinterface.php?
+[00:54:20] <K4-713>	 yep
+[00:54:27] <K4-713>	 That's what I followed back.
+[00:55:17] <mwalker>	 do you have a JS error on the page somewhere?
+[00:56:22] <K4-713>	 Don't think so.
+[00:56:29] <K4-713>	 I mean, I can't see one.
+[00:56:57] <K4-713>	 Bah. Looks like debug party tonight.
+[00:57:02] <mwalker>	 I got nuttin' then
+[00:58:33] <mwalker>	 K4-713: it's working fine for me off of the latest and greatest branches
+[00:58:42] <K4-713>	 Yeah, I mean, prod is fine.
+[00:58:48] <K4-713>	 And it's not limited to any one of my forms.
+[00:59:38] <mwalker>	 clearly you're cursed
+[00:59:49] <K4-713>	 obviously. :)
+[00:59:56] <K4-713>	 I mean: :[

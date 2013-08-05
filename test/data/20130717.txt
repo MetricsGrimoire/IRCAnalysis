@@ -1,0 +1,53 @@
+[12:15:49] <Thehelpfulone>	 hi the-wub - do you know who's replaced Seddon as "Translation Coordinator"? https://wikimediafoundation.org/wiki/Staff_and_contractors?showall=1#Fundraising
+[12:18:08] <the-wub>	 oops, is he still there? no one's replacing him directly, translation is now shared between a few other members of the team
+[12:18:23] <the-wub>	 also, when did we get mascots? :D
+[12:19:26] <the-wub>	 Thehelpfulone: ^
+[12:19:46] <Thehelpfulone>	 you don't know? :O
+[12:19:52] <Thehelpfulone>	 they arrived last week, still scared of Rory
+[12:20:50] <Thehelpfulone>	 the-wub, can you tell me who those people are? there was some discussion in #wikimedia the other day and problems with CN banners but we couldn't figure out how to fix it or who to poke
+[12:22:17] <the-wub>	 me, Bryony (who's taking less of a role as she's just switched to part-time), and Megan
+[12:22:47] <the-wub>	 I know translation is a bit confused at the moment, I'm working on making things clearer
+[12:29:28] <Thehelpfulone>	 okay, a
+[12:29:43] <Thehelpfulone>	 are we running fundraising banners atm, and if so where?
+[12:40:18] <the-wub>	 yes we are, almost everywhere. but at only around 5% of views, and after seeing 1 banner users should get a cookie which prevents them seeing any more
+[12:40:35] <the-wub>	 megan posted more details here: https://meta.wikimedia.org/wiki/Fundraising_2013
+[14:50:57] <Thehelpfulone>	 the-wub, https://wikimediafoundation.org/wiki/Problems_donating/en should be open by default I think
+[14:51:19] <Thehelpfulone>	 also using the new form banner
+[14:51:26] <Thehelpfulone>	 I tried �30 and Credit Card, I get a There was an error processing your request.
+[14:51:41] <Thehelpfulone>	 https://payments.wikimedia.org/index.php/Special:GatewayFormChooser?uselang=en&language=en&currency=GBP&country=GB&paymentmethod=cc is the URL I'm at, and We were unable to find a donation form matching your parameters. Please contact our help team for more information.
+[14:51:41] <Thehelpfulone>	  is the error message
+[14:54:44] <the-wub>	 Thehelpfulone: thanks, looking into it. I presume you followed one of the links in https://meta.wikimedia.org/wiki/Fundraising_2013 to the banner?
+[14:55:38] <Thehelpfulone>	 yes
+[14:55:41] <Thehelpfulone>	 https://en.wikipedia.org/?banner=B13_0701_txtform_FsionForm_dr_enYY&reset=1
+[14:58:44] <the-wub>	 ah okay, it's as I thought. there was a change a few days ago in our payments backend, which needed a change in banner code. we rolled it out to all current banners, but that banner is from before then
+[14:59:07] <the-wub>	 I hadn't thought of Megan linking to older banners for reports. I'll make sure to go back and fix them as well
+[15:00:36] <Thehelpfulone>	 thanks
+[15:01:44] <Thehelpfulone>	 speaking of broken things the-wub, there's still hundreds of old fundraising pages that need deleting (with broken banner code)
+[15:01:50] <Thehelpfulone>	 broken donation code*
+[15:03:18] <Thehelpfulone>	 a number have already been proded, https://wikimediafoundation.org/wiki/Category:Proposed_deletions - but I can't delete them as I'm no longer an admin and fundraising was supposed to take a look months ago but that didn't happen..
+[15:07:17] <the-wub>	 ah yes. cleaning those up is high on my to-do list. working on a way to redirect them cleanly to donate wiki, and then they and all the subpages can go
+[15:07:36] <the-wub>	 hadn't realised there were quite so many proposed for deletion!
+[15:10:41] <the-wub>	 right Thehelpfulone , all the old banners should be fixed now
+[15:12:14] <Thehelpfulone>	 thanks
+[15:12:40] <Thehelpfulone>	 so when you say redirect them cleanly to donate wiki, do you mean through creating redirects on wiki, or server-side?
+[15:13:48] <Thehelpfulone>	 the-wub, I created https://wikimediafoundation.org/wiki/User:Thehelpfulone/Fundraising back in March to try to co-ordinate the clean up in some way
+[15:14:44] <Thehelpfulone>	 as you can see there are a lot more pages stll to be proposed
+[15:17:44] <the-wub>	 great, that will be helpful
+[15:18:21] <the-wub>	 I was thinking javascript, not sure if there's a cleaner way. we will probably want to add some tracking codes as well
+[15:20:51] <Thehelpfulone>	 I think we do have "hard" wiki redirects, I've seen them before where people have redirected their user page from one wiki to another
+[22:01:40] <mwalker>	 !log updating payments-listeners from b2ac16f5284c56ea1ba475aba9dae9cc476f0f6d to 90ddcc35ccab7366a0fc6ba12f457a513d4515e3
+[22:01:43] <morebots>	 Logged the message, Master
+[22:14:25] <awight>	 mwalker: where does that go?
+[22:14:32] <awight>	 cool!
+[22:14:54] <mwalker>	 where does what go?
+[22:15:57] <awight>	 !log chongo
+[22:16:07] <morebots>	 Logged the message, Master
+[22:16:13] <awight>	 morebots: help
+[22:16:14] <morebots>	 I am a logbot running on wikitech-static.
+[22:16:14] <morebots>	 Messages are logged to wikitech.wikimedia.org/wiki/Server_Admin_Log.
+[22:16:14] <morebots>	 To log a message, type !log <msg>.
+[22:33:22] <jvandavier>	 awight: careful with morebots
+[22:33:25] <jvandavier>	 he tweets
+[22:33:27] <jvandavier>	 ;-)
+[22:38:56] <awight>	 singing with the fishes, see...
+[22:56:58] <mwalker>	 Jeff_Green: are you there?

@@ -1,0 +1,129 @@
+[15:57:49] <K4-713>	 Jeff_Green: Hey, good morning.
+[16:31:24] <Jeff_Green>	 hey K4-713
+[16:31:39] <K4-713>	 How's things?
+[16:32:09] <Jeff_Green>	 okeedokee
+[16:32:26] <Jeff_Green>	 I'm waiting for chris to show up to move db1008
+[16:33:53] <K4-713>	 Ah, cool.
+[16:34:10] <K4-713>	 Where did the multicast banner impression packet stream get left off?
+[16:34:39] <Jeff_Green>	 it's being moved to a new host
+[16:35:01] <K4-713>	 Okay. But not already "has been moved".
+[16:35:10] <ottomata>	 has been moved, as of this morning
+[16:35:17] <ottomata>	 checking to see about the netapp writing now
+[16:35:19] <K4-713>	 Ah!
+[16:35:24] <K4-713>	 Sweet.
+[16:35:50] <K4-713>	 I'm going to tell everybody to plan for one more campaignless day...
+[16:36:23] <ottomata>	 Jeff_Green: its looking good
+[16:36:34] <ottomata>	 can you check erbium.eqiad.wmnet and see if the setup works as it should
+[16:36:36] <Jeff_Green>	 would it make sense to run a wee campaign so we can test the log move?
+[16:36:39] <ottomata>	 it should be identical to how it was on gadolinium
+[16:36:42] <Jeff_Green>	 ottomata: looking
+[16:37:04] <K4-713>	 Jeff_Green: I just pictured a tiny banner. Heh.
+[16:37:10] <Jeff_Green>	 lol yes
+[16:37:12] <K4-713>	 Uhm.
+[16:37:39] <K4-713>	 We can probably do something along the lines of a campaign pressure test, as long as the-wub is still online to set it up.
+[16:38:02] <K4-713>	 But.
+[16:38:42] <Jeff_Green>	 ottomata: log rotation appears to be working
+[16:38:54] <ottomata>	 great
+[16:39:16] <Jeff_Green>	 first after the outage was *-20130724-143001*
+[16:39:39] <K4-713>	 Jeff_Green: We've got another sort of... technically unrelated issue to address first, before we can throw up a campaign. Something about phpmailer going missing and a civi module needing it somewhere. Did mwalker|away send you anything about the fix he wanted to do there?
+[16:40:08] <Jeff_Green>	 not that I've seen
+[16:40:25] <K4-713>	 In that case, maybe we should wait until he gets in.
+[16:40:44] <Jeff_Green>	 ok
+[16:40:45] <K4-713>	 Though, the thought occurs, that there should be survey banners up.
+[16:47:00] <the-wub>	 K4-713: email me when you're ready for some testing
+[16:48:27] <K4-713>	 the-wub: Sure thing. :)
+[17:00:26] <the-wub>	 hmm, I'm getting a message "You aren't allowed to join this video call." when I try to join the standup hangout
+[17:00:42] <the-wub>	 am I definitely invited? it's worked before
+[17:07:49] <mwalker>	 Jeff_Green: *waves*
+[17:07:57] * Jeff_Green  ducks
+[17:08:17] <mwalker>	 hehe; it's not that bad...
+[17:08:19] <mwalker>	 yet ...
+[17:08:38] <mwalker>	 at some point I need you to put the phpmailer git repo on al
+[17:09:14] <Jeff_Green>	 k, let's enfire it
+[17:22:16] <Jeff_Green>	 mwalker: what's the repo in question?
+[17:23:10] <mwalker>	 wikimedia/fundraising/phpmailer.git
+[17:23:24] <mwalker>	 err
+[17:23:24] <mwalker>	 ssh://mwalker@gerrit.wikimedia.org:29418/wikimedia/fundraising/phpmailer
+[17:23:45] <Jeff_Green>	 ok. i'm going to test the setup on barium and then copy it over
+[17:23:50] <mwalker>	 kk
+[17:25:41] <awight>	 mwalker: can I ask what happened? Config variable got cleared?
+[17:25:56] <mwalker>	 you removed phpmailer from thankyou :p
+[17:25:56] <awight>	 just wondering if I should look for any other damage.
+[17:26:10] <mwalker>	 so the source library is missing
+[17:26:15] <awight>	 mwalker: we already had the variable wmf_common_phpmailer_location, I thought
+[17:26:48] <mwalker>	 yes
+[17:26:48] <mwalker>	 I will need to update that after jeff pulls the repo
+[17:26:48] <awight>	 and it should have been pointing to /opt...
+[17:27:23] <mwalker>	 yes... but that doesn't help when that folder doesn't exist
+[17:27:30] <mwalker>	 thankyou had the only copy of phpmailer on al
+[17:27:44] <awight>	 mwalker: ugh nvm -       require_once 'class.phpmailer.php';
+[17:28:15] <mwalker>	 ah; well that certainly wont help :p
+[17:31:28] <awight>	 for some reason, I thought there wasn't going to be a deploy yesterday.
+[17:31:46] <mwalker>	 k4 wanted to get the major gifts stuff out
+[17:31:52] <mwalker>	 and I didn't want to extract everything but that
+[17:32:05] <mwalker>	 the UTC date thing went OK though
+[17:32:12] <mwalker>	 looks like it's all peachy
+[17:32:13] <awight>	 Would have been much better to cherry-pick.
+[17:32:19] <awight>	 but now i will begin damage control ;)
+[17:32:30] <mwalker>	 you shouldn't have had code in master that would have broken :p
+[17:32:37] <mwalker>	 but; this is actually on me
+[17:32:39] <awight>	 UTC thing requires a manual db update, did you happen to run that?
+[17:32:42] <mwalker>	 yep
+[17:33:07] <awight>	 sheeit.  It wouldn't have broken if deployed right :p
+[17:33:18] <mwalker>	 i know i know!
+[17:33:22] <mwalker>	 we're on the case!
+[17:33:22] * awight  degenerates into internecine conflict
+[17:33:26] <mwalker>	 aaaahhhh!
+[17:33:30] * mwalker  grabs nerf gun!
+[17:34:12] <awight>	 mwalker: sorry, before it scrolls off yr history, can you record the @FINAL id in https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/990 ?
+[17:34:22] <awight>	 or make a note somewhere at least
+[17:34:28] <mwalker>	 it's in the server admin log
+[17:35:19] <slander_>	 #990: (MW) 20:50 mwalker: kludging payments data -- adding... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/990
+[17:35:34] <mwalker>	 but done
+[17:36:06] <awight>	 THANKS
+[17:41:20] <grrrit-wm>	 (PS1) Adamw: PRODUCTION: remove tests [wikimedia/fundraising/crm] - https://gerrit.wikimedia.org/r/75659
+[17:42:54] <mwalker>	 ^ two things; you're on master here, and I would much rather you write a script that removed the tests that we can run; otherwise we're going to be constantly running into merge conflicts
+[17:44:00] <awight>	 mwalker: the merge conflicts are pretty easy to resolve
+[17:44:03] <awight>	 rm
+[17:44:47] <awight>	 mwalker: I think everyone's opinionated enough about the test dirs that we need to discuss...
+[17:45:32] <awight>	 thanks for catching the /master snafy
+[17:45:32] <awight>	 fuu.  effing gerrit
+[17:45:48] <grrrit-wm>	 (Abandoned) Adamw: PRODUCTION: remove tests [wikimedia/fundraising/crm] - https://gerrit.wikimedia.org/r/75659 (owner: Adamw)
+[17:46:01] <grrrit-wm>	 (PS1) Adamw: PRODUCTION: remove tests [wikimedia/fundraising/crm] (deployment) - https://gerrit.wikimedia.org/r/75660
+[17:47:48] <awight>	 mwalker: but long story short, my stance is that we cannot modify the production dir with a script, it needs to cleanly reflect a git branch.
+[17:49:54] <mwalker>	 in principle I agree; but in practice I would like to be able to test the production branch -- which we wouldn't be able to do without the tests
+[17:49:54] <mwalker>	 it would also be nice to be able to reproduce
+[17:50:02] <mwalker>	 in case a merge conflict does go south
+[17:50:38] <awight>	 testing production is the exception though, deployment is the rule.  so we should take the extra step to get tests/ dirs only when testing
+[17:51:13] <mwalker>	 ok; that's a nice theory -- how do you do it?
+[17:51:20] <mwalker>	 that's what I couldn't figure out
+[17:51:43] <awight>	 you say rsync -av --include="tests/"
+[17:51:46] <awight>	 or **tests/* something
+[17:52:21] <awight>	 or, worst-case scenario, find . -name "tests" -print | xargs rsync blah
+[17:53:06] <mwalker>	 that gets you the files, I assume we can extract the branch point from git so we can get the correct version of the tests?
+[17:53:41] <awight>	 nah, that is too tricky ;)
+[17:54:01] <mwalker>	 ok! and last question -- how do we ensure that tests never get into the production branch?
+[17:55:37] <awight>	 vigilance...
+[17:55:51] <awight>	 mwalker: ugh, here's a depressing thread https://drupal.org/node/1267234
+[17:56:00] <awight>	 stupid, meet the fool ;)
+[17:56:07] <mwalker>	 so you want to git merge -p origin/master for every deploy?
+[17:56:15] <awight>	 beehehe Note that due to the nature of this module (and its usage of a 3rd party library), some of the Drupal guidelines have to be broken. For instance, we have to use different variable names that integrate with Mediawiki (which are in CamelCase) that don't follow the Drupal conventions (which use underscores).
+[17:56:39] <awight>	 mwalker: do the merge --no-commit if there are tests included, or --amend after the merge
+[17:57:49] <mwalker>	 so... let's write a script that removes all the known testing files and then amend things
+[17:58:03] <awight>	 hehe "And yes, I consider it "blocking" when you comment stuff like "you should not include external libraries with your module", or some guy runs some automated coding style tests against packaged external code"
+[18:05:48] <mwalker>	 Jeff_Green: running out briefly to obtain foodstuffs
+[18:05:58] <Jeff_Green>	 k
+[18:29:41] <mwalker>	 back! :)
+[20:32:48] <grrrit-wm>	 (PS1) Adamw: Fix case-sensitive "CharSet" property [wikimedia/fundraising/crm] - https://gerrit.wikimedia.org/r/75775
+[20:34:52] <grrrit-wm>	 (CR) Mwalker: [C: 2 V: 2] Fix case-sensitive "CharSet" property [wikimedia/fundraising/crm] - https://gerrit.wikimedia.org/r/75775 (owner: Adamw)
+[21:23:13] <grrrit-wm>	 (PS1) Mwalker: Import PhpMailer using Configurable Path [wikimedia/fundraising/crm] - https://gerrit.wikimedia.org/r/75789
+[21:25:01] <grrrit-wm>	 (CR) Katie Horn: [C: 2 V: 2] Import PhpMailer using Configurable Path [wikimedia/fundraising/crm] - https://gerrit.wikimedia.org/r/75789 (owner: Mwalker)
+[21:27:47] <mwalker>	 !log updating fundraising civicrm from 0834a16761081c2b8e39624eb905be89bd524bc7 to 820c54a659006a358e27e7451ed0274a3198f3cb
+[21:27:57] <morebots>	 Logged the message, Master
+[23:03:12] <grrrit-wm>	 (PS1) Mwalker: Banner Rendering to use the Parser Directly [extensions/CentralNotice] - https://gerrit.wikimedia.org/r/75808
+[23:03:51] <grrrit-wm>	 (PS1) Mwalker: Fixing a Link Bug in CentralNotice Allocations Page [extensions/CentralNotice] - https://gerrit.wikimedia.org/r/75809
+[23:39:14] <grrrit-wm>	 (CR) Siebrand: "Did you mean to touch the CREDITS file in this patch set?" [extensions/CentralNotice] - https://gerrit.wikimedia.org/r/75808 (owner: Mwalker)
+[23:42:34] <grrrit-wm>	 (CR) Adamw: [C: 2 V: 2] Banner Rendering to use the Parser Directly [extensions/CentralNotice] - https://gerrit.wikimedia.org/r/75808 (owner: Mwalker)
+[23:43:02] <grrrit-wm>	 (CR) Adamw: [C: 2 V: 2] Fixing a Link Bug in CentralNotice Allocations Page [extensions/CentralNotice] - https://gerrit.wikimedia.org/r/75809 (owner: Mwalker)
+[23:46:25] <grrrit-wm>	 (CR) Adamw: "I'm only blocking on billing country != country of web request origin" [wikimedia/fundraising/tools] - https://gerrit.wikimedia.org/r/64877 (owner: Mwalker)
+[23:52:04] <grrrit-wm>	 (CR) Mwalker: "@Siebrand -- not really; it's not going to harm anything I don't think and I'm not sure why it got commited because it's part of a differe" [extensions/CentralNotice] - https://gerrit.wikimedia.org/r/75808 (owner: Mwalker)

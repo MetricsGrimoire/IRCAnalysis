@@ -1,0 +1,210 @@
+[16:04:26] <K4-713>	 Hey meganhernandez. What's the news? :)
+[16:04:53] <meganhernandez>	 morning
+[16:04:57] <meganhernandez>	 we are pretty set up
+[16:05:06] <meganhernandez>	 but found something on an EN banner in QA
+[16:05:11] <meganhernandez>	 peter is sending to fr-tech now
+[16:05:35] <K4-713>	 aaah. I was going to say: It looks pretty quiet at the moment.
+[16:07:15] <meganhernandez>	 yeah its quiet
+[16:07:35] <marktraceur>	 Toooooo quiet.
+[16:07:37] <meganhernandez>	 yeah we found something that we're not sure how to fix
+[16:07:58] <meganhernandez>	 there's some extra white space underneath one of the banners. but we don't know why
+[16:08:39] <K4-713>	 Ah. That'll probably go to me anyway. Heh.
+[16:09:17] <meganhernandez>	 Comparing the two form banners, they look to be the exact same height.  But http://en.wikipedia.org/?banner=B13_0701_txtform_FsionForm_dr_enYY&reset=1  has more space between the bottom of the banner and the globe logo than http://en.wikipedia.org/?banner=B13_0701_txtform_CntrlForm_dr_enYY&reset=1
+[16:09:42] <K4-713>	 Were they cloned from the same thing?
+[16:10:05] <K4-713>	 ...that's funny. They look exactly the same to me.
+[16:10:25] <K4-713>	 Well, not *exactly* the same. But the same spacing.
+[16:10:34] <K4-713>	 What browser are you seeing the problems in?
+[16:11:29] <meganhernandez>	 i see this in chrome
+[16:11:50] <meganhernandez>	 strange huh
+[16:12:32] <K4-713>	 They have the same spacing for me in chrome as well.
+[16:12:52] <the-wub>	 K4-713, meganhernandez : think I've found the problem and how to fix it
+[16:13:12] <K4-713>	 hmm.
+[16:13:22] <K4-713>	 I still can't see a problem.
+[16:13:56] <the-wub>	 our addBannerSpace() function is called when the DOM finishes loading. but for some reason the banner can change in height after that
+[16:14:35] <K4-713>	 ...unless I smoosh the window down horizontally, a lot. Then, it looks like the relative size of the text blocks is coming in to play.
+[16:14:47] <the-wub>	 so I'm just calling it again on $( window ).load
+[16:15:17] <K4-713>	 What's your screen resolution(s)?
+[16:15:26] <the-wub>	 meganhernandez: do these look the same to you? https://en.wikipedia.org/?banner=SpacingTestControl&reset=1 https://en.wikipedia.org/?banner=SpacingTestFusion&reset=1
+[16:15:27] <K4-713>	 And, is your window maximized?
+[16:16:16] <the-wub>	 Chrome, 1366x768, maximized
+[16:16:25] <meganhernandez>	 yes those look the same to me now
+[16:16:43] <meganhernandez>	 globe is not jumping up and down anymore when i flip between the two banners
+[16:16:45] <the-wub>	 woo yay
+[16:17:20] <the-wub>	 I'll copy the fix over to the actual banners then
+[16:20:48] <the-wub>	 okay done
+[16:29:03] <meganhernandez>	 great
+[16:29:40] <meganhernandez>	 you guys feel good to go up? the-wub K4-713 PPena ?
+[16:30:04] <PPena>	 meganhernandez all good from my end
+[16:30:05] <meganhernandez>	 & bryony
+[16:30:08] <K4-713>	 I'm monitoring. So, whenever. :)
+[16:30:31] <bryony>	 oki doki ;-)
+[16:30:39] <bryony>	 josh is on his way in
+[16:30:56] <the-wub>	 meganhernandez: give me 2 mins
+[16:35:08] <the-wub>	 okay, we're up
+[16:35:18] <the-wub>	 think I've got the priorities set right
+[16:36:29] <the-wub>	 PPena: couldn't get the ptBR or Singapore banners ready, but will aim to get them up tomorrow
+[16:37:02] <meganhernandez>	 wow up!
+[16:37:42] <PPena>	 the-wub cool-thank you
+[16:37:56] <PPena>	 I will be watching GC through console
+[16:38:22] <K4-713>	 I think something may be wrong with the utm source.
+[16:38:52] <K4-713>	 Not entirely sure what yet, though.
+[16:40:12] <K4-713>	 Certainly looks like one of the banners isn't communicating campaign properly, though.
+[16:40:46] <K4-713>	 meganhernandez, the-wub ^
+[16:41:22] <the-wub>	 K4-713: any chance you can find out which banner?
+[16:41:47] <K4-713>	 I've seen one "C13_wpdr_enWW_FR", one "C13_wpdr_mlWW_FR", and a whole TON of "none".
+[16:43:28] <K4-713>	 Actually: Duh, that's utm_campaign.
+[16:45:06] <K4-713>	 the-wub: Confirmed. utm_campaign looks like it's totally unset.
+[16:45:32] <the-wub>	 yeah, that's weird. I see it in the code now.
+[16:45:40] <the-wub>	 on multiple banners.
+[16:45:59] <K4-713>	 Is it making it to the payments cluster?
+[16:47:11] <the-wub>	 no
+[16:47:46] <the-wub>	 some banners have <input type="hidden" name="utm_campaign" value="none">
+[16:47:49] * the-wub  facepalms
+[16:48:47] <the-wub>	 fixing now...
+[16:49:42] <meganhernandez>	 thank you for catching K4-713  !
+[16:50:08] <K4-713>	 Totally! That's why I monitor. :)
+[16:53:08] <the-wub>	 okay, should be fixed now. thanks K4-713
+[16:53:24] <the-wub>	 no idea how that slipped in
+[16:54:37] <K4-713>	 the-wub: Totally. So, I have no sense for how this was dealt with at the banner stage, in the past. It's possible there was some bit of javascript that set it dynamically, though.
+[16:55:05] <K4-713>	 I'm seeing way less come through with "none", but they're not all gone. Probably caching at this point.
+[16:55:35] <K4-713>	 I think that means, from this point in time, "wait 5 minutes".
+[16:55:52] <the-wub>	 some do use javascript, but these should have had <input type="hidden" name="utm_campaign" value="{{{campaign}}}">
+[16:56:01] <K4-713>	 aaaaaaaha
+[16:57:03] <the-wub>	 allocations all look okay to me
+[16:57:32] <K4-713>	 WW and WWform, right? For the campaigns?
+[16:57:52] <the-wub>	 yep
+[16:58:00] <K4-713>	 Groovy. That's what I'm seeing go by. :)
+[16:58:36] <K4-713>	 Or, slightly more precisely: [stuff]WW[morestuff] or [stuff]WWform[morestuff]
+[17:04:01] <K4-713>	 the-wub: "none" is gone. :)
+[17:04:25] <the-wub>	 cool
+[17:52:43] <PPena>	 meganhernandez the-wub  BR is enabled on the C13_wpnd_mlWW_FR is that correct?
+[17:54:07] <the-wub>	 no sorry, have just removed it
+[17:54:30] <PPena>	 oki
+[17:54:33] <PPena>	 thank
+[18:03:10] <the-wub>	 I've pulled the en WWform campaign while we change something
+[18:04:04] <meganhernandez>	 PPena: have you been able to check and donations or rejections from france?
+[18:04:16] <PPena>	 let se mee
+[18:04:48] <PPena>	 there was not much a while ago
+[18:06:31] <PPena>	 actually shit
+[18:06:33] <PPena>	 i cant see
+[18:06:39] <PPena>	 i keep forgetting
+[18:06:53] <PPena>	 GC console is divided in currencies, not countries
+[18:07:01] <PPena>	 meganhernandez i need katie to provid that to us!
+[18:07:14] <meganhernandez>	 jvandavier: have you heard anything from people in france?
+[18:07:23] <meganhernandez>	 or anything in general we should know about ?
+[18:11:09] <jvandavier>	 meganhernandez: i have received 2 emails since we started testing
+[18:11:14] <jvandavier>	 …which makes me...nervous
+[18:11:15] <jvandavier>	 ha
+[18:11:24] <jvandavier>	 non from FR
+[18:31:27] <jvandavier>	 meganhernandez: any idea what 'banquaire' means?
+[18:33:00] <meganhernandez>	 i think bank
+[18:33:04] <meganhernandez>	 or banking something
+[18:33:07] <jvandavier>	 hmm ok
+[18:33:11] <jvandavier>	 first french email
+[18:39:37] <jvandavier>	 the french believe sue to be attractive: "Good evening but I am afraid to speak to a robot (with beautiful
+[18:39:37] <jvandavier>	 big brown eyes and hair ….)"
+[18:40:24] <the-wub>	 :)
+[18:40:28] <the-wub>	 revised C13_wpdr_enWWform2_FR is up at 1840 UTC. banner names same as before.
+[18:41:05] <the-wub>	 and... I'm going to get some food
+[20:05:40] <PPena>	 K4|lunch FYI got 3rejections for DDDE
+[20:05:50] <PPena>	 trying to find more details
+[20:06:06] <PPena>	 Sorry DDES
+[20:06:13] <K4|lunch>	 DD... ES?
+[20:06:46] <K4|lunch>	 And, good job with the 1 minute after I called "lunch". :p
+[20:07:02] <K4|lunch>	 Is that Direct Debit in Spain?
+[20:07:13] <K4|lunch>	 or... did I just make that up?
+[20:10:40] <PPena>	 yeah DD is Spain
+[20:10:48] <PPena>	 dont worry abt it, it was just an FYI
+[20:10:55] <PPena>	 go to lunch and I will ask GC and cc you
+[20:11:16] <K4|lunch>	 I didn't realize we were sending people to DD. Not a problem, just a point of interest.
+[20:11:21] <PPena>	 I dont see anything wrong with the form, but shows "Error Type(s): C Configuration error . C Configuration error . S System error . S System error . Error Messsage(s): REQUEST [#REQUESTID#], VALUE {1} OF FIELD {0} DOES NOT HAVE LENGTH {2}"
+[20:11:35] <K4|lunch>	 That sounds like something on their end.
+[20:11:39] <K4|lunch>	 ...possibly.
+[20:11:40] <PPena>	 right
+[20:11:50] <mwalker>	 lovely internationalized string though
+[20:11:56] <K4|lunch>	 bahaha
+[20:12:02] <K4|lunch>	 Good ol' GC
+[20:12:46] <K4|lunch>	 Would be great if, you know, the {0} {1} and {2} were, ah... anything.
+[20:13:23] <K4|lunch>	 In fact... has anybody ever seen an error message from GC that both contained variables, and actually populated them with data?
+[20:13:46] <K4|lunch>	 On that note, I'm really going to lunch now. ;)
+[20:14:01] <PPena>	 K4|lunch tha would be no fun
+[20:14:22] <PPena>	 K4|lunch meganhernandez got 50% rejection for Visa in Europe… wierd!
+[20:14:54] <PPena>	 K4|lunch eventually could we get a status 100 report, country wise?
+[20:32:38] <meganhernandez>	 here
+[20:32:41] <meganhernandez>	 sorry was on a call
+[20:39:23] <jvandavier>	 yike
+[20:39:27] <jvandavier>	 *yikes
+[20:39:37] <jvandavier>	 PPena: is 50% high? it sounds like it is
+[20:42:58] <marktraceur>	 OK I feel like I'm going to regret asking this, but does drupal out-of-the-box support the text file with a path in it as a "symlink"? Or have we hacked that in somewhere?
+[21:06:56] <meganhernandez>	 hey PPena any feedback from france?
+[21:07:15] <meganhernandez>	 i kind of think we should take it down until we can get rates or feedback from here
+[21:11:04] <jvandavier>	 meganhernandez: i don't see the problems donating@ email address on the FR banner, but i could be missing something….
+[21:11:22] <meganhernandez>	 no its supposed to be there but got taken off
+[21:11:26] <jvandavier>	 ah, ok
+[21:19:30] <K4-713>	 marktraceur: ...I am very curious as to the source of your question.
+[21:19:57] <marktraceur>	 K4-713: I'm trying to run drush si, and it doesn't understand the "text file as symlink" thing, or so it seems
+[21:20:10] <K4-713>	 si?
+[21:20:15] <marktraceur>	 site-install
+[21:20:25] * K4-713  frowns
+[21:20:56] <marktraceur>	 As well she should
+[21:20:56] <K4-713>	 I am fairly confident I have never had occasion to run (or even be aware of) that command.
+[21:21:15] <marktraceur>	 Well, when you're automating the setup process, you can't visit the install.php script in your web browser
+[21:21:17] <K4-713>	 ...which makes me think it's totally not ours.
+[21:21:27] <marktraceur>	 It's totally not, it's drupal's
+[21:21:38] <marktraceur>	 Or rather, drush's
+[21:21:53] <K4-713>	 along with the "symlink" thing?
+[21:22:19] <K4-713>	 Which almost makes sense if it's built in to support people not running on a linux-based system.
+[21:22:46] <marktraceur>	 Yeah
+[21:23:01] <marktraceur>	 K4-713: I guess maybe the bug is that drush doesn't support the hackiness that drupal does
+[21:23:02] <K4-713>	 huh. Interesting.
+[21:23:40] <K4-713>	 In what context does drupal use this "symlink"?
+[21:24:42] <meganhernandez>	 hi guys, just want to let you know i took france down
+[21:24:53] <meganhernandez>	 we got a few hours of data to look at
+[21:25:19] <meganhernandez>	 but i think we're probably rejecting a lot of people here, so we took it down until we can look at it closer
+[21:25:51] <K4-713>	 hurrrm.
+[21:25:52] <meganhernandez>	 for example, i even got rejected
+[21:26:03] <K4-713>	 orly.
+[21:26:05] <meganhernandez>	 and i have a card from the most popular bank ;)
+[21:26:25] <marktraceur>	 K4-713: I have no idea, but clearly if the crm repo actually works (and it does, see e.g. my setup process), it understands these files
+[21:26:45] <marktraceur>	 Oh wait what
+[21:26:53] <marktraceur>	 The sites symlink is an actual symlink
+[21:26:58] <marktraceur>	 What the hell is puppet smoking
+[21:34:01] <K4-713>	 meganhernandez: It looks like we haven't rejected anything from France all day. It's all GC.
+[21:34:16] <K4-713>	 PPena: ^
+[21:34:30] <PPena>	 K4-713 thats right
+[21:34:42] <PPena>	 K4-713 we do not accept CArte Blue, their main credit card
+[21:34:47] <PPena>	 so that's expected
+[21:34:58] <PPena>	 but we can still get a report for the Status 100, correct?
+[21:35:29] <K4-713>	 The rejections I'm looking at are mostly visa, mc, and jcb.
+[21:35:40] <K4-713>	 But, overwhelmingly visa.
+[21:36:09] <K4-713>	 Do you think they're... trying Carte Blue cards after selecting visa?
+[21:36:58] <jvandavier>	 K4-713: Carte Bleue is VISa affiliated
+[21:37:00] <jvandavier>	 so probably
+[21:37:04] <K4-713>	 AHA
+[21:37:23] <K4-713>	 Okay, that probably explains it, then.
+[21:37:28] <jvandavier>	 we should…maybe mention that somewhere
+[21:38:21] <PPena>	 jvandavier K4-713 meganhernandez  we knew that it was a problem, that's why Im seraching for alternative payment providers for that
+[21:38:28] <PPena>	 we just wanted to see how much of a problem :)
+[21:38:35] <K4-713>	 buuuuut... woah. I'm not seeing anything go through in France.
+[21:38:59] <K4-713>	 PPena: Can you confirm 100% rejection?
+[21:39:00] <PPena>	 AND: can we get a real numbers out of reporting? How many people tried to donate, how many people got rejected, etc?
+[21:39:24] <PPena>	 K4-713 i dont get your question
+[21:39:47] <K4-713>	 That everyone who has tried to donate from France today, has been rejected by Globalcollect.
+[21:40:30] <K4-713>	 Because that's what I'm seeing.
+[21:40:42] <PPena>	 i cannot say that, because GC shows currency on their reports and not countries
+[21:40:59] <PPena>	 but I do see a high number of France rejections
+[21:41:29] <K4-713>	 Is it possible that they just didn't turn on the whole country?
+[21:44:14] <K4-713>	 Oh, wait. I may be a complete moron. One second.
+[21:44:23] <K4-713>	 ...likelihood increasing.
+[21:45:36] * marktraceur  flatly refuses to believe that
+[21:45:39] <K4-713>	 Confirmed. I am a moron.
+[21:46:30] <K4-713>	 I'm showing 270 completed transactions in France, dominated by (but not limited to) paypal.
+[21:46:59] <K4-713>	 67 just Globalcollect.
+[21:47:52] <K4-713>	 Compared to... 72 rejections. Ugh.
+[21:48:00] <K4-713>	 > 50%.
+[21:48:07] <meganhernandez>	 donations definitely went through in france
+[21:48:08] <meganhernandez>	 https://civicrm.wikimedia.org/civicrm/report/instance/3?force=1
+[21:48:24] <K4-713>	 yep
+[21:49:29] <K4-713>	 And we rejected 11 ourselves.
+[22:29:35] <marktraceur>	 Yay, drupal install in a vagrant box. Now to make sure civi works.
+[22:44:54] <marktraceur>	 Er...correction, now to make sure I can log in to the site

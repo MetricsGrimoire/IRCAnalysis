@@ -1,0 +1,14 @@
+[00:09:27] <slander>	 #986: (AW) TS:PCR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/986
+[00:09:27] <slander>	 #990: (AW) TS:PD -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/990
+[00:10:26] <slander>	 #986: (AW) TS:PD -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/986
+[00:12:27] <slander>	 #990: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/990
+[00:13:27] <slander>	 #951: (AW) TS:PD -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/951
+[00:13:27] <slander>	 #908: (AW) TS:PCR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/908
+[00:13:27] <slander>	 #908: (AW) TS:PD -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/908
+[00:14:26] <slander>	 #908: (AW) TS:PCR|MtRtDo:(s -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/908
+[00:14:26] <slander>	 #908: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/908
+[00:18:26] <slander>	 #974: (AW) AT:AW|TS:ID -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/974
+[00:42:32] <slander>	 #974: (AW) N:SIuLc Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/974
+[00:42:32] <slander>	 #974: (AW) TS:PCR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/974
+[00:42:32] <slander>	 #974: (AW) TS:PD -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/974
+[00:42:32] <slander>	 #974: (AW) *Deployed* -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/974

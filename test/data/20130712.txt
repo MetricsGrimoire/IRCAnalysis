@@ -1,0 +1,287 @@
+[00:10:31] <mwalker>	 K4-713: next iteration! https://gerrit.wikimedia.org/r/#/c/73356
+[00:13:12] <K4-713>	 mwalker: got it.
+[01:16:56] <mwalker>	 K4-713: https://gerrit.wikimedia.org/r/73375
+[01:32:26] <mwalker>	 !log updating payments (including the formchooser) from 1c360e2cde650d1195f04aee294ddd3e0f5f9052 to 1a2130bdba1157b095fde21d77aebb0a8b1ac88e
+[01:32:37] <morebots>	 Logged the message, Master
+[01:35:03] <mwalker>	 https://payments.wikimedia.org/index.php/Special:GatewayFormChooser?uselang=en&language=en&currency=EUR&country=NL&paymentmethod=rtbt&submethod=rtbt_ideal
+[01:36:27] <mwalker>	 http://en.wikipedia.org/wiki/Main_Page?banner=B13_0701_txt_Fsion_dr_enYY&reset=1&country=NL
+[01:38:57] <mwalker>	 !log aaaahhhhh reverting payments to 1c360e2cde650d1195f04aee294ddd3e0f5f9052 because banners are sending the wrong gateway (and I was ignoring it before!)
+[01:39:09] <morebots>	 Logged the message, Master
+[01:41:03] <mwalker>	 http://meta.wikimedia.org/wiki/MediaWiki:FR2013/Resources/DropdownFormHtml
+[02:09:24] <Thehelpfulone>	 mwalker, interesting, we can edit that on Meta?
+[02:09:37] <Thehelpfulone>	 I thought all fundraising stuff (with the exception of CN banners) was moving to donate wiki?
+[02:09:48] <mwalker>	 that is part of a banner :p
+[02:10:03] <Thehelpfulone>	 oh it doesn't have one of those silly unreadable banner names, so I couldn't tell :D
+[02:10:36] <mwalker>	 K4-713: https://gerrit.wikimedia.org/r/73381
+[02:10:57] <mwalker>	 Thehelpfulone: ideally we will eventually move to having all donation forms defined in one place instead of having them freaking everywhere
+[02:11:00] <mwalker>	 but... the world is not yet ideal
+[02:17:12] <mwalker>	 !log trying again -- updating payments from 1c360e2cde650d1195f04aee294ddd3e0f5f9052 to 8a801e809de37bc8595b19262faa9b9e47bfbd6e
+[02:17:22] <morebots>	 Logged the message, Master
+[02:18:54] <mwalker>	 http://payments.wikimedia.org/index.php/Special:GatewayFormChooser?uselang=en&language=en&currency=USD&country=US&paymentmethod=ccasdf
+[02:20:14] <mwalker>	 !log aaand nope; didn't work, reverting payments back to 1c360e2cde650d1195f04aee294ddd3e0f5f9052
+[02:20:25] <morebots>	 Logged the message, Master
+[02:20:41] <K4-713>	 Not able to find a valid form for country 'US', currency 'USD', method 'cc', submethod '', recurring: '', gateway 'paypal'
+[02:20:41] <K4-713>	 ...is peculiar.
+[02:25:28] <K4-713>	 Not able to find a valid form for country 'BR', currency 'BRL', method 'paypal', submethod '', recurring: '', gateway ''
+[02:25:28] <K4-713>	 Not able to find a valid form for country 'US', currency 'USD', method 'ccasdf', submethod '', recurring: '', gateway ''
+[02:25:28] <K4-713>	 Not able to find a valid form for country 'US', currency 'USD', method 'cc', submethod '', recurring: '', gateway 'paypal'
+[02:25:28] <K4-713>	 Not able to find a valid form for country 'US', currency 'USD', method 'cc', submethod '', recurring: '', gateway 'paypal'
+[02:25:34] <K4-713>	 All four of those happened.
+[02:25:47] <K4-713>	 I'm trying to see what I get on the system now.
+[02:32:12] <mwalker>	 https://gerrit.wikimedia.org/r/73383
+[02:33:54] <K4-713>	 yep
+[02:39:58] <mwalker>	 !log attempting again on the payments cluster! from 1c360e2cde650d1195f04aee294ddd3e0f5f9052 to 7a5a3c376ed0b7f25c5fa0e9f14d6cc67e543982
+[02:40:08] <morebots>	 Logged the message, Master
+[02:40:54] <K4-713>	 Not able to find a valid form for country 'BR', currency 'BRL', method 'paypal', submethod '', recurring: '', gateway '' for utm source 'B13_032300_lpltrn_Cntrl_dr_ptBR.no-LP.paypal'
+[02:41:36] <K4-713>	 https://payments.wikimedia.org/index.php/Special:GatewayFormChooser?testGetAll=true&country=BR&currency=BRL&paymentmethod=paypal
+[02:48:16] <K4-713>	 donation_gateway: Not able to find a valid form for country 'US', currency 'USD', method 'cc', submethod '', recurring: '', gateway 'paypal' for utm source 'B13_0707_frmrec_form_dr_enYY.no-LP.cc'
+[02:48:16] <K4-713>	 ^^ that's the one that's trying to make a paypal cc payment.
+[02:50:48] <mwalker>	 K4-713: https://gerrit.wikimedia.org/r/73385
+[02:58:05] <K4-713>	 yo. :p
+[03:01:54] <mwalker>	 !log and again... payments from 1c360e2cde650d1195f04aee294ddd3e0f5f9052 to 2a9169765b94e036c4d2ee0cada362e4de6e212e
+[03:02:05] <morebots>	 Logged the message, Master
+[15:11:00] <Thehelpfulone>	 hey the-wub
+[15:11:20] <Thehelpfulone>	 I left a message for you on WMF wiki: https://wikimediafoundation.org/wiki/User_talk:Pcoombe_(WMF)#Ways_to_Give.2Fen
+[15:13:19] <the-wub>	 hey Thehelpfulone, I saw it. Am quite busy at the moment, but will stick it on my to-do list.
+[15:13:34] <Thehelpfulone>	 sure, thanks
+[15:38:25] * marktraceur  stops trying not to be sick, declares a sick day, will drift in and out of IRC/consciousness
+[16:58:45] <mwalker>	 w00t w00t
+[16:58:50] <mwalker>	 WooT WooT
+[17:46:11] <K4-713>	 the-wub: I have some forms I'd like to confirm have been fixed for the gateway=paypal issue. Pulling them from server logs.
+[17:50:16] <K4-713>	 'B13_0707_frmrec_nfrm_dr_enYY.no-LP.cc' and 'B13_0707_frmrec_form_dr_enYY.no-LP.cc'.
+[17:50:58] <K4-713>	 nfrm was hit in the 1600 hour UTC. and form was hit last in the 1500 hour.
+[18:18:11] <K4-713>	 the-wub: Got another one for you. 'B13_0701_trntab_CntrlCntb_dr_yyYY.no-LP.ew' is conflicted too.
+[18:18:37] <K4-713>	 Got one five minutes ago.
+[18:20:02] <the-wub>	 K4-713: it shouldn't be, it's using the template which was fixed already
+[18:20:06] <the-wub>	 I just tested it and it worked for me
+[18:23:45] <K4-713>	 Hm. I definitely got Jul 12 18:13:42 payments1001 donation_gateway: Not able to find a valid form for country 'RU', currency 'RUB', method 'ew', submethod 'ew_webmoney', recurring: '', gateway 'paypal' for utm source 'B13_0701_trntab_CntrlCntb_dr_yyYY.no-LP.ew'
+[18:23:49] <K4-713>	 From one person.
+[18:24:00] <mwalker>	 cached page
+[18:24:08] <mwalker>	 e.g. they left it open
+[18:24:12] <mwalker>	 and then came back to it
+[18:25:19] <K4-713>	 Bah... yeah, okay.
+[18:25:40] <mwalker>	 interesting
+[18:25:46] <mwalker>	 I didn't overconsume the limbo messages
+[18:25:55] <mwalker>	 activemq just didn't return them to me when I asked
+[18:26:04] <K4-713>	 wat.
+[18:26:09] <mwalker>	 iono
+[18:26:11] <K4-713>	 So, they're still in there?
+[18:26:17] <mwalker>	 ya
+[18:26:26] <K4-713>	 ...refresh connection when you change selectors?
+[18:26:31] <mwalker>	 maybe
+[18:26:38] <the-wub>	 K4-713: must have been cached, I just tested every Russia payment method from that banner and they all gave me a valid form
+[18:26:55] <K4-713>	 mwalker: I will bet you $5 that's it.
+[18:26:58] <mwalker>	 K4-713: it's a good theory considering the first one in every job run works
+[18:27:03] <mwalker>	 and then successive ones fail
+[18:27:12] <K4-713>	 Theme of the week.
+[18:28:02] <K4-713>	 Good news is, if you stole the stomp code from just about anywhere else we have it, it's just a parameter. :p
+[18:28:49] <mwalker>	 nope; I rewrote a lot of it
+[18:28:59] <mwalker>	 to fit into how smashpig looks at things
+[18:32:27] <mwalker>	 PPena: I have a technical question for adyen
+[18:32:35] <mwalker>	 is it possible to resend IPN messages?
+[18:33:49] <K4-713>	 the-wub: Fix PeterSandbox2.no-LP.amazon! ;)
+[18:33:52] <K4-713>	 ...just kidding.
+[18:33:59] <K4-713>	 But really, I can see that.
+[18:34:33] <the-wub>	 haha, yeah I was really puzzled by that and then remembered amazon doesn't work here in the UK :)
+[18:34:59] <K4-713>	 Yup! So, that's actually working as expected!
+[18:35:29] <K4-713>	 And, I can see you're coming from GB and trying to hit amazon. Which, you know, takes the mystery out of debugging.
+[18:35:38] <K4-713>	 mwalker added that last night, and I love it.
+[18:36:57] <the-wub>	 that's pretty cool
+[18:49:31] <PPena>	 mwalker did u send them an email yet on that?
+[18:49:31] <PPena>	 mwalker is the tes up yet?
+[18:56:51] <K4-713>	 PPena: Ha. Test went up and down a while ago.
+[18:57:03] <PPena>	 ohhh...
+[18:57:13] <PPena>	 sorry didnt see email update-why went down?
+[18:57:59] <mwalker>	 PPena: I will send an email to them shortly
+[18:58:07] <mwalker>	 we went down because there's a bug in my code
+[18:58:16] <PPena>	 cool let me know if i can help
+[18:58:20] <mwalker>	 I'm only capturing the first payment in a group
+[18:58:26] <PPena>	 yeey-love bugs! like ladybug
+[18:58:29] <PPena>	 and fixing them...
+[19:03:12] <PPena>	 mwalker can u send to their tech team? rebecca is off today...
+[19:07:06] <PPena>	 mwalkershit
+[19:07:15] <PPena>	 mwalker sorry for teh duplicate!
+[19:07:23] <mwalker>	 no worries :)
+[19:07:39] <mwalker>	 I'm sure they'll work it out
+[19:33:52] <PPena>	 mwalker awight are we good on the Brazil repatriation subject? GC just sent an update this morning… Dates have changed… requirements havent!
+[19:34:01] <PPena>	 let me know if you need more clarification!
+[19:35:53] <awight>	 PPena: yes, that might be the most thorough response I've seen from GC, thanks for getting that!
+[19:36:20] <PPena>	 :D
+[19:36:51] <PPena>	 This new girl Anam seems to be good
+[19:48:10] <K4-713>	 hey mwalker: You ripping up ContributionTracking?
+[19:58:21] <mwalker>	 yep
+[20:22:59] <awight>	 Just to put it out there... I've been testing with a fresh fundraising/crm installation.  The queue consumer is configured to eat 5 messages, and when I run it, it reports 5 messages consumed... and 235 messages are pulled off of the queue...
+[20:24:01] <mwalker>	 thats fun...
+[20:24:33] <awight>	 I'm trying to stay focused on the other stuff I'm doing, but this is making me very uncomfortable
+[20:24:36] <awight>	 yeah
+[20:25:15] <awight>	 let me know if you or K4|lunch get the chance to notice the same thing on your dev boxen.
+[20:27:41] <awight>	 :( breatharian...
+[20:27:59] <K4|somuchforlunc>	 awight: How are you determining that 235 messages are being pulled off your queue?
+[20:28:08] <awight>	 the activemq console
+[20:28:25] <awight>	 "number of pending messages" as well as "messages dequeued"
+[20:28:30] <K4|somuchforlunc>	 I don't suppose they're identical test messages?
+[20:28:46] <awight>	 nearly identical, but with different correlation ids... I hope
+[20:28:49] <awight>	 goot point
+[20:29:01] <awight>	 :)
+[20:29:02] <awight>	 thanks
+[20:29:08] <K4|somuchforlunc>	 I mean, even identical messages should increment, but...
+[20:29:30] <awight>	 yeah, the correlation ids are unique
+[20:29:45] <K4|somuchforlunc>	 What about the actual transaction IDs?
+[20:29:52] <awight>	 anyway, i'm really hoping it is an artifact of how I'm inserting them
+[20:29:57] <awight>	 txn ids are random
+[20:29:59] <K4|somuchforlunc>	 I don't think q2c gives a wet slap about correlation ID.
+[20:30:24] <awight>	 the msgs are "non persistent", maybe that's the beef...
+[20:30:33] <K4|somuchforlunc>	 Aaah.
+[20:30:50] <K4|somuchforlunc>	 That seems likely.
+[20:30:53] <awight>	 I'll change that in my injection script...
+[20:31:02] <K4|somuchforlunc>	 This is not a behavior I have ever seen in the wild.
+[20:31:04] <awight>	 I think that's only supposed to make a difference when the server crashes tho
+[20:31:07] <awight>	 ok
+[20:31:17] <awight>	 that's mostly what I was hoping someone would say ;)
+[20:31:28] <K4|somuchforlunc>	 ...but.
+[20:31:45] <K4|somuchforlunc>	 We've been pulling no less than 600 in one go for a long time.
+[20:31:54] <K4|somuchforlunc>	 Was it emptying your queue?
+[20:32:01] <awight>	 no
+[20:32:17] <K4|somuchforlunc>	 So, 235 is a magic number.
+[20:32:30] <awight>	 erp?
+[20:32:34] <awight>	 I also saw 236 ;)
+[20:32:47] * K4|somuchforlunc  squints
+[20:33:25] <awight>	 what hehe where is the magic?, ,http://en.wikipedia.org/wiki/235_%28number%29
+[20:33:41] <awight>	 The number of three interstate highways in the United States, located in the states of Iowa, Kansas, and Oklahoma. See: Interstate 235.
+[20:34:02] <awight>	 actually, this might explain the "almost 235" thing: In ancient astronomy, the approximate number of lunar months in 19 solar years (235 * 29.53 days ~= 19 * 365.242 days); see metonic cycle.
+[20:34:07] <awight>	 :p
+[20:35:16] <mwalker>	 I like U-235
+[20:35:16] <mwalker>	 but U-238 more
+[20:35:25] <K4|somuchforlunc>	 No, I mean, it's pulling off some relatively consistent number that isn't referenced anywhere in the... nvm.
+[20:38:10] <K4|somuchforlunc>	 awight: Do you, by any chance, have an explanation somewhere of how to reference our new civi setup in apache?
+[20:38:24] <awight>	 nice.  i set it to consume 1, and 190 were eaten.  set to 50, and 214 were eaten.
+[20:38:34] <awight>	 K4|somuchforlunc: i don't, lemme paste the line
+[20:38:46] <awight>	         DocumentRoot /home/adamw/work/fundraising-crm/drupal
+[20:38:46] <awight>	         <Directory /home/adamw/work/fundraising-crm>
+[20:38:59] <K4|somuchforlunc>	 uhh... probably not that part.
+[20:39:04] <awight>	 oh?
+[20:39:10] <K4|somuchforlunc>	 The part where civi is parallel to drupal now.
+[20:39:17] <K4|somuchforlunc>	 Instead of all up in it.
+[20:39:26] <awight>	 yeah, the DocumentRoot is the only trick
+[20:39:32] <awight>	 -"/drupal"
+[20:39:53] <K4|somuchforlunc>	 And the civi part just sorts itself out, despite the part where it's not in modules anymore?
+[20:40:02] <awight>	 yep
+[20:40:10] <awight>	 there is actually a symlink
+[20:40:19] <K4|somuchforlunc>	 Skeptical Katie is Skeptical. In the repo?
+[20:40:24] <awight>	 yyyea
+[20:40:30] <awight>	 ugly but functional
+[20:40:45] * awight  checks whether that domain is pwned
+[20:42:17] <K4|somuchforlunc>	 awight: Can you try pulling off more than 300 from your queue?
+[20:42:53] <awight>	 interesting.  yes
+[20:44:44] <K4|somuchforlunc>	 Also: Is this happening for you in both dev and prod branches?
+[20:45:17] <awight>	 i've only tried dev.  there are some other unusual things about the transactions, I'm experimenting with changing those now
+[20:46:13] <awight>	 hmm got a strange new error, WD queue2civicrm: UNHANDLED ERROR CODE. Halting Process. exception: SQLSTATE[23000]: Integrity constraint violation: 1048 Column [error]
+[20:46:16] <awight>	 'gateway' cannot be null
+[20:46:45] <K4|somuchforlunc>	 How are you injecting these messages again? ;)
+[20:47:32] <awight>	 this is the evil direct-injection thing, phpunit sites/all/modules/queue2civicrm/tests/phpunit/performance.test
+[20:48:57] <awight>	 well, configuration of batch size=350 resulted in 339 dequeued, which is closer to what I'd expect.
+[20:49:07] <K4|somuchforlunc>	 o_O
+[20:49:32] <K4|somuchforlunc>	 And... you had more than 339 in the queue?
+[20:49:51] <awight>	 I'm just hoping this isn't a new stomp race
+[20:49:57] <awight>	 yeah, where were > 1000 in the queue
+[20:50:07] <awight>	 s/wh/th
+[20:50:48] <K4|somuchforlunc>	 My first impulse is that some of these messages are being silently scrapped for some reason.
+[20:51:18] <awight>	 My plan is to add logging until I figure it out.
+[20:51:19] <K4|somuchforlunc>	 And, if there's a certain level of... randomness in the way you're injecting them, that might make sense.
+[20:51:42] <awight>	 only the date and gateway_txn_id are random :(
+[20:51:42] <K4|somuchforlunc>	 But your instance should probably be spewing failmail at this point.
+[20:51:49] <awight>	 oh yes, indeed
+[20:52:39] <K4|somuchforlunc>	 Does it spew failmail when you pull a small number and a lot come off?
+[20:52:51] <awight>	 no!
+[20:54:31] <K4|somuchforlunc>	 Well, shit. I guess logging until it makes sense is the only thing to be done.
+[20:55:20] <awight>	 how the crap do we create the contribution_tracking table, again?
+[20:55:36] <K4|somuchforlunc>	 You should be able to do it in two ways.
+[20:55:38] <awight>	 isn't that the one where I have to pull the schema from production?
+[20:55:54] <K4|somuchforlunc>	 Either from drupal, or from mediawiki.
+[20:56:41] <K4|somuchforlunc>	 You absolutely should not *have* to pull the schema from production.
+[20:56:56] <K4|somuchforlunc>	 But that is a third option.
+[20:58:56] <awight>	 yes i was on the wrong track with that table.  It had been created correctly, but I was putting a fake ctid in the queue message.
+[20:59:23] <K4|somuchforlunc>	 ah!
+[20:59:45] <K4|somuchforlunc>	 So, there's that contribution_tracking module in civi.
+[20:59:46] <K4|somuchforlunc>	 If you install it, you should get the table.
+[20:59:59] <K4|somuchforlunc>	 Just double-checked it was still there and nobody blew it up.
+[21:03:56] <K4|somuchforlunc>	 And speaking of Contribution Tracking... mwalker. Are you looking at that, or should I?
+[21:04:06] <mwalker>	 I'm looking at it
+[21:04:13] <mwalker>	 but I'm not really sure what to do about it
+[21:04:42] <K4|somuchforlunc>	 Can't you just switch on the four valid types in that one place?
+[21:04:55] <mwalker>	 the question is -- how do we know?
+[21:05:15] <K4|somuchforlunc>	 Poke it through in a fifth global.
+[21:05:23] <K4|somuchforlunc>	 Defaulting to whatever mediawiki has.
+[21:05:24] <mwalker>	 the test system automatically shadows wfGetDB; but I cant use that function because we have special credentials
+[21:05:39] <mwalker>	 right; so I'm trying to find that global that tells me what the test system is using
+[21:06:00] <K4|somuchforlunc>	 Shouldn't it be the same one that mediawiki always uses?
+[21:06:13] <K4|somuchforlunc>	 $wgDBtype
+[21:06:46] <K4|somuchforlunc>	 I mean, I don't know how it would be anything else.
+[21:06:54] <K4|somuchforlunc>	 But I don't know a lot of things.
+[21:07:22] <mwalker>	 yep; it might be; but I'm trying to find the place where that's actually configured
+[21:07:32] <mwalker>	 because I'll also have to install the DB
+[21:07:39] <mwalker>	 which shouldn't be a problem; I have the schema
+[21:07:46] <mwalker>	 (which miiight be up to date)
+[21:08:22] <K4|somuchforlunc>	 For the purposes of testing, I'm... marginally okay with using the mediawiki credentials, for that exact reason. At least for now.
+[21:09:22] <K4|somuchforlunc>	 Or rather, I should say commit-triggered automated testing.
+[21:09:45] <K4|somuchforlunc>	 I can't imagine anybody else using the mediawiki setup is going to need a totally other database.
+[21:11:00] <mwalker>	 CentralAuth; CentralNotice; and SecurePoll all do; but they're all still in the wiki ecosystem
+[21:11:12] <mwalker>	 but... I just need to understand how this all gets bootstrapped first
+[21:31:17] <mwalker>	 K4|somuchforlunc: ... we deploy ContributionTracking on the real cluster dont we?
+[21:31:31] <K4|somuchforlunc>	 um... no?
+[21:31:39] <mwalker>	 I thought we did for donate?
+[21:31:42] <K4|somuchforlunc>	 Oh, wait. You mean the extension.
+[21:31:47] <mwalker>	 ya
+[21:32:10] <K4|somuchforlunc>	 We did.
+[21:32:18] <K4|somuchforlunc>	 Probably still do.
+[21:32:20] <mwalker>	 what I'm getting at here is; if we still do -- how does it talk to the frack?
+[21:32:33] <mwalker>	 considering we're moving all those DBs to hide away
+[21:32:58] <K4|somuchforlunc>	 It's all 1008 / 1025.
+[21:33:10] <mwalker>	 yeees
+[21:33:12] <mwalker>	 I know
+[21:33:22] <mwalker>	 but if 1008 goes behind a firewall
+[21:33:31] <mwalker>	 donate.wm.o will no longer be able to talk to it
+[21:33:48] <K4|somuchforlunc>	 Moving paypal to the payments cluster means we probably don't have to have contribution tracking out there anymore.
+[21:34:37] <K4|somuchforlunc>	 Pretty sure the only reason it was there, was so that paypal transactions could get a ctid before we went them off.
+[21:34:46] <K4|somuchforlunc>	 *sent
+[21:35:30] <mwalker>	 looking into it
+[21:35:43] <K4|somuchforlunc>	 But now that we're sending everybody to payments, we shouldn't have that requirement anymore.
+[21:38:30] <awight>	 yes, that is correct
+[22:09:42] <awight>	 K4|somuchforlunc: well, I have part of the answer. When the batch size is big, the limiting factor causing fewer messages to be consumed is the code at line 70 of sites/all/modules/wmf_common/queue.php
+[22:10:05] <awight>	 to summarize, when the message processing callback fails, the loop is aborted.
+[22:10:25] <awight>	 Do we want to change that behavior so that the loop runs until N messages are successfully imported?
+[22:20:02] <awight>	 baaahaha, a new error: php's rng is so good that it overlapped itself after generating 700 numbers.  DUPLICATE_CONTRIBUTION ;) -- maybe this is the same prng that Globalcollect uses
+[22:31:22] <mwalker>	 really; are you using mt_rand()?
+[22:45:02] <awight>	 mwalker: no, that one works.  Why do you think They chose to keep rand() around as such an embarrassment?
+[22:45:53] <mwalker>	 iono
+[22:46:08] <awight>	 hehe, now I have to share more: This function does not generate cryptographically secure values, and should not be used for cryptographic purposes. If you need a cryptographically secure value, consider using openssl_random_pseudo_bytes() instead.
+[22:46:37] <mwalker>	 that's pretty standard
+[22:46:55] <mwalker>	 mt_rand() is not crypto secure either
+[22:47:52] <mwalker>	 a couple of hundred pages in my numerical methods book is dedicated to what makes an RNG; and then what further makes it a crypto RNG
+[22:50:09] <awight>	 exactly, that's why the base function should fucking deliver an actual random number!  Why leave it to bozos like y.t. to remember to use that forty-char, possibly not present library func for everything, cos the core rand is so weak?
+[22:52:30] <awight>	 I mean seriously ;) if I wanted to overlap after 700 numbers, I would have *= 87
+[23:40:23] <mwalker>	 K4|somuchforlunc: so... all the unit tests for contributiontracking are now at least running
+[23:40:27] <mwalker>	 sadly; about half are failing
+[23:40:41] <mwalker>	 and I cant decide if it's worth it to continue trying to fix them
+[23:47:01] <K4|somuchforlunc>	 Who wrote unit tests for ContributionTracking?
+[23:47:09] <K4|somuchforlunc>	 It's on the "nuke when possible" list.
+[23:47:27] <awight>	 hehe nice malicious one
+[23:47:38] <K4|somuchforlunc>	 I thought we were just making it pretty for things that had it as a dependency.
+[23:47:44] <K4|somuchforlunc>	 ...for now.
+[23:48:20] <K4|somuchforlunc>	 I'd *much* rather spend the time killing the dependencies and dropping it off a short pier.
+[23:49:30] <K4|somuchforlunc>	 I mean, since we're getting rid of it on the cluster, there's no reason why the monster that is DI can't absorb what little remains.
+[23:53:18] <mwalker>	 I think you wrote the unit tests actually
+[23:53:34] <mwalker>	 yep
+[23:53:36] <K4|somuchforlunc>	 BAHAHAHA
+[23:53:37] <mwalker>	 totally you
+[23:53:49] <K4|somuchforlunc>	 Okay, as long as it wasn't, like, last week...
+[23:53:56] <mwalker>	 8/16/2011
+[23:54:07] <K4|somuchforlunc>	 In which case I have a Fight Club situation going on that should probably be addressed.
+[23:54:09] <mwalker>	 "                                    In the process of adding an API to ContributionTracking, I ended up      refactoring the majority of the extension.
+[23:54:09] <mwalker>	 Many changes and additions,      including the new API, a jquery module that uses the API, and an unlisted      sysop-only API testing page.     "
+[23:54:39] <K4|somuchforlunc>	 That... sounds like me, yes.
+[23:55:33] <mwalker>	 so... just blow these tests away then?
+[23:55:57] * K4-713  frowns
+[23:56:07] <K4-713>	 How many failures are we talking about?
+[23:56:41] <mwalker>	 12
+[23:56:51] <mwalker>	 mainly relating to not being able, it seems, to repost to itself

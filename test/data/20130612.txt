@@ -1,0 +1,103 @@
+[18:10:18] <jeremyb>	 marktraceur: you could reattempt k4tabtabtab :)
+[18:10:21] * jeremyb  runs away
+[18:21:21] <marktraceur>	 jeremyb: I wound up emailing her and solved it last night
+[18:21:26] <marktraceur>	 Thanks K4-713!
+[18:27:49] <marktraceur>	 I guess the next step is to somehow make sure that Drupal sees the messages, but I'm not sure what that entails either...
+[18:29:51] <K4-713>	 buh... what happened? Ah, meeting. Back in a bit.
+[18:31:49] <marktraceur>	 Nothing happened, I was trying to get help yesterday and had to use email instead of IRC
+[18:32:26] <marktraceur>	 And now that it's working I'm looking around for a next-step
+[21:03:42] <marktraceur>	 K4-713: So what config(s) should I try to fix for my MQ --> Civi connection? It looks like it's connecting, but maybe not automatically?
+[21:03:58] <K4-713>	 I'm... I'll wheel over there. :)
+[21:42:57] <K4-713>	 marktraceur: arrrrrrgh...
+[21:43:10] <K4-713>	 I found the config on the server.
+[21:43:16] <K4-713>	 And I kind of hate everything right now.
+[21:43:28] <marktraceur>	 That bad, eh?
+[21:43:35] <K4-713>	 ...c'mere. :p
+[21:44:36] <K4-713>	 The, ah... short version is that the var $db_url in settings.php is an array now.
+[21:45:15] <K4-713>	 ...but there's also a $databases var.
+[22:06:18] <marktraceur>	 K4-713: So I guess now it "works" but it isn't able to update the contribution_tracking for some reason
+[22:06:41] <K4-713>	 update... contribution tracking?
+[22:06:52] <K4-713>	 That's odd.
+[22:07:03] <marktraceur>	 "There was a problem updating contribution_tracking for message: ... (long nasty array)"
+[22:07:19] <K4-713>	 Usually by the time it gets to qc, contribution_tracking is pretty well updated.
+[22:07:31] * K4-713  rolls over to look at array
+[22:16:47] <marktraceur>	 UPDATE {contribution_tracking} SET contribution_id=:db_update_placeholder_0 WHERE  (id = :db_condition_placeholder_0);
+[22:16:57] <marktraceur>	 Yeah I can see why that might be less than ideal
+[22:25:19] <K4-713>	 er
+[22:25:29] <K4-713>	 marktraceur: ...what?
+[22:25:31] <K4-713>	 Where is that?
+[22:25:35] <K4-713>	 drupal?
+[22:25:55] <K4-713>	 No, wait: That makes no sense.
+[22:26:58] <marktraceur>	 K4-713: That's the query it's trying to run just before it fails
+[22:27:15] <marktraceur>	 And yeah, it's in the innards of Drupal
+[22:27:23] * K4-713  sputters, goes quiet.
+[22:27:27] <marktraceur>	 In UpdateQuery::execute
+[22:28:01] <K4-713>	 It *might* be safe to assume at this juncture, that the reason we haven't updated to D7 in production is that it's broke as hell.
+[22:28:10] <marktraceur>	 Hah.
+[22:28:28] <marktraceur>	 And by "Hah." I mean "Aaauuugghhhhhhh"
+[22:28:58] <K4-713>	 drupal/civi makes me cry sometimes.
+[22:29:06] <K4-713>	 This might be one of those times.
+[22:29:40] <marktraceur>	 *nod* seems like
+[22:31:11] <marktraceur>	 So...either try to fix a broke-as-hell system or try to get Drupal 6? Seems like a pretty crappy choice
+[22:48:55] <marktraceur>	 K4-713: Maybe the problem is that the test gateway is giving me the same cont_track_id every time?
+[22:49:18] <marktraceur>	 Or maybe that doesn't get sub'd in correctly for some reason
+[22:49:21] <K4-713>	 ...it is?
+[22:49:26] <marktraceur>	 Seems like
+[22:49:36] <K4-713>	 Well... first off, that shouldn't break anything.
+[22:49:40] <marktraceur>	 Indeed
+[22:49:49] <K4-713>	 I used to use the same ctid repeatedly for testing.
+[22:50:00] <K4-713>	 But, it should also be auto-incrementing.
+[22:50:10] <K4-713>	 ...back in DonationInterface.
+[22:50:17] <marktraceur>	 I guess not in the test gateway....or maybe because I keep using the same form
+[22:50:39] <K4-713>	 Unless you've written a test (or are using a form URL) that hard-codes the ctid?
+[22:50:46] <marktraceur>	 I guess I must have
+[22:51:00] <K4-713>	 If it's in the GET, try killing that param.
+[22:51:00] <marktraceur>	 Must be the gateway, I'll just change that bit
+[22:51:48] <marktraceur>	 Hm
+[22:52:00] <marktraceur>	 Looks like I'd just pass on whatever got passed in...maybe it never gets updated on the MW side
+[22:52:20] <K4-713>	 That's just the thing. Should be an autonumber in the db.
+[22:52:31] <K4-713>	 If you don't pass one in explicitly.
+[22:52:57] <marktraceur>	 *nod* I'm pretty sure I don't
+[22:53:08] <K4-713>	 How did you make your contribution tracking table?
+[22:53:14] <marktraceur>	 Er
+[22:53:18] <marktraceur>	 Probably just update.php
+[22:53:24] * K4-713  frowns
+[22:53:26] <marktraceur>	 Unless I'm forgetting something
+[22:53:45] <marktraceur>	 I also had to do http://www.mediawiki.org/wiki/User:MarkTraceur/FR-tech_setup_notes#Don.27t_forget_to_update_behind_your_ears
+[22:54:25] <K4-713>	 can you describe contribution_tracking; real quick and check that id is an auto_increment?
+[22:54:35] <marktraceur>	 From the drupal database?
+[22:54:37] <K4-713>	 yep
+[22:55:02] <marktraceur>	 It is
+[22:55:09] * K4-713  frowns more
+[22:55:25] <K4-713>	 What URL are you using for your form?
+[22:55:53] <marktraceur>	 http://localhost/frwiki/index.php/Special:GlobalCollectGateway?uselang=en&form_name=RapidHtml&text_template=2010/JimmyQuote-green&appeal=JimmyQuote-green&language=ar&ffname=cc-vma&amount=1.12&currency_code=USD
+[23:04:00] <K4-713>	 huh
+[23:04:38] <marktraceur>	 Huh indeed.
+[23:05:26] <K4-713>	 Just verified: This issue does not exist in prod.
+[23:05:55] <marktraceur>	 Well that's good.
+[23:06:06] <K4-713>	 I thought so, yes.
+[23:06:18] <K4-713>	 hurm.
+[23:06:38] <K4-713>	 How many rows do you have in contribution_tracking?
+[23:06:51] <K4-713>	 Like, has it been stuck like this the whole time?
+[23:10:11] <marktraceur>	 Uh
+[23:10:37] <marktraceur>	 Empty set in the drupal DB
+[23:13:02] <K4-713>	 o-O
+[23:13:12] <K4-713>	 ^skeptical glasses
+[23:13:21] <K4-713>	 I think this suddenly makes sense.
+[23:13:47] <K4-713>	 So, where is the contribution_tracking table that DonationInterface uses?
+[23:13:58] <K4-713>	 They should be the same, you see.
+[23:14:16] <marktraceur>	 Aha.
+[23:14:22] <marktraceur>	 Yeah, it's in a more different place
+[23:14:36] <K4-713>	 Okay! You can do one of two things.
+[23:14:57] <marktraceur>	 And I guess it has 15k entries. Wow.
+[23:15:55] <K4-713>	 Either point DI at the drupal db, or point drupal/civi $databases['donations']['default'] at... whatever DI is using.
+[23:17:01] <K4-713>	 There's definitely a setting in... probably the contribution tracking extension, that can define a separate database for just the contribution tracking table.
+[23:17:29] <K4-713>	 I'm looking for it now.
+[23:18:22] <K4-713>	 $wgContributionTrackingDBname, $wgContributionTrackingDBserver, $wgContributionTrackingDBuser, $wgContributionTrackingDBpassword
+[23:19:07] <K4-713>	 But, ah... at this point, it makes just as much sense to go the other way.
+[23:25:31] <marktraceur>	 Yeah, since all my CT records are in the MediaWiki database
+[23:25:59] <K4-713>	 Also, it will help make sure that the 'donations' db was separated out correctly.
+[23:26:07] <marktraceur>	 I guess so
+[23:26:12] <K4-713>	 From drupal/civi's perspective.
+[23:26:20] <K4-713>	 And I want that table to have its own db anyway.
+[23:26:32] <marktraceur>	 Hm

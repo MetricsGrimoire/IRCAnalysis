@@ -1,0 +1,63 @@
+[00:26:23] <K4-713>	 mwalker: You mean, snappy visualizations?
+[00:26:36] <K4-713>	 If so: That's what we're trying to hire for.
+[18:36:44] <slander_>	 #989: (AW) O:AW|TS:B|P:MH|T:TD Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/989
+[18:37:44] <slander_>	 #990: (AW) O:AW|TS:B|P:MH|T:TD Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/990
+[18:48:44] <slander_>	 #989: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/989
+[18:51:44] <slander_>	 #989: (AW) anrIwdTswapmwr:t Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/989
+[19:13:24] <awight>	 K4-713: https://gerrit.wikimedia.org/r/73012
+[19:13:35] <K4-713>	 awight: Damn, speedy. :)
+[20:13:54] <awight>	 I'm looking at https://payments.wikimedia.org/index.php/Special:GlobalCollectGateway?uselang=en&form_name=RapidHtml&ffname=cc-vma&appeal=JimmyQuote&amount=5&currency_code=USD&country=US
+[20:13:58] <awight>	 and get no responsive action
+[21:45:44] <slander_>	 #990: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/990
+[21:48:20] <mwalkez>	 K4-713: so... it turns out that STOMP 1.1 has support for subscription IDs -- which would allow us to ignore things that were prefetched
+[21:48:22] <mwalkez>	 but...
+[21:48:31] <mwalkez>	 phpstomp is a STOMP 1.0 client
+[21:51:24] <K4-713>	 rargh
+[21:51:56] * K4-713  thinks
+[21:55:34] <mwalkez>	 Jeff_Green: my understanding is that ops won't install anything from pear. is that correct?
+[21:56:12] <Jeff_Green>	 i don't know offhand
+[21:56:30] <Jeff_Green>	 also what ops will do in prod is not necessarily relevant for fundraising
+[21:56:54] <mwalkez>	 hurm
+[22:03:57] <K4-713>	 jvandavier: I just looked at the fraud situation you brought up earlier.
+[22:04:10] <K4-713>	 And, I gotta say, I'm kinda proud of myself again.
+[22:04:21] * jvandavier  pats K4-713 on the back
+[22:04:32] <K4-713>	 Some dude clearly caught on to the fact that we do IP veolcity filtering.
+[22:04:41] <K4-713>	 But, other rules I wrote caught him cold.
+[22:04:48] <K4-713>	 :D
+[22:04:55] <jvandavier>	 hehe awesome!
+[22:05:20] <K4-713>	 So, yeah. It was either a script that waits a bunch, or a guy with a list and nothing better to do.
+[22:05:28] <K4-713>	 Thwarted.
+[22:05:32] <jvandavier>	 nicely done
+[22:06:16] <K4-713>	 And eventually minfraud caught on to his many attempts, and started failing them outright.
+[22:06:28] <K4-713>	 ...near 200-point rejections toward the end.
+[22:06:48] <K4-713>	 90 is sufficient.
+[22:09:00] * Jeff_Green  hereby punts for the evening. sms me if anything comes up re. timezones
+[22:33:31] <marktraceur>	 mwalker / K4-713 / awight, https://integration.wikimedia.org/ci/job/mwext-DonationInterface-runtests/25/consoleFull "mysql_query() expects parameter 2 to be resource, null given" look familiar, have a fix? Before I begin spelunking?
+[22:34:21] <marktraceur>	 On running update.php in particular.
+[22:34:37] <K4-713>	 Ah. Er...
+[22:35:04] <mwalker>	 I got nothing
+[22:35:38] <K4-713>	 contributionTrackingConnection problem, looks like.
+[22:35:48] <marktraceur>	 Mm.
+[22:36:06] <marktraceur>	 Oh, er...maybe it's because we use sqlite on Jenkins
+[22:38:51] <marktraceur>	 K4-713: Have ye suggestions for how to fix it, or is it a matter of digging more to determine the subtype?
+[22:41:10] <K4-713>	 This stack trace is... not the most helpful thing.
+[22:41:25] <marktraceur>	 No 'tisn't
+[22:41:51] <K4-713>	 Usually stack traces are like... the Most Helpful Thing.
+[22:42:08] <marktraceur>	 Not PHP ones, I guess
+[22:42:20] <marktraceur>	 Er, maybe just not MediaWiki ones.
+[22:44:59] <Thehelpfulone>	 K4-713 / jvandavier: do you know if any donation/fundraising etc email goes through OTRS, or do you manage it completely through your newer system?
+[22:45:50] <jvandavier>	 Thehelpfulone: they *mostly* go through our newer system, save emails moved from the info@ or other OTRS queues
+[22:46:16] <Thehelpfulone>	 okay, so would you prefer it it people forwarded emails to donate@ instead of moving them to OTRS queues?
+[22:48:42] <jvandavier>	 it's…complicated. the new system has a great feature that allows forwarded emails from me (or someone else from my team) to create a ticket on behalf of the original sender, not the person that actually forwarded. is someone concerned about the OTRS queue?
+[22:51:32] <Thehelpfulone>	 oh nope, I just thought that if you weren't using it and it was a hassle for you to move things across we could hide it/close it to reduce your workload
+[22:52:33] <jvandavier>	 ah, i see. nah, i'm fine with it as it is. probably easier for you all to just move queues, and easier in the long run for me to move them into our system
+[22:52:42] <jvandavier>	 but thanks for asking, much appreciated :-)
+[22:56:44] <slander_>	 #987: (MW) TS:PD -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/987
+[22:56:44] <slander_>	 #987: (MW) *Deployed* -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/987
+[22:58:44] <slander_>	 #990: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/990
+[23:42:44] <slander_>	 #990: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/990
+[23:50:44] <slander_>	 #990: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/990
+[23:50:44] <slander_>	 #990: (AW) ->Sprint 28 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/990
+[23:50:44] <slander_>	 #990: (AW) TS:DR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/990
+[23:50:44] <slander_>	 #990: (AW) AT:AW|TS:ID -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/990
+[23:50:44] <slander_>	 #990: (AW) TS:PCR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/990

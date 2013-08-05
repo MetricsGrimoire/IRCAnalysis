@@ -1,0 +1,47 @@
+[00:46:09] <sahar>	 Hey guys
+[00:46:36] <marktraceur>	 Howdy
+[00:46:57] <sahar>	 I made a small app to show off some of the tests we've done so far
+[00:47:05] <sahar>	 It's not pretty, and it's not ready for primetime - just a toy.
+[00:47:07] <sahar>	 http://fierce-woodland-1066.herokuapp.com/test
+[00:47:19] <sahar>	 It's like a "guess which test won" thing
+[00:47:30] <sahar>	 Let me know what you think
+[00:48:47] <marktraceur>	 sahar: Could maybe highlight the difference(s), and indicate which choice the user picked on the next page
+[00:49:53] <marktraceur>	 And I guess put the images side-by-side with a zoom feature so the scrolling isn't hard
+[00:50:20] <sahar>	 Highlighting the differences could be a difficult manual process.
+[00:50:34] <marktraceur>	 *nod*
+[00:50:46] <sahar>	 But! Indicating if the user was right or wrong comes next. The problem is that I didn't actually generate the metadata of which won (just the image), so it'll take a day or so to generate that data again
+[00:51:09] <sahar>	 Hopefully less, if some optimizing tricks up my sleeve pan out.
+[00:51:35] <sahar>	 Do you have a link to easy javascript for turning images into zoomable thumbnails?
+[00:54:41] <marktraceur>	 Hm, I don't have one on hand
+[00:54:48] <marktraceur>	 I can't imagine it'd be terribly difficult
+[00:55:00] <sahar>	 Same
+[00:57:57] <marktraceur>	 sahar: Your best bet might be to just have them side by side, register click events for each and replace the main div with a fullsize image...I guess then you could have an "x" somewhere to exit, or listen for an escape keypress, else a second click chooses that image?
+[00:58:15] <marktraceur>	 I don't see any obvious non-bloaty JS libraries for this purpose, but I may have not digged enough
+[00:58:22] <marktraceur>	 Dug?
+[00:59:45] <sahar>	 marktraceur: what do you mean by "Dug?"
+[01:03:15] <marktraceur>	 I mean, I'm not sure if it should be "digged" or "dug" there. I suspect the latter.
+[01:04:08] <sahar>	 ah
+[01:04:19] <sahar>	 and here I was searching for the "Dug.js" library. :-P
+[01:05:50] <marktraceur>	 Hah, sorry.
+[07:52:27] <Till_WMDE>	 meganhernandez:  banners are up, right?
+[07:53:07] <meganhernandez>	 yep they're up now
+[07:53:11] <meganhernandez>	 really low % though
+[07:53:54] <meganhernandez>	 just about 100 responses right now
+[16:46:45] <mwalker>	 Jeff_Green: when you have a moment; if you would kindly re-enable the cron job
+[16:46:52] <mwalker>	 on the listeners box
+[16:47:01] <Jeff_Green>	 sure
+[16:47:59] <Jeff_Green>	 should be enabled now
+[16:50:15] <mwalker>	 hmm
+[16:50:18] <mwalker>	 when does it run?
+[16:50:45] <mwalker>	 oh
+[16:50:54] <mwalker>	 it would help if I was on the right host
+[16:51:25] <mwalker>	 grrr "PHP Fatal error:  Class 'Stomp' not found in /srv/www/org/wikimedia/listeners/SmashPig/Core
+[16:51:25] <mwalker>	 /DataStores/StompDataStore.php on line 52"
+[16:51:35] <mwalker>	 this was working yesterday!
+[16:55:13] <mwalker>	 Jeff_Green: oh
+[16:55:24] <mwalker>	 it doesnt have the right path to the config.php file
+[16:55:40] <mwalker>	 give it the absolute path and it should work much better
+[16:55:47] <Jeff_Green>	 ok
+[16:57:01] <Jeff_Green>	 fixed
+[17:00:43] <mwalker>	 yay -- it did what it was supposed to without blowing up!
+[17:10:23] <Jeff_Green>	 yay!

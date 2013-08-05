@@ -1,0 +1,2 @@
+[00:55:59] <mwalker>	 !log updating listeners from a9fdfd328a8d06d4efb5f4037c281cf4341e23ba to e5f30211ae89ba52a1234715a6d59a7a2d421169; updating payments from cf2d1639a9a8b2854d5302db2aba86199b4e4101 to bf6cbd63cb3cc6148f8abf35767c7dba4ce92b0e
+[00:56:07] <morebots>	 Logged the message, Master

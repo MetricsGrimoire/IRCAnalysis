@@ -1,0 +1,8 @@
+[22:22:58] <Thehelpfulone>	 jvandavier, you around? http://hire.jobvite.com/Jobvite/Job.aspx?j=o8PuXfw8&c=qSa9VfwQ looks like "paid OTRS agent for donations and translator" - I think a good OTRS agent /could/ actually do that role, perhaps it could be advertised amongst them too? Obviously it wouldn't be done as part of their role as an OTRS volunteer, but OTRS volunteers are likely to have the skills you're lo
+[22:22:58] <Thehelpfulone>	 oking for in answering emails (whether they want to do it is a different matter! ;-) )
+[22:24:46] <jvandavier>	 Thehelpfulone: that's a good point!  it would just be defining what we as the Foundation can say as opposed to what OTRS agents generally respond with - there's a bit of a difference :-)
+[22:25:14] <jvandavier>	 i'll talk to the hiring team and a few other people to see how we might want to go about this - i assume the OTRS mailing list might be a good place to start
+[22:26:05] <Thehelpfulone>	 yes, there are a couple of different ones, otrs-en-l is for info-en agents, and then -de-l -es -it-l -ja -ru and -zh
+[22:26:17] <Thehelpfulone>	 and otrs-permissions-l
+[22:26:38] <jvandavier>	 thanks!
+[22:26:57] <Thehelpfulone>	 no problem :)

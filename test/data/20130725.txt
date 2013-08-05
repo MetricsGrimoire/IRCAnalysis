@@ -1,0 +1,10 @@
+[18:06:14] <grrrit-wm>	 (PS1) Pcoombe: update silverpop_export script [wikimedia/fundraising/tools] - https://gerrit.wikimedia.org/r/75918
+[18:12:43] <grrrit-wm>	 (CR) Pcoombe: [C: 2 V: 2] update silverpop_export script [wikimedia/fundraising/tools] - https://gerrit.wikimedia.org/r/75918 (owner: Pcoombe)
+[19:29:38] <grrrit-wm>	 (PS1) Mwalker: Merge branch 'master' into wmf_deploy [extensions/CentralNotice] (wmf_deploy) - https://gerrit.wikimedia.org/r/75956
+[19:29:59] <grrrit-wm>	 (CR) Mwalker: [C: 2] Merge branch 'master' into wmf_deploy [extensions/CentralNotice] (wmf_deploy) - https://gerrit.wikimedia.org/r/75956 (owner: Mwalker)
+[19:30:18] <grrrit-wm>	 (Merged) jenkins-bot: Merge branch 'master' into wmf_deploy [extensions/CentralNotice] (wmf_deploy) - https://gerrit.wikimedia.org/r/75956 (owner: Mwalker)
+[20:52:18] <slander_>	 #673: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/673
+[20:55:18] <slander_>	 #673: (AW) N:Pou Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/673
+[20:55:18] <slander_>	 #673: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/673
+[20:59:18] <slander_>	 #673: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/673
+[21:01:19] <slander_>	 #731: (MW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/731

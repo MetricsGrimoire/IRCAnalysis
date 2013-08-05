@@ -1,0 +1,192 @@
+[17:47:34] <mwalker|away>	 Jeff_Green: *waves*
+[17:58:04] * Jeff_Green  mwalker|away: *waves back*
+[17:58:08] <Jeff_Green>	 what's happening
+[17:58:31] <mwalker|away>	 on friday I managed to get phpmailer into the git repo with full history
+[17:58:35] <mwalker|away>	 so now that's ready to go
+[17:58:56] <Jeff_Green>	 cool. i'm working on this as we speak actually
+[17:59:01] <mwalker|away>	 awesome! :)
+[17:59:17] <Jeff_Green>	 i created /srv/tools/ for these--should I move twig there too?
+[18:02:26] <mwalker|away>	 sounds reasonable
+[18:02:32] <Jeff_Green>	 ok
+[19:04:33] <Jeff_Green>	 mwalker: I think all the listener stuff is in place now
+[19:05:14] <mwalker>	 awesome -- give me just a sec -- I'm in the middle of poking adp to schedule time off
+[19:05:22] <Jeff_Green>	 oh the horror
+[19:08:45] <mwalker>	 ok
+[19:08:52] <mwalker>	 this system sucks harder than donation interface
+[19:08:54] <mwalker>	 but! done
+[19:09:26] <Jeff_Green>	 hooray
+[19:09:27] <mwalker>	 so; first steps -- where is syslog and apache error going?
+[19:09:36] <mwalker>	 I have some test messages I can have it process
+[19:09:40] <Jeff_Green>	 sec
+[19:10:04] <Jeff_Green>	 i thought I'd already dealt with it but apparently not
+[19:10:07] <Jeff_Green>	 fixing...
+[19:15:26] <mwalker>	 if it helps SmashPig log lines will always start with SmashPig
+[19:15:48] <Jeff_Green>	 for now I'm just matching on hostname and putting it all in /var/log/remote/payments-listener-misc
+[19:16:08] <Jeff_Green>	 we can break it out as needed. fixing firewall rules now to allow logging at all...
+[19:16:16] <mwalker>	 kk
+[19:16:34] <Jeff_Green>	 ok, syslog goes to indium:/var/log/remote/payments-listener-misc
+[19:16:53] <Jeff_Green>	 checking apache error log, i think we foisted that on syslog too
+[19:17:42] <Jeff_Green>	 yup, all to syslog
+[19:17:49] <Jeff_Green>	 fixing loudon...
+[19:24:11] <mwalker>	 yay! so I see the logfile on loudon!
+[19:24:25] <mwalker>	 next -- what is the URL I need to use to hit smashpigs http listener?
+[19:25:08] <mwalker>	 https://payments-listener.wikimedia.org/smashpig/ ?
+[19:25:30] <Jeff_Green>	 I forget. looking...
+[19:27:17] <Jeff_Green>	 oh right, I halted apache last week.
+[19:29:32] <mwalker>	 apparently we're running out to get food quickly
+[19:29:42] <Jeff_Green>	 k.
+[19:29:56] <mwalker>	 but! to test that it's working on your end https://payments-listener.wikimedia.org/smashpig/adyen/listener should through a whole bunch of crap into syslog
+[19:30:01] <mwalker>	 and give you a SOAP error
+[19:30:18] <Jeff_Green>	 ok. i've got apache up and I'm just digging up the URL
+[19:31:02] <Jeff_Green>	 i don't see ./adyen as a folder, should that be there?
+[19:42:20] <Jeff_Green>	 mwalker: ok I think it's sorta working now, but the URL is .../SmashPig/...
+[19:48:19] * marktraceur  is confused by the GET_ORDERSTATUS return values, apparently they're significantly different from INSERT_ORDERWITHPAYMENT returns
+[19:54:28] <mwalker>	 Jeff_Green: yay! I get the soap error (and in case you didn't figure it out -- adyen is a virtual folder)
+[19:54:37] <mwalker>	 but! I don't get and shtuff in syslog
+[19:54:43] <Jeff_Green>	 yeah, that's what I was wondering re. adyen
+[19:55:04] <Jeff_Green>	 hrm re. shtuff
+[19:55:20] <Jeff_Green>	 lemee poke in the outgoing SSL IPs and we'll take a look at logging
+[19:58:41] <Jeff_Green>	 mwalker: will outbound always be https?
+[19:59:06] <mwalker>	 i hope so!
+[19:59:18] <mwalker>	 at the moment thats the case
+[19:59:27] <Jeff_Green>	 ha. ok i will only open outbound tcp/443 then
+[20:01:12] <mwalker>	 ah -- also mail!
+[20:01:27] <Jeff_Green>	 yup. we'll have to test that
+[20:01:50] <Jeff_Green>	 i think it should work now but it relays via mchenry and I'm not sure we'll like what happens with headers
+[20:06:53] <Jeff_Green>	 ok let's get logging working. what's the URL you're using to test?
+[20:10:31] <mwalker>	 https://payments-listener.wikimedia.org/SmashPig/adyen/listener
+[20:11:41] <mwalker>	 should be a couple of 'info' and 'warning' and possibly 'debug' level statements
+[20:17:53] <Jeff_Green>	 i see those going in /var/log/syslog locally
+[20:19:09] <mwalker>	 so; just not making it to loudon?
+[20:19:17] <mwalker>	 I am tail -f /var/log/remote/payments-listener-misc
+[20:19:22] <mwalker>	 and getting nothing
+[20:20:34] <Jeff_Green>	 yeah, that's odd. looking
+[20:21:34] <Jeff_Green>	 I'm seeing it on indium
+[20:22:10] <Jeff_Green>	 oh, looks like firewall rules are still blocking syslog to loudon. fixing
+[20:25:48] <Jeff_Green>	 yay! fixed.
+[20:26:04] <mwalker>	 awesome
+[20:26:09] <mwalker>	 ok -- SmashPig configuration
+[20:26:27] <Jeff_Green>	 ya. i threw that config file from your homedir on al, what needs tweaking?
+[20:26:54] <mwalker>	 default/logging/failmail/inst-args
+[20:27:00] <mwalker>	 should probably point to fr-tech@wikimedia.org
+[20:27:25] <mwalker>	 'inst-args' => array'fr-tech@wikimedia.org',
+[20:27:28] <mwalker>	 gah
+[20:27:35] <mwalker>	 'inst-args' => 'fr-tech@wikimedia.org',
+[20:28:26] <mwalker>	 default/data-store/stomp/lib-path needs to point to the place where you pulled down Stomp
+[20:28:45] <mwalker>	 /default/include-paths needs to have the location of phpmailer
+[20:30:27] <mwalker>	 and /default/data-store/stomp/queues/limbo lets have point to '/queue/sp-limbo'
+[20:30:39] <mwalker>	 also add 'verified' => '/queue/sp-donations'
+[20:32:14] <Jeff_Green>	 phpmailer--is that just the top level path of the phpmailer project?
+[20:32:42] <Jeff_Green>	 i.e. /srv/tools/phpmailer ?
+[20:33:00] <mwalker>	 yep
+[20:33:26] <Jeff_Green>	 k
+[20:36:06] <Jeff_Green>	 cc-limbo becomes sp-limbo?
+[20:36:38] <mwalker>	 ya -- for the moment
+[20:36:49] <mwalker>	 I just want to make sure we dont bork existing queues whilst we're testing
+[20:36:57] <Jeff_Green>	 k
+[20:37:00] <Jeff_Green>	 blasting that config out
+[20:37:59] <Jeff_Green>	 interestring new logbarf
+[20:38:48] <mwalker>	 ah
+[20:38:55] <mwalker>	 shoot -- that's probably the failmail addresses
+[20:39:05] <Jeff_Green>	 should I turn it back into an array?
+[20:39:10] <mwalker>	 yep
+[20:40:10] <Jeff_Green>	 more funbarfloggy
+[20:41:19] <mwalker>	 ooh
+[20:41:57] <mwalker>	 what URL were you using?
+[20:42:26] <Jeff_Green>	 https://payments-listener.wikimedia.org/SmashPig/PublicHttp/adyen/listener
+[20:43:01] <mwalker>	 oh; you shouldn't need the publichttp bit
+[20:43:03] <mwalker>	 https://payments-listener.wikimedia.org/SmashPig/adyen/listener
+[20:43:05] <mwalker>	 works just peachy
+[20:43:27] <mwalker>	 because SmashPig does the rewrite to publichttp/public_http_listener.php
+[20:43:36] <Jeff_Green>	 k
+[20:43:45] <Jeff_Green>	 does logging look good now?
+[20:43:48] <mwalker>	 yeppers
+[20:44:03] <mwalker>	 next task! there's a cron job that we'll need to run
+[20:44:26] <mwalker>	 I cant recall if I asked you about running that via jenkins
+[20:46:12] <Jeff_Green>	 you haven't mentioned yet afaik unless it was when I was drunk
+[20:46:21] <Jeff_Green>	 or undercaffeinated
+[20:46:47] <mwalker>	 ok! I know it was all very confused when we were putting together things -- so its probably on me
+[20:46:57] <mwalker>	 in any case -- there's a PHP script that needs to run pretty routinely
+[20:47:05] <Jeff_Green>	 any reason cron is not adequate?
+[20:47:35] <mwalker>	 if we can setup a slave jenkins setup - then we have easier control over it's execution / get failmail from it
+[20:47:46] <mwalker>	 and turn it on/off when we do upgrades
+[20:48:07] <mwalker>	 simple cron will work
+[20:48:13] <mwalker>	 but I'm always greedy
+[20:48:48] <Jeff_Green>	 let's go cron, because that can be puppetized and we don't have the whole jenkins is a single point of likely failure
+[20:49:17] <Jeff_Green>	 that spoken by the person who implemented the cron based jenkins watcher script to lift jenkins up when it faceplants
+[20:49:35] <mwalker>	 hehe
+[20:50:23] <mwalker>	 ok -- we're running the SmashPig/Maintenance/StompJobRunning.php
+[20:50:29] <mwalker>	 *StompJobRunner.php
+[20:50:44] <Jeff_Green>	 ok. how frequently and/or what time?
+[20:51:18] <mwalker>	 full up -- probably every 5 minutes
+[20:51:20] <mwalker>	 or more
+[20:51:36] <Jeff_Green>	 k. run it as the same user as the webserver?
+[20:51:40] <mwalker>	 yep
+[20:51:45] <Jeff_Green>	 k.o.
+[20:53:39] <mwalker>	 uh -- it apparently needs some options
+[20:53:40] <mwalker>	 php StompJobRunner.php --config-file ../config.php --config-node adyen
+[20:53:45] <Jeff_Green>	 ok
+[21:00:39] <mwalker>	 ah -- cool
+[21:00:44] <mwalker>	 got some bugs I need to fix
+[21:00:51] <Jeff_Green>	 ok. should I stop the cron?
+[21:00:54] <mwalker>	 yep
+[21:01:15] <mwalker>	 it'll just generate cronspam
+[21:01:29] <mwalker>	 this is fun though:
+[21:01:30] <mwalker>	 Could not send email to fr-tech@wikimedia.org. PHP Mailer had exception. |  | Invalid address: smashpig-failmail@thulium#012#0 /srv/www/org/wikimedia/listeners/SmashPig/Core/MailHandler.php(119): PHPMailer->SetFrom('smashpig-failma...')#012#1 /srv/www/org/wikimedia/listeners/SmashPig/Core/Logging/FailmailLogStream.php(131): SmashPig\Core\MailHandler::sendEmail('fr-tech@wikimed...', 'FAILMAIL -- ERR...', 'A problem has d...', 'smashpig-
+[21:02:47] <mwalker>	 hah
+[21:02:52] <mwalker>	 yay phpmailer
+[21:04:22] <mwalker>	 oh! that's what the second inst-arg was to Failmail
+[21:04:44] <mwalker>	 so default/logging/log-streams/failmail/inst-args
+[21:04:55] <mwalker>	 needs to be array( <TO>, <FROM> )
+[21:05:11] * mwalker  thinks I need a better system for this
+[21:06:05] <mwalker>	 default/logging/log-streams/failmail/inst-args => array('fr-tech@wikimedia.org', 'smashpig-failmail@thulium.wikimedia.org'),
+[21:06:24] * Jeff_Green  fighting puppet variables
+[21:14:20] <Jeff_Green>	 mwalker: ok correction made and cron restarted
+[21:14:34] <mwalker>	 oh -- that wasn't a cron error
+[21:14:39] <mwalker>	 the cron error is actually a bug
+[21:14:48] <Jeff_Green>	 oic. should I stop that job?
+[21:14:52] <mwalker>	 yes please :)
+[21:16:28] <mwalker>	 but -- cool; the ball is now back in my court to fix the bugs I'm finding
+[21:16:46] <mwalker>	 can I deploy software fixes? or do I still need your intervention for that?
+[21:18:36] <Jeff_Green>	 you can do it
+[21:18:47] <mwalker>	 off of boron?
+[21:18:50] <Jeff_Green>	 payments_code_update and payments_rsync_blaster ALL:ALL
+[21:18:50] <Jeff_Green>	 yep
+[21:18:54] <mwalker>	 kk
+[21:27:11] <Jeff_Green>	 mwalker: are you able to tell whether or not this rig is talking to activemq properly now?
+[21:27:43] <mwalker>	 uh -- not yet
+[21:27:48] <Jeff_Green>	 k
+[21:27:55] <mwalker>	 quick thing we can do
+[21:28:12] <mwalker>	 if you run StompJobRunner.php from the Maintenance directory directly
+[21:28:15] <mwalker>	 it should run
+[21:28:55] <mwalker>	 not do anything -- but it should at least vomit if it cannot talk to stomp
+[21:29:46] <Jeff_Green>	 so:
+[21:29:56] <Jeff_Green>	 /srv/www/org/wikimedia/listeners/SmashPig/Maintenance# php StompJobRunner.php
+[21:30:00] <Jeff_Green>	 or does it need args?
+[21:30:03] <mwalker>	 ya
+[21:30:18] <mwalker>	 so --config-file ../config.php --config-node adyen
+[21:31:08] <Jeff_Green>	 lots of fail trying to connect to localhost:61613
+[21:31:51] <mwalker>	 ah
+[21:31:54] <mwalker>	 hang on
+[21:32:14] <mwalker>	 ok
+[21:32:35] <mwalker>	 /default/data-store/stop/uri => 'tcp://silicon:61613'
+[21:32:45] <mwalker>	 */default/data-store/stomp/uri
+[21:33:34] <Jeff_Green>	 which file?
+[21:33:38] <mwalker>	 config.php
+[21:34:49] <Jeff_Green>	 ok that looks sorta better. fixing firewall now
+[21:43:26] <Jeff_Green>	 had to get leslie involved, appears to be blocked at hardware firewall
+[21:45:51] <mwalker>	 whoo
+[21:46:08] <mwalker>	 server kitties!
+[21:47:06] <Jeff_Green>	 Attempting to STOMP subscribe to '/queue/job-requests' on 'tcp://silicon.frack.eqiad.wmnet:61613'
+[21:47:10] <Jeff_Green>	 Pulling new object from queue
+[21:47:14] <Jeff_Green>	 STOMP did not return an object
+[21:47:22] <Jeff_Green>	 that's good right?
+[21:48:49] <mwalker>	 yeppers
+[21:48:56] <mwalker>	 there's nothing in the queue
+[21:49:00] <mwalker>	 but it can talk to it
+[21:49:06] <mwalker>	 so as expected
+[21:49:07] <Jeff_Green>	 glorious
+[21:49:22] <Jeff_Green>	 are we at a point where I can stop for the day?
+[21:49:35] <Jeff_Green>	 i.e. without leaving something insecure/destructive hanging?
+[21:50:34] <mwalker>	 yes
+[21:51:19] <Jeff_Green>	 ok

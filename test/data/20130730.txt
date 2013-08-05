@@ -1,0 +1,69 @@
+[00:05:10] <grrrit-wm>	 (PS1) Mwalker: Add CentralNotice Banner live preview link [extensions/CentralNotice] - https://gerrit.wikimedia.org/r/76664
+[00:44:22] <grrrit-wm>	 (PS1) Mwalker: Unify CentralNotice database creation [extensions/CentralNotice] - https://gerrit.wikimedia.org/r/76669
+[00:52:26] <grrrit-wm>	 (CR) Adamw: [C: -1] "(5 comments)" [extensions/CentralNotice] - https://gerrit.wikimedia.org/r/76664 (owner: Mwalker)
+[00:56:29] <grrrit-wm>	 (CR) Adamw: [C: 2 V: 2] "Great to see that master/slave thing made implicit. Maybe MW will follow suit in a few years ;)" [extensions/CentralNotice] - https://gerrit.wikimedia.org/r/76669 (owner: Mwalker)
+[00:58:41] <grrrit-wm>	 (CR) Adamw: [C: 2 V: 2] "I imagine we should expose message field documentation in the CN ui." [extensions/CentralNotice] - https://gerrit.wikimedia.org/r/76639 (owner: Mwalker)
+[00:59:09] <mwalker>	 awight: re ^ probably; I just don't know the best way of doing it
+[00:59:59] <awight>	 mwalker: It would be mad helpful to people maintaining and cloning banners.  we should ask them
+[01:00:28] <awight>	 just not megan ;)  She probably has a steno pad with the docstrings
+[01:00:30] <mwalker>	 that and marking messages as 'variables'
+[01:00:58] <awight>	 hmm.
+[01:01:47] <awight>	 Yes, the vars are a much different beast than simple translation strings.
+[01:02:41] <awight>	 we need to do something about the diet variable name, btw
+[01:02:47] <awight>	 I think you had a plan for that?
+[01:03:02] <awight>	 It should be determined by the banner 'class' or something, right?
+[01:03:46] <awight>	 We should write a card for the banner variable auto-combinator...
+[01:29:07] <slander>	 #1001: (AW) Tech Task #1001 Hide banners in print view: O:AW|TS:B|P:NtH|T:TT Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/1001
+[01:29:07] <slander>	 #1001: (AW) ->Sprint 28 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/1001
+[01:29:07] <slander>	 #1001: (AW) TS:DR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/1001
+[01:48:52] <grrrit-wm>	 (CR) Mwalker: [C: 2] DataValidator can use boss's methods [extensions/DonationInterface] - https://gerrit.wikimedia.org/r/64323 (owner: Adamw)
+[02:03:54] <grrrit-wm>	 (CR) Mwalker: "(9 comments)" [extensions/DonationInterface] - https://gerrit.wikimedia.org/r/64345 (owner: Adamw)
+[02:12:09] <grrrit-wm>	 (CR) Mwalker: "(3 comments)" [extensions/DonationInterface] - https://gerrit.wikimedia.org/r/64348 (owner: Adamw)
+[16:24:48] <K4-713>	 the-wub: Hey, good morning. Question for you: What are the campaign names for mobile?
+[16:25:35] <the-wub>	 morning K4-713. C13_mobile_enUS_FR & C13_mobile_enGB_FR
+[16:26:03] <K4-713>	 Cool, thanks. I'm just running some queries over here...
+[16:26:11] <K4-713>	 ...super curious how this is going to turn out.
+[16:27:23] <the-wub>	 yeah, I'm still seeing hardly any donations
+[16:27:52] <K4-713>	 I've got... 8 for the US.
+[16:28:05] <the-wub>	 yep
+[16:28:14] <the-wub>	 and 1 in the UK
+[16:28:17] <K4-713>	 :/
+[16:28:48] <K4-713>	 Wait a minute... I have a lot more for the UK.
+[16:28:58] <K4-713>	 15, actually.
+[16:29:48] <the-wub>	 oh yeah, I was looking at it since I put it back up today. there were about 15 yesterday/this morning
+[16:30:02] <K4-713>	 aaaaha.
+[16:30:20] <K4-713>	 When did it go back up?
+[16:30:46] <the-wub>	 1300 UTC. so 3.5 hours ago
+[16:31:20] <K4-713>	 Cool... that matches what I've got here. Take it down in the 1000 hour?
+[16:31:34] <K4-713>	 I mean: Did you take it down in the 1000 hour, UTC.
+[16:31:45] <the-wub>	 yep, it was around then
+[16:31:52] <K4-713>	 Cool.
+[16:32:47] <the-wub>	 I suspect there is some problem where banners are hardly showing. If it was a problem with the actual donation process, we would surely have had some emails about it
+[16:32:59] <K4-713>	 Hm. Maybe?
+[16:33:03] <the-wub>	 but josh reported nothing last time
+[16:33:15] <K4-713>	 I mean, I might not go through the trouble of bug-reporting on my phone, either.
+[16:33:46] <the-wub>	 yeah perhaps
+[16:35:59] <K4-713>	 So, that 8 in the US is possibly interesting, actually.
+[16:36:25] <K4-713>	 Half of those were in the last hour..
+[16:36:40] <K4-713>	 Which is, granted, still only four.
+[17:25:26] <grrrit-wm>	 (CR) Adamw: "(7 comments)" [extensions/DonationInterface] - https://gerrit.wikimedia.org/r/64345 (owner: Adamw)
+[17:49:20] <grrrit-wm>	 (CR) Adamw: "(8 comments)" [extensions/DonationInterface] - https://gerrit.wikimedia.org/r/64348 (owner: Adamw)
+[18:02:45] <awight>	 !log fr-civicrm updated from 820c54a659006a358e27e7451ed0274a3198f3cb to 6e4e641c973f2e63b18608a7df6726e5236b234d
+[18:02:59] <morebots>	 Logged the message, Master
+[18:04:23] <awight>	 !log fr-civicrm updated from 6e4e641c973f2e63b18608a7df6726e5236b234d to 661a1af4dc941675a1edb183830f8dc9529fbd6a
+[18:04:36] <morebots>	 Logged the message, Master
+[18:22:08] <slander>	 #986: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/986
+[18:23:07] <slander>	 #986: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/986
+[21:27:02] <awight_>	 !log listeners updated from 90ddcc35ccab7366a0fc6ba12f457a513d4515e3 to 246f50c3a0f39bfd7e26afd5b4ee18712ab44c9c
+[21:27:16] <morebots>	 Logged the message, Master
+[21:33:52] <awight_>	 !log payments updated from 855aa0f8c0bbc5eb3eed78dfccdf61797e284c2d to 74b8b03ac816c8a0d678ca0358af5387097b541a
+[21:34:06] <morebots>	 Logged the message, Master
+[22:12:56] <grrrit-wm>	 (PS1) Adamw: throw MWException [extensions/DonationInterface] - https://gerrit.wikimedia.org/r/76840
+[22:14:39] <grrrit-wm>	 (CR) Mwalker: [C: 2 V: 2] throw MWException [extensions/DonationInterface] - https://gerrit.wikimedia.org/r/76840 (owner: Adamw)
+[22:18:43] <awight>	 !log payments updated from 74b8b03ac816c8a0d678ca0358af5387097b541a to fd276e06cfa0d9f05228e2d38265ded9ade2e3b2
+[22:18:58] <morebots>	 Logged the message, Master
+[22:56:27] <grrrit-wm>	 (PS1) Mwalker: Checking in Composer Files :) [wikimedia/fundraising/PaymentsListeners] - https://gerrit.wikimedia.org/r/76846
+[22:57:37] <mwalker>	 awight: https://gerrit.wikimedia.org/r/#/c/76846/
+[23:05:35] <grrrit-wm>	 (CR) Adamw: [C: 2 V: 2] "TODO: submodule" [wikimedia/fundraising/PaymentsListeners] - https://gerrit.wikimedia.org/r/76846 (owner: Mwalker)
+[23:06:30] <awight>	 !log listeners updates from 246f50c3a0f39bfd7e26afd5b4ee18712ab44c9c to 243aeba728ad72ee59f8e746880ee17a71ce68a9
+[23:06:42] <morebots>	 Logged the message, Master

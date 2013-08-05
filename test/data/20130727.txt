@@ -1,0 +1,34 @@
+[00:17:46] <grrrit-wm>	 (CR) Adamw: [ C: 2 V: 2] "Nice!" [extensions/CentralNotice] - https://gerrit.wikimedia.org/r/76207 (owner: Mwalker)
+[00:37:12] <grrrit-wm>	 (PS1) Mwalker: Adding License/Credits for CentralNotice [extensions/CentralNotice] - https://gerrit.wikimedia.org/r/76225
+[01:33:44] <grrrit-wm>	 (CR) Adamw: [ C: -1] "I think you've got the placeholder edition of GPLv2." [extensions/CentralNotice] - https://gerrit.wikimedia.org/r/76225 (owner: Mwalker)
+[01:34:49] <mwalker>	 awight: the placeholder version?
+[01:34:55] <mwalker>	 that's straight from the GPL site
+[01:35:01] <awight>	 mwalker: look at the end of th efile...
+[01:35:09] <awight>	 Ty Coon of Yoyodyne ;)
+[01:35:29] <mwalker>	 right
+[01:35:32] <awight>	 I think we have boilerplace WMF GPL ... somewhere...
+[01:35:37] <mwalker>	 it's exactly the same
+[01:35:41] <awight>	 whaat.
+[01:35:46] <awight>	 everywhere. ?
+[01:35:54] <awight>	 call the lawyers :0
+[01:35:55] <mwalker>	 the license must be reproduced as on http://www.gnu.org/licenses/gpl-2.0.html
+[01:36:10] <mwalker>	 modifications to the license text are not premitted (with the exception of formatting)
+[01:36:41] <awight>	 You should cut at END OF TERMS AND CONDITIONS, no?
+[01:38:15] <mwalker>	 sadly no
+[01:38:55] <mwalker>	 it would be like cutting away the preamble
+[01:39:02] <mwalker>	 which I would also love to do because it's a bunch of drivel
+[01:39:16] <awight>	 That stuff at the end has no legal ramifications of any type
+[01:39:56] <mwalker>	 aye... but read the first bit "Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed."
+[01:40:03] <mwalker>	 it is considered part of the license document
+[01:40:49] <mwalker>	 http://www.gnu.org/licenses/gpl-faq.html#GPLOmitPreamble
+[01:41:13] <awight>	 OK OK i guess this is like the mrna which allows the virus to infect more cells...
+[01:41:31] <mwalker>	 ya
+[01:41:34] <mwalker>	 it's stupid
+[01:41:47] <mwalker>	 and I think a perfect example of Stallman's ego
+[01:41:59] <grrrit-wm>	 (CR) Adamw: [ C: 2 V: 2] "Weird. Scary." [extensions/CentralNotice] - https://gerrit.wikimedia.org/r/76225 (owner: Mwalker)
+[01:42:20] <mwalker>	 also; fixing the banner preview is a bitch
+[01:42:29] <mwalker>	 I want like a onLoad for a dom element
+[01:42:59] <awight>	 mwalker: yes, i know.  or from within an iframe to its parent...
+[01:43:16] <awight>	 I think we should go with cached snapshots
+[01:43:29] <awight>	 your idea from months ago.
+[01:45:23] <awight>	 OK have a weekend!

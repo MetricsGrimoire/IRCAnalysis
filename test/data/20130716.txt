@@ -1,0 +1,11 @@
+[01:02:15] <slander_>	 #993: (AW) O:AW|TS:B|P:NtH|T:TT -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/993
+[01:02:15] <slander_>	 #993: (AW) P:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/993
+[01:05:15] <slander_>	 #790: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/790
+[01:06:15] <slander_>	 #890: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/890
+[01:31:14] <slander_>	 #890: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/890
+[01:39:15] <slander_>	 #986: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/986
+[16:58:37] <mwalker>	 !log updated payments-listeners from 8a38a49c694b333cf04df16f8c405fbad847d954 to b2ac16f5284c56ea1ba475aba9dae9cc476f0f6d
+[16:58:51] <morebots>	 Logged the message, Master
+[17:13:07] <mwalker>	 jvandavier: heads up! we're starting adyen again
+[17:13:14] <jvandavier>	 ah! ok
+[17:13:22] * jvandavier  is ready

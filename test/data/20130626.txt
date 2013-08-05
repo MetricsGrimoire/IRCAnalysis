@@ -1,0 +1,74 @@
+[18:16:28] <ori-l>	 heyo
+[18:16:47] <marktraceur>	 Salut ori-l :)
+[18:16:49] <ori-l>	 any chance you guys could rename 'donationinterface.php' to 'DonationInterface.php'?
+[18:16:59] * marktraceur  looks around
+[18:17:11] <marktraceur>	 I could probably run that patch in a few minutes
+[18:17:39] <marktraceur>	 Though it would mean changing config on the cluster
+[18:17:50] <marktraceur>	 K4-713: ^^
+[18:18:18] <K4-713>	 nooooooooooooooooes...
+[18:18:21] <K4-713>	 Or rather: Why?
+[18:18:43] <marktraceur>	 K4-713: It is more in line with the implicit consensus
+[18:19:01] <marktraceur>	 Though the implicitness of that may render it useless.
+[18:23:17] <ori-l>	 K4-713: there are lots of scripts everywhere that assume that pattern. zuul / jenkins job configs, for example
+[18:23:25] <ori-l>	 it's not critical, though
+[18:31:22] <marktraceur>	 Perhaps appropriately, https://gerrit.wikimedia.org/r/70666
+[18:43:28] <ori-l>	 marktraceur: be careful with that, and get K4-713's approval
+[18:44:03] <marktraceur>	 *nod*
+[18:44:50] <K4-713>	 Ah... yes. We probably shouldn't merge that in until somebody agrees to do a fundraising deploy, so we don't forget we're basically breaking everything without a settings change.
+[18:45:10] <marktraceur>	 Yeah
+[18:45:21] <K4-713>	 I'd do it, but I am being pulled all over the place today.
+[18:45:39] <K4-713>	 Also, I think stuff on the main cluster is going to have to change, too.
+[18:45:48] <ori-l>	 well, it might not be worth it, then
+[18:46:03] <K4-713>	 There's some... mutant language-only deploy of DI that goes out so we can have our strings translated.
+[18:46:14] <marktraceur>	 mwalker|away: Up to deploy? :D
+[18:46:43] <marktraceur>	 K4-713: That wouldn't be affected, I don't think
+[18:47:01] <K4-713>	 Somebody should probably get eyes on that before anything gets merged.
+[18:47:03] <K4-713>	 :)
+[18:47:30] <marktraceur>	 Well, I mean, that version wasn't modified
+[18:47:55] <marktraceur>	 I grepped for anything in the repository that used "donationinterface.php" and found only two instances, in the file itself
+[18:49:04] <K4-713>	 Yeah, okay: langonly is parallel.
+[18:49:15] <marktraceur>	 *nod*
+[18:49:28] <K4-713>	 ...but it's also all lowercase and well outside the pattern.
+[18:50:13] <marktraceur>	 K4-713: I guess if our main motivation is technically justified (by the zuul/jenkins configs), then we shouldn't worry about the langonly file
+[18:51:28] <K4-713>	 Depending on the reason for the change... see, on the cluster, langonly should be the main require_once.
+[18:53:00] <mwalker>	 I can do the deploy
+[18:53:40] <marktraceur>	 In unrelated news, food?
+[18:54:24] <marktraceur>	 mindspillage may join.
+[18:54:42] <ori-l>	 marktraceur: what should '$wgGlobalCollectGatewayHtmlFormDir' be set to?
+[18:54:53] <ori-l>	 in dev
+[18:54:56] <marktraceur>	 Errr
+[18:55:33] * marktraceur  doesn't know
+[18:55:54] <marktraceur>	 ori-l: I don't think it needs to be set to anything special
+[18:56:04] <ori-l>	 well, it needs to be *set*
+[18:56:14] <ori-l>	 because DonationInterfaceFormSettings.php references it
+[18:56:30] <ori-l>	 i'll set it to some /tmp folder and add a big # FIXME
+[18:57:51] <mwalker>	 ori-l: set it to <donationinterfaceroot>/globalcollect_gateway/forms/
+[18:58:14] <ori-l>	 mwalker: cool, that works
+[19:17:22] <ori-l>	 marktraceur: still there?
+[19:18:59] <ori-l>	 marktraceur: I'm updating your vagrant patch with some fixes, but I'm going to exclude drupal/drush and suggest we defer that to a separate patch
+[19:23:02] <ori-l>	 mwalker / K4-713: cool if I add you guys as reviewers too?
+[19:24:18] * ori-l  does
+[21:54:35] <marktraceur>	 K4-713: This meeting may go over, I'll come get you
+[21:54:48] <K4-713>	 'sokay. I'm...
+[21:56:33] <K4-713>	 ...yeah.
+[21:57:46] <marktraceur>	 Yeah, indeed.
+[23:43:51] <K4-713>	 oi, mwalker: https://gerrit.wikimedia.org/r/70777
+[23:43:54] <K4-713>	 cr?
+[23:44:19] <mwalker>	 maaaybe
+[23:44:33] <mwalker>	 whitespace :)
+[23:45:02] <K4-713>	 GAH.
+[23:45:02] <K4-713>	 That should happen automa-oh, I switched computers, didn't I?
+[23:45:22] <K4-713>	 :[
+[23:45:24] <mwalker>	 but did you keep the HD?
+[23:47:11] <K4-713>	 Nah. This one's all solid state.
+[23:47:21] <K4-713>	 Also: What do you mean? Gerrit looks happy.
+[23:48:12] <mwalker>	 it's not highlighted red; but the space before the line is spaces
+[23:48:34] <K4-713>	 Now you're asking me to reformat code I'm not touching. :p
+[23:48:45] <mwalker>	 nooo
+[23:48:47] <K4-713>	 I mean, I'll do it, but it should be its own patchset.
+[23:49:08] <mwalker>	 on the top, clicky 'Differences' -> 'Preferences' -> 'Show Tabs'
+[23:49:27] <K4-713>	 ?
+[23:49:28] <K4-713>	 Top of what?
+[23:49:34] <mwalker>	 of the gerrit web UI
+[23:49:51] <mwalker>	 uh; when you're looking at the file
+[23:50:27] <K4-713>	 Oh, blarf. Hang on.

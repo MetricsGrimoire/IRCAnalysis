@@ -1,0 +1,101 @@
+[20:36:43] <mwalker>	 Jeff_Green: you around?
+[20:36:49] <Jeff_Green>	 i am!
+[20:36:53] <mwalker>	 *gasps*
+[20:36:59] <mwalker>	 I thought you were out till tomorrowz!
+[20:37:04] <Jeff_Green>	 shocking i know. i may not be sane but I'm here
+[20:37:08] <mwalker>	 heh
+[20:37:26] <Jeff_Green>	 i flew in yesterday afternoon, been trying to get in a reasonable work day today but it's mentally challenging
+[20:40:53] <mwalker>	 in any case -- I still owe you stomp and phpmailer repos? and a smashpig config?
+[20:41:03] <mwalker>	 was there anything else pending for the listeners box?
+[20:41:17] <Jeff_Green>	 I think that was all we'd identified
+[20:41:51] <mwalker>	 ok -- I now have the repos so I'll go ahead and fill them
+[20:42:05] <mwalker>	 its https://gerrit.wikimedia.org/r/wikimedia/fundraising/stomp and https://gerrit.wikimedia.org/r/wikimedia/fundraising/phpmailer
+[20:42:34] <Jeff_Green>	 ok cool
+[20:46:25] <mwalker>	 and... al:/home/mwalker/sp-config.php is what a smashpig config looks like; it should go into a the same directory as config_defaults.php and be renamed config.php
+[20:48:58] <Jeff_Green>	 mwalker: ok
+[21:09:09] <mwalker>	 ... I'm pretty sure I've compiled operating system in less time than it takes to clone phpmailers 400 or so commit svn repo
+[21:10:15] <Jeff_Green>	 hahahaha
+[21:24:28] <mwalker>	 oh...
+[21:24:32] <mwalker>	 it's going through all the tags
+[21:24:34] <mwalker>	 ugh
+[21:43:44] <mwalker>	 Jeff_Green: ok -- phpmail 2.2.1 is now in git
+[21:44:16] <mwalker>	 hurm... its sort of suspicious that the last commit in this branch was in 2008
+[22:04:21] * marktraceur  makes exasperated faces at the whitespace conventions or lack thereof
+[23:02:22] <mwalker>	 jvandavier: do you know what the enets payment method is?
+[23:02:29] <mwalker>	 or the eps
+[23:02:36] <mwalker>	 they're under realtime bank transfer
+[23:02:41] <jvandavier>	 enets is Singapore, i believe
+[23:02:53] <jvandavier>	 eps rings a bell, but not 100% sure
+[23:05:17] <jvandavier>	 mwalker: enets looks broken, similar to iDEAL
+[23:05:22] <mwalker>	 ya
+[23:05:22] <jvandavier>	 …which you probably already know
+[23:05:24] <jvandavier>	 hehe
+[23:05:26] <mwalker>	 yep
+[23:29:50] <marktraceur>	 There has to be a better way to diff HTML.
+[23:30:10] <marktraceur>	 Gerrit is just...not even helpful right now
+[23:34:21] <marktraceur>	 mwalker: I can't do a lot to V+2 this, since I don't have a setup for testing rtbt...I don't think, anyway.
+[23:34:39] <jvandavier>	 thanks for that email mwalker :)
+[23:34:51] <mwalker>	 marktraceur: neither do I really
+[23:34:57] <marktraceur>	 Ah, excellent
+[23:35:01] <mwalker>	 I was just going to push the damn thing and see if it worked
+[23:35:11] * marktraceur  loves merging code when he doesn't know whether it works
+[23:35:19] <marktraceur>	 mwalker: D'you need me then? :P
+[23:35:20] <mwalker>	 I know right!
+[23:35:42] <mwalker>	 marktraceur: it'd be nice if you +2'd it just to say I didn't do anything evil
+[23:35:54] <marktraceur>	 *nod*
+[23:36:31] <marktraceur>	 Hm, actually
+[23:36:45] <marktraceur>	 mwalker: Looks like you're using tables for formatting
+[23:37:00] <mwalker>	 yep
+[23:37:36] <marktraceur>	 Naaasty
+[23:38:03] <marktraceur>	 Oh holy gods you're doing it in every file?
+[23:38:12] <mwalker>	 yep
+[23:38:25] <mwalker>	 it's not pretty
+[23:38:27] <mwalker>	 I'm not proud
+[23:38:40] <marktraceur>	 I should say not
+[23:39:15] * marktraceur  looks inside himself for the strength to +2 code that uses tables for formatting
+[23:39:42] <mwalker>	 to be fair actually -- there isn't really a good crossbrowser method to get the same effect without tables
+[23:39:49] <mwalker>	 given that we support all the way back to IE6
+[23:40:02] <marktraceur>	 Le sigh.
+[23:40:18] <marktraceur>	 mwalker: Is the effect not just "put an image next to a button"?
+[23:40:32] <mwalker>	 in this form -- probably
+[23:40:36] <mwalker>	 I didnt look
+[23:40:47] <marktraceur>	 Uh
+[23:40:49] <mwalker>	 but in other forms we layout equally sized things next to each other and what not
+[23:40:53] <marktraceur>	 Ah.
+[23:41:16] <marktraceur>	 Well, that's a more forceful argument, that we do it all over.
+[23:41:48] <marktraceur>	 Well, Jenkins merged it. It's his fault.
+[23:41:55] <mwalker>	 damnit jenkins!
+[23:42:05] <marktraceur>	 Jenkins broke the build
+[23:42:50] <marktraceur>	 Might make a good tumblr
+[23:53:43] <mwalker>	 marktraceur: could you also push the three things I just added to your review queue
+[23:54:12] <marktraceur>	 Oh gods
+[23:54:20] <mwalker>	 not .gitreview changes!
+[23:54:22] <mwalker>	 aaaahhh!
+[23:54:51] <marktraceur>	 Oh, that's actually cool.
+[23:55:41] <mwalker>	 Jeff_Green: if you're still around -- any thoughts on why I cannot connect to boron thru loudon?
+[23:56:08] <Jeff_Green>	 mwalker: ya, because you can't :-P
+[23:56:25] <mwalker>	 but but! that's how I've always done it (tm)
+[23:56:33] <Jeff_Green>	 it's by design--boron is in frack
+[23:56:57] <Jeff_Green>	 you might be able to go frack-->boron ?
+[23:57:07] <mwalker>	 oh -- huh
+[23:57:14] <mwalker>	 I should be going through tellurium
+[23:57:21] <mwalker>	 wonder why I ended up on loudon
+[23:57:23] <marktraceur>	 Er
+[23:57:35] <mwalker>	 go figure
+[23:57:35] <Jeff_Green>	 ah, yeah that makes more sense
+[23:57:36] <marktraceur>	 mwalker: You want CN to _always_ send review requests to the deploy branch?
+[23:57:59] <mwalker>	 marktraceur: no no -- that file should be on the deploy branch
+[23:58:05] <marktraceur>	 Oh, right
+[23:58:07] <Jeff_Green>	 mwalker: you want the fancy through-bastion-tunneling ~/.ssh/config ?
+[23:58:11] * marktraceur  reads more of patch
+[23:58:15] <mwalker>	 Jeff_Green: already have it
+[23:58:21] <Jeff_Green>	 k
+[23:58:43] * Jeff_Green  going back to RL. have a good evening
+[23:58:48] <mwalker>	 have fun!
+[23:59:16] <marktraceur>	 ResourceLoader? Sorry, man.
+[23:59:30] <mwalker>	 wait -- I gave you an RL thing?
+[23:59:45] <mwalker>	 oh
+[23:59:48] <mwalker>	 right
+[23:59:53] <Jeff_Green>	 aw hell no
+[23:59:54] <mwalker>	 real life != resource loader
+[23:59:58] <marktraceur>	 No, Jeff_Green said RL. I deliberately misunderstood for humour.

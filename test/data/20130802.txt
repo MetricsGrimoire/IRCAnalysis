@@ -1,0 +1,375 @@
+[00:23:33] <awight>	 mwalker: my secret plan is to make it impossible to do any work due to the excessive hilarity
+[01:17:04] <grrrit-wm>	 (CR) Mwalker: "(5 comments)" [extensions/CentralNotice] - https://gerrit.wikimedia.org/r/76664 (owner: Mwalker)
+[01:17:30] <grrrit-wm>	 (PS2) Mwalker: Add CentralNotice Banner live preview link [extensions/CentralNotice] - https://gerrit.wikimedia.org/r/76664
+[19:20:00] <grrrit-wm>	 (CR) Adamw: [C: 2 V: 2] "Great improvement." [extensions/CentralNotice] - https://gerrit.wikimedia.org/r/76664 (owner: Mwalker)
+[20:46:17] <StevenW>	 Interesting idea... http://kenkeiter.com/skeuocard/
+[20:46:27] <StevenW>	 K4-713: ^
+[20:46:41] <K4-713>	 Ha, I just saw that this morning.
+[20:46:52] <StevenW>	 Fellow hackernews reader ;)
+[20:47:25] <K4-713>	 Actually, no... but somebody sent us the link.
+[20:47:35] <K4-713>	 I have some concerns, but it's probably worth looking in to.
+[20:50:19] <StevenW>	 Yeah I mean, you could smoke test the idea with a user test or three, giving them fake card info to try. It's only worth the engineering effort if you really made it easier.
+[20:56:39] <K4-713>	 Right, totally. :)
+[21:20:30] <slander>	 #474: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/474
+[21:21:30] <slander>	 #475: (K) As far as I know, this is still a thing. -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/475
+[21:21:30] <slander>	 #475: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/475
+[21:24:31] <slander>	 #477: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/477
+[21:25:32] <slander>	 #478: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/478
+[21:25:32] <slander>	 #479: (K) P-K:SL -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/479
+[21:27:31] <slander>	 #483: (K) P-K:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/483
+[21:27:31] <slander>	 #483: (K) I think this card was created when we didn't ha... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/483
+[21:28:30] <slander>	 #485: (K) P-K:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/485
+[21:28:31] <slander>	 #486: (K) P-K:SL -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/486
+[21:29:31] <slander>	 #487: (K) P-K:SL -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/487
+[21:29:31] <slander>	 #488: (K) P-K:SL -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/488
+[21:29:31] <slander>	 #489: (K) P-K:SL -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/489
+[21:30:31] <slander>	 #490: (K) P-K:SL -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/490
+[21:30:31] <slander>	 #496: (K) P-K:MH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/496
+[21:31:30] <slander>	 #496: (K) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/496
+[21:32:30] <slander>	 #501: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/501
+[21:34:31] <slander>	 #501: (K) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/501
+[21:34:31] <slander>	 #501: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/501
+[21:34:31] <slander>	 #505: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/505
+[21:34:31] <slander>	 #516: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/516
+[21:35:30] <slander>	 #516: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/516
+[21:37:31] <slander>	 #521: (K) P-K:SL -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/521
+[21:37:31] <slander>	 #523: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/523
+[21:39:31] <slander>	 #524: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/524
+[21:39:31] <slander>	 #527: (K) P-K:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/527
+[21:40:31] <slander>	 #539: (K) P-K:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/539
+[21:41:30] <slander>	 #540: (K) P-K:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/540
+[21:41:30] <slander>	 #549: (K) P-K:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/549
+[21:42:30] <slander>	 #550: (K) P-K:SL -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/550
+[21:42:30] <slander>	 #550: (K) Is this even a thing anymore, after the upgrade... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/550
+[21:42:31] <slander>	 #551: (K) P-K:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/551
+[21:43:30] <slander>	 #554: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/554
+[21:44:30] <slander>	 #561: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/561
+[21:45:31] <slander>	 #562: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/562
+[21:45:31] <slander>	 #564: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/564
+[21:46:32] <slander>	 #566: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/566
+[21:48:30] <slander>	 #576: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/576
+[21:52:31] <slander>	 #578: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/578
+[21:53:30] <slander>	 #578: (K) It would be really cool if I could tell where t... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/578
+[21:55:30] <slander>	 #580: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/580
+[21:55:30] <slander>	 #581: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/581
+[21:56:30] <slander>	 #582: (K) P-K:WNH|wwfwatd:gumi -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/582
+[21:56:31] <slander>	 #582: (K) Re-evaluating failmail soon anyway. Delete cand... wwfwatd:gumi -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/582
+[21:56:31] <slander>	 #582: (K) wwfwatd:gumi -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/582
+[21:56:31] <slander>	 #584: (K) P-K:MH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/584
+[21:56:31] <slander>	 #584: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/584
+[21:57:30] <slander>	 #584: (K) Yay Cruft Removal! -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/584
+[21:58:30] <slander>	 #585: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/585
+[21:59:30] <slander>	 #586: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/586
+[21:59:30] <slander>	 #590: (K) P-K:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/590
+[22:00:32] <slander>	 #591: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/591
+[22:01:30] <slander>	 #593: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/593
+[22:01:31] <slander>	 #597: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/597
+[22:02:30] <slander>	 #598: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/598
+[22:02:30] <slander>	 #599: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/599
+[22:04:30] <slander>	 #600: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/600
+[22:04:30] <slander>	 #600: (K) P-K:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/600
+[22:04:30] <slander>	 #601: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/601
+[22:05:31] <slander>	 #602: (K) P-K:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/602
+[22:06:30] <slander>	 #603: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/603
+[22:07:30] <slander>	 #606: (K) P-K:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/606
+[22:07:30] <slander>	 #607: (K) P-K:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/607
+[22:07:30] <slander>	 #612: (K) P-K:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/612
+[22:36:32] <slander>	 #615: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/615
+[22:36:32] <slander>	 #615: (K) We get moneybookers through GC... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/615
+[22:37:30] <slander>	 #617: (K) P-K:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/617
+[22:37:30] <slander>	 #617: (K) hmm. -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/617
+[22:38:31] <slander>	 #627: (K) hahaha, you wrote the card. :) Delete, then? -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/627
+[22:38:31] <slander>	 #627: (K) P-K:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/627
+[22:38:31] <slander>	 #629: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/629
+[22:39:30] <slander>	 #631: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/631
+[22:39:30] <slander>	 #631: (K) Need way, way more of an explanation in this ca... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/631
+[22:39:30] <slander>	 #632: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/632
+[22:40:30] <slander>	 #632: (K) Not enough words. Need more words. -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/632
+[22:41:31] <slander>	 #633: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/633
+[22:52:30] <slander>	 #634: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/634
+[22:52:30] <slander>	 #638: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/638
+[22:57:30] <slander>	 #639: (K) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/639
+[22:57:30] <slander>	 #639: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/639
+[22:58:31] <slander>	 #639: (K) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/639
+[22:58:31] <slander>	 #642: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/642
+[22:59:30] <slander>	 #643: (K) P-K:MH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/643
+[22:59:30] <slander>	 #645: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/645
+[23:00:30] <slander>	 #645: (K) Probably the same thing we do with paypal, wher... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/645
+[23:01:31] <slander>	 #483: (MW) P-M:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/483
+[23:01:31] <slander>	 #646: (K) CAN WE PLEASE START USING FAMILY NAME AND GIVEN... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/646
+[23:01:31] <slander>	 #484: (MW) P-M:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/484
+[23:01:31] <slander>	 #485: (MW) P-M:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/485
+[23:01:31] <slander>	 #646: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/646
+[23:01:32] <slander>	 #486: (MW) P-M:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/486
+[23:01:32] <slander>	 #487: (MW) P-M:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/487
+[23:01:33] <slander>	 #488: (MW) P-M:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/488
+[23:02:31] <slander>	 #489: (MW) P-M:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/489
+[23:02:31] <slander>	 #576: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/576
+[23:02:31] <slander>	 #578: (MW) P-M:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/578
+[23:02:31] <slander>	 #648: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/648
+[23:02:31] <slander>	 #578: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/578
+[23:02:31] <slander>	 #591: (MW) P-M:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/591
+[23:03:30] <slander>	 #617: (MW) Err... we do this from the contirubtion? that p... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/617
+[23:03:30] <slander>	 #617: (MW) P-M:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/617
+[23:03:30] <slander>	 #627: (MW) P-M:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/627
+[23:03:30] <slander>	 #648: (K) I think somebody just reported something like t... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/648
+[23:03:30] <slander>	 #629: (MW) P-M:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/629
+[23:04:30] <slander>	 #633: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/633
+[23:04:31] <slander>	 #650: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/650
+[23:04:31] <slander>	 #650: (K) /me hears crickets -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/650
+[23:04:31] <slander>	 #634: (MW) P-M:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/634
+[23:04:31] <slander>	 #634: (MW) P-M:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/634
+[23:04:31] <slander>	 #634: (MW) I dont understand how this is different from wh... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/634
+[23:05:32] <slander>	 #638: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/638
+[23:05:32] <slander>	 #639: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/639
+[23:05:32] <slander>	 #651: (K) I'm not even sure what this is trying to tell m... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/651
+[23:05:32] <slander>	 #642: (MW) P-M:MH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/642
+[23:05:32] <slander>	 #651: (K) P-K:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/651
+[23:05:32] <slander>	 #645: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/645
+[23:06:32] <slander>	 #646: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/646
+[23:06:32] <slander>	 #646: (MW) How about one name field! -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/646
+[23:06:32] <slander>	 #648: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/648
+[23:06:32] <slander>	 #660: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/660
+[23:06:32] <slander>	 #648: (MW) P-M:MH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/648
+[23:06:33] <slander>	 #648: (MW) It's annoying UX and it's easy to do. -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/648
+[23:06:33] <slander>	 #662: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/662
+[23:07:33] <slander>	 #650: (MW) P-M:SL -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/650
+[23:07:33] <slander>	 #651: (MW) P-M:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/651
+[23:07:33] <slander>	 #660: (MW) P-M:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/660
+[23:07:33] <slander>	 #664: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/664
+[23:08:30] <slander>	 #674: (MW) P-M:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/674
+[23:08:30] <slander>	 #665: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/665
+[23:08:30] <slander>	 #679: (MW) P-M:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/679
+[23:09:31] <slander>	 #683: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/683
+[23:09:31] <slander>	 #683: (MW) We should upate the screenshot tool whilst we'r... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/683
+[23:09:31] <slander>	 #687: (MW) Hurm... wonder if we did this already -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/687
+[23:09:31] <slander>	 #687: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/687
+[23:10:31] <slander>	 #689: (MW) Audit all of the logging in DI; fun... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/689
+[23:10:31] <slander>	 #689: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/689
+[23:10:31] <slander>	 #698: (MW) P-M:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/698
+[23:10:31] <slander>	 #711: (MW) I dont know what htis means -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/711
+[23:10:31] <slander>	 #711: (MW) P-M:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/711
+[23:10:32] <slander>	 #669: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/669
+[23:10:32] <slander>	 #712: (MW) P-M:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/712
+[23:10:33] <slander>	 #669: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/669
+[23:11:30] <slander>	 #713: (MW) these get logged to apache error... right?! -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/713
+[23:11:30] <slander>	 #713: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/713
+[23:11:30] <slander>	 #715: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/715
+[23:12:31] <slander>	 #671: (K) P-K:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/671
+[23:12:31] <slander>	 #698: (MW) P-M:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/698
+[23:12:31] <slander>	 #698: (MW) Duplicate of #715 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/698
+[23:13:30] <slander>	 #673: (MW) P-M:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/673
+[23:13:30] <slander>	 #673: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/673
+[23:13:30] <slander>	 #688: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/688
+[23:13:30] <slander>	 #717: (MW) P-M:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/717
+[23:13:30] <slander>	 #674: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/674
+[23:13:47] <K4-713>	 mwalker: CHANNEL FLOOD PARTY! WoooooooOOOO!!!
+[23:13:54] <mwalker>	 K4-713: yaaaaaay
+[23:14:30] <slander>	 #721: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/721
+[23:14:30] <slander>	 #721: (MW) This probably relates into not having db1008 a ... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/721
+[23:14:30] <slander>	 #675: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/675
+[23:14:30] <slander>	 #676: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/676
+[23:15:31] <slander>	 #678: (K) P-K:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/678
+[23:15:31] <slander>	 #721: (MW) See #639 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/721
+[23:15:31] <slander>	 #725: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/725
+[23:15:31] <slander>	 #679: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/679
+[23:15:31] <slander>	 #725: (MW) Though; once we migrate to the smashpig listene... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/725
+[23:16:30] <slander>	 #731: (MW) P-M:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/731
+[23:16:30] <slander>	 #732: (MW) P-M:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/732
+[23:16:30] <slander>	 #680: (K) P-K:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/680
+[23:16:30] <slander>	 #732: (MW) Significant confusion indicates --- DELETE -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/732
+[23:17:30] <slander>	 #739: (MW) P-M:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/739
+[23:17:30] <slander>	 #740: (MW) P-M:SL -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/740
+[23:17:30] <slander>	 #740: (MW) We first have to convince them to stop using ec... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/740
+[23:17:30] <slander>	 #683: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/683
+[23:18:30] <slander>	 #687: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/687
+[23:18:31] <slander>	 #732: (MW) Although #742 depends on this... and that seems... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/732
+[23:18:31] <slander>	 #742: (MW) P-M:SL -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/742
+[23:18:31] <slander>	 #742: (MW) Maybe if we can figure out what to do in 732 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/742
+[23:18:31] <slander>	 #688: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/688
+[23:18:31] <slander>	 #743: (MW) P-M:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/743
+[23:19:31] <slander>	 #745: (MW) P-M:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/745
+[23:19:31] <slander>	 #745: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/745
+[23:19:31] <slander>	 #745: (MW) This has been sitting around so long and will b... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/745
+[23:19:31] <slander>	 #749: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/749
+[23:20:31] <slander>	 #751: (MW) P-M:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/751
+[23:20:31] <slander>	 #689: (K) Hm. We already did this, actually... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/689
+[23:20:31] <slander>	 #689: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/689
+[23:20:31] <slander>	 #691: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/691
+[23:21:31] <slander>	 #693: (K) P-K:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/693
+[23:21:31] <slander>	 #761: (MW) If it doesn't it should... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/761
+[23:21:31] <slander>	 #761: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/761
+[23:21:31] <slander>	 #766: (MW) P-M:MH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/766
+[23:21:31] <slander>	 #698: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/698
+[23:21:31] <slander>	 #766: (MW) This has been hanging around for far too long; ... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/766
+[23:21:31] <slander>	 #767: (MW) P-M:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/767
+[23:21:32] <slander>	 #705: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/705
+[23:22:30] <slander>	 #711: (K) I don't know what this means either. -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/711
+[23:22:31] <slander>	 #711: (K) P-K:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/711
+[23:22:31] <slander>	 #767: (MW) We sorta know what we're going to do; but it's ... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/767
+[23:23:30] <slander>	 #712: (K) ? -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/712
+[23:23:30] <slander>	 #712: (K) P-K:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/712
+[23:23:30] <slander>	 #799: (MW) What would we actually use a deploy branch for.... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/799
+[23:23:30] <slander>	 #713: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/713
+[23:23:30] <slander>	 #799: (MW) P-M:MH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/799
+[23:24:30] <slander>	 #799: (MW) Actually I'm juts going to do this now -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/799
+[23:24:31] <slander>	 #715: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/715
+[23:24:31] <slander>	 #717: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/717
+[23:24:31] <slander>	 #721: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/721
+[23:25:30] <slander>	 #725: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/725
+[23:25:30] <slander>	 #731: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/731
+[23:25:50] <grrrit-wm>	 (PS1) Mwalker: Adding GeoNames Tools [wikimedia/fundraising/tools] - https://gerrit.wikimedia.org/r/77462
+[23:26:09] <grrrit-wm>	 (CR) Mwalker: [C: 2 V: 2] "Already used..." [wikimedia/fundraising/tools] - https://gerrit.wikimedia.org/r/77462 (owner: Mwalker)
+[23:27:36] <slander>	 #732: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/732
+[23:27:36] <slander>	 #739: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/739
+[23:27:36] <slander>	 #739: (K) P-K:H -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/739
+[23:27:36] <slander>	 #739: (K) Actually, this is just Nice to Have until we ha... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/739
+[23:27:36] <slander>	 #740: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/740
+[23:28:30] <slander>	 #742: (K) Does it? Who wants this? -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/742
+[23:28:30] <slander>	 #742: (K) P-K:SL -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/742
+[23:28:30] <slander>	 #743: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/743
+[23:28:30] <slander>	 #743: (K) Innnteresting... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/743
+[23:29:03] <grrrit-wm>	 (PS1) Mwalker: Doing something here with amazon auditing [wikimedia/fundraising/tools] - https://gerrit.wikimedia.org/r/77463
+[23:29:21] <grrrit-wm>	 (CR) Mwalker: [C: 2 V: 2] Doing something here with amazon auditing [wikimedia/fundraising/tools] - https://gerrit.wikimedia.org/r/77463 (owner: Mwalker)
+[23:29:30] <slander>	 #745: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/745
+[23:29:30] <slander>	 #746: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/746
+[23:30:30] <slander>	 #749: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/749
+[23:30:30] <slander>	 #750: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/750
+[23:30:34] <grrrit-wm>	 (PS1) Mwalker: Adding in the statistics generation tools [wikimedia/fundraising/tools] - https://gerrit.wikimedia.org/r/77464
+[23:31:30] <slander>	 #751: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/751
+[23:31:30] <slander>	 #756: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/756
+[23:31:50] <grrrit-wm>	 (PS1) Mwalker: Let's not have the csv files... [wikimedia/fundraising/tools] - https://gerrit.wikimedia.org/r/77465
+[23:31:59] <grrrit-wm>	 (CR) Mwalker: [C: 2 V: 2] Adding in the statistics generation tools [wikimedia/fundraising/tools] - https://gerrit.wikimedia.org/r/77464 (owner: Mwalker)
+[23:32:07] <grrrit-wm>	 (CR) Mwalker: [C: 2 V: 2] Let's not have the csv files... [wikimedia/fundraising/tools] - https://gerrit.wikimedia.org/r/77465 (owner: Mwalker)
+[23:32:31] <slander>	 #761: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/761
+[23:32:31] <slander>	 #764: (K) P-K:MH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/764
+[23:32:31] <slander>	 #764: (K) Need pretty graphs! Hire graphsperson! -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/764
+[23:33:30] <slander>	 #765: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/765
+[23:33:30] <slander>	 #766: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/766
+[23:33:30] <slander>	 #767: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/767
+[23:34:35] <slander>	 #770: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/770
+[23:34:35] <slander>	 #773: (K) P-K:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/773
+[23:35:30] <slander>	 #774: (K) P-K:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/774
+[23:35:30] <slander>	 #775: (K) P-K:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/775
+[23:35:50] <grrrit-wm>	 (PS1) Mwalker: Adding Junkyard Folder [wikimedia/fundraising/tools] - https://gerrit.wikimedia.org/r/77466
+[23:36:11] <grrrit-wm>	 (CR) Mwalker: [C: 2 V: 2] Adding Junkyard Folder [wikimedia/fundraising/tools] - https://gerrit.wikimedia.org/r/77466 (owner: Mwalker)
+[23:36:30] <slander>	 #779: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/779
+[23:36:30] <slander>	 #783: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/783
+[23:37:31] <slander>	 #786: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/786
+[23:37:31] <slander>	 #787: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/787
+[23:37:31] <slander>	 #788: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/788
+[23:37:31] <slander>	 #799: (MW) Done -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/799
+[23:37:31] <slander>	 #799: (MW) ->Sprint 28 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/799
+[23:37:31] <slander>	 #799: (MW) O:MW|TS:DR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/799
+[23:37:31] <slander>	 #799: (MW) AT:MW|TS:ID -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/799
+[23:38:31] <slander>	 #799: (MW) TS:PCR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/799
+[23:38:31] <slander>	 #799: (MW) TS:PD -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/799
+[23:38:31] <slander>	 #799: (MW) *Deployed* -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/799
+[23:38:31] <slander>	 #789: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/789
+[23:38:31] <slander>	 #756: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/756
+[23:38:31] <slander>	 #770: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/770
+[23:38:31] <slander>	 #770: (MW) P-M:MH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/770
+[23:38:32] <slander>	 #790: (K) P-K:MH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/790
+[23:38:32] <slander>	 #770: (MW) This goes along with documentation -- if we don... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/770
+[23:39:30] <slander>	 #791: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/791
+[23:39:30] <slander>	 #779: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/779
+[23:39:30] <slander>	 #791: (K) production! -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/791
+[23:39:30] <slander>	 #783: (MW) P-M:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/783
+[23:39:30] <slander>	 #791: (MW) Is this our problem? -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/791
+[23:39:31] <slander>	 #791: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/791
+[23:40:30] <slander>	 #794: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/794
+[23:40:30] <slander>	 #792: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/792
+[23:40:30] <slander>	 #794: (MW) We need a l10n sprint for one of us -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/794
+[23:40:30] <slander>	 #792: (K) Pats wants this like crazy. -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/792
+[23:40:31] <slander>	 #801: (MW) I dont think we even accept this anymore -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/801
+[23:40:31] <slander>	 #801: (MW) P-M:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/801
+[23:41:31] <slander>	 #803: (MW) P-M:MH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/803
+[23:41:31] <slander>	 #794: (K) I think we need a CLDR Everywhere sprint... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/794
+[23:41:31] <slander>	 #804: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/804
+[23:41:31] <slander>	 #794: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/794
+[23:41:31] <slander>	 #804: (MW) Not sure what we can do about it; but we should... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/804
+[23:41:32] <slander>	 #805: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/805
+[23:41:32] <slander>	 #796: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/796
+[23:41:33] <slander>	 #807: (MW) P-M:MH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/807
+[23:41:33] <slander>	 #807: (MW) Eeek! -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/807
+[23:41:50] <marktraceur>	 Eeek!
+[23:43:03] <slander>	 #808: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/808
+[23:43:03] <slander>	 #808: (MW) Long slow arduous process this -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/808
+[23:43:03] <slander>	 #809: (MW) P-M:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/809
+[23:43:03] <slander>	 #800: (K) P-K:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/800
+[23:43:37] <slander>	 #801: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/801
+[23:43:37] <slander>	 #801: (MW) What if we just sent ourselves an email? -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/801
+[23:43:37] <slander>	 #801: (K) Sometimes, these things still get through.. -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/801
+[23:43:37] <slander>	 #796: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/796
+[23:43:37] <slander>	 #803: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/803
+[23:43:37] <slander>	 #810: (MW) P-M:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/810
+[23:43:52] <marktraceur>	 mwalker: "Adding Junkyard Folder" sounds like a terrifying solution to just about any problem
+[23:44:03] <mwalker>	 indeed
+[23:44:05] <mwalker>	 but we had a card
+[23:44:10] <mwalker>	 so I just fulfilled it
+[23:44:19] <mwalker>	 I think it's probably a good place for scratch files
+[23:44:26] <mwalker>	 of which I know I generate a lot of with those tools
+[23:44:31] <slander>	 #803: (K) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/803
+[23:44:31] <slander>	 #804: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/804
+[23:45:30] <slander>	 #810: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/810
+[23:45:31] <slander>	 #804: (K) Spike. -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/804
+[23:45:31] <slander>	 #810: (MW) A brief look at this is cool -- they might proc... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/810
+[23:45:31] <slander>	 #813: (MW) Not our problem? -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/813
+[23:45:31] <slander>	 #813: (MW) P-M:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/813
+[23:45:31] <slander>	 #805: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/805
+[23:45:31] <slander>	 #815: (MW) Uhhh... where? -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/815
+[23:46:30] <slander>	 #807: (K) P-K:MH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/807
+[23:46:31] <slander>	 #808: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/808
+[23:46:31] <slander>	 #808: (K) Didn't we do this already? -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/808
+[23:46:31] <slander>	 #816: (MW) suuuure -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/816
+[23:46:31] <slander>	 #816: (MW) P-M:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/816
+[23:47:30] <slander>	 #817: (MW) We should create this dashboard for sure; I'm t... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/817
+[23:47:30] <slander>	 #809: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/809
+[23:47:30] <slander>	 #817: (MW) P-M:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/817
+[23:47:30] <slander>	 #818: (MW) P-M:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/818
+[23:47:30] <slander>	 #810: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/810
+[23:47:31] <slander>	 #829: (MW) P-M:MH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/829
+[23:48:30] <slander>	 #813: (K) P-K:SL -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/813
+[23:48:30] <slander>	 #813: (K) Hella not our problem. -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/813
+[23:48:30] <slander>	 #830: (MW) I'm guessing we dont care anymore? -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/830
+[23:48:30] <slander>	 #815: (K) P-K:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/815
+[23:48:30] <slander>	 #815: (K) MOAR WERDZ. -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/815
+[23:48:31] <slander>	 #830: (MW) Actually; let's do this anyways; just for the l... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/830
+[23:48:31] <slander>	 #830: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/830
+[23:49:30] <slander>	 #831: (MW) P-M:MH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/831
+[23:49:30] <slander>	 #816: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/816
+[23:49:30] <slander>	 #817: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/817
+[23:49:30] <slander>	 #818: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/818
+[23:50:31] <slander>	 #819: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/819
+[23:50:31] <slander>	 #819: (K) We should probably poke somebody about this. -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/819
+[23:51:30] <slander>	 #827: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/827
+[23:51:30] <slander>	 #829: (K) P-K:MH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/829
+[23:51:30] <slander>	 #830: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/830
+[23:52:31] <slander>	 #831: (K) P-K:MH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/831
+[23:52:31] <slander>	 #831: (K) Production problem? -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/831
+[23:53:30] <slander>	 #832: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/832
+[23:54:30] <slander>	 #855: (MW) P-M:SL -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/855
+[23:54:30] <slander>	 #855: (MW) It would be nice to have; but so unimportatnt t... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/855
+[23:54:30] <slander>	 #833: (K) Specific examples would help immensely here. -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/833
+[23:54:30] <slander>	 #833: (K) P-K:SL -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/833
+[23:55:31] <slander>	 #858: (MW) We already do this... it's called GlobalAllocat... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/858
+[23:55:31] <slander>	 #858: (MW) P-M:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/858
+[23:55:31] <slander>	 #834: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/834
+[23:55:31] <slander>	 #859: (MW) P-M:MH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/859
+[23:55:31] <slander>	 #837: (K) hmm... depends. -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/837
+[23:55:32] <slander>	 #837: (K) P-K:SL -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/837
+[23:56:30] <slander>	 #838: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/838
+[23:57:31] <slander>	 #839: (K) This isn't going to work all by itself, you kno... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/839
+[23:57:31] <slander>	 #839: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/839
+[23:57:31] <slander>	 #841: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/841
+[23:58:30] <slander>	 #841: (K) Should probably double-check that this is still... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/841
+[23:58:31] <slander>	 #842: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/842
+[23:58:31] <slander>	 #827: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/827
+[23:59:36] <slander>	 #843: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/843
+[23:59:36] <slander>	 #832: (MW) P-M:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/832
+[23:59:36] <slander>	 #833: (MW) P-M:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/833
+[23:59:36] <slander>	 #843: (K) Production issue? -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/843
+[23:59:36] <slander>	 #834: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/834
+[23:59:36] <slander>	 #834: (MW) Probably will help #833 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/834
+[23:59:36] <slander>	 #837: (MW) P-M:SL -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/837
+[23:59:37] <slander>	 #844: (K) P-K:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/844

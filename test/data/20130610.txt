@@ -1,0 +1,43 @@
+[16:25:12] <mwalker>	 K4-713: *waves*
+[16:25:51] <K4-713>	 Hey, mwalker! Aren't you on vacation?
+[16:26:00] <mwalker>	 maaayybe
+[16:26:11] <mwalker>	 I am, truely, but I wanted to give you some informaiton
+[16:46:24] <marktraceur>	 K4-713: Hopefully you're not the only one in the bullpen today
+[16:46:43] <YuviPanda>	 bullpen is clearly sexist and not inclusive enough
+[16:47:14] <marktraceur>	 YuviPanda: Pretty sure K4-713 heard enough about that over the weekend :)
+[16:47:32] <K4-713>	 bahahaha
+[16:47:45] <YuviPanda>	 cattlepen?
+[16:48:02] <marktraceur>	 K4-713: I told aldeka / Karen Rustad to try and find you, dunno if that happened
+[16:48:15] <YuviPanda>	 ungulatepen!
+[16:48:30] <YuviPanda>	 hmm, interesting - apparently cows are not just female (https://en.wikipedia.org/wiki/Cattle)
+[16:48:40] <K4-713>	 See, all the other alternatives just sound like they're about to put us on the conveyor belt.
+[16:49:21] <marktraceur>	 Y'all are being racists, we should call it an animalpen
+[16:52:30] <YuviPanda>	 marktraceur: you mean specieisist
+[16:52:32] <YuviPanda>	 marktraceur: 'thingpen'? should be inclusive enough
+[16:52:59] <marktraceur>	 Maybe
+[16:53:02] <marktraceur>	 matterpen?
+[16:53:29] <marktraceur>	 Include those entities that don't cohese into a "thing" but are simply matter
+[17:06:33] <YuviPanda>	 marktraceur: hmm, is a hydrogen atom not a 'thing'?
+[17:06:38] <YuviPanda>	 a neutron? electron? quarks?
+[17:06:57] <YuviPanda>	 'if you measure us, do we not have mass? if you throw us, do we not have momentum?' etc
+[17:07:59] <marktraceur>	 Hm, I guess so
+[17:13:53] <K4-713>	 marktraceur: But, to answer your actual question: jvandavier is here, and that's it.
+[17:14:06] * jvandavier  waves
+[17:17:08] <marktraceur>	 Cool, well, that's something
+[17:40:59] <jvandavier>	 K4-713: when you have some time this week, there's some weird fraud stuff i want to show oyu
+[17:41:19] <K4-713>	 jvandavier: That sounds ominous.
+[17:42:40] <jvandavier>	 just some odd double donations we're seeing UAH
+[17:43:36] <K4-713>	 Er. "UAH"?
+[17:43:59] <K4-713>	 ...currency?
+[17:45:00] <jvandavier>	 yes, currency
+[17:45:03] <jvandavier>	 sorry
+[17:45:16] <jvandavier>	 for instance: UAH 75.00    3/18/2013 13:53    GLOBALCOLLECT 8471997332
+[17:45:17] <jvandavier>	 UAH 750.00    3/18/2013 13:56    GLOBALCOLLECT 1689549961
+[17:45:20] <jvandavier>	 so close to each other
+[17:45:26] <jvandavier>	 and quite a jump in currency
+[17:45:34] <jvandavier>	 *amount, not currency
+[18:03:08] <K4-713>	 jvandavier: cc testing?
+[18:03:45] <K4-713>	 Also: That shouldn't be possible, 3 seconds apart.
+[18:03:57] <jvandavier>	 K4-713: that's what i thought at first, but a few of the people on this list have made previous donations to us
+[18:04:16] <jvandavier>	 one of them even got his address info through, making a donation outside of the US
+[18:04:45] <jvandavier>	 basically, we're wondering if there might be parameters or…other ideas you might have for deciding whether these are fraud or not

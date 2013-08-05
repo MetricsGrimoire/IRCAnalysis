@@ -1,0 +1,38 @@
+[00:18:19] <grrrit-wm>	 (PS1) Adamw: Prevent banner display in print media [extensions/CentralNotice] - https://gerrit.wikimedia.org/r/76863
+[00:18:33] <grrrit-wm>	 (PS2) Adamw: Prevent banner display in print media [extensions/CentralNotice] - https://gerrit.wikimedia.org/r/76863
+[00:24:01] <grrrit-wm>	 (CR) Mwalker: [C: 2] "now we just need to fix misbehaving banners" [extensions/CentralNotice] - https://gerrit.wikimedia.org/r/76863 (owner: Adamw)
+[00:32:54] <grrrit-wm>	 (PS1) Mwalker: Adding .gitreview file [wikimedia/fundraising/SmashPig] - https://gerrit.wikimedia.org/r/76865
+[00:33:52] <grrrit-wm>	 (PS1) Mwalker: Changing composer to use submodule [wikimedia/fundraising/SmashPig] - https://gerrit.wikimedia.org/r/76866
+[00:34:52] <grrrit-wm>	 (PS1) Mwalker: Adding .gitreview file [wikimedia/fundraising/SmashPig/vendor] - https://gerrit.wikimedia.org/r/76867
+[00:35:01] <grrrit-wm>	 (CR) Adamw: [C: -2] "I would DEFINITELY make this two patches." [wikimedia/fundraising/SmashPig] - https://gerrit.wikimedia.org/r/76866 (owner: Mwalker)
+[00:37:07] <grrrit-wm>	 (CR) Adamw: [C: 2 V: 2] Adding .gitreview file [wikimedia/fundraising/SmashPig] - https://gerrit.wikimedia.org/r/76865 (owner: Mwalker)
+[00:38:23] <grrrit-wm>	 (CR) Adamw: [C: 2 V: 2] "Full speeeed ahead!" [wikimedia/fundraising/SmashPig] - https://gerrit.wikimedia.org/r/76866 (owner: Mwalker)
+[21:58:49] <grrrit-wm>	 (PS1) Mwalker: (FR #953) Do not expand banner message in edit box [extensions/CentralNotice] - https://gerrit.wikimedia.org/r/77057
+[21:59:29] <slander>	 #953: (MW) https://gerrit.wikimedia.org/r/#/c/77057/ iamfi:&{as -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/953
+[22:02:30] <slander>	 #953: (MW) There was never a patch to deploy! iamfi:&{as|TS:PD|MtDo:(s -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/953
+[22:02:30] <slander>	 #953: (MW) ->Sprint 28|iamfi:&{as -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/953
+[22:02:30] <slander>	 #953: (MW) iamfi:&{as|TS:PCR|MtRtDo:(s -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/953
+[22:45:30] <slander>	 #18: (MW) P-M:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/18
+[22:45:30] <slander>	 #18: (MW) Duplicate of #982 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/18
+[23:31:30] <slander>	 #19: (MW) P-M:NtH|N:FdfsiM6 Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/19
+[23:32:30] <slander>	 #26: (MW) P-M:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/26
+[23:33:29] <slander>	 #26: (MW) Possibly related to Adam's donation form stuff;... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/26
+[23:36:30] <slander>	 #28: (MW) This is a production task... probably should be... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/28
+[23:36:30] <slander>	 #28: (MW) P-M:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/28
+[23:37:29] <slander>	 #29: (MW) P-M:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/29
+[23:38:29] <slander>	 #29: (MW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/29
+[23:39:30] <slander>	 #29: (MW) N:otbp -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/29
+[23:39:30] <slander>	 #29: (MW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/29
+[23:39:30] <slander>	 #30: (MW) P-M:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/30
+[23:40:30] <slander>	 #30: (MW) But we should flesh this out a bit more :) -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/30
+[23:40:30] <slander>	 #72: (MW) P-M:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/72
+[23:41:30] <slander>	 #72: (MW) I don't even... possibly put this into Peter Co... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/72
+[23:42:29] <slander>	 #151: (MW) Merged and no longer relevant -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/151
+[23:45:30] <slander>	 #38: (MW) P-M:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/38
+[23:45:30] <slander>	 #38: (MW) Pats has looked into this in the past and not w... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/38
+[23:46:30] <slander>	 #52: (MW) P-M:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/52
+[23:47:29] <slander>	 #52: (MW) While still a problem I think we should instead... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/52
+[23:48:29] <slander>	 #41: (MW) The logo says wikimedia foundation on donate --... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/41
+[23:48:29] <slander>	 #41: (MW) P-M:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/41
+[23:49:29] <slander>	 #104: (MW) 2011 code? Who cares! -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/104
+[23:49:29] <slander>	 #104: (MW) P-M:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/104

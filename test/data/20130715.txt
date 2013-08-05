@@ -1,0 +1,224 @@
+[13:50:08] <sahar>	 marktraceur: What?
+[14:59:48] <marktraceur>	 sahar: You were saying you had a project that you wanted feedback on, but you never sent us a link so that we could give it
+[15:01:21] <sahar>	 marktraceur: I thought I did. Here: http://fierce-woodland-1066.herokuapp.com/test
+[15:02:41] <marktraceur>	 Oh, nice, it's this
+[15:02:48] * marktraceur  has seen early versions of this
+[15:09:23] <sahar>	 Thanks mark.
+[15:09:59] <marktraceur>	 sahar: It looks way better (more helpfully, I hope)
+[15:10:38] <sahar>	 marktraceur: Yeah, thanks. The old one was of course awful-looking
+[15:11:56] <sahar>	 marktraceur: Right now I'm going to turn it from a 2-page process to a 1-page. (aka INSTEAD OF guessing, going to a results page, then click to go back to the guessing page, DO THIS: guess, go to new page with results ontop and 2 new banners to guess on right there again)
+[15:33:14] <sahar>	 marktraceur: What do you think of something more like .. this? http://cl.ly/image/3Y1K29133c0a
+[15:40:09] <marktraceur>	 sahar: It's good!
+[15:41:25] <sahar>	 marktraceur: Thanks. I'm getting feedback that it might confuse people who think that the INCORRECT refers to the test below (when actually the test is a new test you can guess at)
+[15:41:55] <marktraceur>	 Ah.
+[15:42:32] <sahar>	 It's part of a larger problem of how I want the URLS to work. I could do POSTS so the URL never changes, I could use GETs to get urls in this format: /test?name=123&guess="oneline", or I could use paths for something more like: /test/123/oneline
+[15:42:44] <marktraceur>	 sahar: I think I may have suggested that you could do this with ajax, which may cut down on the stutter-stop feeling while keeping the clear separations
+[15:43:29] <sahar>	 marktraceur: I was thinking of making this friendly to people who have javascript turned off. But maybe that's more effort than it's worth
+[15:43:47] <marktraceur>	 *shrug* your initial two-page setup might be all they need
+[15:45:51] <sahar>	 Right, but then you have 2 more clicks to keep guessing than if the results and guessing are on the same page
+[15:46:02] <sahar>	 1 more click, actually. But it feels like a lot!
+[15:46:49] <marktraceur>	 sahar: They're used to painful workflows, they're using a browser without JavaScript
+[15:48:44] <marktraceur>	 sahar: You'd load a JS file that replaced the submit action on the form (or the click action on the links, or whatever)
+[15:50:53] <sahar>	 marktraceur: That makes a lot of sense. And then to make it AJAXy I need to do … what? I think the answer is:
+[15:51:15] <sahar>	 1. Define an API that will return (JSON? HTML?) in response to a query
+[15:51:28] <sahar>	 2. Query that api with an ajax call
+[15:51:34] <sahar>	 3. Parse the results in JS
+[15:51:40] <sahar>	 4. Insert new html into the DOM. Right?
+[15:52:46] <sahar>	 But what if I have my templates defined as jinja templates (aka pythonic). Does the js need to parse the JSON back and run them through templates on the clientside somehow, or is there a way to return an html fragment for the query and just paste it into the DOM?
+[15:53:48] * K4-713  coughs
+[15:53:51] <K4-713>	 ...good morning.
+[15:53:59] <sahar>	 Hello!
+[15:54:06] <K4-713>	 What's up, guys?
+[15:55:12] <marktraceur>	 sahar: FWIW you could load the existing result page in a div asynchronously, so it doesn't have to be super-complicated
+[15:56:59] <marktraceur>	 K4-713: http://fierce-woodland-1066.herokuapp.com/test is up
+[15:57:29] <K4-713>	 ...
+[15:57:46] <K4-713>	 What am I looking at, exactly?
+[15:58:16] <sahar>	 K4-713: It's showing off the results of some of our fundraising tests over the years
+[15:58:25] <sahar>	 Guess which banner (or landing page) led to more donations
+[15:58:35] <sahar>	 Every one of these is above the margin of error
+[15:59:08] <K4-713>	 Huh. Okay. And this is published not on wmf servers?
+[16:00:15] <K4-713>	 I ask, because presumably to get that to work, some version of our (aggregate) data also left us.
+[16:00:58] <sahar>	 Nope, it's on heroku. This right now is just a proof-of-concept
+[16:01:48] <K4-713>	 I'm still not totally clear on what that means, though. Dummy data went out?
+[16:02:08] <sahar>	 I'm a contractor in the fundraising team
+[16:02:14] <K4-713>	 Yes, I get that.
+[16:02:29] <K4-713>	 I'm the tech lead. :p
+[16:02:37] <sahar>	 Kate?
+[16:02:42] <K4-713>	 Yes. Hi.
+[16:02:45] <sahar>	 Howdy
+[16:03:28] <sahar>	 Yeah, this data is not dummy data. But it's aggregate - no personal donor information has left WMF servers
+[16:04:28] <K4-713>	 What did you aggregate?
+[16:06:15] <sahar>	 For a banner test:
+[16:06:43] <sahar>	 number of banner impressions, number of landing page impressions, number of donations
+[16:08:33] <K4-713>	 We start getting into tricky territory as soon as country slides in.
+[16:33:15] <K4-713>	 sahar: So, as I'm weirdly late to the party on this project, I have at least one more question. Have you spoken with anybody about having the final product hosted by us? Or, ah... code review or anything like that?
+[17:51:15] <mwalker>	 PPena: interesting; https://bugzilla.wikimedia.org/show_bug.cgi?id=51282
+[17:51:36] <mwalker>	 basically; if we give paypal different params they give us different payment options
+[17:51:44] <mwalker>	 probably something to ask Rick about?
+[17:52:40] <PPena>	 huh?? wow
+[17:52:45] <PPena>	 yeah
+[17:53:15] <PPena>	 but those ar probably associated with the kind of account we have
+[17:53:25] <PPena>	 and things we can legally process?
+[17:53:29] <PPena>	 but I can check
+[17:53:44] <awight>	 mwalker: donna about the payment options, but that _cmd parameter specifically changes the UI to say "donate now" rather than "pay now".
+[17:53:55] <mwalker>	 that's what I figured
+[17:54:04] <awight>	 we want to keep the param if at all possible.  If there is smoke emitted, we need to have paypal fix their system :(
+[17:54:07] <mwalker>	 I also am guessing that the payment options not listed are not donation friendly
+[17:54:09] <PPena>	 mwalker so someone is saying that if we just tweak parameters we can getmore payment options avaiolable within Paypal's wallet (in different countries)?
+[17:54:18] <mwalker>	 PPena: yes
+[17:54:49] <liangent>	 hi I'm here :)
+[17:55:15] <awight>	 PPena: + like i was just saying, the issue is that we are using a much less popular parameter, which changes the paypal UI to say "donate" rather than "pay"
+[17:55:24] <awight>	 ... they are not donatepal, after all...
+[17:55:48] <mwalker>	 hah
+[17:55:55] <mwalker>	 also, *waves to liagent*
+[17:56:44] <mwalker>	 I feel like the logo for donatepal needs to be a large squishy teddy bear
+[17:57:00] <awight>	 and fine-print: "we STILL take your money"
+[17:57:01] <liangent>	 mwalker: have you read comment 2 there?
+[17:57:06] <PPena>	 here's what PP officially processes
+[17:57:07] <PPena>	 https://www.paypal.com/cgi-bin/webscr?cmd=_display-country-functionality-outside&dispatch=5885d80a13c0db1f8e263663d3faee8d4e181b3aff599f99a338772351021e7d
+[17:57:11] <liangent>	 that is, _cmd seems not the only thing
+[17:57:49] <awight>	 liangent: does this work? https://www.paypal.com/us/cgi-bin/webscr?cmd=_flow&SESSION=roKDr04rUfi8Gz9EauWfhDGj8EcZC1FA-V08z_bv7uJnpyND7Y9ijN717Eq&dispatch=5885d80a13c0db1f8e263663d3faee8d4e181b3aff599f99a338772351021e7d
+[17:57:54] <awight>	 argh sorry.
+[17:58:11] <awight>	 https://www.paypal.com/cgi-bin/webscr?item_number=general&business=tle%40wikimedia.org&item_name=Donate&cmd=_donations&amount=100.00&invoice=505939&no_shipping=1&currency_code=USD
+[17:58:11] <awight>	 that
+[17:58:16] <PPena>	 so aooaretnly they can send and withdraw money via CUP
+[17:58:21] <PPena>	 apparently*
+[17:58:49] <liangent>	 awight: it doesn't work
+[17:58:57] <awight>	 ah, ok thx
+[17:59:07] <PPena>	 mwalker are we having trouble with people saying they cant process CUP from their Paypal accounts to donate to us?
+[17:59:24] <mwalker>	 that would be more of a liangent question
+[17:59:59] <liangent>	 PPena: I'm seeing questions on zhwp village pump saying that they can't find a way to donate in CNY
+[18:00:19] <liangent>	 and I followed the flow again and there really isn't such a choice
+[18:00:24] <liangent>	 but in the past there was
+[18:00:54] <liangent>	 so I went to FSF to check their donation page
+[18:01:42] <liangent>	 and their flow accepts it, and so does it if I change their business param to tle@wikimedia.org
+[18:02:41] <PPena>	 FSF?
+[18:02:49] <liangent>	 PPena: fsf.org
+[18:02:53] <mwalker>	 Free Software Foundation
+[18:02:54] <liangent>	 free software foundation
+[18:03:04] <mwalker>	 another non profit we have close ties with
+[18:04:54] <PPena>	 liangent I dont remember having ever made CNY available through Paypal, because we dont have a physicaly presence in China. So I believe chinese donors can donate using their CPU cards via Paypal, but will need to donate in USD instead of CNY :(
+[18:05:56] <PPena>	 liangent Do you know anyone at FSF I can contact to inquiry about this? I would gladly talk to them find out how they managed to get CNY processing! :)
+[18:06:21] <liangent>	 PPena: paypal converts CNY to USD or whatever specified in currency_code after users sent payments
+[18:06:48] <liangent>	 then sends the money to the business
+[18:07:02] <PPena>	 but they do not allow us to collect in CNY
+[18:07:22] <liangent>	 PPena: yeah you don't collect it; paypal collects and converts it
+[18:07:23] <PPena>	 (that would be great!)
+[18:08:11] <PPena>	 liangent that's what I mean. Paypal doesn't allow us to show a CNY option, they only allow us to show the USD option. Its withint their rules
+[18:08:27] <PPena>	 does FSF have physical presence in China?
+[18:09:17] <liangent>	 PPena: I'm not aware of any
+[18:09:49] <liangent>	 PPena: but mangling URLs just works :/ to show a CNY option
+[18:09:53] <PPena>	 liangent Ok, No problem. Le me know if you know anyone there I could talk to. If not, I can try to email their customer service to find a contact :)
+[18:10:14] <PPena>	 liangent that wouldn't be legal on our part to do- we need approval from paypal :)
+[18:11:25] <liangent>	 PPena: how does paypal define the "allowed interfaces" with you?
+[18:12:09] <PPena>	 they provided us a list of currencies that we could present (meaning, show on the website).
+[18:12:11] <liangent>	 btw again - WMF donation accepted it in the past. did you make some change or did paypal do so?
+[18:12:42] <liangent>	 PPena: well with https://www.paypal.com/cgi-bin/webscr?item_number=general&business=tle%40wikimedia.org&item_name=Donate&cmd=_xclick&amount=100.00&invoice=505939&no_shipping=1&currency_code=USD you're still specifying USD, right?
+[18:12:46] <PPena>	 liangent Nope. I dont remember us accepting it. Do you remember when it changed?
+[18:13:34] <PPena>	 liangent correct. We specify USD and all otehr currencies we are allowed to process according to Paypal.
+[18:13:36] <liangent>	 PPena: iirc it was accepted during the last fundraising period
+[18:13:59] <liangent>	 but this URL accepts CNY somehow
+[18:15:28] <PPena>	 the Foundation accepts CNY for credit card. I dont remember us ever accepting CNY for Paypal :)
+[18:16:15] <PPena>	 I will triple check with oyr Paypal account manager and confirm with him if there's any possibility for us to offer CYN. it would be amazing! But so far, All I heard from them is that we cant.
+[18:18:12] <liangent>	 so ... is the url given above a violation of your paypal agreement
+[18:20:43] <PPena>	 the url you gave last (https://www.paypal.com/cgi-bin/webscr?item_number=general&business=tle%40wikimedia.org&item_name=Donate&cmd=_xclick&amount=100.00&invoice=505939&no_shipping=1&currency_code=USD) shows USD, so that's acceptable- as long as it really charges the Paypal account in USD :)
+[18:21:54] <liangent>	 wait a minute; let me try more
+[18:24:21] <liangent>	 when I'm trying to pay via https://www.paypal.com/cgi-bin/webscr?item_number=general&business=tle%40wikimedia.org&item_name=Donate&cmd=_xclick&amount=1000.0&invoice=505939&no_shipping=1&currency_code=USD (I increased amount a bit to exceed my paypal balance to trigger a bank payment), it's even telling me
+[18:24:22] <liangent>	 "Fund conversion into Chinese Yuan is not done by PayPal. You can check  the Chinese Yuan amount deducted on the online banking page. If you have  any questions, please contact your card issuing bank."
+[18:26:18] <liangent>	 I guess... paypal asks CUP to give it some USD to send it to WMF; CUP (or my card issuing bank?) collects CNY from users and converts it then send it to paypal :/
+[18:26:20] <PPena>	 liangent 'm lost :) What are you trying to do with this attempt?
+[18:27:04] <liangent>	 PPena: to experience it's whole flow
+[18:27:26] <liangent>	 I stopped in the past when it told me that I can use a CUP card
+[18:27:40] <PPena>	 the Foundation accepts CNY for credit card. I dont remember us ever accepting CNY for Paypal :)
+[18:27:58] <PPena>	 oops that was an old message!
+[18:28:25] <PPena>	 liangent OK so you are trying to go through the Foundation donation page, donating via Paypal, in USD, and using your CPU card?
+[18:28:43] <PPena>	 liangent is that correct?
+[18:28:57] <liangent>	 PPena: right
+[18:29:04] <PPena>	 great! ok. Got it
+[18:29:10] <liangent>	 but only with my link not the default link
+[18:29:26] <liangent>	 https://twitter.com/BenMQ/status/242645123521974273
+[18:29:30] <PPena>	 liangent now, what you get is a strange message saying "Fund conversion into Chinese Yuan is not done by PayPal. You can check  the Chinese Yuan amount deducted on the online banking page. If you have  any questions, please contact your card issuing bank." and it doesnt go through?
+[18:30:25] <liangent>	 PPena: it does go through. there's a "continue" button there
+[18:31:17] <PPena>	 ok, great! So if you click continue, what will happen? (will you be charged in CNY or USD?)
+[18:31:45] <PPena>	 liangent what do you mean by "but only with my link not the default link". What is the difference between your link and default link?
+[18:31:51] <liangent>	 I'm charged in CNY, but paypal never says it accepts CNY, even the total amount in CNY
+[18:33:35] <liangent>	 PPena: my link = cmd=_xclick; default = cmd=_donation
+[18:34:10] <PPena>	 ohhhh so you got access to that by tweaking the system
+[18:34:10] <PPena>	 ok, yeah, not a good idea.
+[18:34:10] <PPena>	 again, CPU should be available for many businesses but if its not there for us (or the default/official link) there's a reason for that.
+[18:34:59] <PPena>	 liangent I will get an official confiramtion frm Paypal. But What i know now is that because we cannot accept CNY through Paypal and CPU is a local card, its not available to us.
+[18:35:16] <PPena>	 liangent I've also contacts FSF on the cs email- let's see what they say! :)
+[18:36:31] <liangent>	 ok btw you can use a card number such as 6225218888888888 to test it
+[18:36:51] <liangent>	 you'll fail bank authentication on the bank's website, but you can go through all paypal steps
+[18:38:23] <PPena>	 liangent Cool. I will update this channel once I hear from Paypal and FSF :) Thanks for your ideas, liangent!!
+[18:38:45] <liangent>	 PPena: :)
+[18:41:23] <liangent>	 PPena: btw if you ever confirm it's possible in this channel to charge users CNY from a CUP card and receive USD, it might be nice to explicitly write it on country=CN pages
+[18:41:39] <liangent>	 instead of waiting for users to seek it on paypal website themselves
+[18:42:28] <PPena>	 liangent absolutelly! We will be promoting this everywhere if that's a possibility!!!
+[18:45:40] <liangent>	 PPena: thanks
+[19:31:15] <slander_>	 #991: (AW) O:AW|TS:B|P:SH|T:TD Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/991
+[20:12:38] <awight>	 jvandavier: 975 = "settlement in progress"
+[20:13:26] <jvandavier>	 right, but wouldn't it get stopped earlier in the process if they typed an incorrect SORT code?
+[20:13:29] <jvandavier>	 aw^
+[20:13:43] <awight>	 My guess is that this is a code specific to their bank
+[20:13:45] <awight>	 so, no
+[20:13:52] <awight>	 it would probably be rejected at their bank
+[20:14:36] <awight>	 according to the flow chart, this is the step where the "settlement file" is sent to their bank and GC waits for a response.
+[20:18:40] <jvandavier>	 ohhhh
+[20:18:43] <jvandavier>	 interesting
+[20:18:51] <jvandavier>	 that is…not how it was explained to me
+[20:19:07] <jvandavier>	 awight: where might i find this amazing flowchart you have?
+[20:19:09] <jvandavier>	 :-)
+[20:21:17] <mwalker>	 marktraceur: https://gerrit.wikimedia.org/r/#/c/73527/
+[20:59:14] <slander_>	 #990: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/990
+[21:17:34] <mwalker>	 ok marktraceur I dont know if you're going to love me or hate me for this: https://gerrit.wikimedia.org/r/#/c/73527/8
+[21:17:41] <mwalker>	 but screw this extension
+[22:18:32] <awight>	 K4-713: good news is that the cutover for bad time data is very clear.  It was the D7 deploy on April 17.
+[22:18:44] <K4-713>	 aaaaaaaaaaaaaAAAHA.
+[22:18:50] <K4-713>	 Okay, that makes me feel better, actually.
+[22:19:18] <awight>	 me... too.  it should be easy to ID and fix, there were only about 200 donations that day.
+[22:19:25] <K4-713>	 I was pretty sure we did this dance before and came up with a different answer, y'see.
+[22:19:38] <awight>	 yes.  i am totally sure that happened.  it made me sad.
+[22:19:58] <K4-713>	 This is probably the best possible answer, actually.
+[22:20:01] <K4-713>	 From where we are now.
+[22:20:10] <awight>	 Hmm, I see that the "research" i did into timezones was last september.
+[22:20:35] <awight>	 so, yes i'll write the queries to do the fixin' and put them in the mingle card.
+[22:21:36] <awight>	 it turns out that contribution.receive_date - tracking.ts is a really useful health metric, i know u use something like that ordinarily.
+[22:28:45] <mwalker>	 awight: rl for a sec?
+[22:46:14] <slander_>	 #990: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/990
+[22:49:43] <awight>	 mwalker: I meant to ask this a while ago: WHAT?
+[22:56:14] <slander_>	 #992: (MW) https://gerrit.wikimedia.org/r/#/c/73527/ O:MW|TS:B|P:NtH|T:TD Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/992
+[22:56:14] <slander_>	 #992: (MW) ->Sprint 28 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/992
+[22:56:14] <slander_>	 #992: (MW) TS:DR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/992
+[22:56:14] <slander_>	 #992: (MW) AT:MW|TS:ID -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/992
+[22:56:14] <slander_>	 #992: (MW) TS:PCR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/992
+[22:56:15] <slander_>	 #992: (MW) TS:PD -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/992
+[22:57:15] <slander_>	 #985: (MW) TS:PD -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/985
+[22:57:15] <slander_>	 #985: (MW) *Deployed* -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/985
+[23:13:15] <slander_>	 #977: (MW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/977
+[23:46:01] <awight>	 K4-713: nice.  jfyi, that queue bug I found on my dev box is not reproducible on this machine
+[23:48:53] <K4-713>	 awight: So, I'm... selfishly happy about that one, too.
+[23:48:56] <K4-713>	 :p
+[23:48:59] <awight>	 behavior is perfect, yeah
+[23:49:13] <awight>	 but now i have to work from home to determine the cause of the problem ;)
+[23:49:17] <K4-713>	 Probably maddening if you can't even get it to misbehave on purpose.
+[23:49:28] <K4-713>	 I mean... I'd like to know, for sure.
+[23:49:42] <K4-713>	 Otherwise we risk running in to it after a reboot or something, for reasons unknown...
+[23:49:53] <K4-713>	 (okay, probably not a reboot. But, maybe an upgrade)
+[23:50:07] * awight  starts to feel that "replace the stomp library" itch
+[23:50:12] <K4-713>	 Apollo!
+[23:50:38] <awight>	 man you got me with that reference
+[23:50:42] <awight>	 eh
+[23:50:57] <awight>	 louie armstrong... first american on th emoon?
+[23:51:17] <K4-713>	 Naw, I mean... haha
+[23:52:16] <K4-713>	 http://activemq.apache.org/apollo/
+[23:52:21] <K4-713>	 Takes forever to load.
+[23:52:24] <marktraceur>	 awight: I thought that was Louie CK
+[23:52:46] <awight>	 K4-713: oh oh duh i forgot about all my old friends
+[23:52:49] * marktraceur  blames American schools
+[23:52:57] <K4-713>	 Louis Tully?
+[23:53:04] <awight>	 mwalker: louie the sun king?
+[23:53:24] <awight>	 filthy nasty dirty.
+[23:53:31] <marktraceur>	 Louis XIV?
+[23:53:48] <mwalker>	 I am so confused
+[23:55:40] <awight>	 off with his head!

@@ -1,0 +1,61 @@
+[00:34:17] <K4-713>	 mwalker: CR is all in and merged.
+[00:34:40] <mwalker>	 cool beans
+[00:34:59] <K4-713>	 I'm probably going home soon.
+[00:37:08] <mwalker>	 K4-713: kk; do you want to run home before or after I push this stuff? :P
+[00:37:20] <K4-713>	 Depends. How long? heh.
+[00:37:46] <mwalker>	 nowish :)
+[00:39:49] <mwalker>	 !log updating the payments cluster (listeners) from 5f67ceddd9d495cffd22f6b303443aba58041d47 to aa0039104e71417845ec14a5ad666c2de464cfab for additional smashpig content
+[00:39:58] <morebots>	 Logged the message, Master
+[00:40:08] <K4-713>	 aaaaawww yeeeeeah.
+[18:13:05] <mwalker>	 K4-713: one line CR for you if you have 15 seconds: https://gerrit.wikimedia.org/r/#/c/69328/
+[18:13:31] <K4-713>	 bahaha... oh noes.
+[18:14:47] <K4-713>	 I don't know how that became industry standard... that bit where they want to multiply everything by 100.
+[18:15:12] <K4-713>	 How does this not make every engineer just... pucker?
+[18:15:21] <mwalker>	 I think it has to do with integers being precisely represented
+[18:15:29] <mwalker>	 as compared to IEEE floating point
+[18:15:38] <K4-713>	 ...except for those currencies that do 3 decimal places?
+[18:15:40] <K4-713>	 Ha.
+[18:15:56] <mwalker>	 ya -- I should ask Rebecca about that
+[18:16:09] <K4-713>	 I bet they say: "Eh. Round it."
+[18:16:32] <K4-713>	 Someday, I will track down the appropriate person to throw pudding at, for that one.
+[18:17:34] <K4-713>	 At least they weren't stupid enough to say "Multiply everything by 100... except for these."
+[18:20:25] <jvandavier>	 let's hope they don't accidentally charge someone $10,000,000 :-)
+[18:21:36] <mwalker>	 actually; we need to be really careful here
+[18:21:40] <mwalker>	 I just double checked
+[18:21:49] <mwalker>	 currencies without minor units do not get multiplied
+[18:21:52] <mwalker>	 frack
+[18:27:59] * K4-713  does epic facepalm
+[18:28:14] <K4-713>	 Are you freaking kidding me?
+[18:28:50] <K4-713>	 ...do they have offices around here?
+[18:28:52] * K4-713  starts looking around for pudding and surgical tubing
+[18:30:36] <K4-713>	 This may be the one place where GC has superiority. They decided to be consistent.
+[18:32:01] <mwalker>	 !log updating payments cluster (listeners) from aa0039104e71417845ec14a5ad666c2de464cfab to 8ca174296d570b6fda365cab37b2222d81c47c3d for adyen USD capture bug
+[18:32:09] <morebots>	 Logged the message, Master
+[18:32:53] <mwalker>	 Iono; Adyen I feel is also consistent; they just require you to know things about the currency
+[18:33:03] <mwalker>	 also! Senor Sisig anyone?
+[18:33:15] <K4-713>	 grumble grumble something grumble.
+[18:33:20] <marktraceur>	 mwalker: I'm -0.5
+[18:33:40] <K4-713>	 But, food truck. Yes.
+[18:36:52] <mwalker>	 -0.5?
+[18:37:42] <marktraceur>	 Not neutral, but not really wanting to -1 either
+[18:38:14] <mwalker>	 ok -- what are you feeling today?
+[18:39:10] <marktraceur>	 Uhh
+[18:39:14] * marktraceur  looks at clock
+[18:39:18] <marktraceur>	 Like it's not lunch time yet?
+[18:39:23] <mwalker>	 oooh
+[18:39:29] <mwalker>	 that's what you're getting at
+[18:39:50] <mwalker>	 the problem is -- our options are either to eat early; or to eat late
+[18:40:03] <mwalker>	 and I might have missed breakfast :P
+[18:40:09] <mwalker>	 so it's totally a personal problem
+[18:40:11] <marktraceur>	 Hm
+[18:40:21] <marktraceur>	 mwalker: Well, I'm *also* generally not enthused about sisig
+[18:40:33] <marktraceur>	 The last time we went it was sort of underwhelming, especially given the hype
+[18:41:20] <mwalker>	 aawwww :'(
+[22:34:06] <mwalker>	 K4-713: want to do another small CR -- https://gerrit.wikimedia.org/r/#/c/69395/
+[22:34:26] <K4-713>	 onit
+[22:35:09] <K4-713>	 huh. You just took out the floor?
+[22:38:33] <mwalker>	 ya
+[22:38:38] <mwalker>	 it's dumb
+[22:38:40] <mwalker>	 but it works
+[22:38:52] <mwalker>	 for certain definitions of working
+[22:42:48] <K4-713>	 heh.

@@ -1,0 +1,25 @@
+[17:49:07] <slander>	 #982: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/982
+[18:39:07] <slander>	 #986: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/986
+[18:57:39] <grrrit-wm>	 (CR) Mwalker: [C: 2 V: 2] (FR #986) mailing job to apologize for May 2013 PayPal recurring fail. [wikimedia/fundraising/crm] - https://gerrit.wikimedia.org/r/74573 (owner: Adamw)
+[18:59:12] <grrrit-wm>	 (CR) Mwalker: [C: 2 V: 2] PRODUCTION: remove tests [wikimedia/fundraising/crm] (deployment) - https://gerrit.wikimedia.org/r/75660 (owner: Adamw)
+[19:00:59] <grrrit-wm>	 (CR) Adamw: [C: 2 V: 2] Minor JS cleanup [extensions/CentralNotice] - https://gerrit.wikimedia.org/r/76212 (owner: Mwalker)
+[19:01:00] <grrrit-wm>	 (Merged) jenkins-bot: Adding License/Credits for CentralNotice [extensions/CentralNotice] - https://gerrit.wikimedia.org/r/76225 (owner: Mwalker)
+[19:40:53] <grrrit-wm>	 (PS1) Adamw: Supply first, last name and language code to the template [wikimedia/fundraising/crm] - https://gerrit.wikimedia.org/r/76609
+[19:42:01] <grrrit-wm>	 (PS1) Adamw: Add the letter templates, make small fixes to code [wikimedia/fundraising/crm] - https://gerrit.wikimedia.org/r/76610
+[19:47:07] <slander>	 #986: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/986
+[19:59:25] <grrrit-wm>	 (PS1) Mwalker: Merge remote-tracking branch 'origin/master' into wmf_deploy [extensions/CentralNotice] (wmf_deploy) - https://gerrit.wikimedia.org/r/76616
+[19:59:40] <grrrit-wm>	 (CR) Mwalker: [C: 2 V: 2] Merge remote-tracking branch 'origin/master' into wmf_deploy [extensions/CentralNotice] (wmf_deploy) - https://gerrit.wikimedia.org/r/76616 (owner: Mwalker)
+[21:10:42] <grrrit-wm>	 (CR) Mwalker: [C: 2 V: 2] Supply first, last name and language code to the template [wikimedia/fundraising/crm] - https://gerrit.wikimedia.org/r/76609 (owner: Adamw)
+[21:12:06] <grrrit-wm>	 (CR) Mwalker: [C: 2 V: 2] Add the letter templates, make small fixes to code [wikimedia/fundraising/crm] - https://gerrit.wikimedia.org/r/76610 (owner: Adamw)
+[21:13:07] <slander>	 #926: (AW) TS:PD -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/926
+[21:18:07] <slander>	 #673: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/673
+[21:18:07] <slander>	 #673: (AW) O:AW|TS:DR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/673
+[21:18:07] <slander>	 #673: (AW) AT:AW|TS:ID -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/673
+[21:18:07] <slander>	 #673: (AW) TS:PCR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/673
+[21:25:24] <grrrit-wm>	 (CR) Mwalker: "(1 comment)" [extensions/ContributionTracking] - https://gerrit.wikimedia.org/r/76047 (owner: Adamw)
+[22:02:10] <grrrit-wm>	 (PS5) Adamw: (FR #673 Phase 1/3) split utm_source using triggers [extensions/ContributionTracking] - https://gerrit.wikimedia.org/r/76047
+[22:10:13] <grrrit-wm>	 (CR) Adamw: "(1 comment)" [extensions/ContributionTracking] - https://gerrit.wikimedia.org/r/76047 (owner: Adamw)
+[22:24:10] <grrrit-wm>	 (PS1) Mwalker: Don't Create, Populate, or Protect CNBanner /qqq [extensions/CentralNotice] - https://gerrit.wikimedia.org/r/76639
+[22:52:07] <slander>	 #996: (AW) TS:PCR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/996
+[22:52:07] <slander>	 #996: (AW) TS:PD -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/996
+[22:52:07] <slander>	 #996: (AW) *Deployed* -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/996

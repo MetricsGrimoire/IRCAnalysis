@@ -1,0 +1,525 @@
+[00:21:31] <grrrit-wm>	 (CR) Mwalker: [C: 2 V: 2] Amazon IPN listener [wikimedia/fundraising/PaymentsListeners] - https://gerrit.wikimedia.org/r/60958 (owner: Adamw)
+[00:21:32] <grrrit-wm>	 (Merged) Mwalker: Amazon IPN listener [wikimedia/fundraising/PaymentsListeners] - https://gerrit.wikimedia.org/r/60958 (owner: Adamw)
+[00:25:18] <grrrit-wm>	 (CR) Mwalker: [C: 2] Letter Subject is templated the same as the body [wikimedia/fundraising/crm] - https://gerrit.wikimedia.org/r/75157 (owner: Adamw)
+[00:25:25] <grrrit-wm>	 (CR) Mwalker: [V: 2] Letter Subject is templated the same as the body [wikimedia/fundraising/crm] - https://gerrit.wikimedia.org/r/75157 (owner: Adamw)
+[00:25:26] <grrrit-wm>	 (Merged) Mwalker: Letter Subject is templated the same as the body [wikimedia/fundraising/crm] - https://gerrit.wikimedia.org/r/75157 (owner: Adamw)
+[00:38:18] <slander_>	 #940: (AW) TS:PD -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/940
+[00:41:23] <slander_>	 #996: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/996
+[00:41:35] <YuviPanda>	 awight: my message to civicrm was rejected, do forward it along if you think it is appropriate :)
+[00:41:55] <YuviPanda>	 I'm no fan of Gerrit and its workflow (which seems to be trying very, very hard to mimic svn)
+[00:42:01] <YuviPanda>	 :D
+[00:42:02] <awight>	 YuviPanda: haha it was great, I totally agree
+[00:42:40] <YuviPanda>	 awight: for better effect, imagine me to be the guy in the red plaid shirt in https://www.youtube.com/watch?v=6CY_HGl6W2U
+[00:42:52] <YuviPanda>	 slightly risque click, but not really.
+[00:43:03] <YuviPanda>	 "Don't move to Gerrit!" :)
+[00:43:17] <YuviPanda>	 awight: either way, their mailing list setup rejected my email, so do forawrd it along :)
+[00:43:21] <YuviPanda>	 it's 6 am, so I'll head to sleep now
+[00:43:58] <awight>	 YuviPanda: ok and thanks again for setting FR up
+[00:44:08] <YuviPanda>	 yw, and let me know if you want customizations
+[00:54:18] <slander_>	 #982: (AW) O:AW|TS:DR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/982
+[00:54:18] <slander_>	 #982: (AW) AT:AW|TS:ID -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/982
+[15:50:18] * K4-713  waves at Jeff_Green
+[15:50:48] <Jeff_Green>	 hey
+[15:51:04] <Jeff_Green>	 you ready to start fires?
+[15:51:23] <K4-713>	 Just got in. Banners should have come down about an hour ago, so once I verify it's down to a dull roar: Absolutely.
+[15:51:29] <Jeff_Green>	 k
+[15:51:53] <Jeff_Green>	 I updated the list a bit
+[15:52:02] <Jeff_Green>	 i should number things on there...
+[15:52:43] * Jeff_Green  studies mediawiki outline syntax
+[15:53:12] <K4-713>	 I'm going to go for ppayments maintenance mode now.
+[15:53:18] <Jeff_Green>	 k
+[15:54:01] <K4-713>	 Looks quiet enough. :)
+[15:54:31] <K4-713>	 the-wub: Hey, you there?
+[15:54:51] <the-wub>	 hey K4-713 , yes fundraising banners are all down
+[15:54:58] <K4-713>	 Was C13_wpdr_enWWform2_FR one of the banners that came down at that time?
+[15:55:38] * Jeff_Green  disabling monitoring for db1008
+[15:55:46] <the-wub>	 K4-713: yes
+[15:56:40] <K4-713>	 the-wub: Cool, just checking. Still getting a tiny trickle from that.
+[15:57:12] <the-wub>	 yeah, that was the big US/CA/GB/NZ one
+[15:59:28] <K4-713>	 Jeff_Green: Gar, I think maybe I forgot... wait, I think I can address it myself.
+[15:59:36] <K4-713>	 The orphan slayer cron on payments4.
+[15:59:45] <Jeff_Green>	 it's on payments1004
+[15:59:54] <K4-713>	 ...that's what I meant. :p
+[16:00:09] <K4-713>	 I'm not sure it won't just start emitting cronspam.
+[16:00:17] <Jeff_Green>	 lemme know if you need me to stab it by puppet
+[16:00:21] <K4-713>	 But I can stop it trying to run.
+[16:04:55] <K4-713>	 Jeff_Green: Okay, just modified settings such that it should put payments in maintenance mode. Blasting. :)
+[16:05:00] <Jeff_Green>	 k
+[16:06:40] <K4-713>	 Verified that the payments cluster is now in maintenance mode. :)
+[16:06:44] <K4-713>	 Moving  on n too jenkins...
+[16:12:21] <Jeff_Green>	 garg. jfyi apparently we're having issues with udp2log and we are currently not logging banners. good timing eh?
+[16:13:18] <K4-713>	 I heard we were having some kind of... issue last night. But I was under the impression (ha) it was contained entiirely in fundraising.
+[16:13:39] <K4-713>	 Like, it was the old script to load the banner impressions in to our local db
+[16:13:55] <awight>	 that is sort of special. just yesterday, Matt found some awesome fail in the scripts which parse udplogs
+[16:14:03] <Jeff_Green>	 it sounds as though there's some kind of packet lossy thing going on
+[16:14:26] <Jeff_Green>	 ottomata stopped the udp2log filter about an hour ago
+[16:15:12] <K4-713>	 Huh.
+[16:15:28] <K4-713>	 Jenkins jobs are stopped.
+[16:15:31] <K4-713>	 Taking out civi
+[16:15:45] <K4-713>	 (dunno why that made me giggle to type)
+[16:15:52] <awight>	 hehe I showed up just to hear that
+[16:15:56] <ottomata>	 hi guys!
+[16:16:15] <K4-713>	 Hey, ottomata! So... udp2log problems?
+[16:16:18] <K4-713>	 Nice timing.
+[16:16:25] <K4-713>	 We're not running anything ass of about an hour ago.
+[16:16:28] <K4-713>	 *as
+[16:18:31] <K4-713>	 civicrm is in maintenance mode. :) Though, somebody not in the fr-tech group is going to have to poke it to verify. We all have "use while in maintenance mode" (presumably so we can put it in Normal Mode through the UI) but I don't want to log out just in case it's... silly like that.
+[16:19:43] <awight>	 yeah I'm pretty certain there is no login during Maine
+[16:20:01] <K4-713>	 awight: Can you log out and poke it?
+[16:20:24] <awight>	 confirmed.
+[16:20:40] <K4-713>	 Bam. Jeff_Green: You have the green light.
+[16:20:46] <Jeff_Green>	 woooOooooO
+[16:21:17] <awight>	 I read that as, "Nippon
+[16:21:22] <Jeff_Green>	 db1008: SET GLOBAL read_only=1;
+[16:21:36] <awight>	 Argh. as "mooooo
+[16:21:56] <K4-713>	 cowsay: Woooo!
+[16:22:03] <Jeff_Green>	 * poking db1008 config in puppet
+[16:22:08] <Jeff_Green>	 my new preferred cowsay: Fetchez la Vache
+[16:22:15] <K4-713>	 HA!
+[16:22:31] * K4-713  thinks fondly of catapults
+[16:24:41] <K4-713>	 Geeze. payments.error is quiet as a... mausoleum.
+[16:25:10] <ottomata>	 hi ya sorry
+[16:25:12] <ottomata>	 was afk for a sec
+[16:25:13] <ottomata>	 yeah so
+[16:25:19] <ottomata>	 udp2log problems on gadolinium
+[16:25:35] <ottomata>	 i've moved everything off of it except for FR stuff for now
+[16:25:39] <ottomata>	 but, i've had to stop udp2log
+[16:25:43] <K4-713>	 How long do you think the problem was going on?
+[16:27:04] <ottomata>	 i think that there has been very minimal packet loss there for a while
+[16:27:11] <ottomata>	 but last night we got a spike
+[16:27:14] <ottomata>	 and then this mornign as well
+[16:27:30] <K4-713>	 Ah, interesting.
+[16:28:17] <ottomata>	 http://ganglia.wikimedia.org/latest/graph.php?r=week&z=xlarge&h=gadolinium.wikimedia.org&c=Miscellaneous+eqiad&m=packet_loss_average
+[16:28:31] <K4-713>	 eep.
+[16:28:32] <K4-713>	 Yes.
+[16:28:46] <K4-713>	 Fun day, then. :)
+[16:28:47] <K4-713>	 What now?
+[16:28:57] <ottomata>	 so, what's worse is, this is not a graph of the socat packet drops, i thikn we are not capturing those righ tnow
+[16:29:06] <ottomata>	 and those are more critical
+[16:29:10] <ottomata>	 if the socat relay drops packets
+[16:29:14] <ottomata>	 then all udp2log instances lose those packets
+[16:29:34] <ottomata>	 so, when I got these alerts this morning, I started looking at dropped udp packets for these procs
+[16:29:47] <ottomata>	 and noticed that, if udp2log is running on gadolinium, socat drops packets
+[16:29:50] <ottomata>	 so I had to stop udp2log
+[16:29:53] <ottomata>	 what now indeed?
+[16:29:58] <K4-713>	 heh
+[16:30:01] <ottomata>	 i've moved everything except for FR filters elsewhere
+[16:30:15] <ottomata>	 FR filters are more difficult because of the custom logrotate and nfs stuff
+[16:30:17] <ottomata>	 question
+[16:30:23] <K4-713>	 yep
+[16:30:23] <ottomata>	 do you guys have your own boxes in eqiad?
+[16:30:57] <K4-713>	 We do... the frack, at least.
+[16:31:21] <ottomata>	 so, the udp2log stream is multicast
+[16:31:30] <ottomata>	 you can run a udp2log instance from any box and consume the stream
+[16:31:43] <K4-713>	 hummm.
+[16:31:49] <ottomata>	 maybe that would do away with the need for the netapp mount?
+[16:31:59] <ottomata>	 not sure if/what kind of network segregation you guys have
+[16:32:23] <ottomata>	 would LeslieCarr know about frack networking stuff?
+[16:32:42] <K4-713>	 Yup! I think so.
+[16:33:17] <K4-713>	 We're kind of neck-deep at the moment doing server maintenance, but all our banners are down until we're done there anyway.
+[16:33:32] <K4-713>	 In fact, we just started a 24 hour no-campaign window...
+[16:33:32] <ottomata>	 that's cool
+[16:33:34] <ottomata>	 hmmm
+[16:33:38] <ottomata>	 so conveninent!
+[16:33:39] <ottomata>	 hehe
+[16:33:39] <ottomata>	 hm
+[16:33:42] <K4-713>	 Seriously.
+[16:33:48] <ottomata>	 what's a hostname in frack that I can run something on?
+[16:33:51] <K4-713>	 I love it when things fail considerately.
+[16:33:58] <ottomata>	 i want to experiment to see if I can consume the multicast stream
+[16:34:37] <K4-713>	 maybe... loudon? I don't think loudon is too busy at the moment.
+[16:34:45] <ottomata>	 .eqiad or .wikimedia?
+[16:35:08] <K4-713>	 Oh wait. If it's loudon, it's not eqiad.
+[16:35:12] <ottomata>	 ah hm
+[16:35:59] <K4-713>	 How long are you expecting this will take?
+[16:36:07] <awight>	 ottomata: just for our records, what are the units on that packet loss graph? packets/sec ?
+[16:36:29] <K4-713>	 ottomata: Aluminium might be a nice choice if it's not going to take more than... 30 or so minutes to test.
+[16:36:53] <awight>	 ahem... permanent public channel hey
+[16:37:23] <awight>	 stupid phone spell. I quiet now
+[16:37:39] <K4-713>	 awight: I think we're probably okay. :p
+[16:37:55] <ottomata>	 ha, awight, i believe that is the average  % loss per frontend host over a 5 minute period
+[16:37:57] <awight>	 all relative ;)
+[16:38:05] <awight>	 oh, shit
+[16:38:17] <ottomata>	 so, the packet-loss script examines a sample of the full stream
+[16:38:30] <ottomata>	 it looks at the sequence numbers of each frontend hostname
+[16:38:36] <ottomata>	 and then tries to figure out how many there should be
+[16:38:39] <ottomata>	 based on seq numbers
+[16:38:51] <awight>	 nice
+[16:38:53] <K4-713>	 huh.
+[16:39:04] <ottomata>	 it then logs the percent loss with margin of error due to sampling to a file
+[16:39:22] <ottomata>	 then, a ganglia logtailer looks at all of the per host percent loss entries for a 5 minute period
+[16:39:24] <ottomata>	 and then averages them
+[16:39:27] <awight>	 what is considered acceptable?
+[16:39:38] <ottomata>	 we get alerts at 8% i think
+[16:39:47] <awight>	 k
+[16:40:06] <ottomata>	 although, the fact that the socat process was dropping packets at all
+[16:40:11] <ottomata>	 indicates to me that this might be the source of our constant trickling loss
+[16:40:20] <ottomata>	 there's almost always at least a 1 or 2 % loss
+[16:40:25] <ottomata>	 i think
+[16:40:28] <ottomata>	 i'm not sure about that though
+[16:40:39] <K4-713>	 I remember a rumor about that.
+[16:40:44] <K4-713>	 >_>
+[16:40:46] <K4-713>	 <_<
+[16:41:08] <ottomata>	 yeah, actually
+[16:41:10] <ottomata>	 http://ganglia.wikimedia.org/latest/graph_all_periods.php?hreg[]=emery%7Coxygen%7Cgadolinium&mreg[]=%5Epacket_loss_average%24&z=large&gtype=line&title=%5Epacket_loss_average%24&aggregate=1&r=hour
+[16:41:13] <ottomata>	 that makes a lot of sense
+[16:41:20] <ottomata>	 emery is the only host that doesn't consume from the multicast stream
+[16:41:23] <ottomata>	 it gets beamed the logs directly
+[16:41:31] <ottomata>	 you can see its packet loss # hovers around 0
+[16:41:51] <ottomata>	 while oxygen and gadolinium (which both consume from the stream) almost parallel each other
+[16:46:15] <ottomata>	 hmmm, doesn't look like aluminum can get the packets :/
+[16:48:57] <K4-713>	 Yeah, I'm sort of not... entirely surprised. We're (hopefully) pretty locked down.
+[16:49:23] <Jeff_Green>	 K4-713: ok, db1025 is master, db78 and db1008 are slaving
+[16:49:34] <Jeff_Green>	 we should be ok to go r/w now
+[16:49:42] <K4-713>	 Wow, already?
+[16:49:58] <K4-713>	 Time to undo crazy magic?
+[16:50:00] <K4-713>	 ;)
+[16:50:04] <Jeff_Green>	 yeah, and test test test
+[16:50:14] <K4-713>	 Okay! Pulling civi out of maintenance mode.
+[16:50:49] <K4-713>	 Done.
+[16:51:07] <K4-713>	 Re-enabling all jenkins jobs...
+[16:51:15] <K4-713>	 ...er. The ones I disabled this morning, anyway.
+[16:54:14] <K4-713>	 Re-enabled all jenkins jobs, but... nothing has built yet.
+[16:54:22] <K4-713>	 Ah, there we go.
+[16:54:48] <K4-713>	 Thank you job looks happy. :)
+[16:54:58] <K4-713>	 As does qc.
+[16:55:45] <K4-713>	 Taking payments out of maintenance mode.
+[16:57:14] <K4-713>	 blasting config changes...
+[16:57:52] <K4-713>	 done.
+[16:57:59] <Jeff_Green>	 yayyyy
+[16:58:11] <K4-713>	 Back online!
+[16:58:15] <awight>	 I'll be on gchat, looks like we didn't deploy any new code, though?
+[16:58:43] <K4-713>	 ...nah. We can do that pretty much whenever.
+[16:58:58] <K4-713>	 Those changes for major gifts, definitely.
+[16:59:30] <K4-713>	 Dang, that was... smooth.
+[16:59:40] <Jeff_Green>	 sshhhhhh. never say that.
+[17:00:00] <K4-713>	 Well, now we have this udp2log business to look at...
+[17:00:14] <K4-713>	 And we've got 23 hours in which nobody has to change their plans.
+[17:00:24] <Jeff_Green>	 ja
+[17:00:25] <K4-713>	 ...in findraising not-tech, anyway. :)
+[17:00:41] <K4-713>	 *fundraising. Jeeze. Typo day, apparently.
+[17:00:51] <Jeff_Green>	 unless I'm needed on the udp2log thing at this point I'd like to focus on flipping db1008 to frack puppet
+[17:01:54] <K4-713>	 bah. Failmail on the udp2log processing job (duh). Disabling.
+[17:02:53] <ottomata>	 Jeff_Green
+[17:02:57] <ottomata>	 udp2log is off on gadolinium
+[17:03:03] <ottomata>	 sooooooOoOOOo
+[17:03:06] <ottomata>	 :)
+[17:03:18] <ottomata>	 but i'm not sure what to do right now
+[17:03:25] <Jeff_Green>	 so...what changed before this AM that could have caused the difference?
+[17:04:25] <ottomata>	 i htink it was a slow ramp up
+[17:04:41] <ottomata>	 http://ganglia.wikimedia.org/latest/graph.php?r=month&z=xlarge&hreg[]=emery%7Coxygen%7Cgadolinium&mreg[]=%5Epacket_loss_average%24&gtype=line&title=%5Epacket_loss_average%24&aggregate=1
+[17:05:49] <Jeff_Green>	 oh my, that's not quite slow
+[17:06:29] <Jeff_Green>	 assuming the fundraising filter didn't exist, what's your plan with the rest of it?
+[17:07:07] <ottomata>	 i moved the rest to oxygen
+[17:07:15] <ottomata>	 since we recently freed up some processing space theref
+[17:07:20] <ottomata>	 i'm talking with LeslieCarr now
+[17:07:28] <ottomata>	 she says we should be able to get the multicast stream over to frack
+[17:07:44] <ottomata>	 so, ideally we'd give you guys your own udp2log instance
+[17:07:44] <Jeff_Green>	 ok
+[17:07:44] <ottomata>	 that would let us avoid the netapp too, I think, right?
+[17:07:48] <Jeff_Green>	 no
+[17:07:50] <ottomata>	 oh ok
+[17:08:01] <Jeff_Green>	 we need the netapp for storage either way
+[17:08:36] <ottomata>	 aye ok
+[17:08:42] <ottomata>	 but accessing netapp is easier in frack?
+[17:08:51] <grrrit-wm>	 (CR) Mwalker: [C: 2] (bug 42285) make explicit that the public_reporting table is not in the civi db. [extensions/ContributionReporting] - https://gerrit.wikimedia.org/r/34487 (owner: Adamw)
+[17:09:25] <grrrit-wm>	 (CR) Mwalker: [V: 2] (bug 42285) make explicit that the public_reporting table is not in the civi db. [extensions/ContributionReporting] - https://gerrit.wikimedia.org/r/34487 (owner: Adamw)
+[17:09:26] <grrrit-wm>	 (Merged) Mwalker: (bug 42285) make explicit that the public_reporting table is not in the civi db. [extensions/ContributionReporting] - https://gerrit.wikimedia.org/r/34487 (owner: Adamw)
+[17:09:46] <Jeff_Green>	 ottomata: we already access it r/o from frack hosts, it's just a matter of finding a host for this (probably a new box) and allowing it to mount r/w
+[17:11:06] <ottomata>	 aye ok
+[17:17:00] <ottomata>	 Jeff_Green: https://rt.wikimedia.org/Ticket/Display.html?id=5505&results=d40c70ee966f7c29b4ae623c07c24c79
+[17:17:41] <Jeff_Green>	 alright
+[17:18:20] <mwalker>	 Jeff_Green: we could use the qa box for this given that this is a more urgent need
+[17:19:45] <Jeff_Green>	 yeah, temporarily, but that box is insanely overbuilt for the task
+[17:20:41] <ottomata>	 oh K4-713, Jeff_Green
+[17:20:50] <ottomata>	 Leslie says aluminium is outside of frack
+[17:20:57] <Jeff_Green>	 yes it is
+[17:21:01] <ottomata>	 my test just didn't work because of iptables rules there
+[17:21:05] <Jeff_Green>	 ah
+[17:21:06] <K4-713>	 oho.
+[17:21:16] <ottomata>	 woudl that be a good host for you to use?
+[17:21:20] <Jeff_Green>	 nope
+[17:21:22] <ottomata>	 ah ok
+[17:21:28] <Jeff_Green>	 that host is already running full-blast when it's running
+[17:21:29] <K4-713>	 Yeah, it's... pretty busy.
+[17:21:34] <mwalker>	 we like to abuse it
+[17:21:36] <ottomata>	 aye ok
+[17:21:42] <Jeff_Green>	 loudon would be ok but it's in pmtpa
+[17:21:45] <LeslieCarr>	 boo
+[17:21:50] <K4-713>	 eek!
+[17:22:02] <ottomata>	 hehe, we are searching
+[17:22:03] <ottomata>	 waiting,
+[17:22:04] <ottomata>	 hoping
+[17:22:05] <Jeff_Green>	 we can have mark reverse replication I guess
+[17:22:07] <ottomata>	 you'll come back to me
+[17:22:08] <ottomata>	 no wait
+[17:22:10] <ottomata>	 for a host
+[17:22:14] <ottomata>	 which onehmmmm?
+[17:22:26] <ottomata>	 Jeff_Green, you think you need a new box for this then?
+[17:22:33] <Jeff_Green>	 yup
+[17:22:50] <ottomata>	 you could probably run this fine alongside of your qa box
+[17:22:51] <K4-713>	 This is... sounding like something that's going to take longer than just today.
+[17:22:58] <K4-713>	 Which is fine.
+[17:23:03] <K4-713>	 I just need to let people know.
+[17:23:05] <ottomata>	 what's nice about the multicast thing
+[17:23:11] <ottomata>	 is that the instqance is very moveable
+[17:23:16] <Jeff_Green>	 ottomata: for the emergency yes, but not long term
+[17:23:16] <ottomata>	 you don't have to deploy configs anywhere
+[17:23:18] <ottomata>	 just start the instance
+[17:23:26] <ottomata>	 how about this:
+[17:23:33] <ottomata>	 leslie gets multicast working on frack
+[17:23:38] <ottomata>	 i puppetize upd2log for FR
+[17:23:44] <ottomata>	 and we can apply that to your qa box for now
+[17:23:52] <ottomata>	 and then easily move it elsewhere when a new host comes around?
+[17:23:57] <Jeff_Green>	 alright
+[17:23:57] <ottomata>	 i guess the only difficult part is the netapp r/w?
+[17:24:21] <Jeff_Green>	 no big whoop, it's just a bunch of knobs and requires both leslie & mark
+[17:24:29] <ottomata>	 haha
+[17:24:32] <ottomata>	 k
+[17:24:41] <LeslieCarr>	 hehehe
+[17:24:51] <Jeff_Green>	 it's like a kraftwerk concert
+[17:24:53] <LeslieCarr>	 just let me know which box we want to be able to join and i'll poke whatever holes needed
+[17:25:12] <ottomata>	 LeslieCarr: can you just make the group joinable from all of frack, or is that too nasty?
+[17:25:25] * K4-713  considers making popcorn
+[17:25:26] <Jeff_Green>	 too nasty, but we can make it joinable from that one vlan
+[17:25:31] <LeslieCarr>	 i can, i just like to keep things as locked down as possible
+[17:26:08] <ottomata>	 aye
+[17:26:23] <ottomata>	 i was just thikning since they don't yet know the final home of this
+[17:26:31] <ottomata>	 it might be nice not to have to get you to poke hole #2
+[17:26:33] <ottomata>	 later
+[17:26:46] <Jeff_Green>	 leslie it's going to live in the vlan with barium/db1025 whichever that is
+[17:26:58] <LeslieCarr>	 ok
+[17:27:10] <LeslieCarr>	 eh, i'd rather poke a new hole later than lots of holes
+[17:27:31] <ottomata>	 ok
+[17:27:46] <ottomata>	 Jeff_Green: can we set up the udp2log instacne writing to disk on your qa box and then get to syncing to the netapp  asap?
+[17:28:12] <Jeff_Green>	 yeah
+[17:29:11] <Jeff_Green>	 LeslieCarr: lutetium
+[17:29:38] <ottomata>	 so, curious, can we just rsync archived files off of this like anlaytics does for their logs?
+[17:29:44] <ottomata>	 why the need for netapp r/w?
+[17:29:52] <ottomata>	 can we just rsync to whatever netapp host?
+[17:30:01] <LeslieCarr>	 creating the policy now
+[17:30:07] <LeslieCarr>	 lutetium hasn't been created yet, right ?
+[17:30:12] <Jeff_Green>	 ottomata: that's all we do, we just do it on the same box that collects the logs
+[17:30:24] <ottomata>	 but you rsync to a mount, right?
+[17:30:28] <Jeff_Green>	 right
+[17:30:33] <ottomata>	 why not just rsync via usual rsync?
+[17:30:37] <Jeff_Green>	 to where?
+[17:30:53] <ottomata>	 wherever box mount really lives on?  (dunno your setup at all)
+[17:30:58] <ottomata>	 whatever*
+[17:31:05] <Jeff_Green>	 it's a netapp
+[17:31:19] <ottomata>	 ohohoohohohohhoho right right, not just nfs
+[17:31:21] <ottomata>	 sorry
+[17:31:25] <ottomata>	 hokay
+[17:31:38] <Jeff_Green>	 ya, the consuming boxes just mount the netapp too
+[17:31:49] <ottomata>	 k
+[17:35:09] <ottomata>	 Jeff_Green: another q:  why the rotate_fundraising_logs perl script?
+[17:35:10] <ottomata>	 why not just logrotate?
+[17:35:32] <Jeff_Green>	 I didn't want to schedule logrotate to run every 15 minutes
+[17:35:36] <ottomata>	 hm
+[17:35:42] <ottomata>	 i see ok
+[17:35:46] <Jeff_Green>	 plus shell scripting blows
+[17:36:07] <Jeff_Green>	 perl script does some error handling iirc
+[17:37:57] <ottomata>	 oh, language wasn't my q, was just wondering about vs logrotate
+[17:38:24] <Jeff_Green>	 ya, i just mean that I wanted to do some error handling that was painful in logrotate/shell
+[17:39:25] <Jeff_Green>	 oh ho...gotta move stupid_query_slayer to db1025
+[17:39:52] <ottomata>	 Jeff_Green: lutetium?
+[17:40:03] <Jeff_Green>	 yeah, that's the QA host
+[17:40:13] <ottomata>	 hmm, can't login
+[17:40:19] <ottomata>	 does that exist yet?
+[17:41:06] <Jeff_Green>	 lutetium.frack.eqiad.wmnet, but you don't have an account there
+[17:41:35] <Jeff_Green>	 i can work on the puppet crap
+[17:44:41] <ottomata>	 oh ok
+[17:44:47] <ottomata>	 well, i'll let you apply it, i've got something to commit
+[17:45:32] <Jeff_Green>	 ottomata: i just need to know what to migrate to frack puppet
+[17:46:14] <ottomata>	 oh.
+[17:46:15] <ottomata>	 you have your own puppet?
+[17:46:17] <Jeff_Green>	 yup
+[17:46:22] <Jeff_Green>	 it's in PCI scope
+[17:46:26] <ottomata>	 ?
+[17:46:27] <ottomata>	 oh
+[17:46:37] <ottomata>	 hm
+[17:46:38] <ottomata>	 oh
+[17:46:42] <ottomata>	 bwer
+[17:46:47] <Jeff_Green>	 rather than put all of gerrit+puppet+etc in scope we forked and pared
+[17:46:52] <ottomata>	 too bad udp2log isn't a module, hmmMMHmmhm
+[17:46:58] <ottomata>	 oh its a fork?
+[17:47:00] <ottomata>	 phew ok
+[17:47:12] <Jeff_Green>	 it barely resembles prod puppet anymore
+[17:47:13] <ottomata>	 can you pull?  or do you have to add files manually?
+[17:47:13] <ottomata>	 eek
+[17:47:26] <Jeff_Green>	 it's sort of a fork in the sense of a demo derby car being a stock car
+[17:47:32] <Jeff_Green>	 manual
+[17:48:07] <ottomata>	 basically, checkout misc/udp2log.pphah
+[17:48:08] <ottomata>	 haha
+[17:48:17] <ottomata>	 and role/logging.pp
+[17:48:17] <Jeff_Green>	 and weep
+[17:48:21] <ottomata>	 yeah right
+[17:48:35] <Jeff_Green>	 ok I'll take a look, maybe not too bad
+[17:48:45] <ottomata>	 i think not too bad
+[17:48:53] <ottomata>	 ok i won't commit this then, doesn't make sense too
+[17:48:56] <ottomata>	 i'll get you a diff though
+[17:48:59] <ottomata>	 you can take what you need
+[17:49:07] <Jeff_Green>	 ok
+[17:52:01] <ottomata>	 Jeff_Green:  https://gist.github.com/ottomata/6064527
+[17:52:09] <ottomata>	 that's actually all I was going to add
+[17:52:57] <Jeff_Green>	 ottomata: ok.
+[17:58:03] <Jeff_Green>	 LeslieCarr: on further consideration we're thinking it does not make sense to pull udp2log into frack
+[17:58:16] <Jeff_Green>	 it's much cleaner if the handoff is log files on nfs
+[17:58:17] <ottomata>	 yeah, I didn't realize that frack had its own puppet repo
+[17:58:25] <LeslieCarr>	 okay
+[17:58:26] <ottomata>	 the udp2log stuff is really easy to move around with prod puppet
+[17:58:29] <LeslieCarr>	 cool
+[17:58:29] <LeslieCarr>	 :)
+[17:58:35] <ottomata>	 Jeff would have to rip that out into fr puppet
+[17:58:38] <ottomata>	 which would not be fun
+[17:58:55] <ottomata>	 Jeff_Green: I can probably start this up on locke righ tnow
+[17:58:56] <Jeff_Green>	 let's steal another box for udp2logging at eqiad?
+[17:58:58] <ottomata>	 it is in pmtpa
+[17:59:06] <ottomata>	 and is slated to be decommissionsed
+[17:59:10] <ottomata>	 but is just sitting there right
+[17:59:11] <ottomata>	 right now
+[17:59:16] <Jeff_Green>	 eh, imo it's better to grab a new box
+[17:59:19] <ottomata>	 ok
+[17:59:22] <ottomata>	 just not sure how long that will take
+[17:59:31] <Jeff_Green>	 we have a planned outage now
+[17:59:39] <Jeff_Green>	 can't be worse than a couple extra hours right?
+[17:59:39] <ottomata>	 hm, ja
+[17:59:46] <ottomata>	 i guess so, are there spare boxes around for this?
+[17:59:47] <Jeff_Green>	 then we don't have to redo all the work later
+[17:59:55] <Jeff_Green>	 let's ask robh
+[17:59:55] <ottomata>	 you don't need anything too beefy if you are just going to run your few filters on it
+[18:00:02] <ottomata>	 k, moving over to #ops
+[18:00:05] <Jeff_Green>	 why not make it just like the other filter boxes?
+[18:00:21] <ottomata>	 the other udp2log boxes are all different :p
+[18:00:35] <Jeff_Green>	 pick the one we like :-)
+[18:00:35] <ottomata>	 and they are also meant to run lots of filters
+[18:00:50] <Jeff_Green>	 if fr logs are a problem now, something else is going to be soon
+[18:00:55] <ottomata>	 the more filters you have, the more procs it is better to have
+[18:01:05] <ottomata>	 oh, this is not caused by fr logs
+[18:01:26] <Jeff_Green>	 moar logger boxes wheeee!
+[18:01:28] <ottomata>	 its just that fr logs were on the socat relay host
+[18:01:32] <ottomata>	 so
+[18:01:35] <ottomata>	 by running a udp2log instance there
+[18:01:44] <ottomata>	 it has to emit and comsume the same traffic
+[18:01:51] <ottomata>	 doubling the bytes the nic has to handle
+[18:01:52] <Jeff_Green>	 ottomata: what's the ideal config for a logger box
+[18:02:10] <ottomata>	 really depends on the filters and # of them
+[18:02:20] <ottomata>	 i'd say, best to ahve at least one proc per filter
+[18:02:24] <ottomata>	 as a rule of thumb
+[18:02:33] <ottomata>	 you only have 2 fr filters
+[18:02:41] <ottomata>	 so if you get a 8 core machine that would be plenty
+[18:03:00] <ottomata>	 ram generally isn't a concern, unless you are doing crazy stuff in your filters
+[18:03:08] <ottomata>	 but you shoudln't be, since so much data flies by
+[18:03:09] <Jeff_Green>	 how much is enough?
+[18:03:12] <ottomata>	 it should just be written to disk
+[18:03:32] <ottomata>	 locke only had 12G, and it was fine with memory
+[18:04:18] <ottomata>	 the only time that udp2log really has problems is when a filter blocks for some reason
+[18:04:27] <ottomata>	 that would cause udp2log's udp recv buffer to fill up
+[18:06:05] <Jeff_Green>	 I need to get some lunch. ottomata can you keep an eye out for robh responding in #operations re allocating a server at eqiad?
+[18:06:14] <ottomata>	 ja
+[18:06:24] <Jeff_Green>	 k. back in ~20
+[19:25:11] <Jeff_Green>	 alert: since we're essentially idle I'm flipping payments-wiki to read-only and doing a round of kernel updates on payments servers
+[19:31:46] <mwalker>	 Jeff_Green: understood :)
+[19:38:48] <Jeff_Green>	 and we're back to r/w with payments1001, and payments1-4 already done
+[19:39:41] <mwalker>	 cool
+[19:40:17] <mwalker>	 so... question -- katie and I were wondering why were were using only statement level binlogging instead of mixed level binlogging
+[19:40:45] <mwalker>	 and if it's just because that's what the rest of the cluster does; if we could try changing it to mixed for our DBs
+[19:40:57] <K4|lunch>	 Yep. The warning I'm getting now out of one of the Jenkins jobs script makes a good point.
+[19:43:20] <K4|lunch>	 Huh. Are we code updating?
+[19:44:35] <mwalker>	 jeff is updating kernels
+[19:44:46] <K4|lunch>	 oooooho.
+[19:44:50] <K4|lunch>	 okay.
+[19:45:25] <Jeff_Green>	 jfyi there's a little explosion with paymentsdb database replication, I am fixing
+[19:46:08] <Jeff_Green>	 stupid mysql upgrade injected queries that behaved strangely across replication, so I'm re-cloning payments1002-payments1004
+[19:46:20] <Jeff_Green>	 everything is currently r/w off of payments1
+[19:54:30] <Jeff_Green>	 mwalker: statement appears to be the default, and I've never investigated the alternatives
+[19:54:38] <Jeff_Green>	 I'm not opposed, but research is required
+[19:54:59] <mwalker>	 according to the mysql documentation; mixed is the default
+[19:55:08] <mwalker>	 at least for 5.1+
+[19:55:08] <Jeff_Green>	 orly
+[19:55:15] <mwalker>	 getting reference
+[19:56:10] <K4|lunch>	 Yeah, I saw that earlier too. They changed it.
+[19:56:26] <Jeff_Green>	 they the people of mysql?
+[19:56:31] <K4|lunch>	 yep
+[19:56:49] <Jeff_Green>	 fancy
+[19:57:08] <mwalker>	 oh; no; I'm sorry; I must have been reading other documentation
+[19:57:14] <mwalker>	 in 5.5 it is by default statement
+[19:57:22] <Jeff_Green>	 oic
+[19:57:25] <K4|lunch>	 http://dev.mysql.com/doc/refman/5.1/en/binary-log-setting.html
+[19:57:31] <Jeff_Green>	 we've had statement on fundraisingdb's since the beginning of time
+[19:57:53] <Jeff_Green>	 so let's assume that's pointless history and research and decide what we want
+[19:58:23] <mwalker>	 yep yep; so reading http://dev.mysql.com/doc/refman/5.6/en/binary-log-mixed.html indicated to me that it wouldn't be dangerous so long as we were in REPEATABLE_READ
+[19:58:28] <Jeff_Green>	 BE BOLD!
+[19:58:30] * Jeff_Green  ducks
+[19:58:31] <K4|lunch>	 GAH
+[19:58:39] <Jeff_Green>	 BE SMRT!
+[19:58:43] * K4|lunch  kills a mug with a hammer
+[19:59:08] <Jeff_Green>	 closest we had to such things at craigslist was "craigbuy"
+[19:59:28] <Jeff_Green>	 which is actually carved into the concrete at our old office by the MPOE
+[19:59:31] <K4|lunch>	 Also: Is it just me, or... are there way more choices in coffee mugs all of a sudden? :)
+[19:59:37] <Jeff_Green>	 smash them all
+[20:00:02] <mwalker>	 craigbuy?
+[20:00:30] <mwalker>	 are those things that craig would buy?
+[20:00:33] <Jeff_Green>	 came from an email I once received from craig yes
+[20:00:48] <Jeff_Green>	 he used to send me random links to computer shit he was interested in with no explanation
+[20:00:55] * K4-713  googles, finds http://craigbuy.com/
+[20:00:57] <Jeff_Green>	 or, in that case, Subject: Craig buy?
+[20:01:23] <Jeff_Green>	 K4-713: gee I wonder how that got there
+[20:01:30] <K4-713>	 I have... zero theories.
+[20:01:32] <K4-713>	 :D
+[20:02:15] <mwalker>	 I like how it autoupdates
+[20:02:19] <K4-713>	 me too.
+[20:02:32] <Jeff_Green>	 that's probably the early CGI version
+[20:02:37] <K4-713>	 So far, this is kicking Be Bold straight in the butt.
+[20:03:18] <Jeff_Green>	 http://trouser.org/cowsay?f=cow&msg=fetchez%20la%20vache
+[20:03:19] <Jeff_Green>	 there
+[20:04:33] <K4-713>	 yay!
+[20:06:54] <Jeff_Green>	 i still want your system diagram on a tshirt and/or mug and or laser-etched on my laptop
+[20:07:40] <K4-713>	 Oooh. Laser-etched.
+[20:07:45] <K4-713>	 It is, after all, a vector file.
+[20:13:31] <Jeff_Green>	 paymentsdb replication is fixed
+[20:13:45] <Jeff_Green>	 rebooting payments1002 now
+[20:21:22] <Jeff_Green>	 rebooting payments1003 & payments1004 (i checked that there was no orphanslayer running
+[20:24:56] <Jeff_Green>	 done
+[20:32:35] <mwalker>	 Jeff_Green: so; if I wanted to run a code deploy -- I'm good to do that now?
+[20:32:48] <Jeff_Green>	 yep. I'm done
+[20:32:53] <mwalker>	 kk
+[20:33:00] <mwalker>	 lets see how badly this blows EVERYTHING up
+[20:33:09] <mwalker>	 oh; actually; pausing the QCs
+[20:33:13] <Jeff_Green>	 helmets!
+[20:33:22] <mwalker>	 ya
+[20:33:29] <mwalker>	 I'm actually doing something really dumb
+[20:33:34] <mwalker>	 instead of cherry picking I merged
+[20:33:44] <mwalker>	 and there's a rather hairy fix for UTC timestamps in here
+[20:35:36] <mwalker>	 !log paused all audit and QC jenkins jobs on the payments cluster in preparation for fixing timestamps
+[20:35:46] <morebots>	 Logged the message, Master
+[20:38:52] <Jeff_Green>	 why does ubuntu insist on crufting itself with old kernel crap
+[20:39:13] <mwalker>	 I have no idea
+[20:39:17] <mwalker>	 but it really annoys me
+[20:39:32] <mwalker>	 when it updates; fails silently halfway through
+[20:39:35] <mwalker>	 and then fails to boot
+[20:39:36] <Jeff_Green>	 right
+[20:39:56] <Jeff_Green>	 most noticeable when you make a separate /boot so you can encrypted-lvm the rest
+[20:48:52] <mwalker>	 !log kludging payments data -- adding 7 hours to contribution timestamps between IDs 4380557 and 4605567
+[20:49:02] <morebots>	 Logged the message, Master
+[20:52:12] <mwalker>	 ok...
+[20:53:39] <Jeff_Green>	 alright, I think I'm pretty well fried for today
+[20:54:04] <Jeff_Green>	 I'm going to head home, be off the bike in about 15 min. feel free to SMS me if anything seems out of whack
+[20:54:12] <mwalker>	 kk
+[20:54:15] <mwalker>	 thanks :)
+[20:54:23] <Jeff_Green>	 have a lot of fun!
+[20:54:57] <Jeff_Green>	 oh I guess an informative email would be useful...
+[20:55:09] <mwalker>	 !log updating civicrm on aluminium from e4062d012d0ccfb6220fc3703fd42ad894151ec5 to 180ecd219da68a0b950dafb036078b7c285e2437
+[20:55:21] <morebots>	 Logged the message, Master
+[20:55:38] <Jeff_Green>	 whoa, we have a bot here now?
+[20:56:00] <mwalker>	 ya
+[20:56:04] <mwalker>	 it's been here for a while
+[20:56:08] <mwalker>	 it just logs to the SUL
+[20:56:09] <mwalker>	 but
+[21:21:18] <slander_>	 #951: (MW) *Deployed* -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/951
+[21:21:18] <slander_>	 #990: (MW) *Deployed* -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/990
+[21:21:18] <slander_>	 #999: (MW) *Deployed* -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/999
+[21:21:46] <grrrit-wm>	 (CR) Mwalker: [C: 2 V: 2] "not production code so just saving it for future reference" [wikimedia/fundraising/tools] - https://gerrit.wikimedia.org/r/75256 (owner: Mwalker)
+[21:21:47] <grrrit-wm>	 (Merged) Mwalker: Adding Script to check what is in the Cache [wikimedia/fundraising/tools] - https://gerrit.wikimedia.org/r/75256 (owner: Mwalker)
+[22:09:44] <grrrit-wm>	 (CR) Mwalker: [C: 2 V: 2] "Recovery script that successfully worked." [wikimedia/fundraising/PaymentsListeners] - https://gerrit.wikimedia.org/r/74681 (owner: Mwalker)
+[22:09:45] <grrrit-wm>	 (Merged) Mwalker: Add in some Adyen Recovery [wikimedia/fundraising/PaymentsListeners] - https://gerrit.wikimedia.org/r/74681 (owner: Mwalker)

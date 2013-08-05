@@ -1,0 +1,59 @@
+[00:02:24] <awight>	 K4-713: so i wanna take something off the board, what is the transition?
+[00:02:36] <K4-713>	 f5
+[00:02:39] <mwalker>	 so... now I have the button -- but it doesn't do anything
+[00:02:41] <K4-713>	 You probably have it now.
+[00:02:54] <K4-713>	 What button are you pressing?
+[00:03:10] <awight>	 "f5" ??
+[00:03:12] <mwalker>	 sorry ya, that was a bad bug report "Pressing the move to next sprint button"
+[00:03:26] <K4-713>	 What card?
+[00:03:37] <K4-713>	 Something just got dropped. ;)
+[00:03:50] <slander>	 #970: (MW) O:(s -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/970
+[00:03:53] <mwalker>	 ya -- I just killed one by dropping it completely
+[00:03:56] <K4-713>	 Oh, sorry. I'm dumb.
+[00:03:57] <mwalker>	 but 971 has the same issue
+[00:03:58] <K4-713>	 Wait 1.
+[00:04:06] <awight>	 um how did you drop?  I want to do that all the time.
+[00:04:12] <K4-713>	 try now.
+[00:04:26] <mwalker>	 yay!
+[00:04:27] <K4-713>	 awight: reload
+[00:04:49] <awight>	 cool, I see "remove from tech sprint"
+[00:04:50] <slander>	 #971: (MW) ->Sprint 29 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/971
+[00:04:50] <slander>	 #788: (AW) AT:(s|O:(s -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/788
+[00:04:50] <slander>	 #859: (MW) ->Sprint 29 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/859
+[00:05:00] <K4-713>	 Woah. Already looks more reasonable.
+[00:05:25] <K4-713>	 Usually I try to overshoot by... 20% or something.
+[00:05:29] <K4-713>	 Two reasons
+[00:05:41] <K4-713>	 We're not in the situation where we care if we have leftovers
+[00:05:50] <slander>	 #943: (AW) O:(s -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/943
+[00:06:06] <K4-713>	 And, it saves having to agonize over the backlog if somebody rips through the whole thing in an unexpected evening.
+[00:06:10] <K4-713>	 ...you guys do that sometimes.
+[00:06:10] <mwalker>	 actually -- re 943 -- apparently we just need to delete it?
+[00:06:33] <awight>	 mwalker: yep 943 is a goner
+[00:06:45] <mwalker>	 well -- you moved it back into the backlog
+[00:06:50] <slander>	 #923: (AW) N:v Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/923
+[00:06:50] <slander>	 #923: (AW) O:(s -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/923
+[00:07:03] <mwalker>	 but -- it appears we need a trashcan
+[00:07:17] <K4-713>	 Do you guys not have a delete?
+[00:07:19] <K4-713>	 I do.
+[00:07:24] <K4-713>	 It's probably a project admin thing.
+[00:07:24] <mwalker>	 nope -- no delete
+[00:07:29] <K4-713>	 I'll kill.
+[00:07:29] <mwalker>	 that's probably for the best
+[00:07:42] <K4-713>	 BALEETED.
+[00:07:50] <slander>	 #731: (AW) Can we clarify the issue? If we're just talkin... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/731
+[00:08:28] <mwalker>	 so I maintain with 731 that we should just not accept decimal amounts
+[00:09:03] <K4-713>	 Wow. I'm having you guys do this next time, too.
+[00:09:06] <K4-713>	 :D
+[00:09:32] <awight>	 mwalker: dude it is Civi admins.  What do you mean, not accept decimals?
+[00:09:44] <mwalker>	 oh
+[00:09:49] <mwalker>	 I was thinking on the donation forms...
+[00:09:50] <slander>	 #974: (AW) TS:DR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/974
+[00:09:52] <awight>	 that was an unexpected twist for me, too
+[00:10:12] <awight>	 I think we should probably shoot the card in the medulla oblongota
+[00:10:31] <awight>	 and just do some reeducation camps
+[00:10:42] <mwalker>	 ok -- peter says it is actually civi users
+[00:10:50] <mwalker>	 so... strip it all out in the source field
+[00:11:15] <awight>	 yep, done.
+[00:11:32] <awight>	 if you think commas are funny to use as the decimal place...  this is an AOL chat room.
+[00:12:51] <slander>	 #731: (AW) N:PCafisawc -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/731
+[00:13:50] <slander>	 #731: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/731

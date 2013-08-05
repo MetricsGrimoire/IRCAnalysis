@@ -1,0 +1,289 @@
+[02:49:08] <jeremyb>	 mwalker|away: fyi, just got hit by excessive white gap again. B13_0707_frmrec_form_dr_enYY-actualfacts
+[02:49:52] <jeremyb>	 (also, see whym_away above)
+[05:51:08] <jeremyb>	 idk how well this could work because some stuff could just be assumed to be intentional (and some people could get tired or reporting issues) but...
+[05:52:02] <jeremyb>	 another possibility for testing (e.g. to discover cross-browser stuff): deploy banners to canaries (maybe opt-ins from the community) and see who complains
+[05:52:55] <jeremyb>	 or find some way to ensure the same exact font for all browsers and try diffing screenshots. but i'm still worried about false negatives
+[05:53:10] * jeremyb  runs away
+[16:07:40] <mwalker>	 the-wub: *waves*
+[16:07:55] <the-wub>	 hi mwalker :)
+[16:09:21] <mwalker>	 did you happen to see https://bugzilla.wikimedia.org/show_bug.cgi?id=50865
+[16:11:19] <the-wub>	 yes
+[16:11:39] <the-wub>	 not sure what the best response is though
+[16:17:03] <K4-713>	 Jeff_Green: Did you add the engineering update for fundraising? It looks really... ops-y.
+[16:17:17] <K4-713>	 Also, it's... there. And I didn't do it.
+[16:17:21] <Jeff_Green>	 i did
+[16:17:22] * K4-713  is confused
+[16:17:29] <Jeff_Green>	 i always do an opsy line or two
+[16:17:42] <K4-713>	 Is there usually a different section for that, or do you just usually get there after I do?
+[16:18:15] <Jeff_Green>	 probabaly the latter. last time I tried to do the different section thing it got hijacked and smashed all into one section
+[16:18:29] <Jeff_Green>	 so i gave up trying to do a separate opsy thing
+[16:19:04] <K4-713>	 Ah, gotcha.
+[16:19:17] <Jeff_Green>	 The Editors seem to Have Ideas :-P
+[16:20:12] <K4-713>	 I understand they do that sometimes.
+[16:20:24] <K4-713>	 ...sounds sketchy. :p
+[16:20:42] <Jeff_Green>	 maybe I should just do some pretty ascii art somewhere on the page
+[16:20:49] <mwalker>	 the-wub: I think it depends on how good your JS skills are -- it *seems* like the bad javascript is coming from some transcluded template -- but I don't know where the missing function would be coming from
+[16:26:00] <the-wub>	 mwalker: do you mean https://bugzilla.wikimedia.org/show_bug.cgi?id=50887 ? I'm looking into that, think I know how to fix it
+[16:26:19] <mwalker>	 oh -- yes -- that one
+[16:27:30] <mwalker>	 50865 is on the technical end of things -- so I'll handle it
+[16:28:18] <mwalker>	 technical backend that is... unless you want to get your hands dirty in CN? :P
+[16:29:55] <the-wub>	 haha, not yet :P
+[16:30:20] <the-wub>	 I think there was an existing bug about CN loading times
+[16:30:54] <the-wub>	 the idea proposed in 50865 is... novel... but not really a solution
+[16:31:02] <jeremyb>	 mwalker: 08 02:49:08 < jeremyb> mwalker|away: fyi, just got hit by excessive white gap again. B13_0707_frmrec_form_dr_enYY-actualfacts
+[16:31:13] <jeremyb>	 also, did you see whym_away about japan?
+[16:32:38] <mwalker>	 jeremyb: *waves* I saw :( I haven't investigated the why completely yet -- but the-wub might be interested to know about ^ if he doesn't already
+[16:32:48] <mwalker>	 and no; what about whym?
+[16:33:01] <jeremyb>	 mwalker: (that's a different banner than before I think)
+[16:33:31] <jeremyb>	 mwalker: apparently people are being sent to use paypal in japan even though paypal doesn't allow making donations from japan
+[16:33:44] <jeremyb>	 (for japan they allow person to person but not donations)
+[16:34:03] <jeremyb>	 and this has been discussed on jawp apparently
+[16:34:40] <jeremyb>	 mwalker: http://dpaste.com/1292042/plain/
+[16:35:34] <jeremyb>	 or maybe not on discussed jawp, unclear. anyway still needs investigation
+[16:35:45] <jeremyb>	 and whym_away is still here
+[16:36:05] <jeremyb>	 s/on discussed/discussed on/
+[16:36:13] <jeremyb>	 wow, i'm asleep? :-/
+[16:56:39] <mwalker>	 ooh fun
+[16:57:14] <marktraceur>	 jeremyb: Maybe you just came from Latin class?
+[16:57:30] <marktraceur>	 Though your words aren't in five hundred different forms, so maybe not
+[17:06:44] <jeremyb>	 marktraceur: i think not!
+[17:06:51] <jeremyb>	 marktraceur: but nice try
+[17:24:49] <mwalker>	 the-wub: I realized we never setup a meeting for email pulling
+[17:24:57] <mwalker>	 are you free tomorrow? (or today?)
+[17:27:12] <the-wub>	 mwalker: tomorrow I will be. If we could do before 11 SF time that would be best for me
+[17:28:20] <mwalker>	 cool
+[17:28:24] <mwalker>	 invite sent
+[17:28:44] <slander_>	 #979: (AW) O:AW|TS:B|P:MH|T:TD Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/979
+[17:28:44] <slander_>	 #979: (AW) ->Sprint 28 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/979
+[17:28:44] <slander_>	 #979: (AW) TS:DR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/979
+[17:28:44] <slander_>	 #979: (AW) AT:AW|TS:ID -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/979
+[17:30:00] <awight>	 ... I like that there are slug trails across my desk.  Who'z been eating my beanstalks?
+[17:30:44] <slander_>	 #937: (MW) TS:PCR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/937
+[17:30:44] <slander_>	 #937: (MW) TS:PD -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/937
+[17:31:44] <slander_>	 #937: (MW) *Deployed* -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/937
+[17:33:44] <slander_>	 #969: (MW) Not really our problem any more... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/969
+[17:33:44] <slander_>	 #969: (MW) TS:DR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/969
+[17:33:44] <slander_>	 #969: (MW) AT:MW|TS:ID -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/969
+[17:33:44] <slander_>	 #969: (MW) TS:PCR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/969
+[17:33:44] <slander_>	 #969: (MW) TS:PD -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/969
+[17:33:44] <slander_>	 #969: (MW) *Deployed* -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/969
+[17:36:44] <slander_>	 #980: (MW) O:MW|TS:B|P:NtH|T:TT Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/980
+[17:36:44] <slander_>	 #980: (MW) ->Sprint 28 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/980
+[17:38:44] <slander_>	 #981: (MW) ->Sprint 28 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/981
+[17:40:44] <slander_>	 #982: (MW) O:MW|TS:B|P:NtH|T:TT Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/982
+[17:40:44] <slander_>	 #982: (MW) ->Sprint 28 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/982
+[17:44:22] <awight>	 mwalker: according to my theory, only Contribution search should be affected by the paging bug.  Indeed, I can't reproduce elsewhere.  But u said you had seen misbehavior?
+[17:44:58] <mwalker>	 maybe not because I was always entering it via contribution -- it just seemed like the issue was down in the window paging object
+[17:45:13] <awight>	 k
+[17:52:44] <slander_>	 #981: (MW) TS:DR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/981
+[17:52:44] <slander_>	 #981: (MW) AT:MW|TS:ID -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/981
+[17:53:44] <slander_>	 #981: (MW) TS:PCR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/981
+[17:53:44] <slander_>	 #981: (MW) https://gerrit.wikimedia.org/r/72554 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/981
+[17:53:44] <slander_>	 #983: (AW) O:AW|TS:B|P:NtH|T:TD Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/983
+[17:54:44] <slander_>	 #980: (MW) TS:DR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/980
+[17:54:44] <slander_>	 #980: (MW) AT:MW|TS:ID -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/980
+[17:55:25] <awight>	 mwalker: hey, where is that import-checks fix?
+[17:56:05] <awight>	 mwalker: nvm, i was in the wrong repo!
+[17:56:18] <mwalker>	 awight: it's https://gerrit.wikimedia.org/r/#/c/71557/ and https://gerrit.wikimedia.org/r/#/c/71650/
+[17:56:19] <awight>	 yep i see
+[17:56:24] <awight>	 cool
+[17:57:44] <slander_>	 #940: (MW) Waiting on SmashPig IPN listener AT:MW|B:B -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/940
+[17:58:00] <awight>	 hehe, 64 characters of name allowed and then you are being obnoxious.  Please enter a nickname.
+[18:09:14] <awight>	 K4-713: I'm gonna deploy that results paging thing unless someone creaks
+[18:09:44] <slander_>	 #979: (AW) TS:PCR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/979
+[18:09:44] <slander_>	 #979: (AW) TS:PD -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/979
+[18:10:20] <mwalker>	 awight: go for it
+[18:13:59] <K4-713>	 awight: Yeah, go. :)
+[18:25:52] <K4-713>	 awight: Okay, so: More info re: check imports.
+[18:25:56] <awight>	 si
+[18:26:13] <K4-713>	 #1 - The "Restrictions" information is the one with intermittent input.
+[18:26:31] <K4-713>	 #2 - Thank You Letter send date seems not to be importing.
+[18:26:46] <awight>	 for (1), that means I should make that field optional, or the opposite??
+[18:26:53] <awight>	 i mean, is intermittent bad?
+[18:27:05] <K4-713>	 Ah, this one should have info, as it's in the file. But it didn't:
+[18:27:05] <K4-713>	 https://civicrm.wikimedia.org/civicrm/contact/view/contribution?action=view&reset=1&id=4412957&cid=4244479&context=home
+[18:27:20] <awight>	 ok, I'll make it required
+[18:27:22] <K4-713>	 So, the importing of the data in the file, has intermittent success.
+[18:27:33] <awight>	 & will investigate
+[18:38:07] <K4-713>	 Huh. Haven't done a payments deploy in a while, have we?
+[18:39:04] <mwalker>	 last week monday probably
+[19:08:56] <K4-713>	 mwalker: You get wikitech-l?
+[19:09:29] <K4-713>	 I'm not sure, but it looks like somebody is using it to report a CN bug.
+[19:09:44] <slander_>	 #984: (AW) O:AW|TS:B|P:NtH|T:TD Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/984
+[19:10:27] <mwalker>	 looking
+[19:13:16] <mwalker>	 I don't think it's CN
+[19:13:19] <mwalker>	 I think it's ULS
+[19:13:25] <mwalker>	 but running a profiler on that
+[19:13:43] <slander_>	 #984: (AW) P:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/984
+[19:13:47] <K4-713>	 Okay, groovy. Probably good to double-check.
+[19:15:12] <awight>	 jfyi, the failed "Restrictions" import is because they have that field set up as a multiple-choice.  and there is no "Unrestricted", only "Unrestricted - General"
+[19:15:20] <awight>	 ...
+[19:15:28] * awight  is at a loss where to note this stuff
+[19:16:55] <K4-713>	 Ah! Makes total sense.
+[19:17:03] <awight>	 making a card, just cos
+[19:17:14] <K4-713>	 We need to communicate that back to Arizona Lockbox so they stop giving us garbage in the next round.
+[19:17:41] <K4-713>	 If you're making a card, we should probably add everything we're trying to get them to fix for the next round.
+[19:17:44] <slander_>	 #985: (AW) O:AW|TS:B|P:MH|T:TD Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/985
+[19:17:44] <slander_>	 #985: (AW) ->Sprint 28 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/985
+[19:17:49] <awight>	 cool
+[19:18:06] <awight>	 that was all, actually
+[19:20:09] <K4-713>	 I have more.
+[19:20:21] <K4-713>	 Blank lines, and the organization name field.
+[19:20:35] <K4-713>	 And, I guess, the TY letter date.
+[19:32:44] <slander_>	 #985: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/985
+[19:34:44] <slander_>	 #985: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/985
+[20:19:44] <slander_>	 #981: (AW) TS:PD -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/981
+[20:20:44] <slander_>	 #985: (AW) TS:DR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/985
+[20:20:44] <slander_>	 #985: (AW) AT:AW|TS:ID -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/985
+[20:20:44] <slander_>	 #985: (AW) TS:PCR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/985
+[20:26:44] <slander_>	 #985: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/985
+[20:32:27] <whym>	 I was wondering if FR team is aware of this, I cannot donate via the PayPal link shown on the banner.
+[20:32:41] <whym>	 PayPal says that they currently do not accept payments for donation from Japan.
+[20:32:41] <mwalker>	 whym: in japan?
+[20:32:48] <mwalker>	 K4-713: ^
+[20:33:15] <K4-713>	 This is interesting. We're getting paypal donations from Japan.
+[20:33:24] <K4-713>	 Not just recurring, either.
+[20:33:42] <marktraceur>	 K4-713: Based on the address or the IP? Maybe proxies?
+[20:33:54] <K4-713>	 Address comes from paypal.
+[20:34:24] <mwalker>	 what got me more confused was that getting a JP form here in the US I didn't seem to have any issues
+[20:34:34] <mwalker>	 whym: at what stage of the paypal workflow did it deny you?
+[20:34:45] <mwalker>	 right after you clicked the banner? or after you've filled in your details?
+[20:35:01] <K4-713>	 marktraceur: The user either enters their address into paypal's workflow, or it grabs it off their paypal account. Either way, they are fully aware that the user is in/from Japan.
+[20:35:05] <K4-713>	 So, this is very mysterious.
+[20:35:25] <whym>	 mwalker: I clicked the link, logged in to PayPal and got refused
+[20:35:37] <whym>	 with the message saying they cant accept
+[20:35:40] <marktraceur>	 K4-713: But is Paypal refusing based on the street address or the IP address? If the latter, proxies could be a workaround and people using proxies anyway would get through.
+[20:35:41] <whym>	 from japan
+[20:35:51] <K4-713>	 meganhernandez: Paypal is refusing donors in Japan. Please see backscroll.
+[20:36:30] <whym>	 I was hearing the same thing from a coupe more people from Japan
+[20:36:41] <K4-713>	 marktraceur: I have no idea how they choose to refuse, but we probably want to go along with their policies rather than try to trick 'em.
+[20:36:44] <slander_>	 #986: (AW) O:AW|TS:B|P:MH|T:TT Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/986
+[20:36:44] <slander_>	 #986: (AW) ->Sprint 28 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/986
+[20:36:51] <mwalker>	 whym: do you have a JP credit card? I'm wondering if this is specific to the logged in section of paypal
+[20:37:07] <marktraceur>	 Well yeah, I'm just trying to explain how we have JP street addresses in Paypal donations.
+[20:37:10] <K4-713>	 whym: Can you give us the exact error message you're getting?
+[20:37:32] <K4-713>	 marktraceur: Paypal is sending them to us.
+[20:37:38] <K4-713>	 In IPN messages.
+[20:37:44] <slander_>	 #986: (AW) AT:AW|TS:ID -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/986
+[20:37:56] <marktraceur>	 *nod* I meant the root cause, not the immediate cause :)
+[20:38:51] <K4-713>	 My recollection is that they don't let you have an account or make a donation unless they have your manually entered street address.
+[20:38:56] <whym>	 mwalker: yes, my credit card is a JP one
+[20:40:10] <whym>	 the error messsage (in Japanese) - PayPalでは、現在JPの買い手からの寄付支払いはサポートされません。ご迷惑をおかけしますことをお詫びいたします。
+[20:40:28] <marktraceur>	 Fire up that translator, mwalker. :)
+[20:41:08] <mwalker>	 marktraceur: wow; the google machine for JP translations really sucks
+[20:41:08] <K4-713>	 whym: Thanks. I'll send that error message to our Paypal rep and see what's going on.
+[20:42:04] <whym>	 FWIW, the message basically says they cannot accept donations from Japan
+[20:42:27] <K4-713>	 Yeah, I figured. But they usually really like it when we can send exact error test.
+[20:44:44] <slander_>	 #979: (AW) *Deployed* -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/979
+[20:44:44] <slander_>	 #981: (AW) *Deployed* -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/981
+[20:45:22] <K4-713>	 The paypal link in Japan is being removed until we get some answers from our rep.
+[20:45:49] <K4-713>	 whym: Thanks for the heads up.
+[20:46:54] <whym>	 K4-713: np
+[20:47:00] <awight>	 mwalker: K4-713
+[20:47:27] <awight>	 : following up on convos we were having earlier, I think I should move eoy_thankyou mass-email functionality into its own module
+[20:47:43] <awight>	 then we can use that from thankyou and from whatever crazy one-offs we do
+[20:49:34] <mwalker>	 awight: in your import checks patch, regarding Thank You Date; would it be possible to accept both column headers?
+[20:49:48] <awight>	 aaah
+[20:50:02] <awight>	 We are rerunning old files or something?
+[20:50:19] <awight>	 but yes, it's easy to do if you think it should be done
+[20:50:25] <mwalker>	 not that I know of -- but I don't know much :)
+[20:50:47] <mwalker>	 it seems like the safe thing to assume that we will, at some point, be silly and do just that though
+[20:50:49] <awight>	 I think a stronger contract is the direction we want to move in
+[20:51:14] <awight>	 not that this is an argument against being redundant ;)
+[20:51:27] <mwalker>	 I guess it will explode violently if any of the reports we haven't yet run have the old column name
+[20:51:28] <mwalker>	 so...
+[20:51:29] <mwalker>	 meg
+[20:51:31] <mwalker>	 *meh
+[20:51:44] <K4-713>	 awight: Not a lot of overlap, I take it?
+[20:51:48] * awight  secretly wants to see that explosion
+[20:52:01] <awight>	 K4-713: overlap between?
+[20:52:07] <mwalker>	 actually awight; this doesn;t look like it's going to explode violently
+[20:52:13] <K4-713>	 Shh! Say that too loud and everybody will want [an explosion].
+[20:52:22] <awight>	 hehehe
+[20:53:29] <K4-713>	 I was mostly asking about the overlap between the batch emailer, and the old TY module.
+[20:53:44] <slander_>	 #926: (AW) TS:PCR|MtRtDo:(s -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/926
+[20:53:53] <K4-713>	 If there isn't a lot, and/or it's mostly contained in wmf_common, I'm cool with breaking it off.
+[20:54:16] <awight>	 K4-713: there's a ton of overlap; we'll want the translation infrastructure and so on.  Actually, my wmf_eoy_receipt stuff is supposed to replace basically everything in TY.
+[20:54:26] <awight>	 It's a massive refactor ;)
+[20:54:29] <K4-713>	 replace?
+[20:54:34] <awight>	 sorry i came back from vacay so early :p
+[20:54:51] <awight>	 K4-713: yeah the TY module is not reusable
+[20:54:58] <awight>	 so i factored everything into functional groups
+[20:55:15] * K4-713  starts looking vaguely uncomfortable
+[20:55:26] <awight>	 :-X
+[20:55:42] <awight>	 hey i didn't go to school, okay
+[20:56:04] <K4-713>	 :p
+[20:56:17] <K4-713>	 I just have a few... gaps in my understanding of what you're suggesting, I think.
+[20:56:30] <K4-713>	 You want to torpedo the TY module?
+[20:56:37] <awight>	 All I'm saying is, I wrote this code intending to.. yes torpedo
+[20:57:01] <K4-713>	 And, in its reincarnated form, we could run it to do one-offs just like we do today?
+[20:57:03] <awight>	 and leave just the stuff specific to TY
+[20:57:17] <awight>	 something like that--- wait i did not realize we are using TY to do one-offs
+[20:57:26] <K4-713>	 Constantly.
+[20:57:31] <awight>	 wow
+[20:57:36] <K4-713>	 For... you know: Everything.
+[20:57:36] <awight>	 that is horrible
+[20:57:47] <K4-713>	 How did you think we were using it?
+[20:57:58] <awight>	 well let me not rock this sinking boat :p
+[20:58:06] <awight>	 I thought it was just for TYs
+[20:58:31] <K4-713>	 Oh. Okay, no, language collision. We are using it for every single one-off Thank You email that goes out. Is what I meant.
+[20:58:31] <awight>	 can you give an example of a one-off?
+[20:58:38] <awight>	 oh oh oh
+[20:59:05] <awight>	 ok so I'm saying, let's tear out everything that... sends mail and does translation
+[20:59:08] <awight>	 ;)
+[20:59:32] <K4-713>	 Are you basically thinking of doing to the TY module what we did yo q2c to get wmf_common's initial commits?
+[20:59:33] * awight  could use that hardhat now
+[20:59:40] <awight>	 yep
+[20:59:45] <awight>	 except, i already did it...
+[20:59:55] <K4-713>	 Rad.
+[20:59:55] <K4-713>	 I'm on board.
+[20:59:57] <K4-713>	 Just needed to make sure.
+[21:00:03] <awight>	 wmf_eoy_receipt is basically functionally identical.  I would just have to port recent work
+[21:00:15] <awight>	 and write an interface
+[21:00:20] <K4-713>	 groovy.
+[21:00:29] <awight>	 *gulp*
+[21:02:09] <K4-713>	 whym: Paypal rep just got back to me saying he has no idea what's happening to you, and that he's not aware of any policy changes. Could you send me the email address you used so we can track this down? If you don't want to leave it laying around in IRC, just send it to me at khorn@wikimedia.org.
+[21:03:09] <awight>	 mwalker: since u've been in TY a lot lately, any beef with my plan above?
+[21:04:37] <mwalker>	 awight: nope; you placing the functionality in like a thank_you_common extension or somethign?
+[21:04:52] <awight>	 err, yes in a wmf_email module maybe
+[21:05:58] <mwalker>	 cool
+[21:07:42] <whym>	 K4-713: emailed
+[21:09:15] <K4-713>	 whym: Got it! Thanks.
+[21:20:37] <mwalker>	 whym: "the person was not able to make a donation not because PayPal doesn’t allow donations from Japan but because the payment was declined for a compliance violation. I would recommend having the user contact PayPal to try and resolve their issue."
+[21:20:42] <mwalker>	 I have no idea what that means
+[21:20:48] <mwalker>	 but... that's the response we got
+[21:26:43] <whym>	 mwalker: At least, it sounds like a user-specific thing of mine (and some more people's I know)
+[21:27:04] <whym>	 I'll contact them directly later
+[21:27:25] <mwalker>	 maybe :) we're following up on our side to with a request for more information about what exactly a "compliance violation" is
+[21:27:46] <mwalker>	 but; let us know what they say on your end please :)
+[21:30:07] <whym>	 ok, I'll do when I get a reply from them
+[21:30:35] <awight>	 mwalker: $language-$country eeeeerrrrgh are you planning locale any time soon?
+[21:30:44] <slander_>	 #908: (MW) https://gerrit.wikimedia.org/r/72635 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/908
+[21:30:44] <slander_>	 #908: (MW) Also; following up with GlobalCollect to figure... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/908
+[21:30:56] <mwalker>	 awight: in centralnotice/thankyou?
+[21:31:16] <awight>	 ty
+[21:31:35] <awight>	 You know if this was added for pt-br, or because of country-specific legal things?
+[23:09:46] <awight>	 mwalker: what version of Twig are u targeting?
+[23:11:19] <mwalker>	 1.13.0 apparently
+[23:11:19] <mwalker>	 https://git.wikimedia.org/log/wikimedia%2Ffundraising%2Ftwig/refs%2Fheads%2Fmaster
+[23:12:16] <awight>	 thx
+[23:13:24] <mwalker>	 oh noes! with less than an hour to go today; we have 80,366.48$ in the bank
+[23:13:48] <jvandavier>	 K4-713: i've got another GC one, when you have a sec
+[23:14:45] <K4-713>	 jvandavier: Oh Good.
+[23:14:47] <K4-713>	 What's up?
+[23:14:47] <jvandavier>	 basically, an error code i have never seen
+[23:14:49] <jvandavier>	 5239398908
+[23:15:05] <jvandavier>	 AVS = S
+[23:15:18] <K4-713>	 ...huh.
+[23:15:35] <K4-713>	 You have the map over there? I have it pinned to my wall...
+[23:15:48] <jvandavier>	 no, can i steal yours make a copy
+[23:29:34] <K4-713>	 "The Minister of Supply is in receipt of your order"
+[23:29:37] <K4-713>	 ...scary.
+[23:30:00] <K4-713>	 I just wanted some tea!
+[23:30:03] * K4-713  hides
+[23:54:44] <slander_>	 #987: (MW) O:MW|TS:B|P:NtH|T:TT Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/987
+[23:55:44] <slander_>	 #987: (MW) ->Sprint 28 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/987
+[23:55:44] <slander_>	 #987: (MW) TS:DR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/987
+[23:55:44] <slander_>	 #987: (MW) AT:MW|TS:ID -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/987
+[23:56:44] <slander_>	 #987: (MW) https://gerrit.wikimedia.org/r/72661 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/987
+[23:56:44] <slander_>	 #987: (MW) TS:PCR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/987

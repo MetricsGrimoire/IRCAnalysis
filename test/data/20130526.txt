@@ -1,0 +1,5 @@
+[11:00:53] <Jeff_Green>	 mwalker: payments listener host is up, want to talk about config?
+[11:01:01] <mwalker>	 sure!
+[11:01:06] <mwalker>	 where are you?
+[11:01:34] <Jeff_Green>	 in the ops ghetto, shall I come to you?
+[11:01:47] <Jeff_Green>	 or you can come here?

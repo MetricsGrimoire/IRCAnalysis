@@ -1,0 +1,22 @@
+[01:00:16] <slander>	 #994: (AW) O:AW|TS:B|P:SH|T:TT -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/994
+[01:16:15] <slander>	 #995: (AW) O:AW|TS:B|P:SH|T:TD Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/995
+[15:56:20] <liangent>	 hello PPena
+[19:43:26] <liangent>	 hi PPena again
+[20:03:57] <PPena>	 liangent hi
+[20:04:10] <PPena>	 liangent sorry, im on calls the entire day today :)
+[20:06:06] <liangent>	 PPena: so idle now?
+[20:06:50] <PPena>	 liangent no, I'm on a call right now. would you like to email? Or you can message here and I will answer ASAP :)
+[20:07:54] <liangent>	 just don't bother to record the screen somehow
+[20:08:14] <liangent>	 I'm guessing something like skype screen sharing may easier
+[20:08:15] <liangent>	 *may be easier
+[20:08:24] <liangent>	 and see my second mail
+[21:37:39] <awight>	 K4-713: the thing you promised https://gerrit.wikimedia.org/r/#/c/74793/
+[23:19:15] <slander>	 #996: (AW) O:AW|TS:B|P:SH|T:TD Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/996
+[23:48:49] <slander>	 #998: (AW) Tech Task #998 Spike: standarize donor language data format: O:AW|Tech Task #998 Spike: standarize donor language data format: TS:B|Tech Task #998 Spike: standarize donor language data format: P:SH... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/998
+[23:55:26] <slander>	 #999: (AW) Tech Task #999 Generalized mailing jobs: O:AW|TS:B|P:SH|T:TT Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/999
+[23:55:26] <slander>	 #999: (AW) ->Sprint 28 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/999
+[23:56:26] <slander>	 #999: (AW) TS:DR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/999
+[23:56:26] <slander>	 #999: (AW) AT:AW|TS:ID -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/999
+[23:56:26] <slander>	 #999: (AW) TS:PCR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/999
+[23:56:26] <slander>	 #999: (AW) TS:PD -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/999
+[23:57:26] <slander>	 #986: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/986

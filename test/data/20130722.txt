@@ -1,0 +1,101 @@
+[18:02:18] <slander_>	 #996: (AW) N:S Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/996
+[18:19:18] <slander_>	 #940: (AW) B:(s -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/940
+[19:03:27] <slander_>	 #966: (AW) I think we are deciding to forgo the extra secu... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/966
+[19:04:18] <slander_>	 #966: (AW) Probably not necessary AT:AW|B:B -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/966
+[19:08:18] <slander_>	 #889: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/889
+[19:10:18] <slander_>	 #908: (AW) TS:PD -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/908
+[19:13:18] <slander_>	 #940: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/940
+[19:39:19] <slander_>	 #940: (AW) TS:PCR|MtRtDo:(s -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/940
+[19:49:43] <YuviPanda>	 greetings, moneymakers.
+[19:50:27] <YuviPanda>	 our new gerrit bot will be spamming this channel shortly
+[19:50:48] <YuviPanda>	 (as per https://gerrit.wikimedia.org/r/#/c/64012/3)
+[19:50:53] <awight>	 YuviPanda: awesome, thanks for writing that!
+[19:51:12] <YuviPanda>	 that patchset is marktraceur's, but that's going to be abandoned shortly. moment
+[19:51:17] <awight>	 Can't wait to ask the new bot rude questions
+[19:51:18] <slander_>	 #993: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/993
+[19:52:03] <YuviPanda>	 awight: sadly it doesn't respond yet.
+[19:52:19] <awight>	 lolrrit: whence bug? whither comments...
+[19:52:20] <YuviPanda>	 I indend on making it respond in a witty way to any message containing 'gerrit sucks'
+[19:52:27] <awight>	 eeexcellent
+[19:52:49] <YuviPanda>	 it's also all javascript, so go wild if you feel like it
+[19:52:49] <awight>	 I'll have to lolcat-encode my daily complaints, in that case
+[19:53:21] <awight>	 hehe although PHP makes me a bit more prone to axe-swinging...
+[19:53:34] <YuviPanda>	 awight: ^
+[19:53:35] <awight>	 when i see .js, i just get relaxed all over ;)
+[19:53:56] <YuviPanda>	 https://github.com/yuvipanda/lolrrit-wm/commit/7c3b2345b05882199a493ca4b2e502022c21bc0e is the commit in question
+[19:54:15] <YuviPanda>	 awight: let me know if you want more channels added
+[19:54:28] <awight>	 this is rad.
+[19:55:33] <YuviPanda>	 indeed.
+[19:55:37] <YuviPanda>	 awight: let me know if you want more customizations
+[19:55:53] <awight>	 Is the redis feed format documented somewhere?
+[19:55:58] <YuviPanda>	 it is!
+[19:55:59] <YuviPanda>	 moment
+[19:56:35] <YuviPanda>	 awight: https://gerrit-documentation.googlecode.com/svn/Documentation/2.6/cmd-stream-events.html
+[19:56:38] <awight>	 YuviPanda: fwiw, if you ever need to do similar in python, feel free to cannibalize from slander_: help
+[19:56:38] <slander_>	 If I only had a brain: https://github.com/adamwight/slander -- Commands: help config kill last
+[19:56:39] <YuviPanda>	 exact same as that
+[19:56:54] <YuviPanda>	 awight: the redis feed 'feeder' (the producer side) is in python :)
+[19:57:26] <YuviPanda>	 awight: that redis feed is also available toe veryone, so let me know if you want access / have ideas for more tools
+[19:57:59] <YuviPanda>	 awight: I wrote it in js simply becaucse my other bot (GitHub PullRequest -> Gerrit sync) is already in python, and I wanted to try something else.
+[19:58:03] <awight>	 very good to know of its existence!
+[19:58:29] <YuviPanda>	 also if FR wants to use GitHub for any of their repos, let me know and I'll turn it on :)
+[19:58:32] <awight>	 YuviPanda: whoa, are you saying our github mirrors are r/w now?
+[19:58:37] <YuviPanda>	 awight: yes!
+[19:58:47] * awight  chokes on grilled cheese
+[19:58:50] <YuviPanda>	 the bot isn't fully stable so I've not announced it more broadly yet.
+[19:59:16] <YuviPanda>	 awight: but look at https://github.com/wikimedia/apps-android-commons/pulls?direction=desc&page=1&sort=created&state=closed
+[19:59:25] <YuviPanda>	 we've been using it exclusively for the last month or so now
+[19:59:35] <YuviPanda>	 awight: let me know if you want it turned on for any repos :)
+[19:59:56] <awight>	 definitely will!  Thanks for taking the time to write that
+[20:00:13] <YuviPanda>	 awight: :) yw
+[20:00:37] <YuviPanda>	 I'll definitely make that a lot more stable and push for wider acceptance, before wikimania
+[20:01:39] <awight>	 YuviPanda: So, I won't announce until you're ready, but I know of at least one other project which was sad about having to pick Github over Gerrit, and this would let them get the best/worst of both...
+[20:01:51] <awight>	 I'll keep my ears peeled for yr announcement.
+[20:01:55] <YuviPanda>	 awight: oh, I can gladly set them up
+[20:02:06] <YuviPanda>	 awight: I announced this on wikitech a month or two ago :P
+[20:02:15] <YuviPanda>	 awight: by 'announce' I just meant 'push people until they opt in'
+[20:02:28] <awight>	 I see ;)
+[20:02:28] <YuviPanda>	 it's fairly stable and can service other projects too, though it's currently built to run on toollabs.
+[20:02:33] <YuviPanda>	 but the only hard dependency is redis
+[20:02:39] <YuviPanda>	 awight: http://github.com/yuvipanda/SuchaBot
+[20:02:42] <YuviPanda>	 which project is this?
+[20:02:55] <awight>	 CiviCRM.org, I'm letting them know this moment ;)
+[20:03:41] <YuviPanda>	 sure!
+[20:03:56] <YuviPanda>	 documentation etc is sparse, but I'll *love* to set it up for them on their infrastructure.
+[20:04:57] <awight>	 If you're serious, I'll pass that offer along as well...
+[20:05:09] <YuviPanda>	 awight: I am, though not until the weekend
+[20:05:26] <YuviPanda>	 I can also pop into their IRC channel of choice to answer questions right now
+[20:05:36] <YuviPanda>	 since I'm only multitasking with some light-intensity editing work now
+[20:07:58] <YuviPanda>	 awight: can you also test grrrit-wm by doing something in the appropriate repos?
+[20:11:42] <awight>	 YuviPanda: cool, I CC'd you in an email to the CiviCRM core team.
+[20:11:47] <YuviPanda>	 sweet!
+[20:11:53] <awight>	 Yep, prodding repos right now...
+[20:12:41] <YuviPanda>	 this is all part of an effort to make sure that I'm not pigeonholed as the 'that android programmer'. Never want to be one dimensional :)
+[20:16:18] <grrrit-wm>	 (PS4) Adamw: (FR #986) mailing job to apologize for May 2013 PayPal recurring fail. [wikimedia/fundraising/crm] - https://gerrit.wikimedia.org/r/74573
+[20:16:28] <awight>	 I think it works ;)
+[20:16:32] <YuviPanda>	 :)
+[20:16:35] <awight>	 looks good, too
+[20:16:39] <YuviPanda>	 yeah\
+[20:16:48] <YuviPanda>	 if someone else CRs your patch, it'll ping *both* of you
+[20:16:53] <YuviPanda>	 which I think is very useful
+[20:16:57] <awight>	 whaat that's great
+[20:17:10] <YuviPanda>	 also when someone else updates your patchset
+[20:17:19] <awight>	 "Hey check out this bot written by that android guy" ;)
+[20:17:20] <YuviPanda>	 of course, it uses gerrit names, not IRC names, but not much I can do about that
+[20:19:18] <slander_>	 #889: (AW) TS:DR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/889
+[20:20:18] <slander_>	 #889: (AW) AT:AW|O:AW|TS:ID -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/889
+[20:35:51] <grrrit-wm>	 (PS5) Adamw: (FR #986) mailing job to apologize for May 2013 PayPal recurring fail. [wikimedia/fundraising/crm] - https://gerrit.wikimedia.org/r/74573
+[20:39:19] <slander_>	 #997: (AW) ->Sprint 28 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/997
+[20:39:19] <slander_>	 #997: (AW) TS:DR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/997
+[20:39:19] <slander_>	 #997: (AW) AT:AW|TS:ID -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/997
+[20:58:18] <slander_>	 #997: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/997
+[21:59:00] <grrrit-wm>	 (PS1) Mwalker: Adding Script to check what is in the Cache [wikimedia/fundraising/tools] - https://gerrit.wikimedia.org/r/75256
+[22:26:18] <slander_>	 #996: (AW) ->Sprint 28 -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/996
+[22:26:18] <slander_>	 #996: (AW) TS:DR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/996
+[22:26:18] <slander_>	 #996: (AW) AT:AW|TS:ID -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/996
+[22:26:18] <slander_>	 #996: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/996
+[22:49:18] <slander_>	 #997: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/997
+[23:17:49] <grrrit-wm>	 (CR) Katie Horn: [C: 2 V: 2] "(1 comment)" [wikimedia/fundraising/crm] - https://gerrit.wikimedia.org/r/74793 (owner: Adamw)
+[23:17:50] <grrrit-wm>	 (Merged) Katie Horn: Special case utm_campaign -> direct_mail_appeal [wikimedia/fundraising/crm] - https://gerrit.wikimedia.org/r/74793 (owner: Adamw)
+[23:20:36] <grrrit-wm>	 (CR) Adamw: "(1 comment)" [wikimedia/fundraising/crm] - https://gerrit.wikimedia.org/r/74793 (owner: Adamw)
+[23:23:48] <grrrit-wm>	 (CR) Katie Horn: "(1 comment)" [wikimedia/fundraising/crm] - https://gerrit.wikimedia.org/r/74793 (owner: Adamw)

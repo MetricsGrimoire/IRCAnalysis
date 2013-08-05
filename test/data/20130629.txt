@@ -1,0 +1,7 @@
+[00:00:01] <mwalker>	 jvandavier: ^
+[00:00:16] <jvandavier>	 perfect timing
+[18:31:07] <PiRSquared>	 https://meta.wikimedia.org/w/index.php?title=Special:UncategorizedPages&limit=500&offset=0
+[18:31:15] <PiRSquared>	 Would it bother anyone if I were to clean these up?
+[18:37:58] <PiRSquared>	 Does silence mean "nobody cares about old fundraising pages"?
+[18:39:08] <PiRSquared>	 meh, I'll just do it anyway
+[18:39:29] <marktraceur>	 ...I think silence means "It's Saturday, why is anyone awake?"

@@ -1,0 +1,6 @@
+[00:22:04] <marktraceur>	 K4-7131: Oi oi oi, you should do karaoke tomorrow with the usual suspects
+[01:10:31] <K4-7131>	 marktraceur: Tomorrow?
+[01:10:40] <K4-7131>	 when/where?
+[01:11:13] <marktraceur>	 Pandora of course
+[01:11:27] <marktraceur>	 20:00 is when it starts, we enjoy getting in early to get in unencumbered singing
+[16:25:47] * marktraceur  waves from 3, where he will be guiding InezK through Parsoid stuff and reviewing UploadWizard code

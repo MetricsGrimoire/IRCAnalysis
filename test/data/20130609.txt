@@ -1,0 +1,6 @@
+[20:28:16] <Nemo_bis>	 https://bugzilla.wikimedia.org/show_bug.cgi?id=20079#c7
+[20:28:41] <Nemo_bis>	 hopping pgehres
+[20:29:09] <pgehres>	 heh, oops
+[20:29:25] <pgehres>	 VPNs really mess with nicksrv
+[20:29:55] <pgehres>	 although it really only shows in channels with no activity :-)
+[20:35:00] <Nemo_bis>	 ;)

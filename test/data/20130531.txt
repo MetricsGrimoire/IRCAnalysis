@@ -1,0 +1,14 @@
+[00:00:05] <marktraceur>	 mwalker: If you die in RL, you die in RL!
+[00:00:28] <Jeff_Green>	 no way, you really misunderstood honest and for true
+[00:00:49] <Jeff_Green>	 ok child is yelling at me from the top of the stairs for story time. going for really real now. bye!
+[00:01:21] <marktraceur>	 mwalker: I'm apparently still not in the proper groups to merge the core patch
+[00:01:30] <mwalker>	 ah -- one moment
+[00:02:26] <mwalker>	 now you are
+[00:02:31] <mwalker>	 officially part of the fundraising git group
+[00:02:34] <mwalker>	 who
+[00:02:37] <mwalker>	 *whoo
+[00:02:59] <marktraceur>	 Yaaay
+[00:10:41] <mwalker>	 !log Updating payments deploy from dce20cbeb501a9945d97b2e64c59dbb4dd0a9620 to cf2d1639a9a8b2854d5302db2aba86199b4e4101 for RTBT attempted fix
+[00:10:50] <morebots>	 Logged the message, Master
+[18:09:26] <marktraceur>	 K4-713: So I'm very close to giving up on the dream of covering much of DonationInterface with unit testing, because it's not really written in a way that lends itself to testing. I think a better bet would be browser tests, i.e. Selenium, because then we can make sure it's all working without having to rewrite big swaths of the codebase.
+[22:16:48] <sahar>	 Enjoy the weekend everyone

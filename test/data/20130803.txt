@@ -1,0 +1,21 @@
+[00:00:31] <slander>	 #838: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/838
+[00:00:31] <slander>	 #839: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/839
+[00:00:31] <slander>	 #839: (MW) P-M:MH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/839
+[00:00:31] <slander>	 #846: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/846
+[00:00:31] <slander>	 #841: (MW) P-M:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/841
+[00:00:32] <slander>	 #846: (K) Doesn't this work now? -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/846
+[00:00:32] <slander>	 #842: (MW) P-M:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/842
+[00:01:32] <slander>	 #843: (MW) P-M:SL -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/843
+[00:01:32] <slander>	 #848: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/848
+[00:01:32] <slander>	 #844: (MW) P-M:NtH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/844
+[00:01:32] <slander>	 #849: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/849
+[00:01:32] <slander>	 #846: (MW) P-M:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/846
+[00:01:32] <slander>	 #846: (MW) We already have this -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/846
+[00:01:32] <slander>	 #848: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/848
+[00:01:33] <slander>	 #852: (K) Duplicate card. Search better next time. -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/852
+[00:02:32] <slander>	 #852: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/852
+[00:02:32] <slander>	 #852: (MW) P-M:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/852
+[00:02:32] <slander>	 #853: (MW) Intelligent thank you form... we have a card so... -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/853
+[00:02:32] <slander>	 #853: (MW) P-M:WNH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/853
+[00:03:01] <grrrit-wm>	 (CR) MarkTraceur: [C: 1] "Seems fine, but haven't run the tests - does the ctid not get loaded, or is it just unknowable at this stage?" [wikimedia/fundraising/crm] - https://gerrit.wikimedia.org/r/73545 (owner: Adamw)
+[00:03:32] <slander>	 #853: (K) P-K:SH -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/853

@@ -1,0 +1,30 @@
+[00:15:26] <mwalker>	 K4-713: want to do another quick bit of CR? https://gerrit.wikimedia.org/r/#/c/67375/
+[00:18:29] <K4-713>	 heh. Maybe? I'm sort of in a place of extreme inefficiency right now.
+[00:20:19] <K4-713>	 done
+[00:22:42] <mwalker>	 thanks :)
+[00:58:53] <K4-713>	 mwalker: I think I'm taking off now.
+[00:59:11] <K4-713>	 Need anything?
+[17:00:26] <mwalker>	 DarTar: k4 said you might be looking for me?
+[17:00:36] <DarTar>	 hey
+[17:00:51] <DarTar>	 yes, are you around in the office sometime today?
+[17:01:01] <mwalker>	 yep; I'll be in this afternoon
+[17:01:15] <DarTar>	 I wanted to chat about two things: CN docs + the Mortar data thing
+[17:01:34] <mwalker>	 mortar data?
+[17:01:45] <DarTar>	 did I copy you on my mail to sack?
+[17:01:50] <DarTar>	 on open source recommender systems
+[17:01:57] <DarTar>	 s/sack/zack
+[17:02:10] <DarTar>	 this spellchecker on mac os is really killing me
+[17:02:54] <mwalker>	 oh yes
+[17:02:56] <mwalker>	 that thingy
+[17:03:41] <mwalker>	 I havent yet gotten through all my email this morning so I dont know if Zack responded; but I'm not sure what a 'recommendations algorithm' company can offer us...
+[17:03:50] <mwalker>	 maybe data sanitization
+[17:03:53] <mwalker>	 but... *shrugs*
+[17:16:07] <DarTar>	 ok mwalker ping me later when you're around
+[17:16:32] <mwalker>	 kk
+[21:56:53] <mwalker>	 K4-713: want to review a single line of code?
+[21:57:01] <mwalker>	 https://gerrit.wikimedia.org/r/#/c/67518/
+[21:58:56] <K4-713>	 done.
+[21:59:24] <mwalker>	 yay!
+[21:59:43] <mwalker>	 ok; I know it's friday; but I'll be here for another 4 hours and this system isn't in production anyway
+[21:59:44] <mwalker>	 so...
+[21:59:46] <mwalker>	 deploying!

@@ -1,0 +1,25 @@
+[18:10:25] <kaldari>	 mwalker: I'm confused, how do I create a CentralNotice banner now. There don't seem to be any tabs at Special:CentralNotice.
+[18:12:01] <mwalker>	 kaldari: look on the top
+[18:12:59] <kaldari>	 LOL, it took me 10 seconds to see it :)
+[18:13:18] <kaldari>	 need to untrain my brain :)
+[18:13:39] <kaldari>	 very nice
+[18:14:20] <mwalker>	 there is some debate over if it is a good change to have moved them -- I'm following in the footsteps of translate on it -- but... merp
+[18:14:37] <kaldari>	 I like it
+[18:14:51] <kaldari>	 I'm not sure I'm a fan of the new iframe system though
+[18:15:09] <kaldari>	 makes the pages load like molasses :(
+[18:20:03] <mwalker>	 agreed -- adam and I have some thoughts on how to make them better -- but having them encapsulated solves a lot of problems
+[22:13:50] <Nemo_bis>	 mwalker: do you know if someone tested the banners fallbacks for Chinese and so on now that the patch for 1495 got merged?
+[22:16:14] <mwalker>	 oh wow -- it did
+[22:16:40] <mwalker>	 um -- ish -- it should be working for onwiki messages -- but not necessarily for system messages from CDB cache
+[22:24:35] <mwalker>	 Nemo_bis: are you having issues with it?
+[22:27:42] <mwalker>	 I guess I should also say that, no; we didn't test the ZH fallbacks specifically -- but we should be falling back onwiki in the order specified at http://www.mediawiki.org/wiki/Localisation_statistics
+[22:35:31] <Nemo_bis>	 no, I don't have issues with it :)
+[22:35:38] <Nemo_bis>	 usually Chinese and German users complain about it
+[22:40:12] <mwalker>	 kk -- the test cases are actually written for some variant of russian -- but we should still be good
+[22:40:41] <mwalker>	 I dont know what nikerabbit/the i18n teams plan is for supporting decent fallbacks in the CDB integrated flow is though
+[22:41:26] <mwalker>	 but at least with regards to CN we should be in a much better spot
+[22:41:57] <Nemo_bis>	 I don't think they have any plans
+[22:42:34] <Nemo_bis>	 Or perhaps I don't get what you mean, grand plans about fallbacks or "just" bug 1495?
+[22:44:32] <mwalker>	 so the patch that Tyler got committed only affects messages that exist purely in MW -- we cannot yet handle a message that someone has customized
+[22:45:19] <mwalker>	 which is more of an edge case anyways
+[22:48:41] <Nemo_bis>	 Oh, true. An edge case sooo many hacks rely on :)

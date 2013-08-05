@@ -1,0 +1,7 @@
+[14:06:01] <Nemo_bis>	 does that special page actually work? http://stats.grok.se/meta.m/latest90/Special:HideBanners
+[16:26:04] * marktraceur  WFHs in preparation for the trip
+[18:30:28] <mwalker>	 !log restarted jenkins for rekeying of jobs dir; then updated non auth plugs
+[18:30:37] <morebots>	 Logged the message, Master
+[18:30:57] <mwalker>	 !log (previous log referring to fundraising jenkins!) now upgrading fundraising jenkins for auth plugins
+[18:31:05] <morebots>	 Logged the message, Master
+[18:42:50] <slander>	 #973: (AW) AT:AW|TS:ID -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/973

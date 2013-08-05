@@ -1,0 +1,5 @@
+[17:51:23] <jeremyb>	 you guys really need to test on monobook :(
+[17:52:58] <jeremyb>	 https://en.wikipedia.org/wiki/Main_Page?banner=B13_form_form_dr_en&useskin=monobook
+[17:53:08] <jeremyb>	 had to delete some cookies to get it to show up again
+[17:53:29] <jeremyb>	 you should probably test to see if it's been triggered by banner= in the URL and then show it every time
+[18:12:44] <Nemo_bis>	 uh? there are banners for logged in people now?

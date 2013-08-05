@@ -1,0 +1,182 @@
+[00:22:44] <slander_>	 #988: (AW) O:AW|TS:B|P:MH|T:TD -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/988
+[00:24:44] <slander_>	 #986: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/986
+[00:50:04] <mwalker>	 marktraceur: does DI even have unit tests enabled on merge?
+[15:58:58] * marktraceur  waves from home
+[15:59:10] <marktraceur>	 I was coughing up both lungs yesterday but I haven't any meetings today, so home
+[15:59:29] * K4-713  waves at marktraceur
+[15:59:40] <K4-713>	 That sounds unpleasant
+[15:59:47] <marktraceur>	 It is!
+[15:59:51] <K4-713>	 :(
+[15:59:56] <marktraceur>	 I'll be all right
+[16:00:07] <marktraceur>	 At least I'm not writhing and trying to sleep still.
+[16:00:15] <K4-713>	 Well, you know: Fluids.
+[16:00:26] <marktraceur>	 *nod*
+[16:00:26] <K4-713>	 I *had* to suggest something.
+[16:00:31] <K4-713>	 :p
+[16:00:51] <marktraceur>	 I'll get some oobleck or summat
+[16:00:56] <K4-713>	 Hey Jeff_Green: Can we talk Maintenance Day?
+[16:01:31] <K4-713>	 marktraceur: Whiskey is a fluid. Just sayin'.
+[16:01:45] <Jeff_Green>	 K4-713: sure
+[16:02:54] <marktraceur>	 K4-713: Aye but I think YuviPanda would be mad at me if I got drunk at 09:00 and rejected his patch with a simple "I'm sorry, this code was written by a doody-head"
+[16:03:15] <marktraceur>	 This is only a hypothesis.
+[16:03:23] <K4-713>	 bahaha
+[16:03:28] <K4-713>	 Jeff_Green: So, next week?
+[16:04:03] <Jeff_Green>	 K4-713: I can do mon-weds
+[16:04:07] <Jeff_Green>	 thursday is jury duty
+[16:04:11] <K4-713>	 Unless you really want to go tomorrow, they're eyeballing the slow dropoff in donations, and it hasn't evened out yet. So, they want more time for the eyeballing.
+[16:04:13] <Jeff_Green>	 friday is unknown
+[16:04:26] <Jeff_Green>	 K4-713: next week is good
+[16:04:51] <K4-713>	 Cool. How about we say next Wednesday?
+[16:05:29] <Jeff_Green>	 how about tuesday? that gives us a day to discover/unbreak sneaky things before jury duty
+[16:05:53] <K4-713>	 Yeah, good idea.
+[16:06:04] <K4-713>	 I'll get Tuesday, then.
+[16:06:08] <Jeff_Green>	 ok cool
+[16:06:37] <K4-713>	 Any idea what time you'll be starting in? I want to make sure they account for the long tail.
+[16:07:12] <Jeff_Green>	 on cutover? i guess that depends how closely you think you guys want to watch things
+[16:07:37] <Jeff_Green>	 I can now do it as a DNS flip but there will be a window of slop
+[16:07:52] <K4-713>	 Sure, makes sense.
+[16:07:54] <Jeff_Green>	 so I guess I should write-lock db1008 at the same time to prevent accidental writes there
+[16:09:38] <K4-713>	 I guess I'd like to be online and monitoring when you start... so I'm probably going to suggest 10am PST, but can be talked in to just about anything.
+[16:09:56] <Jeff_Green>	 10A sounds good
+[16:10:29] <Jeff_Green>	 since we have 3 db's I see the cutover as going sorta like:
+[16:10:47] <Jeff_Green>	 - stop writes as best as possible by crazy magic
+[16:11:00] <Jeff_Green>	 - write-lock db1008
+[16:11:09] <Jeff_Green>	 - change master to db1025 and test replication
+[16:11:12] <Jeff_Green>	 - switch DNS alias
+[16:11:21] <Jeff_Green>	 - switch on writes by undoing crazy magic
+[16:11:34] <Jeff_Green>	 and then I can work on db1008 without disrupting fundraising foo
+[16:11:50] <K4-713>	 We... do have a maintenance mode for payments. But, last time we tried it, we only had limited success. I should try to dust that thing off and figure out what didn't quite work before.
+[16:12:55] <Jeff_Green>	 k
+[16:13:19] <K4-713>	 So, my bit would be put payments and civi into maintenance mode. Trying to think of anything else that would write to 1008...
+[16:13:42] <Jeff_Green>	 stats-related cron/jenkins jobs i guess
+[16:13:55] <K4-713>	 Hm. Stats.
+[16:14:05] <K4-713>	 mwalker: Hi.
+[16:14:11] <Jeff_Green>	 let's start a wiki cutover doc
+[16:14:21] <mwalker>	 morning K4-713
+[16:14:27] <mwalker>	 the-wub: *waves*
+[16:14:37] <K4-713>	 Jeff_Green: sounds good.
+[16:14:45] <K4-713>	 Should be pretty prepared by Tuesday. :)
+[16:14:52] <the-wub>	 hi mwalker. want to talk about emails soon?
+[16:15:08] <K4-713>	 Hey, I got him first. :p
+[16:15:10] <Jeff_Green>	 K4-713: officewiki you think?
+[16:15:16] <K4-713>	 Nah, collab.
+[16:15:49] <Jeff_Green>	 wooo I have auth there, that's pretty exciting
+[16:15:59] <K4-713>	 There's a long-winded explanation of where everything lives now, in the Fundraising Engineering category on... ah, all the wikis. Aside from tech, where it's just the Fundraising category.
+[16:16:41] <mwalker>	 the-wub: yep yep -- I checked the basic SQL script into the wikimedia/fundraising/tools git repo
+[16:17:21] <mwalker>	 so grab that and place it somewhere useful to you
+[16:17:45] <K4-713>	 Jeff_Green: Basically, collab is the preferred location for data in that weird sensitive category where we don't want to air it out to the world, but it's still okay to be on a wiki at all, and wikitech is the preferred place where all the publicly interesting and not-sensitive or us-centric stuff goes.
+[16:17:53] <mwalker>	 the-wub: either via git or https://git.wikimedia.org/raw/wikimedia%2Ffundraising%2Ftools/c07483fdf46637ffe2b87e4e0146778ff6f2da78/silverpop_export.sql directly
+[16:18:15] <Jeff_Green>	 K4-713: cool
+[16:28:10] <mwalker>	 Jeff_Green: do you know why the-wub would be unable to create indexes in the mwalker database?
+[16:28:34] <Jeff_Green>	 there's a distinct mysql priv for that, which I probably didn't grant him
+[16:28:36] <Jeff_Green>	 looking
+[16:28:42] <mwalker>	 yep... "ERROR 1142 (42000): INDEX command denied to user 'pcoombe'@'208.80.154.6' for table 'silverpop_export'"
+[16:29:05] <Jeff_Green>	 yes
+[16:29:21] <Jeff_Green>	 mysql privs are granular in odd ways
+[16:31:58] <Jeff_Green>	 try now
+[16:32:53] <mwalker>	 the-wub: ^
+[16:33:12] <the-wub>	 it works now. thanks Jeff_Green :)
+[16:33:19] <Jeff_Green>	 the-wub: yw
+[16:35:31] <mwalker>	 K4-713: you were wanting to bug me about something?
+[16:35:46] <K4-713>	 Aye.
+[16:36:05] <K4-713>	 We've got a maintenance day next Tuesday, in which Jeff is going to switch out the db master.
+[16:36:43] <K4-713>	 We need to know what (if anything) we need to do other than put payments and civi in maintenance mode, to prevent attempted db writes during the cutover.
+[16:36:49] <K4-713>	 Mostly we were wondering about stats.
+[16:37:37] <K4-713>	 Oh, and: Do the listeners do any direct db manipulation, or is it all queue-based?
+[16:37:50] <mwalker>	 stats only reads right now
+[16:38:01] <mwalker>	 and we can just disable the job in jenkins
+[16:38:10] <K4-713>	 :)
+[16:38:14] <mwalker>	 the listeners are all queue based
+[16:38:45] <K4-713>	 This conversation makes me happy.
+[16:38:56] <K4-713>	 Is there anything else we need to examine?
+[16:39:00] <Jeff_Green>	 https://collab.wikimedia.org/wiki/Fundraising/Engineering/Notes/201307-fundraisingdb-master-cutover
+[16:39:06] <Jeff_Green>	 pls go crazy marking that up
+[16:39:25] <K4-713>	 And, yeah: Like I said, it's next Tuesday. So we've got some time.
+[16:40:19] <mwalker>	 hurm... peter's banner scripts I guess
+[16:40:25] <mwalker>	 not sure where those are configured
+[16:41:13] <K4-713>	 Hmmmmmm.
+[16:48:29] <K4-713>	 mwalker: Yeah, we should track that down before Tuesday, probably.
+[16:48:44] <mwalker>	 yep; wandering around now trying to find it
+[16:48:54] <K4-713>	 Not sure where they are, or where they store their db creds... thanks. :)
+[16:56:10] <mwalker>	 Jeff_Green: :'( pcoombe apparently does not have select on geodata -- can you give him that?
+[16:56:23] <Jeff_Green>	 hrmf. i thought everybody did...
+[16:56:25] <Jeff_Green>	 fixing.
+[16:56:26] <mwalker>	 *geonames
+[17:00:00] <K4-713>	 jvandavier: you wfh today?
+[17:00:33] <jvandavier>	 negative, will be in soon - something happened to the MUNI lines earlier, so trains stopped for a bit
+[17:18:56] <the-wub>	 Jeff_Green: any luck? still not working for me
+[17:19:12] <Jeff_Green>	 oh shite. i got sidetracked and totally spaced. sorry. fixing for real now
+[17:21:08] <Jeff_Green>	 huh. try again pls?
+[17:22:23] <the-wub>	 nope, still same problem
+[17:22:30] <the-wub>	 ERROR 1142 (42000): SELECT command denied to user 'pcoombe'@'208.80.154.6' for table 'geonames'
+[17:22:56] <Jeff_Green>	 what's the query?
+[17:25:08] <the-wub>	 http://pastebin.com/uHrwUSGK
+[17:25:35] <Jeff_Green>	 strange
+[17:25:39] <mwalker>	 so 8.1 completed?
+[17:25:44] <mwalker>	 but 8.2 is failing?
+[17:26:54] <Jeff_Green>	 the-wub: try again. apparently wildcarding both user+host doesn't work as expected so I granted your user specifically
+[17:27:15] <Jeff_Green>	 i haven't managed to find documentation for proper syntax
+[17:27:34] <the-wub>	 oh sorry mwalker, it was 8.1. pasted the wrong thing
+[17:27:47] <mwalker>	 ah; gotcha
+[17:27:51] <the-wub>	 but it's working now! thanks again Jeff_Green
+[17:27:57] <Jeff_Green>	 ok
+[17:28:12] <Jeff_Green>	 mwalker: I think I may finally know what was going wrong last week with db1025 vs your queries from hell
+[17:28:21] <mwalker>	 oh?
+[17:28:38] <Jeff_Green>	 I suspect your tables were being created as myisam b/c that's still the default table type for db1008
+[17:28:43] <Jeff_Green>	 and db1025 is totally de-tuned for myisam
+[17:30:33] <mwalker>	 ah... that would make sense... I'm not specifying an engine in these queries
+[17:41:36] <mwalker>	 ok -- I'm going to put on pants and walk in -- be there in 20
+[18:15:15] <K4-713>	 Build failure?
+[18:15:50] <mwalker>	 niiiice failure
+[18:15:58] <K4-713>	 dafuq...
+[18:16:22] <K4-713>	 So, I'm getting "Civi core went crazy".
+[18:16:27] <mwalker>	 it could have been a timeout
+[18:16:37] <mwalker>	 the-wub: and I are currently pulling from civicrm_contact
+[18:16:44] <mwalker>	 (or I am anyways)
+[18:16:51] <K4-713>	 oho
+[18:17:36] <mwalker>	 ya; totally it: Lock wait timeout exceeded; try restarting transaction&quot;)
+[18:18:42] <mwalker>	 ok; we're out of the table
+[18:18:45] <mwalker>	 should be back to nomrla
+[18:19:10] <K4-713>	 Just went back to normal, yes.
+[18:19:19] <K4-713>	 ...
+[18:19:27] <K4-713>	 What db were you on?
+[18:19:44] <mwalker>	 1008
+[18:19:57] <K4-713>	 Can you use 1025? :)
+[18:19:58] <mwalker>	 because we're pulling data into mwalker for export
+[18:20:04] <mwalker>	 sadly no :( it's not writeable
+[18:20:10] <K4-713>	 Ah, I See.
+[18:20:29] <K4-713>	 Well... shall I turn off qc while you're in there, then?
+[18:20:45] <K4-713>	 I have started the 5 minute login process.
+[18:21:03] * K4-713  makes rude gestures at Jenkins
+[18:22:35] <mwalker>	 nah; it's cool
+[18:22:46] <mwalker>	 that was the last long running query we needed to make off of a live DB
+[18:23:05] <K4-713>	 It finished completely?
+[18:23:21] <mwalker>	 from civicrm_contacts
+[18:23:26] <K4-713>	 Or, to put it another way, you didn't kill it?
+[18:23:29] <mwalker>	 nope
+[18:23:36] <K4-713>	 Okay, never mind, then. :)
+[20:05:31] <K4-713>	 http://www.theatlanticwire.com/entertainment/2013/07/giant-statue-wet-colin-firth-obviously-kind-creepy/66918/
+[20:06:56] <marktraceur>	 Oh hai morebots.
+[20:10:38] <K4-713>	 oho. I was wondering where he went.
+[20:10:47] <K4-713>	 But, ah... idly.
+[20:11:01] <K4-713>	 Not with intent to actually find out or do anything about it.
+[22:15:33] <mwalker>	 !log updating payments.wm.o from eee8689ab6466d51f9991c90f73004ad6c9d0b5b to 1c360e2cde650d1195f04aee294ddd3e0f5f9052
+[22:15:42] <morebots>	 Logged the message, Master
+[22:17:08] <mwalker>	 *twiddles thumbs for a donation or two*
+[22:18:12] <mwalker>	 excellent
+[22:18:15] <mwalker>	 looks like it worked
+[22:47:47] <mwalker>	 K4-713: can I get you to review https://gerrit.wikimedia.org/r/72855
+[22:47:58] <mwalker>	 it's a patch to contriubtion reporting for this years stats
+[22:57:22] <K4-713>	 mwalker: Contribution reporting isn't completely broken?
+[22:57:30] <mwalker>	 suprisingly no
+[22:57:35] <mwalker>	 it still is chugging along
+[22:57:46] <K4-713>	 ...huh. Well, okay then.
+[23:30:05] <mwalker>	 ah...
+[23:30:16] <mwalker>	 you know how you asked how contributionreporting was actually working?
+[23:30:21] <mwalker>	 turns out it isn't
+[23:30:25] <mwalker>	 it was pulling from db1025
+[23:30:34] <mwalker>	 which is now behind the frack firewall
+[23:30:35] <K4-713>	 Ah! The world realigns with my perceptions.
+[23:30:51] * K4-713  nods, looks slightly less confused. 
+[23:31:43] <mwalker>	 soooo
+[23:31:50] <mwalker>	 thoughts on statistics?

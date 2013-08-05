@@ -1,0 +1,156 @@
+[18:44:40] <jeremyb>	 should central notice even run at all for the print view?
+[18:45:17] <jeremyb>	 anyway, banner=B13_0701_txtform_FsionForm_dr_enYY messed up the print view for me (hiding text rather than displacing text)
+[18:47:20] <mwalker>	 jeremyb: that's somewhat interesting... I guess it's because the css marker we're using to reposition elements on the page doesn't exist in print view
+[18:47:26] <mwalker>	 can you file a but about it?
+[18:47:29] <mwalker>	 *bug
+[18:47:40] <mwalker>	 or actually... the-wub ping!
+[18:47:52] <the-wub>	 yeah, I can't see why you'd ever want it in printable view
+[18:48:32] <the-wub>	 should I just file a bug to hide centralnotice in printable view then? rather than trying to fix this case?
+[18:48:43] <mwalker>	 ya... I can add some default css into centralnotice that has the centralnotice div hide on media print?
+[18:48:54] <mwalker>	 (that shouldn't have been a question)
+[18:49:30] <the-wub>	 yeah that sounds best
+[18:49:53] <jeremyb>	 oh, btw, same banner has an issue on my phone even for the normal (from screen not print) view. the body is displaced too far so there's a huge gap (empty, white) between banner and body
+[18:50:13] <mwalker>	 0.o
+[18:50:22] <mwalker>	 how are you getting the banner on your phone?!
+[18:51:05] <jeremyb>	 well the first time was in print view! (on my phone) and then later was just me trying to replicate, etc.
+[18:52:14] <the-wub>	 https://bugzilla.wikimedia.org/show_bug.cgi?id=50820
+[19:00:24] <mwalker>	 ah; that makes sense actually -- because print view is probalby not displayed in the minerva skin
+[19:07:10] <jeremyb>	 where is minerva used? oh, mobile i guess
+[19:07:26] <jeremyb>	 but i wasn't on mobile. i was on desktop
+[19:07:31] <jeremyb>	 (on my phone)
+[19:08:20] <jeremyb>	 mwalker
+[19:09:57] <mwalker>	 interesting -- we shouldn't even be requesting content in that case
+[19:10:06] <mwalker>	 it should see the mobile redirect cookie and bail
+[19:10:25] <jeremyb>	 i don't get it
+[19:10:32] <jeremyb>	 why would there be a cookie?
+[19:11:24] <jeremyb>	 i was probably using the "request desktop site" feature but i'm not certain
+[19:11:39] <jeremyb>	 (i guess that implies UA spoofing)
+[19:13:35] <jeremyb>	 mwalker: go to https://en.wikipedia.org/wiki/Chemistry?banner=B13_0701_txtform_FsionForm_dr_enYY&printable=yes and clear your banner count cookie and refresh
+[19:13:46] <jeremyb>	 (in a normal, desktop browser)
+[19:14:04] <jeremyb>	 i mean centralnotice_bannercount_fr12
+[19:14:37] <jeremyb>	 ahhh, i think i know why the gap is so big... room for the legal disclaimer
+[19:14:50] <mwalker>	 so mobile users will normally get redirected to the mobile site; unless they have a cookie which tells varnish to not do that
+[19:14:57] <mwalker>	 (or if on your phone you're using UA spoofing)
+[19:15:17] <jeremyb>	 right, but that's not done by varnish, it's done by squid
+[19:15:31] <jeremyb>	 can't you make the gap smaller than then push the body down at the same time as sliding out the legal notice
+[19:15:34] <jeremyb>	 ?
+[19:15:37] <mwalker>	 really? I thought the entire mobile infrastructure was in varnish
+[19:15:52] <jeremyb>	 yes, mobile redirect is not part of mobile infrastructure
+[19:15:56] <mwalker>	 ar
+[19:16:03] <jeremyb>	 at least not as you used the term :)
+[19:16:08] <mwalker>	 in any case -- I see the overlap in my browser
+[19:16:10] <mwalker>	 but not a gap
+[19:16:29] <mwalker>	 can you take a screenshot?
+[19:16:46] <jeremyb>	 i just made a couple
+[19:17:04] <jeremyb>	 on Mozilla/5.0 (X11; Linux x86_64; rv:20.0) Gecko/20100101 Firefox/20.0 Iceweasel/20.0
+[19:19:46] <mwalker>	 link? or attach them to the BZ report?
+[19:19:59] <jeremyb>	 they're unrelated to print view
+[19:20:02] <jeremyb>	 http://imgur.com/FAiXpeu
+[19:20:10] <jeremyb>	 http://imgur.com/JQaRUQ5
+[19:21:33] <mwalker>	 ok
+[19:21:40] <mwalker>	 i get the same issue
+[19:21:43] <mwalker>	 in non print view
+[19:21:55] <jeremyb>	 right :)
+[19:21:55] <mwalker>	 *sigh*
+[19:22:14] <mwalker>	 K4-713: ... check out what our wonderful designers have managed to come up with now: https://en.wikipedia.org/wiki/Chemistry?banner=B13_0701_txtform_FsionForm_dr_enYY&reset=1
+[19:22:53] <jeremyb>	 note: a number of my banner complaints have been about the way they look on monobook. but this one i haven't tested on monobook at all yet
+[19:23:23] <K4-713>	 jeremyb: How are you even seeing banners with monobook?
+[19:23:34] <K4-713>	 We should only be running to logged-out.
+[19:23:35] <jeremyb>	 logged in?
+[19:24:14] <jeremyb>	 i'm not necessarily talking about recently. i complained about both great american wiknic and the board elections. iirc
+[19:24:21] <K4-713>	 As far as I know, we never plan on running to logged-in users again.
+[19:24:26] <mwalker>	 that's not monobook
+[19:24:31] <mwalker>	 that's logged out vector
+[19:24:43] <K4-713>	 mwalker: What isn't?
+[19:24:49] <K4-713>	 And, what am I supposed to be seeing?
+[19:24:56] <mwalker>	 oh sorry -- totally missed part of the conversation
+[19:25:00] <jeremyb>	 mwalker: huh? did you read what i said? :) i said i haven't tested mnobook yet
+[19:25:12] <jeremyb>	 monobook*
+[19:25:19] <mwalker>	 yep
+[19:25:34] <mwalker>	 missed that line :) and then thought k4 was referring to your screenshots
+[19:25:48] <jeremyb>	 05 19:20:02 < jeremyb> http://imgur.com/FAiXpeu
+[19:25:49] <jeremyb>	 05 19:20:10 < jeremyb> http://imgur.com/JQaRUQ5
+[19:25:52] <jeremyb>	 K4-713: ^
+[19:26:31] <K4-713>	 Whitespace?
+[19:26:43] <K4-713>	 Or, general uglyness?
+[19:26:45] <mwalker>	 yarp -- excessive whitespace
+[19:26:54] <mwalker>	 between the login/search bar and the banner
+[19:27:03] <mwalker>	 (which then gets taken up by the drop down legal text)
+[19:27:11] <jeremyb>	 05 19:15:31 < jeremyb> can't you make the gap smaller than then push the body down at the same time as sliding out the legal notice
+[19:27:25] <K4-713>	 Did you tell the-wub... oh. He's not here.
+[19:30:12] <jeremyb>	 in other news, http://www.nydailynews.com/new-york/car-chalk-town-article-1.1390593
+[19:30:38] <jeremyb>	 you could get someone to draw WM marks on the car??
+[19:31:25] <K4-713>	 mwalker: So, you got the same whitespace issue? I can't reproduce it in ubuntu. Did you talk OS in the backscroll somewhere that I missed?
+[19:31:53] <jeremyb>	 K4-713: debian wheezy, 05 19:17:04 < jeremyb> on Mozilla/5.0 (X11; Linux x86_64; rv:20.0) Gecko/20100101 Firefox/20.0 Iceweasel/20.0
+[19:31:58] <mwalker>	 jeremyb: hehe
+[19:31:59] <mwalker>	 K4-713: yes
+[19:32:13] <mwalker>	 and I get it in chrome on ubuntu
+[19:32:13] <mwalker>	 *chromium
+[19:32:23] <jeremyb>	 but i get it on chrome on my phone too. (where i first noticed it)
+[19:33:55] <K4-713>	 Just checked chrome and firefox. Still can't reproduce the problem here.
+[19:34:07] <K4-713>	 Anybody know where the-wub went?
+[19:35:22] <mwalker>	 iiinnnterresting
+[19:35:28] <mwalker>	 but no; no clue where he went
+[19:35:51] <K4-713>	 Great. So, according to the calendar, we're not running anything right now.
+[19:36:01] <K4-713>	 If that's accurate, it should wait for him.
+[19:37:26] <K4-713>	 Ah. Assuming the calendar is accurate in its weekend emptyness.
+[19:38:03] <mwalker>	 it lies
+[19:38:09] <mwalker>	 according to CN we are actually running things
+[19:38:36] * K4-713  headdesks
+[19:39:11] <jeremyb>	 soooooo, why are not all browsers behaving the same?
+[19:39:26] <jeremyb>	 tried clearing cookies or new profile or something?
+[19:40:39] <mwalker>	 I'm running Google Chrome 28.0.1500.45 (Official Build 205727)
+[19:41:01] <mwalker>	 and I don't run custom CSS/JS
+[19:42:21] <jeremyb>	 right, and i've seen it on 2 vastly different devices
+[19:42:33] <jeremyb>	 so it's something special about K4-713 not special about us
+[19:42:38] <K4-713>	 jeremyb: I'm not aware of a single instance in history in which all browsers behaved identically. :p
+[19:43:36] <K4-713>	 Pretty sure that cross-platform and browser testing should be part of production work, though, and it's pretty clear they're not doing it.
+[19:43:47] <K4-713>	 At least, not rigorously.
+[19:45:11] <jeremyb>	 idk if this would be too many false negatives but we could automate rendering on various platforms and diff them. then maybe they have different default fonts or some other issue to make them different
+[19:46:16] <K4-713>	 When was the last time you cleared your cache?
+[19:46:41] <jeremyb>	 i created a new iceweasel profile today
+[19:46:52] <K4-713>	 Nice. :)
+[19:48:17] <K4-713>	 Ah, I have to go get on a call for an hour.
+[19:50:49] <K4-713>	 Do you guys think this is a severe enough problem to disable the campaigns for?
+[19:51:26] <K4-713>	 Because I'd rather do that, than try to debug this thing in realtime.
+[19:51:36] <K4-713>	 It's not like this is December.
+[19:52:32] <jeremyb>	 i guess i wasn't thinking it was the end of the world becuase i first saw it yesterday and didn't even test on a real computer until about an hour ago
+[19:53:10] * jeremyb  thinks ya'll have thought about this stuff more than he has and so you can judge better
+[19:57:27] <K4-713>	 mwalker: I'm sort of thinking we should take it down, if two of three of us are getting the issue.
+[19:58:03] <K4-713>	 It'll be bad data anyway: We might as well be testing the crazy gap.
+[19:58:24] <mwalker>	 hah
+[19:58:26] <jeremyb>	 oh, i didn't realize it was just a test. then i agree bad data
+[19:58:32] <mwalker>	 maybe they ARE testing the gap :)
+[19:58:37] <K4-713>	 Well, everything is a test. :)
+[19:58:39] <jeremyb>	 hah
+[19:59:31] <jeremyb>	 maybe they're from london
+[19:59:56] <K4-713>	 Mind the gap!
+[19:59:58] <K4-713>	 :)
+[20:00:11] <K4-713>	 Turns out, we do mind the gap.
+[20:01:44] <jeremyb>	 hrmmm, no gap on B13_0701_txtform_CntrlNoform_dr_enYY (which I just got naturally) but also no legal notice
+[20:01:58] <jeremyb>	 ahh, legal notice doesn't show until after i click
+[20:03:55] <K4-713>	 That's a weird decision.
+[20:04:05] <K4-713>	 I'm... sure it was deliberate.
+[20:04:12] <jeremyb>	 http://en.wikipedia.org/wiki/Wikipedia:Today%27s_featured_article/July_1,_2013
+[20:36:10] <K4-713>	 woo, okay.
+[22:34:18] <mwalker>	 K4-713: are you a metaadmin?
+[22:39:29] <mwalker>	 hahahah! this is awesome: http://meta.wikimedia.org/wiki/Special:CentralNoticeBanners/edit/B13_070517_inart_topat
+[22:40:25] <K4-713>	 mwalker: I might be.
+[22:41:39] <mwalker>	 I think I can get brandon to do it
+[22:42:11] <K4-713>	 uh. For a second, can we pretend that I never use CentralNotice directly, and therefore don't know what's normal and what's abnormal?
+[22:42:42] <mwalker>	 scroll down for a bit -- note the transcluded "Request for Speedy Deletion" template in the form :)
+[22:42:55] <mwalker>	 as a checkbox label :P
+[22:43:25] <K4-713>	 Oh dear.
+[22:43:51] <K4-713>	 I also like the "Page edited ? minutes  ago by ." part in the template.
+[22:44:53] <mwalker>	 there we go
+[22:45:01] <mwalker>	 and the world is now restored to normalcy
+[22:49:44] <K4-713>	 mwalker: Just as a point of curiosity, what's with the preview?
+[22:50:08] <mwalker>	 we take a callback from the inline frame when it tells us it's finished rendering
+[22:50:15] <mwalker>	 but... our banner doesn't display till after that point
+[22:50:17] <mwalker>	 so...
+[22:50:18] <mwalker>	 ya
+[22:50:24] <mwalker>	 I need to write a new callback
+[22:50:26] <K4-713>	 It's loading and then collapsing down to the line for me.
+[22:50:38] <mwalker>	 yarp
+[22:50:58] <mwalker>	 it thinks the banners rendered size is 0px at the time of the callback
+[22:51:28] <K4-713>	 Ah, I see.

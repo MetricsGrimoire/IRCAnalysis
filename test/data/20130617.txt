@@ -1,0 +1,42 @@
+[16:21:33] * marktraceur  context-switches back into drupal
+[20:52:25] <sahar>	 Hello from Rochester! Hope your week is starting well, everyone.
+[22:14:01] <mwalker>	 K4-713: what's your backlog like? because it would be totally awesome if you reviewed the adyen stuff sitting in your queue
+[22:14:24] <K4-713>	 Funny you should ask. Wanna trade for a few minutes?
+[22:14:32] <K4-713>	 I'm writing the new code task.
+[22:14:45] <mwalker>	 sure
+[22:15:15] <K4-713>	 Okay then!
+[22:15:17] <K4-713>	 *whew*
+[22:15:32] <K4-713>	 Uh, let me just write a couple more stub lines and I'll send you the google doc.
+[22:15:53] <K4-713>	 Then I'll start whaling on gerrit.
+[22:16:09] * K4-713  looks around for the harpoon
+[22:17:33] * marktraceur  sails up parallel to the S.S. K4-713 with banners saying "SAVE THE PATCHSETS"
+[22:19:20] <mwalker>	 but... the patchoil
+[22:19:31] <mwalker>	 it's critical for indusutry!
+[22:19:36] <K4-713>	 So many lamps need it!
+[22:19:52] <K4-713>	 Also: Corsets. Or something.
+[22:19:58] * K4-713  coughs
+[22:20:18] <marktraceur>	 Core patchsets...coresets.
+[22:20:18] <K4-713>	 mwalker: So, the... task.
+[22:20:24] <K4-713>	 marktraceur: BAHAHA
+[22:20:31] <K4-713>	 That's going to stick forever.
+[22:20:55] <K4-713>	 mwalker: I was going for open-ended and... friendly, rather than scary and imposing.
+[22:21:01] <marktraceur>	 You could parse it as "co-resets" though. Must carefully disambiguate
+[22:21:24] <jvd|meeting>	 my eye was just drawn to corsets…and i've now spent an inappropriate amount of time wondering *how* that could be applicable in here
+[22:21:48] <K4-713>	 marktraceur: Is that like a reset, where two people need two different keys more than two meters apart that have to be turned simultaneously?
+[22:22:06] <K4-713>	 hi, jvandavier!
+[22:22:13] <K4-713>	 We're going into whaling.
+[22:22:22] <jvandavier>	 also, don't google 'computer corset'
+[22:22:28] <jvandavier>	 it gets weird…real fast
+[22:22:28] <K4-713>	 Dude.
+[22:23:59] <marktraceur>	 git reset --hard origin/master --require-signed-off-by # this could get inefficient really fast
+[22:44:53] <K4-713>	 Bahahaha: "ExpatriatedMessages"
+[22:45:15] <K4-713>	 How did I not see this before?
+[22:45:40] <mwalker>	 Iono
+[22:45:53] <mwalker>	 it was the best name I could come up with for the damn things
+[22:46:00] <K4-713>	 Monday morning amnesia, I think.
+[22:46:15] <K4-713>	 And, yeah: It totally makes sense, immediately.
+[22:53:25] <jvandavier>	 mwalker: they have a mobile app lol
+[22:54:22] <mwalker>	 I haven't tried it; you'll have to let me know
+[23:37:20] <mwalker>	 K4-713: I dont know; I might have made it too intimidating
+[23:38:09] <K4-713>	 I'll have a look.
+[23:38:17] <K4-713>	 Thanks for the input!

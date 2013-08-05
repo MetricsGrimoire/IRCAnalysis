@@ -1,0 +1,12 @@
+[07:15:49] <K4-713>	 mwalker: Do you have any sense of what's outstanding to be deployed in DonationInterfece right now?
+[07:16:22] <mwalker>	 no idea whatsoever -- there's a huge amount of marktraceur's test code
+[07:16:59] <K4-713>	 Yeah, it all looks legit.
+[07:17:10] <K4-713>	 Have you been doing something more slick than cherry-pick lately?
+[07:17:36] <K4-713>	 Or, was that being thwarted by the gitignore problem?
+[07:17:49] <mwalker>	 it was being thwarted by the best way of excluding files
+[07:18:13] <K4-713>	 ah, okay. So, I'm not going to screw anything up by doing it the hard way, right? ;)
+[07:19:14] <mwalker>	 nope
+[07:21:34] <mwalker>	 we can scheme about that though -- I think it's still better to excise evil files on checkout rather then check in -- but *merp*
+[07:21:54] * marktraceur  thinks his test code won't matter for production anyway
+[07:22:17] <marktraceur>	 There'll be some notices, as awight pointed out, but that's all
+[07:22:18] <mwalker>	 *shrugs*

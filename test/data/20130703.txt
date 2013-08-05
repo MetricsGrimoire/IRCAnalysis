@@ -1,0 +1,188 @@
+[00:00:14] <K4_the_Beige>	 It usually doesn't let people get away with no expiration date.
+[00:00:49] <K4_the_Beige>	 Maybe some strange combination of actions breaks their validation such that you can submit their stuff with no expiration date.
+[00:01:51] <jvandavier>	 hmm
+[00:04:43] <K4_the_Beige>	 mwalker: ...So, I'm looking at a ton of old, old, old forms.
+[00:04:48] <K4_the_Beige>	 And I want them to... go away.
+[00:05:15] <K4_the_Beige>	 But, it's big enough I'm wanting to run the disappearing act by you before I actually do it.
+[00:05:22] <mwalker>	 ok
+[00:05:38] <K4_the_Beige>	 I mean, you're probably going to do the CR anyway. But.
+[00:05:42] <mwalker>	 also; why are you beige?
+[00:06:12] <K4_the_Beige>	 I did a... wizard thing. But it was a pretty easy wizard thing.
+[00:06:44] <K4_the_Beige>	 So it couldn't be an impressive... um, anyway.
+[00:07:21] <K4_the_Beige>	 I want to disappear all the form classes that aren't RapidHTML, basically.
+[00:07:52] <K4_the_Beige>	 Haven't used any of them, even academically, for well over a year now.
+[00:26:41] <mwalker>	 well; you wont get any argument from me
+[00:43:45] <marktraceur>	 mwalker: Error, marktraceur requires two arguments (none given)
+[00:44:12] <mwalker>	 marktraceur(go, home)?
+[00:44:19] <marktraceur>	 I did already!
+[00:44:20] <marktraceur>	 God
+[00:44:30] <marktraceur>	 Now I need to find food
+[00:44:35] <mwalker>	 arhar!
+[00:44:36] <marktraceur>	 How am I supposed to do that in the Mission?
+[00:44:38] <marktraceur>	 I miss BART
+[00:44:51] <mwalker>	 wait... you're complaining that there is no food in the mission!?
+[00:45:01] <mwalker>	 that's where all the best food is!
+[00:45:04] <marktraceur>	 Sarcastically, but yeah
+[00:45:13] <marktraceur>	 I could probably do...I dunno...thai
+[00:45:32] <mwalker>	 hehe -- tired of mexican?
+[00:45:45] <marktraceur>	 mwalker: You take that back right now
+[00:45:49] <marktraceur>	 There's no such thing
+[00:46:01] * marktraceur  is still sort of woozy from the bike ride but you get the picture
+[00:46:47] <mwalker>	 woh!
+[00:46:50] <mwalker>	 you rode your bike!
+[00:46:55] <marktraceur>	 Yeah!
+[00:46:56] <marktraceur>	 Twice!
+[00:46:57] <marktraceur>	 Well
+[00:47:04] <marktraceur>	 1.95 times!
+[00:47:10] <marktraceur>	 I walked about a block
+[00:47:24] <mwalker>	 close enough
+[00:47:28] <mwalker>	 *high five*
+[00:48:03] <marktraceur>	 Heh.
+[00:48:07] <marktraceur>	 I was going to do it tomorrow
+[00:48:18] <marktraceur>	 But now I'm thinking I might either die tonight or take Muni again
+[00:48:26] <marktraceur>	 And/or a cab
+[00:48:26] <marktraceur>	 I'm so tired matt
+[00:57:41] <mwalker>	 marktraceur: you can do it!
+[00:57:53] <mwalker>	 the more you bike the easier it gets!
+[01:13:02] <K4_the_Beige>	 EXTERMINATE: https://gerrit.wikimedia.org/r/#/c/71750/
+[01:14:05] <K4_the_Beige>	 I, ah, didn't delete all of them.
+[01:14:07] <K4_the_Beige>	 Yet.
+[01:14:33] <K4_the_Beige>	 Just the easy ones.
+[01:23:48] <mwalker>	 marktraceur: also; if you're there and not dead, it would be totally wonderful if you could do a bit of centralnotice cr for me
+[01:23:52] <mwalker>	 K4_the_Beige: looking now
+[01:25:00] <K4_the_Beige>	 Eh, it's 6:30 (nearly). I started at, like, 7:30 this morning.
+[01:25:08] <K4_the_Beige>	 So, I'm going to... stop.
+[01:28:16] <K4_the_Beige>	 There do seem to be a ton of css selectors that don't go to anything anymore after all that. So, the next step will be fun too.
+[01:31:39] <mwalker>	 hurm
+[01:31:41] <mwalker>	 yay?
+[01:31:45] <mwalker>	 that was a concern of mine
+[01:31:49] <mwalker>	 but I merged it anyways
+[01:32:13] <K4_the_Beige>	 No, I mean: cruft in the remaining files.
+[01:32:27] <K4_the_Beige>	 Not unstyled form elements. Styles that apply to nothing.
+[01:32:57] <K4_the_Beige>	 ...because it's all deleted, and we were apparently really into cloning.
+[01:33:31] <K4_the_Beige>	 Also: build failed by zuul-bot for code that hasn't changed in... longtime?
+[01:33:35] <K4_the_Beige>	 marktraceur: That you?
+[01:39:55] <K4_the_Beige>	 Bah, I'm going for real this time. Happy Blowup Times, everybody! See y'alls on Friday.
+[01:40:40] <K4_the_Beige>	 except for mwalker. You tomorrow. :)
+[01:59:57] <marktraceur>	 Agh, sorry, ignore Jenkins for DI right now
+[17:12:06] <marktraceur>	 Oh, right, everyone's out today
+[17:12:09] <marktraceur>	 Well fine
+[17:12:22] <mwalker>	 marktraceur: not totally true
+[17:12:26] <marktraceur>	 Oh, huh
+[17:12:31] <marktraceur>	 Are you in the office?
+[17:12:33] <mwalker>	 nooo
+[17:12:34] * marktraceur  looks over
+[17:12:36] <mwalker>	 that would be silly :)
+[17:12:43] <marktraceur>	 Of course not
+[17:13:11] <marktraceur>	 I was going to reiterate that the Jenkins jobs are currently failing because they're borked. But I think the solution is for me to make them less-voting
+[17:13:22] <mwalker>	 hehe
+[17:15:18] <mwalker>	 also of note! can I get you to do some CR in centralnotice for me?
+[17:16:53] <marktraceur>	 Ah, yeah, sure
+[17:17:04] <marktraceur>	 Just let me merge/deploy this zuul change
+[17:17:11] <mwalker>	 :) https://gerrit.wikimedia.org/r/#/c/71751/
+[17:17:17] <mwalker>	 *thumbs up*
+[17:17:32] <marktraceur>	 bd :)
+[17:17:58] <marktraceur>	 (b looks like a right hand with thumb up, d looks like a left hand with thumb up)
+[17:18:00] <mwalker>	 when you get zuul happy -- I'll try and resubmit a gerrit patch to DI from yesterday
+[17:18:05] <marktraceur>	 *nod*
+[17:18:15] <marktraceur>	 "happy" consists of making it not yell at you.
+[17:18:16] <mwalker>	 I usually do that as b(^.^)d
+[17:18:30] <mwalker>	 hehe -- works for me
+[17:18:56] <marktraceur>	 There is no real bugfix, there is only zuul (and hacks in its config)
+[17:20:52] <marktraceur>	 mwalker: K, launch yer patch
+[17:22:03] * mwalker  makes train noises
+[17:23:11] <mwalker>	 you might have broken it...
+[17:23:34] <marktraceur>	 I uh
+[17:23:36] <marktraceur>	 I doubt that
+[17:23:48] <marktraceur>	 Considering that the log is chugging along fine
+[17:24:08] <mwalker>	 ah... it's just taking a while to get to things
+[17:24:41] <marktraceur>	 Done and done
+[17:24:47] * marktraceur  goes back to UWy things
+[17:25:19] <mwalker>	 my patch pretty please :)
+[17:26:15] <marktraceur>	 OH right.
+[17:26:21] * marktraceur  is a forgetful son of a gun
+[17:26:31] <marktraceur>	 mwalker: Wow that's a lot of code
+[17:26:37] <mwalker>	 most of it's comments
+[17:26:52] <mwalker>	 or boiler plate
+[17:27:28] <mwalker>	 I really only needed a quick method to get campaign priority -- but moving forward I want a campaign object so this seemed like a not half bad time to introduce it
+[17:33:29] <mwalker>	 meganhernandez: ping :)
+[17:34:05] <meganhernandez>	 hi mwalker
+[17:35:22] <mwalker>	 Brian Sisolak and I seem to have all the details worked out on getting him the new email list -- so I was wondering two things a) when do you want me to pull that list (given the current fundraising) and then b) I recall that we were going to have a chat with the-wub about him doing this but not when...
+[17:37:37] <meganhernandez>	 yes can we wait until next week to pull? and let's definitely loop peter in so he learns how
+[17:37:44] <meganhernandez>	 meet with peter next week too?
+[17:37:51] <meganhernandez>	 or whenever works for you
+[17:37:52] <meganhernandez>	 brb
+[17:43:20] <the-wub>	 meganhernandez, mwalker: next week works for me
+[17:43:31] <mwalker>	 awesome
+[17:43:40] <mwalker>	 the-wub: do you have access to aluminium?
+[17:43:59] <mwalker>	 (the server, not the material)
+[17:44:14] <jvandavier>	 hehe
+[17:44:22] <the-wub>	 mwalker: I do
+[17:44:54] <meganhernandez>	 back
+[17:45:25] <meganhernandez>	 sorry i had to literally run to the street to grab a book at the bus stop from a girl who was still on the bus
+[17:45:28] <meganhernandez>	 that was coordinated
+[17:45:30] <meganhernandez>	 but back
+[17:45:42] <mwalker>	 the-wub: awesome; how about database credentials?
+[17:45:56] <mwalker>	 meganhernandez: *applause*
+[17:46:05] <the-wub>	 mwalker: yep, got those too
+[17:46:05] <mwalker>	 coordinated book grabbing!
+[17:46:10] <mwalker>	 the-wub: amazing!
+[17:46:16] <mwalker>	 then I'm almost all set
+[17:46:31] <mwalker>	 actually -- can you try connecting to the mwalker database?
+[17:46:39] <mwalker>	 on db1008
+[17:48:26] <mwalker>	 or! do you have your own database?
+[17:48:39] <mwalker>	 the script needs a scratch space
+[17:50:08] <the-wub>	 I'm connected to mwalker
+[17:50:25] <the-wub>	 on fundraisingdb-write.wmnet, not sure if that's the same
+[17:50:55] <mwalker>	 oh cool; I didnt realize we had a cname for it
+[17:51:27] <mwalker>	 on mwalker can you CREATE TABLE test( id int primary key ); ?
+[17:52:44] <the-wub>	 ERROR 1142 (42000): CREATE command denied to user 'pcoombe'@'208.80.154.6' for table 'test'
+[17:53:21] <mwalker>	 cool
+[17:53:34] <mwalker>	 Jeff_Green: can you give pcoombe write access to mwalker?
+[17:53:41] <Jeff_Green>	 sure
+[17:56:32] <Jeff_Green>	 done
+[17:56:41] <mwalker>	 *high five* you are awesome
+[17:58:17] <the-wub>	 it works. thanks Jeff_Green
+[17:58:27] <Jeff_Green>	 yw
+[17:59:44] <marktraceur>	 mwalker: So I'm happy with the code but I haven't tested it. As a matter of principle, should I before +2ing?
+[18:00:31] <mwalker>	 I tested it; but I'm always happy to have another set of test cases unrelated to my own poking at the thing
+[18:01:02] <mwalker>	 which probably really means; test it if you already have CN set up
+[18:01:09] <marktraceur>	 Noooope
+[18:01:32] <marktraceur>	 Alternatively I could +1 and we could yell at someone else to test it
+[18:01:58] <mwalker>	 the only other possibly candidate is kaldari
+[18:02:15] <mwalker>	 and he's not online
+[18:02:36] <mwalker>	 I vote for +2 and if it breaks shit I'll roll it back :)
+[18:05:53] <mwalker>	 the-wub: do you have a bugzilla account?
+[18:06:01] <mwalker>	 I ask because: https://bugzilla.wikimedia.org/show_bug.cgi?id=50663
+[18:07:31] <the-wub>	 mwalker: I do - thewub.wiki@googlemail.com. No idea what could be causing that problem though
+[18:09:07] <mwalker>	 you might want to follow fr-tech@wikimedia.org -- that seems to be our catchall bugzilla address
+[18:09:16] <mwalker>	 but -- as to what's causing it
+[18:09:34] <mwalker>	 the only theory I've got right now is that the makeBannerSpace function is not making enough space :)
+[18:11:30] <the-wub>	 I'll look into it
+[18:13:48] <mwalker>	 kk; I'm guessing he got one of these banners http://meta.wikimedia.org/w/index.php?title=Special:CentralNotice&method=listNoticeDetail&notice=C13_wpdr_mlWW_FR
+[18:14:58] <mwalker>	 also; very curious why the preview isn't working
+[18:15:00] <mwalker>	 that's annoying
+[18:18:55] <the-wub>	 I think it's this one (a non-dropdown) https://meta.wikimedia.org/wiki/Special:CentralNoticeBanners/Edit/B13_0701_txt_Cntrl_nd_enYY
+[18:19:05] <the-wub>	 can't reproduce the problem though
+[18:20:35] <mwalker>	 I was thinking it might also be B13_0701_txt_Fsion_ndnc_enYY
+[18:24:58] <the-wub>	 nope fairly sure it's the one I posted. he's in Poland (the screenshot shows Polish zlotys), and that banner's assigned there
+[18:28:27] <mwalker>	 ah
+[18:28:34] <mwalker>	 good catch :)
+[18:36:31] <mwalker>	 the-wub: btw -- do you have access to crossbrowsertesting?
+[18:36:58] <the-wub>	 no. do we have such a thing?
+[18:37:09] <mwalker>	 yes
+[18:37:10] <mwalker>	 hang on
+[18:37:11] <the-wub>	 if I could have access, that would be wonderful
+[18:37:43] <mwalker>	 should be in your inbox
+[18:40:25] <mwalker>	 that being said; on winxp sp3 with firefox 21; forcing to poland; I couldn't get a repo either
+[18:40:51] <the-wub>	 that site is so cool
+[18:41:00] <the-wub>	 but I can't reproduce either
+[18:41:31] <mwalker>	 it's crazy useful :)
+[18:57:32] <mwalker>	 marktraceur: how goes the fight?
+[19:04:00] <marktraceur>	 mwalker: Not great, let me plus2 that for ya
+[19:04:51] <mwalker>	 :(
+[19:04:59] <mwalker>	 troubles I can help with?
+[19:05:51] <marktraceur>	 mwalker: Not particularly, unless you want lunch somewhere near the office
+[19:05:57] <marktraceur>	 I am huuuungryyyy
+[19:06:27] <mwalker>	 sorry... /me waves his piece of leftover pizza in the air
+[19:06:42] <marktraceur>	 Berk.

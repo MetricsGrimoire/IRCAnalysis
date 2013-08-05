@@ -1,0 +1,32 @@
+[10:09:08] <whym>	 who should I ask about how to transfer donated money to WMF?
+[10:11:25] <whym>	 was it a good procedure to ask donate@wikimedia.org?
+[10:20:19] <Till_WMDE>	 hi whym yes, this is correct.
+[11:08:58] <whym>	 Till_WMDE: thanks Till_WMDE, they I should probably wait for a while more
+[11:18:37] <Nemo_bis>	 whym: what sort of transfer?
+[11:19:43] <whym>	 we collected fees from participants of a Wikimedia-related conference, and promised to donate surplus to WMF
+[11:19:59] <Nemo_bis>	 who is "we"
+[11:20:15] <whym>	 we at Wikimedian Society of Tokyo, a user group
+[11:20:29] <whym>	 some of the participants would like to get individual confirmations from WMF
+[11:20:54] <Nemo_bis>	 oh, nice, I didn't know the user group even existed with a name :=
+[11:20:59] <Nemo_bis>	 are you incorporated
+[11:21:25] <whym>	 no, it's just a collection of people
+[11:21:27] <Nemo_bis>	 technically speaking it will always be a donation by the group/whoever to the WMF, not a transfer of donations
+[11:21:34] <Nemo_bis>	 ok, so it's a private account
+[11:22:30] <Nemo_bis>	 when WMIT had to transfer donations to WMF it was a nightmare
+[11:22:39] <Nemo_bis>	 the WMF told us we could not give them the money
+[11:23:27] <whym>	 yes, in our case it would be almost normal donation from an individual, I believe
+[11:23:29] <Nemo_bis>	 we had to find another lawyer to prove we could and force them to let us wire them the 160 k€ or whatever
+[11:23:43] <Nemo_bis>	 yep
+[11:23:47] <whym>	 except that some confirmation emails to the participants
+[11:23:52] <whym>	 are needed
+[11:24:02] <Nemo_bis>	 why isn't a receipt enough
+[11:24:18] <Nemo_bis>	 what payment method do you use from japan to WMF?
+[11:25:46] <whym>	 we maybe are using international mail order or credit card payment
+[11:26:16] <whym>	 if WMF has other recommendations, we will also consider them
+[11:28:19] <Nemo_bis>	 what's international mail order?
+[11:29:40] <whym>	 I meant international money order
+[11:32:47] <Nemo_bis>	 ah
+[11:32:53] <Nemo_bis>	 first result on en wiki was "Mail-order bride (redirect from International marriage agency)
+[11:33:20] <Nemo_bis>	 bank transfers to WMF in USA are extremely expensive
+[11:34:05] <Nemo_bis>	 I don't think they shared what's the fee with their new payment processors, it used to be 2 % with GlobalCollect I think?
+[11:35:45] <whym>	 don't know, but I wouldn't be surprised for 2 %

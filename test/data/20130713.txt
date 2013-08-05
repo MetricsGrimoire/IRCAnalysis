@@ -1,0 +1,10 @@
+[00:31:35] <mwalker>	 ok
+[00:31:39] <mwalker>	 my civic duty has been completed
+[00:31:53] <mwalker>	 Roary now has friends on the Staff and Contractors page
+[01:11:54] <mwalker>	 sniff... k4 isn't here
+[01:12:08] <mwalker>	 I guess it's time to go home for the day then
+[01:12:23] <mwalker>	 resume later
+[09:42:59] <liangent>	 has the donation flow via paypal been changed recently?
+[09:43:40] <liangent>	 at least it now looks different from fsf.org's paypal donation interface
+[09:43:56] <liangent>	 and iirc the original WMF one was like the current FSF one
+[10:20:18] <liangent>	 https://bugzilla.wikimedia.org/show_bug.cgi?id=51282

@@ -1,0 +1,9 @@
+[16:28:50] <slander>	 #973: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/973
+[16:29:50] <slander>	 #973: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/973
+[19:37:43] <mwalker>	 jeremyb: did that run for you logged in?
+[19:39:00] <jeremyb>	 mwalker: i think so?
+[19:39:18] <jeremyb>	 can't really say for sure
+[19:39:25] <mwalker>	 hurm...
+[19:39:56] <jeremyb>	 i guess most likely not
+[19:40:01] <jeremyb>	 but not for sure either way
+[19:40:05] <jeremyb>	 bbl

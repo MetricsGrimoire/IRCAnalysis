@@ -1,0 +1,93 @@
+[15:39:16] <jeremyb>	 https://meta.wikimedia.org/wiki/Special:CentralNoticeBanners/edit/B13_0711_inart_inart is a novel location
+[21:37:50] <meganhernandez>	 hi mwalker I'm gonna head off soon
+[21:37:57] <mwalker>	 kk
+[21:38:02] <mwalker>	 I will have a banner for you tomorrow
+[21:38:09] <meganhernandez>	 cool, test in your morning?
+[21:38:12] <mwalker>	 yep
+[21:38:17] <meganhernandez>	 rad, night!
+[21:41:22] <K4-713>	 Heh. mwalker: Is that for Adyen?
+[21:41:44] <mwalker>	 ya
+[21:41:51] <mwalker>	 gateway form chooser was ugly
+[21:41:55] <mwalker>	 so... I'm making it less ugly
+[21:41:56] <mwalker>	 >.>
+[21:41:57] <mwalker>	 <.<
+[21:42:01] <K4-713>	 orly
+[21:42:07] <K4-713>	 How?
+[21:42:12] <mwalker>	 repeated code!
+[21:42:18] <K4-713>	 :/
+[21:42:18] <mwalker>	 bad if statements!
+[21:42:24] <mwalker>	 ahhhh!
+[21:42:33] <mwalker>	 feel free to whack me upside the head when you see it
+[21:42:39] <K4-713>	 No, I meant: How are you making it less ugly?
+[21:42:52] <mwalker>	 oh; I collapsed a lot of functionality into value_appears_in
+[21:42:57] <mwalker>	 so the if statements are less gross
+[21:43:14] <K4-713>	 And: Bad "if" statements?
+[21:43:22] <mwalker>	 mostly because they were long
+[21:43:25] <mwalker>	 and had repeated conditions
+[21:43:33] <mwalker>	 which was then collapsed into value_appears_in
+[21:43:38] <K4-713>	 See, that bit makes me nervous.
+[21:43:46] <K4-713>	 "repeated conditions"?
+[21:44:07] <mwalker>	 oh oh -- what I meant by that is if you look at it on a per filter level
+[21:44:13] <mwalker>	 a lot of the logic was repeated
+[21:44:15] <mwalker>	 which was ugly!
+[21:44:17] <mwalker>	 and bad!
+[21:44:22] <mwalker>	 baaaaaaad!
+[21:44:26] <mwalker>	 >.>
+[21:44:26] <mwalker>	 <.<
+[21:44:40] <K4-713>	 Ah, but they all... worked.
+[21:44:43] <mwalker>	 sure!
+[21:44:50] <mwalker>	 but these will work
+[21:44:55] <mwalker>	 and be moar shiney
+[21:45:00] <K4-713>	 got it.
+[21:45:19] <K4-713>	 I'm just a little touchy, because of the way that thing launched.
+[21:45:25] <mwalker>	 yep
+[21:45:32] <mwalker>	 and then immediately flopped over on its side
+[21:45:38] <K4-713>	 No, it was fine.
+[21:45:46] <K4-713>	 The breakage was a myth!
+[21:45:56] <K4-713>	 Perpetuated by... people who weren't me!
+[21:46:01] <mwalker>	 hehe
+[21:46:30] <K4-713>	 It was basically me saying repeatedly that it was deployed and ready to go, and other people insisting that it was Bad and didn't work.
+[21:47:02] <K4-713>	 For... largely anecdotal reasons.
+[21:48:14] <K4-713>	 Oh, globdarnit, I have overbooked.
+[21:48:19] <K4-713>	 Jeff_Green: yt?
+[21:48:45] <Jeff_Green>	 ya
+[21:49:20] <K4-713>	 Our maintenance day next week coincides with an all-day offsite I'm supposed to attend. Because I never learned to read.
+[21:49:36] <Jeff_Green>	 ok. what day is better for you?
+[21:50:11] <K4-713>	 I was going to ask if you needed me to do your voodoo, but... probably.
+[21:50:19] <K4-713>	 hum.
+[21:50:29] <K4-713>	 I'm trying to take Wednesday off.
+[21:50:32] <Jeff_Green>	 if we plan it well enough then I don't need you
+[21:51:01] <Jeff_Green>	 basically as long as I know where all the knobs are to turn off writes I think I'm ok
+[21:51:14] <K4-713>	 ...eeeYeah, I should probably be there.
+[21:51:27] <K4-713>	 (based on the last time we tried to Maintenance Mode the payments cluster)
+[21:51:41] <Jeff_Green>	 ok
+[21:52:05] <Jeff_Green>	 well I can do weds, I'll just worry a bit about bleeding into jury duty
+[21:52:20] <K4-713>	 Can we put it off until the week after? Or would you rather get this over with?
+[21:52:29] <Jeff_Green>	 Your Honor, is it ok if I just boot up my laptop here? okthxbye!
+[21:52:36] <Jeff_Green>	 following week is ok
+[21:53:07] <K4-713>	 Okay. Do you like any day in particular?
+[21:53:12] <K4-713>	 Not Monday?
+[21:53:50] <Jeff_Green>	 tuesday is good
+[21:53:57] <Jeff_Green>	 thursday is fine too
+[21:54:16] <Jeff_Green>	 weds is a little . . . chewy
+[21:54:39] <mwalker>	 I am a little worried that I have yet to be called for jury duty
+[21:54:59] <mwalker>	 it seems like it should have happened
+[21:55:33] <K4-713>	 Oh. The day my doctor went all stupid, I also got a jury duty summons.
+[21:55:39] <K4-713>	 I get one, I swear, every year.
+[21:57:01] <K4-713>	 Jeff_Green: I'm asking for Tuesday, July 23rd.
+[21:57:55] <Jeff_Green>	 k
+[21:58:24] <Jeff_Green>	 K4-713: I get called but never asked to actually serve
+[21:58:51] <K4-713>	 I haven't been called in California yet. Got one in Seattle, though.
+[21:58:52] <Jeff_Green>	 this is the first time I've been called in MA though, I'm curious if it's still like it was 20 years ago
+[21:58:59] <K4-713>	 Learned how to effectively break in to cars.
+[21:59:05] <Jeff_Green>	 ha
+[22:02:13] <K4-713>	 Seattle was terrible, though. They didn't have a phone system.
+[22:02:45] <K4-713>	 So you had to wait in this horrible waiting room all day long whether they were going to use you or not.
+[22:02:56] <K4-713>	 It was like the most jacked-up airport terminal evar.
+[22:03:09] <mwalker>	 did they at least have enough seats?
+[22:03:15] <Jeff_Green>	 omg. last time I went here you had to sit in essentially a classroom at classroom-style desks until they called, and there was loud daytime TV on
+[22:03:19] <Jeff_Green>	 I'm sure it's better now
+[22:03:44] <K4-713>	 mwalker: I think they had enough seats technically speaking, but some of them were sketchy to the point that only brave people would sit on them.
+[22:05:54] <K4-713>	 The weird part is, when you call in and they say "yes, we want you to come to the courthouse", apparently you have one hour to get there.
+[22:06:14] <K4-713>	 I mean. It's the county. Presumably they are aware of the traffic issues in the county.
+[22:06:45] <K4-713>	 But, yeah: Haven't had to deal with that part yet.
