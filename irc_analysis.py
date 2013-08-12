@@ -183,7 +183,7 @@ if __name__ == '__main__':
     channel_id = get_channel_id(opts.channel, cursor)
     last_date = get_last_date(opts.channel, cursor)
     
-    count_msg = count_msg_new = 0
+    count_msg = count_msg_new = count_msg_fail = 0
     files = os.listdir(opts.data_dir)
     for logfile in files:
         year = logfile[0:4]
@@ -196,14 +196,19 @@ if __name__ == '__main__':
             count_msg += 1
             # date: 2013-07-11 15:39:16
             date_time = date + " " + i[0]
-            msg_date = datetime.strptime(date_time, '%Y-%m-%d %H:%M:%S')
-            if (last_date and msg_date <= last_date): continue
-            insert_message (cursor, date_time, i[1], i[2], channel_id)
-            count_msg_new += 1
-            if (count_msg % 1000 == 0): print (count_msg)
+            try:
+                msg_date = datetime.strptime(date_time, '%Y-%m-%d %H:%M:%S')
+                if (last_date and msg_date <= last_date): continue
+                insert_message (cursor, date_time, i[1], i[2], channel_id)
+                count_msg_new += 1
+                if (count_msg % 1000 == 0): print (count_msg)
+            except Exception:
+                print "Probs with " + date_time
+                count_msg_fail += 1
         con.commit()
 
     close_database(con)
     print("Total messages: %s" % (count_msg))
     print("Total new messages: %s" % (count_msg_new))
+    print("Total messages with bad parsing: %s" % (count_msg_fail))
     sys.exit(0)
