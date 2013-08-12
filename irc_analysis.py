@@ -27,6 +27,7 @@
 from optparse import OptionParser
 import os, sys
 import MySQLdb
+from datetime import datetime
 
 
 def read_file(filename):
@@ -113,6 +114,12 @@ def escape_string (message):
         message = message.replace("'", "\\'")
     return message
  
+def get_last_date(channel, cursor):
+    query =  "SELECT MAX(date) FROM irclog, channels "
+    query += "WHERE irclog.channel_id=channels.id "
+    query += " AND channels.name='"+channel+"'"
+    cursor.execute(query)
+    return cursor.fetchone()[0]
 
 def insert_message(cursor, date, nick, message, channel_id):
     message = escape_string (message)
@@ -155,24 +162,28 @@ def create_tables(cursor, con):
 
     return
 
+def get_channel_id(name, cursor):
+    cursor.execute("SELECT * from channels where name='"+name+"'")
+    results =  cursor.fetchall()
+    if len(results) == 0:
+        query = "INSERT INTO channels (name) VALUES ('"+name+"')"
+        cursor.execute(query)
+        cursor.execute("SELECT * from channels where name='"+name+"'")
+        results =  cursor.fetchall()
+    channel_id = str(results[0][0])
+    return channel_id
 
 if __name__ == '__main__':
     opts = None
     opts = read_options()
-    # ids_file = parse_file(opts.countries_file)
     con = open_database(opts.dbuser, opts.dbpassword, opts.dbname)
-        
     
     cursor = con.cursor()
     create_tables(cursor, con)
+    channel_id = get_channel_id(opts.channel, cursor)
+    last_date = get_last_date(opts.channel, cursor)
     
-    query = "INSERT INTO channels (name) VALUES ('"+opts.channel+"')"
-    cursor.execute(query)
-    query = "SELECT MAX(id) FROM channels limit 1"
-    cursor.execute(query)
-    channel_id = str(cursor.fetchall()[0][0])
-    
-    count_msg = 0
+    count_msg = count_msg_new = 0
     files = os.listdir(opts.data_dir)
     for logfile in files:
         year = logfile[0:4]
@@ -182,11 +193,17 @@ if __name__ == '__main__':
         date_nick_msg = parse_file(opts.data_dir + "/" + logfile)
 
         for i in date_nick_msg:
-            insert_message (cursor, date + " " + i[0], i[1], i[2], channel_id)                
             count_msg += 1
+            # date: 2013-07-11 15:39:16
+            date_time = date + " " + i[0]
+            msg_date = datetime.strptime(date_time, '%Y-%m-%d %H:%M:%S')
+            if (last_date and msg_date <= last_date): continue
+            insert_message (cursor, date_time, i[1], i[2], channel_id)
+            count_msg_new += 1
             if (count_msg % 1000 == 0): print (count_msg)
         con.commit()
 
     close_database(con)
     print("Total messages: %s" % (count_msg))
+    print("Total new messages: %s" % (count_msg_new))
     sys.exit(0)
