@@ -183,20 +183,32 @@ if __name__ == '__main__':
     channel_id = get_channel_id(opts.channel, cursor)
     last_date = get_last_date(opts.channel, cursor)
     
-    count_msg = count_msg_new = 0
+    count_msg = count_msg_new = count_msg_drop = count_files_drop = 0
     files = os.listdir(opts.data_dir)
     for logfile in files:
         year = logfile[0:4]
         month = logfile[4:6]
         day = logfile[6:8]    
         date = year + "-" + month + "-" + day
+        try:
+            date_test = datetime.strptime(date, '%Y-%m-%d')
+        except ValueError:
+            count_files_drop += 1
+            print "Bad filename format in  " + logfile
+            continue
+
         date_nick_msg = parse_file(opts.data_dir + "/" + logfile)
 
         for i in date_nick_msg:
             count_msg += 1
             # date: 2013-07-11 15:39:16
             date_time = date + " " + i[0]
-            msg_date = datetime.strptime(date_time, '%Y-%m-%d %H:%M:%S')
+            try:
+                msg_date = datetime.strptime(date_time, '%Y-%m-%d %H:%M:%S')
+            except ValueError:
+                count_msg_drop += 1
+                print "Bad format in " + date_time + " (" + logfile + ")"
+                continue
             if (last_date and msg_date <= last_date): continue
             insert_message (cursor, date_time, i[1], i[2], channel_id)
             count_msg_new += 1
@@ -206,4 +218,6 @@ if __name__ == '__main__':
     close_database(con)
     print("Total messages: %s" % (count_msg))
     print("Total new messages: %s" % (count_msg_new))
+    print("Total drop messages: %s" % (count_msg_drop))
+    print("Total log files drop: %s" % (count_files_drop))
     sys.exit(0)
