@@ -78,11 +78,11 @@ def read_options():
     parser.add_option("--channel",
                       action="store",
                       dest="channel",
-                      help="Channel name")    
+                      help="Channel name")
     parser.add_option("-d", "--database",
                       action="store",
                       dest="dbname",
-                      help="Database where identities table is stored")
+                      help="Database where information is stored")
     parser.add_option("--db-user",
                       action="store",
                       dest="dbuser",
@@ -110,7 +110,7 @@ def read_options():
 def escape_string (message):
     if "\\" in message:
         message = message.replace("\\", "\\\\")
-    if "'" in message:    
+    if "'" in message:
         message = message.replace("'", "\\'")
     return message
  
@@ -127,7 +127,7 @@ def insert_message(cursor, date, nick, message, channel_id):
     q = "insert into irclog (date,nick,message,channel_id) values (";
     q += "'" + date + "','" + nick + "','" + message + "','"+channel_id+"')"
     cursor.execute(q)
-    
+
 def create_tables(cursor, con):
 #    query = "DROP TABLE IF EXISTS irclog"
 #    cursor.execute(query)
@@ -182,13 +182,13 @@ if __name__ == '__main__':
     create_tables(cursor, con)
     channel_id = get_channel_id(opts.channel, cursor)
     last_date = get_last_date(opts.channel, cursor)
-    
+
     count_msg = count_msg_new = count_msg_drop = count_files_drop = 0
     files = os.listdir(opts.data_dir)
     for logfile in files:
         year = logfile[0:4]
         month = logfile[4:6]
-        day = logfile[6:8]    
+        day = logfile[6:8]
         date = year + "-" + month + "-" + day
         try:
             date_test = datetime.strptime(date, '%Y-%m-%d')
