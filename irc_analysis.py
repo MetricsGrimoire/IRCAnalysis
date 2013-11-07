@@ -26,8 +26,9 @@
 
 from optparse import OptionParser
 import os, sys
-import MySQLdb
 from datetime import datetime
+
+from pyircanalysis.database import Database
 
 
 def read_file(filename):
@@ -35,7 +36,6 @@ def read_file(filename):
     lines = fd.readlines()
     fd.close()
     return lines
-
 
 def parse_file(filename):
     date_nick_message = []
@@ -50,22 +50,6 @@ def parse_file(filename):
         msg = ' '.join(aux[2:len(aux)])
         date_nick_message.append([time, nick, msg])
     return date_nick_message
-
-
-def open_database(myuser, mypassword, mydb):
-    con = MySQLdb.Connect(host="127.0.0.1",
-                          port=3306,
-                          user=myuser,
-                          passwd=mypassword,
-                          db=mydb)
-    # cursor = con.cursor()
-    # return cursor
-    return con
-
-
-def close_database(con):
-    con.close()
-
 
 def read_options():
     parser = OptionParser(usage="usage: %prog [options]",
@@ -107,82 +91,17 @@ def read_options():
         parser.error("--dir --database --db-user and --channel are needed")
     return opts
 
-def escape_string (message):
-    if "\\" in message:
-        message = message.replace("\\", "\\\\")
-    if "'" in message:    
-        message = message.replace("'", "\\'")
-    return message
- 
-def get_last_date(channel, cursor):
-    query =  "SELECT MAX(date) FROM irclog, channels "
-    query += "WHERE irclog.channel_id=channels.id "
-    query += " AND channels.name='"+channel+"'"
-    cursor.execute(query)
-    return cursor.fetchone()[0]
-
-def insert_message(cursor, date, nick, message, channel_id):
-    message = escape_string (message)
-    nick = escape_string (nick)
-    q = "insert into irclog (date,nick,message,channel_id) values (";
-    q += "'" + date + "','" + nick + "','" + message + "','"+channel_id+"')"
-    cursor.execute(q)
-    
-def create_tables(cursor, con):
-#    query = "DROP TABLE IF EXISTS irclog"
-#    cursor.execute(query)
-#    query = "DROP TABLE IF EXISTS channels"
-#    cursor.execute(query)
-
-    query = "CREATE TABLE IF NOT EXISTS irclog (" + \
-           "id int(11) NOT NULL AUTO_INCREMENT," + \
-           "nick VARCHAR(255) NOT NULL," + \
-           "date DATETIME NOT NULL," + \
-           "message TEXT," + \
-           "channel_id int," + \
-           "PRIMARY KEY (id)" + \
-           ") ENGINE=MyISAM DEFAULT CHARSET=utf8"
-    cursor.execute(query)
-    
-    query = "CREATE TABLE IF NOT EXISTS channels (" + \
-           "id int(11) NOT NULL AUTO_INCREMENT," + \
-           "name VARCHAR(255) NOT NULL," + \
-           "PRIMARY KEY (id)" + \
-           ") ENGINE=MyISAM DEFAULT CHARSET=utf8"
-    cursor.execute(query)
-    
-    try:
-        query = "DROP INDEX ircnick ON irclog;"
-        cursor.execute(query)
-        query = "CREATE INDEX ircnick ON irclog (nick);"
-        cursor.execute(query)
-        con.commit()
-    except MySQLdb.Error:
-        print "Problems creating nick index"
-
-    return
-
-def get_channel_id(name, cursor):
-    cursor.execute("SELECT * from channels where name='"+name+"'")
-    results =  cursor.fetchall()
-    if len(results) == 0:
-        query = "INSERT INTO channels (name) VALUES ('"+name+"')"
-        cursor.execute(query)
-        cursor.execute("SELECT * from channels where name='"+name+"'")
-        results =  cursor.fetchall()
-    channel_id = str(results[0][0])
-    return channel_id
 
 if __name__ == '__main__':
     opts = None
     opts = read_options()
-    con = open_database(opts.dbuser, opts.dbpassword, opts.dbname)
-    
-    cursor = con.cursor()
-    create_tables(cursor, con)
-    channel_id = get_channel_id(opts.channel, cursor)
-    last_date = get_last_date(opts.channel, cursor)
-    
+    db = Database(opts.dbuser, opts.dbpassword, opts.dbname)
+    db.open_database()
+
+    db.create_tables()
+    channel_id = db.get_channel_id(opts.channel)
+    last_date = db.get_last_date(opts.channel)
+
     count_msg = count_msg_new = count_msg_drop = count_files_drop = 0
     files = os.listdir(opts.data_dir)
     for logfile in files:
@@ -210,12 +129,11 @@ if __name__ == '__main__':
                 print "Bad format in " + date_time + " (" + logfile + ")"
                 continue
             if (last_date and msg_date <= last_date): continue
-            insert_message (cursor, date_time, i[1], i[2], channel_id)
+            db.insert_message(date_time, i[1], i[2], channel_id)
             count_msg_new += 1
             if (count_msg % 1000 == 0): print (count_msg)
-        con.commit()
 
-    close_database(con)
+    db.close_database()
     print("Total messages: %s" % (count_msg))
     print("Total new messages: %s" % (count_msg_new))
     print("Total drop messages: %s" % (count_msg_drop))
