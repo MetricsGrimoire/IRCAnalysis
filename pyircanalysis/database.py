@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 #
 # Database storage module
-# -*- coding: utf-8 -*-
 #
 # Copyright (C) 2012-2013 Bitergia
 #
@@ -53,7 +52,7 @@ class Database(object):
     def create_tables(self):
         query = "CREATE TABLE IF NOT EXISTS irclog (" + \
                 "id int(11) NOT NULL AUTO_INCREMENT," + \
-                "nick VARCHAR(255) NOT NULL," + \
+                "nick VARCHAR(255) NULL," + \
                 "date DATETIME NOT NULL," + \
                 "message TEXT," + \
                 "channel_id int," + \
@@ -71,15 +70,15 @@ class Database(object):
         try:
             query = "DROP INDEX ircnick ON irclog;"
             self.cursor.execute(query)
-        except MySQLdb.Error, e:
-            print "Warning: Dropping nick index", e
+        except MySQLdb.Error as e:
+            print("Warning: Dropping nick index", e)
 
         try:
             query = "CREATE INDEX ircnick ON irclog (nick);"
             self.cursor.execute(query)
             self.conn.commit()
-        except MySQLdb.Error, e:
-            print "Warning: Creating nick index", e
+        except MySQLdb.Error as e:
+            print("Warning: Creating nick index", e)
 
     def drop_tables(self):
         query = "DROP TABLE IF EXISTS irclog"
@@ -118,5 +117,5 @@ class Database(object):
 
     def _escape(self, s):
         if not s:
-            return ""
+            return None
         return self.conn.escape_string(s)
