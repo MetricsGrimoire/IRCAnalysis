@@ -149,7 +149,7 @@ def parse_irc_file(filepath, channel_id, log_format, db, date_subs=None):
                     text = info
                     nick = None
 
-            db.insert_message(date, nick, text, channel_id)
+            db.insert_message(date, nick, text, what.value, channel_id)
             count_msg_new += 1
     except Exception as e:
         raise Error("Error parsing %s file: %s" % (filepath, e))

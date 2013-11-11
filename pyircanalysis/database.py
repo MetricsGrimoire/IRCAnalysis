@@ -55,6 +55,7 @@ class Database(object):
                 "nick VARCHAR(255) NULL," + \
                 "date DATETIME NOT NULL," + \
                 "message TEXT," + \
+                "type VARCHAR(255) NULL," + \
                 "channel_id int," + \
                 "PRIMARY KEY (id)" + \
                 ") ENGINE=MyISAM DEFAULT CHARSET=utf8"
@@ -108,11 +109,12 @@ class Database(object):
         self.cursor.execute(query, (channel))
         return self.cursor.fetchone()[0]
 
-    def insert_message(self, date, nick, message, channel_id):
-        query =  "INSERT INTO irclog (date, nick, message, channel_id) "
-        query += "VALUES (%s, %s, %s, %s)"
+    def insert_message(self, date, nick, message, message_type, channel_id):
+        query =  "INSERT INTO irclog (date, nick, message, type, channel_id) "
+        query += "VALUES (%s, %s, %s, %s, %s)"
         self.cursor.execute(query, (date, self._escape(nick),
-                                    self._escape(message), channel_id))
+                                    self._escape(message), message_type,
+                                    channel_id))
         self.conn.commit()
 
     def _escape(self, s):
