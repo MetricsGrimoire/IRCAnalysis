@@ -1,8 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 #
-# This script parse IRC logs from Wikimedia 
-# and store them in database
+# This script parses IRC logs and stores the extracted data in
+# a database
 # 
 # Copyright (C) 2012-2013 Bitergia
 #
@@ -22,34 +22,28 @@
 #
 # Authors:
 #   Alvaro del Castillo San Felix <acs@bitergia.com>
+#   Santiago Dueñas <sduenas@bitergia.com>
+#
+# Note: Most of the source code of PlainIRCParser was taken from Marius Gedminas'
+#   irclog2html.py tool, released under the terms of the GNU GPL.
+#   See http://mg.pov.lt/irclog2html/ for more information.
+#   Thanks to the author for this great tool
 #
 
-from optparse import OptionParser
-import os, sys
+import io
+import os
+import sys
+import re
 from datetime import datetime
+from optparse import OptionParser
 
 from pyircanalysis.database import Database
+from pyircanalysis.parsers import LogParser, PlainLogParser, HTMLLogParser
 
 
-def read_file(filename):
-    fd = open(filename, "r")
-    lines = fd.readlines()
-    fd.close()
-    return lines
+class Error(Exception):
+    """Application error."""
 
-def parse_file(filename):
-    date_nick_message = []
-    lines = read_file(filename)
-    for l in lines:
-        # [12:39:15] <wm-bot>  Infobot disabled
-        aux = l.split(" ")
-        time = aux[0]
-        time = time[1:len(time) - 1]
-        nick = (aux[1].split("\t"))[0]
-        nick = nick[1:len(nick) - 1]
-        msg = ' '.join(aux[2:len(aux)])
-        date_nick_message.append([time, nick, msg])
-    return date_nick_message
 
 def read_options():
     parser = OptionParser(usage="usage: %prog [options]",
@@ -62,7 +56,13 @@ def read_options():
     parser.add_option("--channel",
                       action="store",
                       dest="channel",
-                      help="Channel name")    
+                      help="Channel name")
+    parser.add_option("-f", "--format",
+                      type="choice",
+                      action="store",
+                      dest="logformat",
+                      choices=["plain" , "html"],
+                      help="Log file format")
     parser.add_option("-d", "--database",
                       action="store",
                       dest="dbname",
@@ -83,55 +83,107 @@ def read_options():
                       default=False,
                       help="Debug mode")
     (opts, args) = parser.parse_args()
-    # print(opts)
+
     if len(args) != 0:
         parser.error("Wrong number of arguments")
 
-    if not(opts.data_dir and opts.dbname and opts.dbuser and opts.channel):
-        parser.error("--dir --database --db-user and --channel are needed")
+    if not(opts.data_dir and opts.dbname and opts.dbuser and opts.channel and opts.logformat):
+        parser.error("--dir --database --db-user and --channel --format are needed")
     return opts
 
 
-if __name__ == '__main__':
-    opts = None
-    opts = read_options()
-    db = Database(opts.dbuser, opts.dbpassword, opts.dbname)
-    db.open_database()
+DATE_FILENAME_REGEXP = re.compile(r'^(\d{4}\d{2}\d{2})(\.(.*))?$')
+CHANNEL_FILENAME_REGEXP = re.compile(r'^#(.+)-(\d{4}-\d{2}-\d{2})(\.(.*))?$')
 
-    db.create_tables()
-    channel_id = db.get_channel_id(opts.channel)
+def parse_irc_filename(filename):
+    """Test file name"""
+    m = CHANNEL_FILENAME_REGEXP.match(filename)
+    if m:
+        return string_to_datetime(m.group(2), "%Y-%m-%d")
+
+    m = DATE_FILENAME_REGEXP.match(filename)
+    if m:
+        return string_to_datetime(m.group(1), "%Y%m%d")
+    raise Error("File name does not contain a valid date: %s" % filename)
+
+def string_to_datetime(s, schema):
+    """Convert string to datetime object"""
+    try:
+        return datetime.strptime(s, schema)
+    except ValueError:
+        raise Error("Parsing date %s to %s format" % (s, schema))
+
+def parse_irc_file(filepath, channel_id, log_format, db, date_subs=None):
+    """Parse a IRC log file."""
+    try:
+        infile = io.open(filepath, 'rt')
+    except EnvironmentError as e:
+        raise Error("Cannot open %s for reading: %s" % (filepath, e))
+
+    count_msg = 0
+    count_msg_new = 0
     last_date = db.get_last_date(opts.channel)
 
-    count_msg = count_msg_new = count_msg_drop = count_files_drop = 0
-    files = os.listdir(opts.data_dir)
-    for logfile in files:
-        year = logfile[0:4]
-        month = logfile[4:6]
-        day = logfile[6:8]    
-        date = year + "-" + month + "-" + day
-        try:
-            date_test = datetime.strptime(date, '%Y-%m-%d')
-        except ValueError:
-            count_files_drop += 1
-            print "Bad filename format in  " + logfile
-            continue
+    try:
+        if log_format == 'plain':
+            parser = PlainLogParser(infile)
+        else:
+            parser = HTMLLogParser(infile)
 
-        date_nick_msg = parse_file(opts.data_dir + "/" + logfile)
-
-        for i in date_nick_msg:
+        for date, what, info in parser:
             count_msg += 1
-            # date: 2013-07-11 15:39:16
-            date_time = date + " " + i[0]
-            try:
-                msg_date = datetime.strptime(date_time, '%Y-%m-%d %H:%M:%S')
-            except ValueError:
-                count_msg_drop += 1
-                print "Bad format in " + date_time + " (" + logfile + ")"
-                continue
-            if (last_date and msg_date <= last_date): continue
-            db.insert_message(date_time, i[1], i[2], channel_id)
+
+            # Replace log date by date_subs. Time remains the same.
+            if date_subs:
+                date = date.replace(year=date_subs.year,
+                                    month=date_subs.month,
+                                    day=date_subs.day)
+
+            if (last_date and date <= last_date): continue
+            if what == LogParser.COMMENT:
+                nick, text = info
+            else:
+                if what == LogParser.NICKCHANGE:
+                    text, oldnick, nick = info
+                else:
+                    text = info
+                    nick = None
+
+            db.insert_message(date, nick, text, channel_id)
             count_msg_new += 1
-            if (count_msg % 1000 == 0): print (count_msg)
+    except Exception as e:
+        raise Error("Error parsing %s file: %s" % (filepath, e))
+    finally:
+        infile.close()
+    return count_msg, count_msg_new
+
+
+if __name__ == '__main__':
+    opts = read_options()
+
+    db = Database(opts.dbuser, opts.dbpassword, opts.dbname)
+    db.open_database()
+    db.create_tables()
+
+    channel_id = db.get_channel_id(opts.channel)
+    count_msg = count_msg_new = count_msg_drop = count_files_drop = 0
+
+    files = os.listdir(opts.data_dir)
+    files.sort()
+    for logfile in files:
+        try:
+            date = parse_irc_filename(logfile)
+
+            filepath = os.path.join(opts.data_dir, logfile)
+            nmsg, nmsg_new = parse_irc_file(filepath, channel_id, opts.logformat,
+                                            db, date)
+
+            count_msg += nmsg
+            count_msg_new += nmsg_new
+        except Error as e:
+            print(e)
+            count_files_drop += 1
+            continue
 
     db.close_database()
     print("Total messages: %s" % (count_msg))
