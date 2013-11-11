@@ -6,7 +6,7 @@ IRC Analysis Tool
 Usage example:
 
     acs@lenovix:~/devel/IRCAnalysis$ mysqladmin -u root create ircdb
-    acs@lenovix:~/devel/IRCAnalysis$ ./irc_analysis.py -d ircdb --channel test --dir=test/data/
+    acs@lenovix:~/devel/IRCAnalysis$ ./irc_analysis.py -d ircdb --channel test --format plain --dir=test/data/
     ...
     Total messages: 5552
  
