@@ -66,7 +66,7 @@ def read_options():
     parser.add_option("-d", "--database",
                       action="store",
                       dest="dbname",
-                      help="Database where identities table is stored")
+                      help="Database where information is stored")
     parser.add_option("--db-user",
                       action="store",
                       dest="dbuser",
