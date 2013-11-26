@@ -205,7 +205,9 @@ class HTMLLogParser(LogParser):
     def _read_lines(self):
         html = self.infile.read()
         bs = BeautifulSoup(html)
-        return [line.text for line in bs.find(class_='irclog').find_all('td')]
+        lines = [line.text
+                for line in bs.find('table', attrs={'class': 'irclog'}).find_all('td')]
+        return lines
 
     def __iter__(self):
         self.lines = self._read_lines()
