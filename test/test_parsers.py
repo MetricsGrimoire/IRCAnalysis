@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 #
-# Database unit tests
-#
 # Copyright (C) 2012-2013 Bitergia
 #
 # This program is free software; you can redistribute it and/or modify
@@ -265,6 +263,12 @@ class TestHTMLLogParser(unittest.TestCase):
         self.assertEqual(actions[LogParser.JOIN], 43)
         self.assertEqual(actions[LogParser.PART], 68)
         self.assertEqual(actions[LogParser.NICKCHANGE], 3)
+
+    def test_parse_text_file(self):
+        """Parse a plain text file"""
+
+        actions = parse_log('data/plain_mediawiki.log', 'html')
+        self.assertEqual(len(actions.keys()), 0)
 
 
 if __name__ == '__main__':
