@@ -32,6 +32,9 @@ from pyircanalysis.parsers import LogParser
 from irc_analysis import Error, parse_irc_filename, string_to_datetime, parse_irc_file
 
 
+MEDIAWIKI_LOG_PATH = 'data/mediawiki_log'
+
+
 class MockDBConfig(object):
 
     def __init__(self, user='root', password='', database='mock_db_irc_test'):
@@ -292,5 +295,39 @@ class TestParseIRCFile(unittest.TestCase):
         self.assertEqual(actions[str(LogParser.SERVER)], 3)
 
 
+class TestParseIRCLog(unittest.TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        cls.config = MockDBConfig()
+        cls.mock_db = MockIRCDB(cls.config)
+        cls.mock_db.setup()
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.mock_db.teardown()
+
+    def setUp(self):
+        self.mock_db.clean()
+
+    def test_mediawiki_log(self):
+        """Parse MediaWiki log files"""
+        import os
+
+        ch = self.mock_db.db.get_channel_id('mediawiki')
+
+        files = os.listdir(MEDIAWIKI_LOG_PATH)
+        files.sort()
+        for logfile in files:
+            date = parse_irc_filename(logfile)
+            filepath = os.path.join(MEDIAWIKI_LOG_PATH, logfile)
+            parse_irc_file(filepath, ch, 'plain', self.mock_db.db, date)
+
+        actions = self.mock_db.count_num_messages()
+        self.assertEqual(len(actions.keys()), 2)
+        self.assertEqual(actions[str(LogParser.COMMENT)], 5443)
+        self.assertEqual(actions[str(LogParser.ACTION)], 109)
+
+
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(buffer=True)
