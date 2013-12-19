@@ -32,33 +32,81 @@ from pyircanalysis.parsers import LogParser
 from irc_analysis import Error, parse_irc_filename, string_to_datetime, parse_irc_file
 
 
-def db_count_num_messages(cursor, channel_id=None):
-    """Count the number of messages inserted in the database
-
-    :param cursor: database cursor
-    :type cursor: MySQLdb.Cursor
-    :param channel_id: id of the channel
-    :type channel_id: str
-
-    :return: dict storing the number of entries per action type
-    """
-    query = 'SELECT type, COUNT(id) FROM irclog'
-    if channel_id:
-        query = query + ' WHERE channel_id = %s'
-    query = query + ' GROUP BY type'
-
-    cursor.execute(query, (channel_id))
-    results = cursor.fetchall()
-    actions = {row[0] : row[1] for row in results}
-    return actions
-
-
 class MockDBConfig(object):
 
     def __init__(self, user='root', password='', database='mock_db_irc_test'):
         self.user = user
         self.password = password
         self.database = database
+
+
+class MockIRCDB(object):
+
+    def __init__(self, config):
+        """Mock database for testing purposes"""
+        import MySQLdb
+
+        self.config = config
+        # This is the database object used by the parser
+        self.db = None
+
+        # Private connection for executing create, delete,
+        # and drop queries
+        self._conn = MySQLdb.connect(user=self.config.user,
+                                     passwd=self.config.password)
+
+    def setup(self):
+        """Setup a database for testing"""
+        from pyircanalysis.database import Database
+
+        cursor = self._conn.cursor()
+        query = 'CREATE DATABASE ' + self.config.database
+        query = query + ' CHARACTER SET utf8 COLLATE utf8_unicode_ci'
+        cursor.execute(query)
+        cursor.close()
+
+        # This is the database object used by the parser
+        self.db = Database(self.config.user, self.config.password,
+                           self.config.database)
+        self.db.open_database()
+        self.db.create_tables()
+
+    def teardown(self):
+        """Database teardown"""
+        self.db.close_database()
+        cursor = self._conn.cursor()
+        query = 'DROP DATABASE ' + self.config.database
+        cursor.execute(query)
+        cursor.close()
+        self._conn.close()
+
+    def clean(self):
+        """Clean database"""
+        cursor = self._conn.cursor()
+        query = 'DELETE FROM ' + self.config.database + '.irclog'
+        cursor.execute(query)
+        query = 'DELETE FROM ' + self.config.database + '.channels'
+        cursor.execute(query)
+        cursor.close()
+
+    def count_num_messages(self, channel_id=None):
+        """Count the number of messages inserted in the database
+
+        :param channel_id: id of the channel
+        :type channel_id: str
+
+        :return: dict storing the number of entries per action type
+        """
+        query = 'SELECT type, COUNT(id) FROM irclog'
+        if channel_id:
+            query = query + ' WHERE channel_id = %s'
+        query = query + ' GROUP BY type'
+
+        cursor = self.db.cursor
+        cursor.execute(query, (channel_id))
+        results = cursor.fetchall()
+        actions = {row[0] : row[1] for row in results}
+        return actions
 
 
 class TestIRCAnalysisMiscFunctions(unittest.TestCase):
@@ -114,51 +162,24 @@ class TestParseIRCFile(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        import MySQLdb
-        from pyircanalysis.database import Database
-
         cls.config = MockDBConfig()
-
-        # Create private connection to execute create,
-        # delete and drop actions
-        cls._conn = MySQLdb.connect(user=cls.config.user,
-                                      passwd=cls.config.password)
-        cursor = cls._conn.cursor()
-        query = 'CREATE DATABASE ' + cls.config.database
-        query = query + ' CHARACTER SET utf8 COLLATE utf8_unicode_ci'
-        cursor.execute(query)
-        cursor.close()
-
-        # This is the database object used by the parser
-        cls.db = Database(cls.config.user, cls.config.password,
-                          cls.config.database)
-        cls.db.open_database()
-        cls.db.create_tables()
+        cls.mock_db = MockIRCDB(cls.config)
+        cls.mock_db.setup()
 
     @classmethod
     def tearDownClass(cls):
-        cls.db.close_database()
-        cursor = cls._conn.cursor()
-        query = 'DROP DATABASE ' + cls.config.database
-        cursor.execute(query)
-        cursor.close()
-        cls._conn.close()
+        cls.mock_db.teardown()
 
     def setUp(self):
-        cursor = self._conn.cursor()
-        query = 'DELETE FROM ' + self.config.database + '.irclog'
-        cursor.execute(query)
-        query = 'DELETE FROM ' + self.config.database + '.channels'
-        cursor.execute(query)
-        cursor.close()
+        self.mock_db.clean()
 
     def test_parse_plain_text_logfile(self):
         """Parse a plain text log"""
 
-        ch1 = self.db.get_channel_id('ch1')
+        ch1 = self.mock_db.db.get_channel_id('ch1')
         nmsg, nmsg_new = parse_irc_file('data/#mediawiki-20010101.log', ch1,
-                                        'plain', self.db)
-        actions = db_count_num_messages(self.db.cursor, ch1)
+                                        'plain', self.mock_db.db)
+        actions = self.mock_db.count_num_messages(ch1)
         self.assertEqual(nmsg, 79)
         self.assertEqual(nmsg_new, 79)
         self.assertEqual(len(actions.keys()), 2)
@@ -168,10 +189,10 @@ class TestParseIRCFile(unittest.TestCase):
     def test_parse_text_html_logfile(self):
         """Parse a text html log"""
 
-        ch1 = self.db.get_channel_id('ch1')
+        ch1 = self.mock_db.db.get_channel_id('ch1')
         nmsg, nmsg_new = parse_irc_file('data/#texthtml-20071217.log', ch1,
-                                        'html', self.db)
-        actions = db_count_num_messages(self.db.cursor, ch1)
+                                        'html', self.mock_db.db)
+        actions = self.mock_db.count_num_messages(ch1)
         self.assertEqual(nmsg, 173)
         self.assertEqual(nmsg_new, 173)
         self.assertEqual(len(actions.keys()), 5)
@@ -184,10 +205,10 @@ class TestParseIRCFile(unittest.TestCase):
     def test_parse_table_html_logfile(self):
         """Parse a table html log"""
 
-        ch1 = self.db.get_channel_id('ch1')
+        ch1 = self.mock_db.db.get_channel_id('ch1')
         nmsg, nmsg_new = parse_irc_file('data/#tablehtml-20131211.log', ch1,
-                                        'html', self.db)
-        actions = db_count_num_messages(self.db.cursor, ch1)
+                                        'html', self.mock_db.db)
+        actions = self.mock_db.count_num_messages(ch1)
         self.assertEqual(nmsg, 153)
         self.assertEqual(nmsg_new, 153)
         self.assertEqual(len(actions.keys()), 4)
@@ -205,13 +226,13 @@ class TestParseIRCFile(unittest.TestCase):
         """
         force_date = string_to_datetime('2008-01-01', '%Y-%m-%d')
 
-        ch1 = self.db.get_channel_id('ch1')
+        ch1 = self.mock_db.db.get_channel_id('ch1')
         parse_irc_file('data/#texthtml-20071217.log', ch1, 'html',
-                       self.db)
+                       self.mock_db.db)
         parse_irc_file('data/#texthtml-20071217.log', ch1, 'html',
-                       self.db, force_date)
+                       self.mock_db.db, force_date)
 
-        actions = db_count_num_messages(self.db.cursor)
+        actions = self.mock_db.count_num_messages()
         self.assertEqual(len(actions.keys()), 5)
         self.assertEqual(actions[str(LogParser.COMMENT)], 118)
         self.assertEqual(actions[str(LogParser.JOIN)], 124)
@@ -222,20 +243,20 @@ class TestParseIRCFile(unittest.TestCase):
     def test_parse_log_from_distinct_channels(self):
         """Parse files from distinct channels"""
 
-        ch1 = self.db.get_channel_id('ch1')
+        ch1 = self.mock_db.db.get_channel_id('ch1')
         nmsg, nmsg_new = parse_irc_file('data/#mediawiki-20010101.log', ch1,
-                                        'plain', self.db)
-        actions = db_count_num_messages(self.db.cursor, ch1)
+                                        'plain', self.mock_db.db)
+        actions = self.mock_db.count_num_messages(ch1)
         self.assertEqual(nmsg, 79)
         self.assertEqual(nmsg_new, 79)
         self.assertEqual(len(actions.keys()), 2)
         self.assertEqual(actions[str(LogParser.COMMENT)], 75)
         self.assertEqual(actions[str(LogParser.ACTION)], 4)
 
-        ch2 = self.db.get_channel_id('ch2')
+        ch2 = self.mock_db.db.get_channel_id('ch2')
         nmsg, nmsg_new = parse_irc_file('data/#ceph.20010101.log', ch2,
-                                        'plain', self.db)
-        actions = db_count_num_messages(self.db.cursor, ch2)
+                                        'plain', self.mock_db.db)
+        actions = self.mock_db.count_num_messages(ch2)
         self.assertEqual(nmsg, 95)
         self.assertEqual(nmsg_new, 95)
         self.assertEqual(len(actions.keys()), 4)
@@ -245,7 +266,7 @@ class TestParseIRCFile(unittest.TestCase):
         self.assertEqual(actions[str(LogParser.NICKCHANGE)], 3)
 
         # Check the total count of messages by type
-        actions = db_count_num_messages(self.db.cursor)
+        actions = self.mock_db.count_num_messages()
         self.assertEqual(len(actions.keys()), 5)
         self.assertEqual(actions[str(LogParser.COMMENT)], 124)
         self.assertEqual(actions[str(LogParser.ACTION)], 4)
@@ -256,13 +277,13 @@ class TestParseIRCFile(unittest.TestCase):
     def test_parse_log_from_same_channel(self):
         """Parse files from the same channel"""
 
-        ch1 = self.db.get_channel_id('ch1')
+        ch1 = self.mock_db.db.get_channel_id('ch1')
         parse_irc_file('data/#texthtml-20071217.log', ch1, 'html',
-                       self.db)
+                       self.mock_db.db)
         parse_irc_file('data/#tablehtml-20131211.log', ch1, 'html',
-                       self.db)
+                       self.mock_db.db)
 
-        actions = db_count_num_messages(self.db.cursor)
+        actions = self.mock_db.count_num_messages()
         self.assertEqual(len(actions.keys()), 5)
         self.assertEqual(actions[str(LogParser.COMMENT)], 98)
         self.assertEqual(actions[str(LogParser.JOIN)], 105)
