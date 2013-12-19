@@ -102,11 +102,11 @@ class Database(object):
         channel_id = str(results[0][0])
         return channel_id
 
-    def get_last_date(self, channel):
+    def get_last_date(self, channel_id):
         query =  "SELECT MAX(date) FROM irclog, channels "
         query += "WHERE irclog.channel_id=channels.id "
-        query += "AND channels.name = %s"
-        self.cursor.execute(query, (channel))
+        query += "AND channels.id = %s"
+        self.cursor.execute(query, (channel_id))
         return self.cursor.fetchone()[0]
 
     def insert_message(self, date, nick, message, message_type, channel_id):

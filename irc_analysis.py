@@ -122,7 +122,7 @@ def parse_irc_file(filepath, channel_id, log_format, db, date_subs=None):
 
     count_msg = 0
     count_msg_new = 0
-    last_date = db.get_last_date(opts.channel)
+    last_date = db.get_last_date(channel_id)
 
     try:
         if log_format == 'plain':
