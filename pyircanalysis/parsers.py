@@ -124,6 +124,7 @@ class PlainLogParser(LogParser):
     SERVMSG_REGEXP = re.compile(r'^(?:\*\*\*|---)\s')
     NICK_CHANGE_REGEXP = re.compile(
             r'^(?:\*\*\*|---)\s+(.*?) (?:are|is) now known as (.*)')
+    INIT_END_LOG_FILE = re.compile('--- Log opened|--- Log closed')
 
     def __init__(self, infile, dircproxy=False):
         LogParser.__init__(self, infile, dircproxy)
@@ -137,6 +138,11 @@ class PlainLogParser(LogParser):
             # line = self.decode(line).rstrip('\r\n')
             line = line.encode('utf-8').rstrip('\r\n')
             if not line:
+                continue
+
+            #Case of first and last line for specific
+            #IRC formats such as the oVirt one
+            if re.match(self.INIT_END_LOG_FILE, line):
                 continue
 
             m = self.TIME_REGEXP.match(line)
