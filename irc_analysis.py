@@ -31,15 +31,17 @@
 #
 
 import io
+import logging
+import requests
 import os
 import sys
 import re
+
 from datetime import datetime
 from optparse import OptionParser
 
 from pyircanalysis.database import Database
 from pyircanalysis.parsers import LogParser, PlainLogParser, HTMLLogParser
-
 
 class Error(Exception):
     """Application error."""
@@ -53,7 +55,7 @@ def read_options():
                       dest="data_dir",
                       default="irc",
                       help="Directory with all IRC logs")
-    parser.add_option("--channel",
+    parser.add_option("-c", "--channel",
                       action="store",
                       dest="channel",
                       help="Channel name")
@@ -61,18 +63,18 @@ def read_options():
                       type="choice",
                       action="store",
                       dest="logformat",
-                      choices=["plain" , "html"],
+                      choices=["plain" , "html", "slack"],
                       help="Log file format")
     parser.add_option("-d", "--database",
                       action="store",
                       dest="dbname",
                       help="Database where information is stored")
-    parser.add_option("--db-user",
+    parser.add_option("-u", "--db-user",
                       action="store",
                       dest="dbuser",
                       default="root",
                       help="Database user")
-    parser.add_option("--db-password",
+    parser.add_option("-p", "--db-password",
                       action="store",
                       dest="dbpassword",
                       default="",
@@ -82,13 +84,26 @@ def read_options():
                       dest="debug",
                       default=False,
                       help="Debug mode")
+    parser.add_option("-t", "--token",
+                      action="store",
+                      dest="token",
+                      help="Slack access token")
+
     (opts, args) = parser.parse_args()
 
     if len(args) != 0:
         parser.error("Wrong number of arguments")
+    if not opts.logformat:
+        parser.error("--format is needed")
 
-    if not(opts.data_dir and opts.dbname and opts.dbuser and opts.channel and opts.logformat):
-        parser.error("--dir --database --db-user and --channel --format are needed")
+    if opts.logformat != 'slack':
+        if not(opts.data_dir and opts.dbname and opts.dbuser and opts.channel):
+            parser.error("--dir --database --db-user and --channel are needed")
+    else:
+        if not (opts.token and opts.dbname and opts.dbuser):
+            print opts
+            parser.error("--database --db-user and --token are needed")
+
     return opts
 
 
@@ -105,6 +120,54 @@ def parse_irc_filename(filename):
     if m:
         return string_to_datetime(m.group(1), "%Y%m%d")
     raise Error("File name does not contain a valid date: %s" % filename)
+
+
+def get_slack_users(token):
+    url_slack =  "https://slack.com/api/"
+    logging.info("Getting users list ... ")
+    url_users = url_slack + "users.list?token="+ token
+    logging.info(url_users)
+    req = requests.get(url_users, verify=False)
+    slack_users = req.json()
+    return slack_users['members']
+
+def get_slack_user(user, users):
+    found = user
+    for usr in users:
+        if usr['id'] == user:
+            found = usr['name']
+            break
+    return found
+
+def parse_irc_slack(db, token, slack_users):
+    global count_msg, count_special_msg
+
+    url_slack =  "https://slack.com/api/"
+    logging.info("Getting channel list ... ")
+    url_channels = url_slack + "channels.list?token="+ token
+    logging.info(url_channels)
+
+    req = requests.get(url_channels, verify=False)
+    channels = req.json()
+    for chan in channels['channels']:
+        print chan
+        channel_id = db.get_channel_id(chan['name'])
+        url_msgs = url_slack + "channels.history?token="+token
+        url_msgs += "&channel="+chan['id']
+        logging.info(url_msgs)
+        messages = requests.get(url_msgs, verify=False).json()
+        for msg in messages['messages']:
+            if 'subtype' in msg:
+                # Not a simple message: channel_join, channel_topic
+                count_special_msg += 1
+            else:
+                count_msg += 1
+            msg_date = datetime.utcfromtimestamp(float(msg['ts']))
+            subtype = ''
+            if 'subtype' in msg: subtype = msg['subtype']
+            db.insert_message(msg_date, get_slack_user(msg['user'], slack_users),
+                              msg['text'], subtype , channel_id)
+
 
 def string_to_datetime(s, schema):
     """Convert string to datetime object"""
@@ -159,34 +222,42 @@ def parse_irc_file(filepath, channel_id, log_format, db, date_subs=None):
 
 
 if __name__ == '__main__':
+    logging.basicConfig(level=logging.INFO,format='%(asctime)s %(message)s')
+
     opts = read_options()
 
     db = Database(opts.dbuser, opts.dbpassword, opts.dbname)
     db.open_database()
     db.create_tables()
-
-    channel_id = db.get_channel_id(opts.channel)
     count_msg = count_msg_new = count_msg_drop = count_files_drop = 0
+    count_special_msg = 0
 
-    files = os.listdir(opts.data_dir)
-    files.sort()
-    for logfile in files:
-        try:
-            date = parse_irc_filename(logfile)
+    if opts.logformat in ['plain','html']:
+        channel_id = db.get_channel_id(opts.channel)
+        files = os.listdir(opts.data_dir)
+        files.sort()
+        for logfile in files:
+            try:
+                date = parse_irc_filename(logfile)
 
-            filepath = os.path.join(opts.data_dir, logfile)
-            nmsg, nmsg_new = parse_irc_file(filepath, channel_id, opts.logformat,
-                                            db, date)
+                filepath = os.path.join(opts.data_dir, logfile)
+                nmsg, nmsg_new = parse_irc_file(filepath, channel_id, opts.logformat,
+                                                db, date)
 
-            count_msg += nmsg
-            count_msg_new += nmsg_new
-        except Error as e:
-            print(e)
-            count_files_drop += 1
-            continue
+                count_msg += nmsg
+                count_msg_new += nmsg_new
+            except Error as e:
+                print(e)
+                count_files_drop += 1
+                continue
+    elif opts.logformat in ['slack']:
+        logging.info("Slack analysis")
+        slack_users = get_slack_users(opts.token)
+        parse_irc_slack(db, opts.token, slack_users)
 
     db.close_database()
     print("Total messages: %s" % (count_msg))
+    print("Total special messages: %s" % (count_special_msg))
     print("Total new messages: %s" % (count_msg_new))
     print("Total drop messages: %s" % (count_msg_drop))
     print("Total log files drop: %s" % (count_files_drop))
