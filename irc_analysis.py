@@ -30,6 +30,7 @@
 #   Thanks to the author for this great tool
 #
 
+import calendar
 import io
 import logging
 import requests
@@ -140,12 +141,16 @@ def get_slack_user(user, users):
     return found
 
 def parse_irc_slack(db, token, slack_users):
-    global count_msg, count_special_msg
+    global count_msg, count_special_msg, count_msg_drop;
 
-    import calendar
+    max_messages = 1000 # 1000 max for slack api
+
     last_date = db.get_last_date_global()
     if last_date is not None:
         last_ts = calendar.timegm(last_date.timetuple())
+        # Added 1s to avoid reinserting last message
+        # In MySQL we don't have <1s resolution as in Slack API
+        last_ts += 1
 
     url_slack =  "https://slack.com/api/"
     logging.info("Getting channel list ... ")
@@ -155,28 +160,56 @@ def parse_irc_slack(db, token, slack_users):
     req = requests.get(url_channels, verify=False)
     channels = req.json()
     for chan in channels['channels']:
+        logging.info("Getting messages for "+ chan['name'])
         channel_id = db.get_channel_id(chan['name'])
         url_msgs = url_slack + "channels.history?token="+token
         url_msgs += "&channel="+chan['id']
+        url_msgs += "&count="+str(max_messages)
         if last_date is not None:
-            url_msgs += "&oldest=last_ts"
-        logging.info(url_msgs)
-        messages = requests.get(url_msgs, verify=False).json()
-        if 'messages' not in messages:
-            logging.warn("No new messages after %s" % str(last_date))
-            return
+            # Incremental mode
+            url_msgs += "&oldest="+str(last_ts)
 
-        for msg in messages['messages']:
-            if 'subtype' in msg:
-                # Not a simple message: channel_join, channel_topic
-                count_special_msg += 1
-            else:
-                count_msg += 1
-            msg_date = datetime.utcfromtimestamp(float(msg['ts']))
-            subtype = ''
-            if 'subtype' in msg: subtype = msg['subtype']
-            db.insert_message(msg_date, get_slack_user(msg['user'], slack_users),
-                              msg['text'], subtype , channel_id)
+        has_more_messages = True
+        oldest_messages_date = None
+        while has_more_messages:
+            url_msgs_more = url_msgs
+            if oldest_messages_date is not None:
+                # Has more iteration
+                url_msgs_more += "&latest="+str(oldest_messages_date)
+            logging.info(url_msgs_more)
+            messages = requests.get(url_msgs_more, verify=False).json()
+            if 'messages' not in messages:
+                logging.warn("No new messages after %s" % str(last_date))
+                has_more_messages = False
+                continue
+
+            has_more_messages = messages['has_more']
+
+            for msg in messages['messages']:
+
+                msg_date = datetime.utcfromtimestamp(float(msg['ts']))
+                # Detect the oldest message for this iteration
+                if oldest_messages_date is None:
+                    oldest_messages_date = float(msg['ts'])
+                if float(msg['ts']) <= oldest_messages_date:
+                    oldest_messages_date = float(msg['ts'])
+
+                if 'subtype' in msg:
+                    # Not a simple message: channel_join, channel_topic
+                    count_special_msg += 1
+                else:
+                    count_msg += 1
+
+                subtype = ''
+                if 'subtype' in msg: subtype = msg['subtype']
+                user = ''
+                if 'user' in msg: user = get_slack_user(msg['user'], slack_users)
+
+                try:
+                    db.insert_message(msg_date, user, msg['text'], subtype , channel_id)
+                except UnicodeEncodeError:
+                    logging.error("Can't insert message " + msg['text'])
+                    count_msg_drop += 1
 
 
 def string_to_datetime(s, schema):
