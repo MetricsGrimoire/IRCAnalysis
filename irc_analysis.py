@@ -202,6 +202,7 @@ def parse_irc_slack(db, token, slack_users):
 
                 subtype = ''
                 if 'subtype' in msg: subtype = msg['subtype']
+                else: subtype = 'COMMENT'
                 user = ''
                 if 'user' in msg: user = get_slack_user(msg['user'], slack_users)
 
