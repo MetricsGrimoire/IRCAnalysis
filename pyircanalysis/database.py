@@ -47,8 +47,7 @@ class Database(object):
                                port=3306,
                                user=self.myuser,
                                passwd=self.mypassword,
-                               db=self.mydb,
-                               use_unicode=1,charset="utf8")
+                               db=self.mydb)
         self.conn = conn
         self.cursor = self.conn.cursor()
 
@@ -133,7 +132,6 @@ class Database(object):
     def insert_message(self, date, nick, message, message_type, channel_id):
         query =  "INSERT INTO irclog (date, nick, message, type, channel_id) "
         query += "VALUES (%s, %s, %s, %s, %s)"
-        # TODO: not escaped automatically
         self.cursor.execute(query, (date, self._escape(nick),
                                     self._escape(message), message_type,
                                     channel_id))
