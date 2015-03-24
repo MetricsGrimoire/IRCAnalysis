@@ -24,7 +24,7 @@
 #   
 #
 
-import MySQLdb
+import logging, MySQLdb
 
 
 class Database(object):
@@ -110,17 +110,26 @@ class Database(object):
         self.cursor.execute(query, (channel))
         return self.cursor.fetchone()[0]
 
+    def get_last_date_global(self):
+        query =  "SELECT MAX(date) FROM irclog"
+        self.cursor.execute(query)
+        return self.cursor.fetchone()[0]
+
     def insert_message(self, date, nick, message, message_type, channel_id):
         query =  "INSERT INTO irclog (date, nick, message, type, channel_id) "
         query += "VALUES (%s, %s, %s, %s, %s)"
         # TODO: not escaped automatically
-#        self.cursor.execute(query, (date, self._escape(nick),
-#                                    self._escape(message), message_type,
-#                                    channel_id))
-        self.cursor.execute(query, (date, nick, message, message_type,channel_id))
+        self.cursor.execute(query, (date, self._escape(nick),
+                                    self._escape(message), message_type,
+                                    channel_id))
         self.conn.commit()
 
     def _escape(self, s):
         if not s:
             return None
-        return self.conn.escape_string(s)
+        try:
+            s = self.conn.escape_string(s)
+        except UnicodeEncodeError:
+            # Don't encode unicode
+            pass
+        return s

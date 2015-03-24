@@ -142,6 +142,11 @@ def get_slack_user(user, users):
 def parse_irc_slack(db, token, slack_users):
     global count_msg, count_special_msg
 
+    import calendar
+    last_date = db.get_last_date_global()
+    if last_date is not None:
+        last_ts = calendar.timegm(last_date.timetuple())
+
     url_slack =  "https://slack.com/api/"
     logging.info("Getting channel list ... ")
     url_channels = url_slack + "channels.list?token="+ token
@@ -150,12 +155,17 @@ def parse_irc_slack(db, token, slack_users):
     req = requests.get(url_channels, verify=False)
     channels = req.json()
     for chan in channels['channels']:
-        print chan
         channel_id = db.get_channel_id(chan['name'])
         url_msgs = url_slack + "channels.history?token="+token
         url_msgs += "&channel="+chan['id']
+        if last_date is not None:
+            url_msgs += "&oldest=last_ts"
         logging.info(url_msgs)
         messages = requests.get(url_msgs, verify=False).json()
+        if 'messages' not in messages:
+            logging.warn("No new messages after %s" % str(last_date))
+            return
+
         for msg in messages['messages']:
             if 'subtype' in msg:
                 # Not a simple message: channel_join, channel_topic
