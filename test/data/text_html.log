@@ -1,0 +1,204 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Monday, 2007-12-17</title>
+  <link rel="stylesheet" href="irclog.css" />
+  <meta name="generator" content="irclog2html.py 2.12.1 by Marius Gedminas" />
+  <meta name="version" content="2.12.1 - 2013-03-22" />
+</head>
+<body>
+<h1>Monday, 2007-12-17</h1>
+
+<div class="searchbox">
+<form action="search" method="get">
+<input type="text" name="q" id="searchtext" />
+<input type="submit" value="Search" id="searchbutton" />
+</form>
+</div>
+
+<div class="navigation"> <a href="%23puppet-2007-12-16.log.html">&#171; Sunday, 2007-12-16</a> <a href="index.html">Index</a> <a href="%23puppet-2007-12-18.log.html">Tuesday, 2007-12-18 &#187;</a> </div>
+<table class="irclog">
+<tr><td class="other" colspan="3">[2007/12/17 00:02:11] @ Joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 00:02:11] @ Topic is &quot;0.24.0 is out: <a href="http://snurl.com/1v83q" rel="nofollow">http://snurl.com/1v83q</a> | Please see <a href="http://snurl.com/1udr1" rel="nofollow">http://snurl.com/1udr1</a> for channel guidelelines | See <a href="http://snurl.com/1udr3" rel="nofollow">http://snurl.com/1udr3</a> about SSL issues&quot;</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 00:02:11] @ Topic set by lak on Fri Dec 14 04:27:39 +1100 2007</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 00:04:29] @ Quit: kolla: Remote closed the connection</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 00:35:05] @ Quit: paran: &quot;bleh&quot;</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 00:52:11] @ Quit: \ask: Read error: 110 (Connection timed out)</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 00:54:43] @ Quit: pleemans: &quot;Ex-Chat&quot;</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 01:38:58] @ Quit: chadh: Read error: 110 (Connection timed out)</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 01:39:45] @ marthag joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 02:10:20] @ Bosse joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 02:25:39] @ lak joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 02:50:31] @ zobbo joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 02:56:36] @ Quit: lak: </td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 02:58:29] @ kolla joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 03:03:49] @ markl_ joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 03:18:30] @ Quit: zobbo: Read error: 110 (Connection timed out)</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 03:21:02] @ anarcat joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 03:46:58] @ pleemans joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 04:30:49] @ docelic joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 05:30:36] @ chadh joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 05:43:36] @ Quit: pleemans: &quot;Ex-Chat&quot;</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 05:56:03] @ jvanzyl joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 06:28:45] @ emerose joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 07:02:53] @ marthag left channel #puppet ()</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 07:55:52] @ Innocenti joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 07:56:57] @ \ask joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 08:08:40] @ \ask_ joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 08:09:49] @ Quit: \ask: Read error: 104 (Connection reset by peer)</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 08:34:39] @ Quit: docelic: &quot;<a href="http://www.spinlocksolutions.com/" rel="nofollow">http://www.spinlocksolutions.com/</a>&quot;</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 08:41:37] @ fux_ is now known as fux</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 08:45:20] @ jeckersb joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 09:01:24] @ DenRaf joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 09:08:54] @ Quit: trombik: Read error: 104 (Connection reset by peer)</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 09:09:17] @ trombik joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 09:10:43] @ DenRaf left channel #puppet ()</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 09:45:00] @ charlesnw joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 09:45:24] @ zobbo joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 10:08:56] @ Quit: Innocenti: Client Quit</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 10:46:42] @ Quit: snerd: simmons.freenode.net irc.freenode.net</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 10:46:43] @ Quit: entroposcope: simmons.freenode.net irc.freenode.net</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 10:52:40] @ snerd joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 10:52:41] @ entroposcope joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 11:07:12] @ Quit: holoway: </td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 11:18:42] @ Quit: jamesturnbull: &quot;leaving&quot;</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 11:19:34] @ jamesturnbull joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 11:27:52] @ Quit: jamesturnbull: &quot;leaving&quot;</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 11:28:04] @ jamesturnbull joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 11:29:26] @ Quit: jamesturnbull: Client Quit</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 11:31:43] @ jamesturnbull joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 11:43:22] @ Quit: charlesnw: Read error: 113 (No route to host)</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 12:34:37] @ Quit: jeckersb: Read error: 113 (No route to host)</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 12:56:01] @ lak joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 13:00:50] @ Quit: lak: Client Quit</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 13:24:16] @ Quit: Bosse: &quot;leaving&quot;</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 13:26:07] @ charlesnw joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 13:28:34] &lt;mmcgrath&gt; is this valid -</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 13:28:35] &lt;mmcgrath&gt; source =&gt; 'secure/'$hostname'.pem'</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 14:03:55] @ chadh__ joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 14:03:55] @ jmeeuwen joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 14:03:55] @ marberi joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 14:32:23] @ Quit: Norm: simmons.freenode.net irc.freenode.net</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 14:32:24] @ Quit: bch: simmons.freenode.net irc.freenode.net</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 14:32:24] @ Quit: phips: simmons.freenode.net irc.freenode.net</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 14:33:53] @ danstoner joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 14:33:53] @ Cuchulain joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 14:33:53] @ z00dax joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 14:33:53] @ ranguard joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 14:33:53] @ Norm joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 14:33:53] @ jfalgout joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 14:33:53] @ machpo joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 14:33:54] @ vinci joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 14:33:54] @ bch joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 14:33:54] @ phips joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 15:30:35] @ f3ew joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 15:47:17] @ Quit: chadh__: &quot;Leaving&quot;</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 16:22:59] @ Quit: emerose: </td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 16:50:18] @ DenRaf joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 16:51:16] @ DenRaf left channel #puppet ()</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 16:55:24] @ Quit: freiheit: </td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 16:55:44] @ emerose joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 17:06:10] @ Quit: emerose: </td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 17:09:20] @ Quit: charlesnw: &quot;Leaving.&quot;</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 17:12:20] @ Quit: Superfly_: Read error: 110 (Connection timed out)</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 17:22:13] @ Superfly_ joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 17:25:06] @ Quit: lak: </td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 17:58:57] @ Bosse joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 18:03:15] @ Quit: zobbo: Read error: 111 (Connection refused)</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 18:15:46] @ Quit: \ask_: </td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 18:24:44] @ Quit: Superfly_: Read error: 104 (Connection reset by peer)</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 18:39:15] @ Quit: kolla: Remote closed the connection</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 18:53:45] @ neh joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 18:53:54] @ DerekW joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 19:01:00] @ Innocenti joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 19:04:33] @ Demosthenes joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 19:18:53] @ f--z joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 19:38:46] @ Superfly_ joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 19:40:20] @ zobbo joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 19:52:03] &lt;Demosthenes&gt; ok, so i'm trying to run puppet standalone on a node without an IP aside from localhost. i'm using puppet --use-nodes, but its erroring out trying to connect to the network</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 19:52:13] &lt;Demosthenes&gt; is there a flag to tell it to skip networking?</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 19:59:03] @ DavidS joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 20:01:38] &lt;DavidS&gt; good morning, europe!</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 20:02:12] &lt;Demosthenes&gt; i call it 1 am ;]</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 20:03:22] @ Quit: DerekW: &quot;Leaving&quot;</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 20:03:36] &lt;DavidS&gt; doesn't sound like europe to me ;)</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 20:11:14] @ Quit: andyhold: Remote closed the connection</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 20:13:06] @ andyhold joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 20:14:17] @ Quit: DavidS: Nick collision from services.</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 20:14:18] @ David1 joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 20:15:43] @ David1 is now known as DavidS</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 20:31:17] @ Quit: jvanzyl: </td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 20:36:04] @ kolla joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 21:03:51] @ strerror_work joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 21:06:30] @ DerekW joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 21:07:46] @ jgonzalez joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 21:09:55] @ tim|macbook joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 21:14:01] @ Quit: ssm: Read error: 113 (No route to host)</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 21:42:26] &lt;phips&gt; mornin all</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 21:44:48] &lt;tim|macbook&gt; hi phipsy me boy</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 21:45:06] &lt;DerekW&gt; Morning</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 21:45:24] &lt;tim|macbook&gt; hi DerekWy me boy</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 21:45:33] &lt;tim|macbook&gt; ok, that sounds just plain silly.</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 21:45:40] &lt;DerekW&gt; Phipsy rolls off the tongue easier</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 21:45:49] &lt;tim|macbook&gt; yah</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 21:48:55] &lt;DavidS&gt; :)</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 21:50:10] &lt;DavidS&gt; psych question: what'd be a good way to &quot;suggest&quot; to a client that migrating from php4/mysql4 on sarge to php5/mysql5 on etch would be a Good Idea[tm]?</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 21:52:11] &lt;thom&gt; DavidS: from a few days ago, yes, intending to do 0.24 for unstable shortly; just have a deadline for work to get done first</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 21:57:35] &lt;DavidS&gt; thom: great :)</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:14:29] &lt;phips&gt; tim|macbook: going all london today lad? :-)</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:15:49] &lt;phips&gt; DavidS: how about something along these lines &quot;php is notoriously bad for security holes, and keeping up to date with 4 was/is a nightmware. They seem to be getting a hold of this in 5, meaning it's slightly less of a handful to maintain. I'd strongly advise moving up to 5, along with mysql5 for increased supportability&quot;</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:16:01] &lt;tim|macbook&gt; phips: i was hoping for a scottish online accent :S</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:16:11] &lt;phips&gt; that's not entirely truthful, in that php is swiss cheese, full stop ;-)</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:16:19] &lt;tim|macbook&gt; DavidS: tell them you'll do it for free.</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:16:23] &lt;thom&gt; also, mysql5 vastly improves innodb support and performance</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:16:34] &lt;phips&gt; tim|macbook: interesting! you need to add an 'ock aye the noo' in there too ;-)</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:18:13] &lt;tim|macbook&gt; no idea what that means, so prefer to simply get a &quot;scotsman trying to be londoner&quot; accent :P</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:18:17] &lt;tim|macbook&gt; laddy!</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:21:06] @ porridge joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:21:31] @ porridge left channel #puppet ()</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:22:53] &lt;phips&gt; lol</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:23:32] &lt;DavidS&gt; tim|macbook: the problem is not my infrastructure, but their app .. and I surely will not go down _that_ road</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:24:10] &lt;jamesturnbull&gt; DavidS: show them the Month of PHP Bugs site?</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:24:42] &lt;tim|macbook&gt; DavidS: tell them you will no longer support php4 and mysql4, since those aren't maintained good enough anymore... You cannot guarantee their operation.</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:25:10] &lt;tim|macbook&gt; I'm guessing it's a non-techie you need to convince, right?</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:25:51] &lt;DavidS&gt; not-for-profit php not-really-programmers-but-it-works-programmers</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:27:41] &lt;tim|macbook&gt; getting lunch, will respond when I'm back.</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:27:59] &lt;DavidS&gt; bon appetite!</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:28:07] &lt;DavidS&gt; hmm .. lunch sounds good</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:31:28] @ docelic joined channel #puppet</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:33:04] &lt;phips&gt; DerekW: /win 5</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:33:11] &lt;phips&gt; dammit</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:33:20] &lt;DerekW&gt; phips, yoo wot?</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:34:03] &lt;phips&gt; I was halfway thru typing something,</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:34:05] &lt;phips&gt; went away,</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:34:10] &lt;phips&gt; came back to type something new :-)</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:34:23] &lt;DerekW&gt; I like it when this kind of thing appears</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:34:25] &lt;DerekW&gt; Slayer1</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:34:31] &lt;DerekW&gt; Some wag: Still into Buffy?</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:34:51] &lt;DerekW&gt; Then a group email goes out offering to buy everyone lunch</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:36:07] &lt;phips&gt; lol</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 22:44:32] @ Quit: docelic: &quot;<a href="http://www.spinlocksolutions.com/" rel="nofollow">http://www.spinlocksolutions.com/</a>&quot;</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 23:02:36] &lt;tim|macbook&gt; DavidS: tell them they can work more rapidly by taking full advantage of the new PHP5 OO-stuff, especially in combination with MSQL5 improved clustering and replication facilities, which will improve their scalability and maintainability (or something other with a lot of buzzwords and superlatives)</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 23:02:55] &lt;tim|macbook&gt; use a lot of &quot;improved&quot; and &quot;advantage&quot;</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 23:03:32] &lt;DavidS&gt; lol :)</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 23:03:39] &lt;DavidS&gt; I'll give it a shot</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 23:05:56] @ jgonzalez left channel #puppet ()</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 23:06:16] &lt;phips&gt; scare them,</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 23:06:20] &lt;phips&gt; FUD always works ;-)</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 23:08:49] &lt;tim|macbook&gt; nah, FUD will come around to you again...</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 23:09:01] &lt;tim|macbook&gt; keep it correct and honest, just blow it up a little bit</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 23:09:08] &lt;tim|macbook&gt; superlatives work usually quite well</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 23:10:29] &lt;tim|macbook&gt; FUD will come back to haunt you, really</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 23:15:37] &lt;phips&gt; I was trying to be facetious ;-)</td></tr>
+<tr><td class="other" colspan="3">[2007/12/17 23:15:47] &lt;DavidS&gt; i have no intention to lie to them anyways .. it's just that they're non-profit (as I am in this case) and they should really get their act together...</td></tr>
+</table>
+<div class="navigation"> <a href="%23puppet-2007-12-16.log.html">&#171; Sunday, 2007-12-16</a> <a href="index.html">Index</a> <a href="%23puppet-2007-12-18.log.html">Tuesday, 2007-12-18 &#187;</a> </div>
+
+<div class="generatedby">
+<p>Generated by irclog2html.py 2.12.1 by <a href="mailto:marius@pov.lt">Marius Gedminas</a>
+ - find it at <a href="http://mg.pov.lt/irclog2html/">mg.pov.lt</a>!</p>
+</div>
+</body>
+</html>

@@ -108,7 +108,7 @@ def read_options():
 
 
 DATE_FILENAME_REGEXP = re.compile(r'^(\d{4}\d{2}\d{2})(\.(.*))?$')
-CHANNEL_FILENAME_REGEXP = re.compile(r'^#(.+)-(\d{4}-\d{2}-\d{2})(\.(.*))?$')
+CHANNEL_FILENAME_REGEXP = re.compile(r'^#(.+)[\.-](\d{4}-\d{2}-\d{2})(\.(.*))?$')
 
 def parse_irc_filename(filename):
     """Test file name"""
@@ -195,7 +195,7 @@ def parse_irc_file(filepath, channel_id, log_format, db, date_subs=None):
 
     count_msg = 0
     count_msg_new = 0
-    last_date = db.get_last_date(opts.channel)
+    last_date = db.get_last_date(channel_id)
 
     try:
         if log_format == 'plain':

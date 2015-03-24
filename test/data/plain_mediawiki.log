@@ -1,0 +1,79 @@
+[00:21:31] <grrrit-wm>	 (CR) Mwalker: [C: 2 V: 2] Amazon IPN listener [wikimedia/fundraising/PaymentsListeners] - https://gerrit.wikimedia.org/r/60958 (owner: Adamw)
+[00:21:32] <grrrit-wm>	 (Merged) Mwalker: Amazon IPN listener [wikimedia/fundraising/PaymentsListeners] - https://gerrit.wikimedia.org/r/60958 (owner: Adamw)
+[00:25:18] <grrrit-wm>	 (CR) Mwalker: [C: 2] Letter Subject is templated the same as the body [wikimedia/fundraising/crm] - https://gerrit.wikimedia.org/r/75157 (owner: Adamw)
+[00:25:25] <grrrit-wm>	 (CR) Mwalker: [V: 2] Letter Subject is templated the same as the body [wikimedia/fundraising/crm] - https://gerrit.wikimedia.org/r/75157 (owner: Adamw)
+[00:25:26] <grrrit-wm>	 (Merged) Mwalker: Letter Subject is templated the same as the body [wikimedia/fundraising/crm] - https://gerrit.wikimedia.org/r/75157 (owner: Adamw)
+[00:38:18] <slander_>	 #940: (AW) TS:PD -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/940
+[00:41:23] <slander_>	 #996: (AW) Description changed -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/996
+[00:41:35] <YuviPanda>	 awight: my message to civicrm was rejected, do forward it along if you think it is appropriate :)
+[00:41:55] <YuviPanda>	 I'm no fan of Gerrit and its workflow (which seems to be trying very, very hard to mimic svn)
+[00:42:01] <YuviPanda>	 :D
+[00:42:02] <awight>	 YuviPanda: haha it was great, I totally agree
+[00:42:40] <YuviPanda>	 awight: for better effect, imagine me to be the guy in the red plaid shirt in https://www.youtube.com/watch?v=6CY_HGl6W2U
+[00:42:52] <YuviPanda>	 slightly risque click, but not really.
+[00:43:03] <YuviPanda>	 "Don't move to Gerrit!" :)
+[00:43:17] <YuviPanda>	 awight: either way, their mailing list setup rejected my email, so do forawrd it along :)
+[00:43:21] <YuviPanda>	 it's 6 am, so I'll head to sleep now
+[00:43:58] <awight>	 YuviPanda: ok and thanks again for setting FR up
+[00:44:08] <YuviPanda>	 yw, and let me know if you want customizations
+[00:54:18] <slander_>	 #982: (AW) O:AW|TS:DR -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/982
+[00:54:18] <slander_>	 #982: (AW) AT:AW|TS:ID -- https://mingle.corp.wikimedia.org/projects/fundraiser_2012/cards/982
+[15:50:18] * K4-713  waves at Jeff_Green
+[15:50:48] <Jeff_Green>	 hey
+[15:51:04] <Jeff_Green>	 you ready to start fires?
+[15:51:23] <K4-713>	 Just got in. Banners should have come down about an hour ago, so once I verify it's down to a dull roar: Absolutely.
+[15:51:29] <Jeff_Green>	 k
+[15:51:53] <Jeff_Green>	 I updated the list a bit
+[15:52:02] <Jeff_Green>	 i should number things on there...
+[15:52:43] * Jeff_Green  studies mediawiki outline syntax
+[15:53:12] <K4-713>	 I'm going to go for ppayments maintenance mode now.
+[15:53:18] <Jeff_Green>	 k
+[15:54:01] <K4-713>	 Looks quiet enough. :)
+[15:54:31] <K4-713>	 the-wub: Hey, you there?
+[15:54:51] <the-wub>	 hey K4-713 , yes fundraising banners are all down
+[15:54:58] <K4-713>	 Was C13_wpdr_enWWform2_FR one of the banners that came down at that time?
+[15:55:38] * Jeff_Green  disabling monitoring for db1008
+[15:55:46] <the-wub>	 K4-713: yes
+[15:56:40] <K4-713>	 the-wub: Cool, just checking. Still getting a tiny trickle from that.
+[15:57:12] <the-wub>	 yeah, that was the big US/CA/GB/NZ one
+[15:59:28] <K4-713>	 Jeff_Green: Gar, I think maybe I forgot... wait, I think I can address it myself.
+[15:59:36] <K4-713>	 The orphan slayer cron on payments4.
+[15:59:45] <Jeff_Green>	 it's on payments1004
+[15:59:54] <K4-713>	 ...that's what I meant. :p
+[16:00:09] <K4-713>	 I'm not sure it won't just start emitting cronspam.
+[16:00:17] <Jeff_Green>	 lemme know if you need me to stab it by puppet
+[16:00:21] <K4-713>	 But I can stop it trying to run.
+[16:04:55] <K4-713>	 Jeff_Green: Okay, just modified settings such that it should put payments in maintenance mode. Blasting. :)
+[16:05:00] <Jeff_Green>	 k
+[16:06:40] <K4-713>	 Verified that the payments cluster is now in maintenance mode. :)
+[16:06:44] <K4-713>	 Moving  on n too jenkins...
+[16:12:21] <Jeff_Green>	 garg. jfyi apparently we're having issues with udp2log and we are currently not logging banners. good timing eh?
+[16:13:18] <K4-713>	 I heard we were having some kind of... issue last night. But I was under the impression (ha) it was contained entiirely in fundraising.
+[16:13:39] <K4-713>	 Like, it was the old script to load the banner impressions in to our local db
+[16:13:55] <awight>	 that is sort of special. just yesterday, Matt found some awesome fail in the scripts which parse udplogs
+[16:14:03] <Jeff_Green>	 it sounds as though there's some kind of packet lossy thing going on
+[16:14:26] <Jeff_Green>	 ottomata stopped the udp2log filter about an hour ago
+[16:15:12] <K4-713>	 Huh.
+[16:15:28] <K4-713>	 Jenkins jobs are stopped.
+[16:15:31] <K4-713>	 Taking out civi
+[16:15:45] <K4-713>	 (dunno why that made me giggle to type)
+[16:15:52] <awight>	 hehe I showed up just to hear that
+[16:15:56] <ottomata>	 hi guys!
+[16:16:15] <K4-713>	 Hey, ottomata! So... udp2log problems?
+[16:16:18] <K4-713>	 Nice timing.
+[16:16:25] <K4-713>	 We're not running anything ass of about an hour ago.
+[16:16:28] <K4-713>	 *as
+[16:18:31] <K4-713>	 civicrm is in maintenance mode. :) Though, somebody not in the fr-tech group is going to have to poke it to verify. We all have "use while in maintenance mode" (presumably so we can put it in Normal Mode through the UI) but I don't want to log out just in case it's... silly like that.
+[16:19:43] <awight>	 yeah I'm pretty certain there is no login during Maine
+[16:20:01] <K4-713>	 awight: Can you log out and poke it?
+[16:20:24] <awight>	 confirmed.
+[16:20:40] <K4-713>	 Bam. Jeff_Green: You have the green light.
+[16:20:46] <Jeff_Green>	 woooOooooO
+[16:21:17] <awight>	 I read that as, "Nippon
+[16:21:22] <Jeff_Green>	 db1008: SET GLOBAL read_only=1;
+[16:21:36] <awight>	 Argh. as "mooooo
+[16:21:56] <K4-713>	 cowsay: Woooo!
+[16:22:03] <Jeff_Green>	 * poking db1008 config in puppet
+[16:22:08] <Jeff_Green>	 my new preferred cowsay: Fetchez la Vache
+[16:22:15] <K4-713>	 HA!
+[16:22:31] * K4-713  thinks fondly of catapults

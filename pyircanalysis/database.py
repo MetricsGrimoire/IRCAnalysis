@@ -25,9 +25,16 @@
 #
 
 import logging, MySQLdb
+from collections import namedtuple
+
+# Tuple for managing table indexes
+TableIndex = namedtuple('TableIndex', 'name table field')
 
 
 class Database(object):
+
+    INDEXES = (TableIndex('ircnick', 'irclog', 'nick'),
+               TableIndex('irctype', 'irclog', 'type'))
 
     def __init__(self, myuser, mypassword, mydb):
         self.myuser = myuser
@@ -69,24 +76,32 @@ class Database(object):
                 ") ENGINE=MyISAM DEFAULT CHARSET=utf8"
         self.cursor.execute(query)
 
-        try:
-            query = "DROP INDEX ircnick ON irclog;"
-            self.cursor.execute(query)
-        except MySQLdb.Error as e:
-            print("Warning: Dropping nick index", e)
-
-        try:
-            query = "CREATE INDEX ircnick ON irclog (nick);"
-            self.cursor.execute(query)
-            self.conn.commit()
-        except MySQLdb.Error as e:
-            print("Warning: Creating nick index", e)
+        self.drop_indexes()
+        self.create_indexes()
 
     def drop_tables(self):
         query = "DROP TABLE IF EXISTS irclog"
         self.cursor.execute(query)
         query = "DROP TABLE IF EXISTS channels"
         self.cursor.execute(query)
+
+    def create_indexes(self):
+        for idx in Database.INDEXES:
+            try:
+                query = "CREATE INDEX %s ON %s (%s);" % (idx.name, idx.table, idx.field)
+                self.cursor.execute(query)
+                self.conn.commit()
+            except MySQLdb.Error as e:
+                print("Warning: Creating %s index" % idx.name, e)
+
+    def drop_indexes(self):
+        for idx in Database.INDEXES:
+            try:
+                query = "DROP INDEX %s ON %s;" % (idx.name, idx.table)
+                self.cursor.execute(query)
+                self.conn.commit()
+            except MySQLdb.Error as e:
+                print("Warning: Dropping %s index" % idx.name, e)
 
     # Queries (SELECT/INSERT) functions 
 
@@ -103,11 +118,11 @@ class Database(object):
         channel_id = str(results[0][0])
         return channel_id
 
-    def get_last_date(self, channel):
+    def get_last_date(self, channel_id):
         query =  "SELECT MAX(date) FROM irclog, channels "
         query += "WHERE irclog.channel_id=channels.id "
-        query += "AND channels.name = %s"
-        self.cursor.execute(query, (channel))
+        query += "AND channels.id = %s"
+        self.cursor.execute(query, (channel_id))
         return self.cursor.fetchone()[0]
 
     def get_last_date_global(self):
