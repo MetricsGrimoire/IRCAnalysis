@@ -161,7 +161,9 @@ def parse_irc_slack(db, token, slack_users):
     channels = req.json()
     for chan in channels['channels']:
         logging.info("Getting messages for "+ chan['name'])
-        channel_id = db.get_channel_id(chan['name'])
+        public = chan['is_general']
+        archived = chan['is_archived']
+        channel_id = db.get_channel_id(chan['name'], public, archived)
         url_msgs = url_slack + "channels.history?token="+token
         url_msgs += "&channel="+chan['id']
         url_msgs += "&count="+str(max_messages)

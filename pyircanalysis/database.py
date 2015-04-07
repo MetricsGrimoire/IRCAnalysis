@@ -71,6 +71,8 @@ class Database(object):
         query = "CREATE TABLE IF NOT EXISTS channels (" + \
                 "id int(11) NOT NULL AUTO_INCREMENT," + \
                 "name VARCHAR(255) NOT NULL," + \
+                "public BOOLEAN default true," + \
+                "archived BOOLEAN default false," + \
                 "PRIMARY KEY (id)" + \
                 ") ENGINE=MyISAM DEFAULT CHARSET=utf8"
         self.cursor.execute(query)
@@ -104,13 +106,17 @@ class Database(object):
 
     # Queries (SELECT/INSERT) functions 
 
-    def get_channel_id(self, name):
+    def get_channel_id(self, name, public = None, archived = None):
         query_s = "SELECT * FROM channels WHERE name = %s"
         self.cursor.execute(query_s, (name))
         results =  self.cursor.fetchall()
         if len(results) == 0:
-            query_i = "INSERT INTO channels (name) VALUES (%s)"
-            self.cursor.execute(query_i, (name))
+            if public is not None and archived is not None:
+                query_i = "INSERT INTO channels (name, public, archived) VALUES (%s, %s, %s)"
+                self.cursor.execute(query_i, (name, public, archived))
+            else:
+                query_i = "INSERT INTO channels (name) VALUES (%s)"
+                self.cursor.execute(query_i, (name))
             self.conn.commit()
             self.cursor.execute(query_s, (name))
             results =  self.cursor.fetchall()
