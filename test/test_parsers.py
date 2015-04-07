@@ -148,6 +148,12 @@ class TestPlainLogParser(unittest.TestCase):
         self.assertEqual(info[0], 'nick')
         self.assertEqual(info[1], 'text')
 
+        ts, what, info = parse_plain_text_line('<nick&gt; text&gt; ->')
+        self.assertEqual(ts, None)
+        self.assertEqual(what, LogParser.COMMENT)
+        self.assertEqual(info[0], 'nick')
+        self.assertEqual(info[1], 'text&gt; ->')
+
     def test_action_line(self):
         """Test ACTIONS"""
 

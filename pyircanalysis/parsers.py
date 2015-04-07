@@ -117,6 +117,7 @@ class PlainLogParser(LogParser):
             r'(?:\d{4}-\d{2}-\d{2}T|\d{2}-\w{3}-\d{4} |\w{3} \d{2} |\d{2} \w{3} )?' # Optional date
             r'\d\d:\d\d(:\d\d)?' # Mandatory HH:MM, optional :SS
             r')\]? +') # Optional ], mandatory space
+    NICK_GT_REGEXP = re.compile(r'^<([^>]*?)(!.*)?&gt;\s')
     NICK_REGEXP = re.compile(r'^<(.*?)(!.*)?>\s')
     DIRCPROXY_NICK_REGEXP = re.compile(r'^<(.*?)(!.*)?>\s[\+-]?')
     JOIN_REGEXP = re.compile(r'^(?:\*\*\*|-->)\s.*joined')
@@ -152,7 +153,10 @@ class PlainLogParser(LogParser):
             else:
                 time = None
 
-            m = self.NICK_REGEXP.match(line)
+            m = self.NICK_GT_REGEXP.match(line)
+            if not m:
+                m = self.NICK_REGEXP.match(line)
+
             if m:
                 nick = m.group(1)
                 text = line[len(m.group(0)):]
