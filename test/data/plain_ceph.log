@@ -18,7 +18,7 @@
 2012-10-17T09:26:46  <Tv_> it's like staring at the fury of creation
 2012-10-17T09:26:54  <Tv_> linux-kernel at least feels that way
 2012-10-17T09:27:25  *** loicd1 has quit IRC
-2012-10-17T09:27:31  <joao> just by the volume of traffic that linux-kernel imposes on my mail account, I'm assuming that's certainly a possibility
+2012-10-17T09:27:31  <joao&gt; just by the volume of traffic that linux-kernel imposes on my mail account, &gt; -> I'm assuming that's certainly a possibility
 2012-10-17T09:27:38  *** miroslavk has quit IRC
 2012-10-17T09:27:43  <benpol> nhm: interesting, still one of the dark corners, huh?  otherwise the initial performance numbers are so tantalizing!
 2012-10-17T09:29:41  <joao> sagewk, pushed mon-coverity-fixes
