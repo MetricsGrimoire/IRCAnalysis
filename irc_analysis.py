@@ -89,6 +89,11 @@ def read_options():
                       action="store",
                       dest="token",
                       help="Slack access token")
+    parser.add_option("-a", "--all",
+                      action="store_true",
+                      dest="all_channels",
+                      help="Download all Slack channels including privates")
+
 
     (opts, args) = parser.parse_args()
 
@@ -140,7 +145,7 @@ def get_slack_user(user, users):
             break
     return found
 
-def parse_irc_slack(db, token, slack_users):
+def parse_irc_slack(db, token, slack_users, all_channels = False):
     global count_msg, count_special_msg, count_msg_drop;
 
     max_messages = 1000 # 1000 max for slack api
@@ -160,8 +165,12 @@ def parse_irc_slack(db, token, slack_users):
     req = requests.get(url_channels, verify=False)
     channels = req.json()
     for chan in channels['channels']:
-        logging.info("Getting messages for "+ chan['name'])
         public = chan['is_general']
+        if not all_channels and not public:
+            # Only public channels are stored by default
+            logging.info("NOT Getting messages for PRIVATE "+ chan['name'])
+            continue
+        logging.info("Getting messages for "+ chan['name'])
         archived = chan['is_archived']
         channel_id = db.get_channel_id(chan['name'], public, archived)
         url_msgs = url_slack + "channels.history?token="+token
@@ -299,7 +308,7 @@ if __name__ == '__main__':
     elif opts.logformat in ['slack']:
         logging.info("Slack analysis")
         slack_users = get_slack_users(opts.token)
-        parse_irc_slack(db, opts.token, slack_users)
+        parse_irc_slack(db, opts.token, slack_users, opts.all_channels)
 
     db.close_database()
     print("Total messages: %s" % (count_msg))
