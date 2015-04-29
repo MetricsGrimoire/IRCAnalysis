@@ -92,7 +92,7 @@ def read_options():
     parser.add_option("-a", "--all",
                       action="store_true",
                       dest="all_channels",
-                      help="Download all Slack channels including privates")
+                      help="Download all Slack channels including archived.")
 
 
     (opts, args) = parser.parse_args()
@@ -165,13 +165,13 @@ def parse_irc_slack(db, token, slack_users, all_channels = False):
     req = requests.get(url_channels, verify=False)
     channels = req.json()
     for chan in channels['channels']:
-        public = chan['is_general']
-        if not all_channels and not public:
-            # Only public channels are stored by default
-            logging.info("NOT Getting messages for PRIVATE "+ chan['name'])
+        archived = chan['is_archived']
+        public = True # all channels from web API are public
+        if not all_channels and archived:
+            # Only channels not archived are stored by default
+            logging.info("NOT Getting messages for archived "+ chan['name'])
             continue
         logging.info("Getting messages for "+ chan['name'])
-        archived = chan['is_archived']
         channel_id = db.get_channel_id(chan['name'], public, archived)
         url_msgs = url_slack + "channels.history?token="+token
         url_msgs += "&channel="+chan['id']
@@ -218,7 +218,9 @@ def parse_irc_slack(db, token, slack_users, all_channels = False):
                 if 'user' in msg: user = get_slack_user(msg['user'], slack_users)
 
                 try:
-                    db.insert_message(msg_date, user, msg['text'], subtype , channel_id)
+                    # Convert to Unicode to support unicode values
+                    msg = unicode((msg['text'])).encode('utf-8')
+                    db.insert_message(msg_date, user, msg, subtype , channel_id)
                 except UnicodeEncodeError:
                     logging.error("Can't insert message " + msg['text'])
                     count_msg_drop += 1
