@@ -77,6 +77,20 @@ class Database(object):
                 ") ENGINE=MyISAM DEFAULT CHARSET=utf8"
         self.cursor.execute(query)
 
+        # People table build always from scratch
+        # Just used to register all users in Slack yet
+        try:
+            self.cursor.execute("DROP TABLE people")
+        except:
+            pass
+        query = "CREATE TABLE IF NOT EXISTS people (" + \
+                "nick VARCHAR(255) NOT NULL," + \
+                "name VARCHAR(255)," + \
+                "email VARCHAR(255)," + \
+                "PRIMARY KEY (nick)" + \
+                ") ENGINE=MyISAM DEFAULT CHARSET=utf8"
+        self.cursor.execute(query)
+
         self.drop_indexes()
         self.create_indexes()
 
@@ -84,6 +98,8 @@ class Database(object):
         query = "DROP TABLE IF EXISTS irclog"
         self.cursor.execute(query)
         query = "DROP TABLE IF EXISTS channels"
+        self.cursor.execute(query)
+        query = "DROP TABLE IF EXISTS people"
         self.cursor.execute(query)
 
     def create_indexes(self):
@@ -141,6 +157,12 @@ class Database(object):
         self.cursor.execute(query, (date, self._escape(nick),
                                     self._escape(message), message_type,
                                     channel_id))
+        self.conn.commit()
+
+    def insert_user(self, nick, name, email):
+        query =  "INSERT INTO people (nick, name, email) "
+        query += "VALUES (%s, %s, %s)"
+        self.cursor.execute(query, (self._escape(nick), self._escape(name), email))
         self.conn.commit()
 
     def _escape(self, s):

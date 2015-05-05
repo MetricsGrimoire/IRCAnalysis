@@ -158,6 +158,24 @@ def parse_irc_slack(db, token, slack_users, all_channels = False):
         last_ts += 1
 
     url_slack =  "https://slack.com/api/"
+    logging.info("Getting users list ... ")
+    url_users = url_slack + "users.list?token="+ token
+    logging.info(url_users)
+    req = requests.get(url_users, verify=False)
+    users = req.json()['members']
+    for user in users:
+        import pprint
+        pprint.pprint(user)
+        nick = user['name']
+        email = None
+        if 'email' in user['profile']:
+            email = user['profile']['email']
+        name = None
+        if 'real_name' in user:
+            name = user['real_name']
+        db.insert_user(nick, name, email)
+    logging.info("Total users: %i" % len(users))
+
     logging.info("Getting channel list ... ")
     url_channels = url_slack + "channels.list?token="+ token
     logging.info(url_channels)
