@@ -160,9 +160,10 @@ class Database(object):
         self.conn.commit()
 
     def insert_user(self, nick, name, email):
-        query =  "INSERT INTO people (nick, name, email) "
-        query += "VALUES (%s, %s, %s)"
-        self.cursor.execute(query, (self._escape(nick), self._escape(name), email))
+        # TODO: don't store the email. It is private data and we are not using it yet.
+        query =  "INSERT INTO people (nick, name) "
+        query += "VALUES (%s, %s)"
+        self.cursor.execute(query, (self._escape(nick), self._escape(name)))
         self.conn.commit()
 
     def _escape(self, s):
