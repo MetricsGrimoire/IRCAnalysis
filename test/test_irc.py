@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright (C) 2013 Bitergia
+# Copyright (C) 2013-2015 Bitergia
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -90,6 +90,8 @@ class MockIRCDB(object):
         cursor.execute(query)
         query = 'DELETE FROM ' + self.config.database + '.channels'
         cursor.execute(query)
+        query = 'DELETE FROM ' + self.config.database + '.people'
+        cursor.execute(query)
         cursor.close()
 
     def count_num_messages(self, channel_id=None):
@@ -110,6 +112,19 @@ class MockIRCDB(object):
         results = cursor.fetchall()
         actions = {row[0] : row[1] for row in results}
         return actions
+
+    def count_num_people(self):
+        """Count the number of people inserted in the database
+
+        :return: number of people
+        """
+        query = 'SELECT COUNT(*) FROM people'
+
+        cursor = self.db.cursor
+        cursor.execute(query)
+        results = cursor.fetchone()
+        npeople = results[0]
+        return npeople
 
 
 class TestIRCAnalysisMiscFunctions(unittest.TestCase):
@@ -181,7 +196,7 @@ class TestParseIRCFile(unittest.TestCase):
 
         ch1 = self.mock_db.db.get_channel_id('ch1')
         nmsg, nmsg_new = parse_irc_file('data/#mediawiki-20010101.log', ch1,
-                                        'plain', self.mock_db.db)
+                                        'plain', self.mock_db.db , [])
         actions = self.mock_db.count_num_messages(ch1)
         self.assertEqual(nmsg, 79)
         self.assertEqual(nmsg_new, 79)
@@ -194,7 +209,7 @@ class TestParseIRCFile(unittest.TestCase):
 
         ch1 = self.mock_db.db.get_channel_id('ch1')
         nmsg, nmsg_new = parse_irc_file('data/#texthtml-20071217.log', ch1,
-                                        'html', self.mock_db.db)
+                                        'html', self.mock_db.db, [])
         actions = self.mock_db.count_num_messages(ch1)
         self.assertEqual(nmsg, 173)
         self.assertEqual(nmsg_new, 173)
@@ -210,10 +225,10 @@ class TestParseIRCFile(unittest.TestCase):
 
         ch1 = self.mock_db.db.get_channel_id('ch1')
         nmsg, nmsg_new = parse_irc_file('data/#tablehtml-20131211.log', ch1,
-                                        'html', self.mock_db.db)
-        actions = self.mock_db.count_num_messages(ch1)
+                                        'html', self.mock_db.db, [])
         self.assertEqual(nmsg, 153)
         self.assertEqual(nmsg_new, 153)
+        actions = self.mock_db.count_num_messages()
         self.assertEqual(len(actions.keys()), 4)
         self.assertEqual(actions[str(LogParser.COMMENT)], 39)
         self.assertEqual(actions[str(LogParser.JOIN)], 43)
@@ -227,13 +242,15 @@ class TestParseIRCFile(unittest.TestCase):
         the two logs have the same date in their filename or stored
         in log messages.
         """
+        users = []
+
         force_date = string_to_datetime('2008-01-01', '%Y-%m-%d')
 
         ch1 = self.mock_db.db.get_channel_id('ch1')
         parse_irc_file('data/#texthtml-20071217.log', ch1, 'html',
-                       self.mock_db.db)
+                       self.mock_db.db, users)
         parse_irc_file('data/#texthtml-20071217.log', ch1, 'html',
-                       self.mock_db.db, force_date)
+                       self.mock_db.db, users, force_date)
 
         actions = self.mock_db.count_num_messages()
         self.assertEqual(len(actions.keys()), 5)
@@ -246,9 +263,11 @@ class TestParseIRCFile(unittest.TestCase):
     def test_parse_log_from_distinct_channels(self):
         """Parse files from distinct channels"""
 
+        users = []
+
         ch1 = self.mock_db.db.get_channel_id('ch1')
         nmsg, nmsg_new = parse_irc_file('data/#mediawiki-20010101.log', ch1,
-                                        'plain', self.mock_db.db)
+                                        'plain', self.mock_db.db, users)
         actions = self.mock_db.count_num_messages(ch1)
         self.assertEqual(nmsg, 79)
         self.assertEqual(nmsg_new, 79)
@@ -258,7 +277,7 @@ class TestParseIRCFile(unittest.TestCase):
 
         ch2 = self.mock_db.db.get_channel_id('ch2')
         nmsg, nmsg_new = parse_irc_file('data/#ceph.20010101.log', ch2,
-                                        'plain', self.mock_db.db)
+                                        'plain', self.mock_db.db, users)
         actions = self.mock_db.count_num_messages(ch2)
         self.assertEqual(nmsg, 95)
         self.assertEqual(nmsg_new, 95)
@@ -280,11 +299,13 @@ class TestParseIRCFile(unittest.TestCase):
     def test_parse_log_from_same_channel(self):
         """Parse files from the same channel"""
 
+        users = []
+
         ch1 = self.mock_db.db.get_channel_id('ch1')
         parse_irc_file('data/#texthtml-20071217.log', ch1, 'html',
-                       self.mock_db.db)
+                       self.mock_db.db, users)
         parse_irc_file('data/#tablehtml-20131211.log', ch1, 'html',
-                       self.mock_db.db)
+                       self.mock_db.db, users)
 
         actions = self.mock_db.count_num_messages()
         self.assertEqual(len(actions.keys()), 5)
@@ -318,15 +339,21 @@ class TestParseIRCLog(unittest.TestCase):
 
         files = os.listdir(MEDIAWIKI_LOG_PATH)
         files.sort()
+
+        users = []
+
         for logfile in files:
             date = parse_irc_filename(logfile)
             filepath = os.path.join(MEDIAWIKI_LOG_PATH, logfile)
-            parse_irc_file(filepath, ch, 'plain', self.mock_db.db, date)
+            parse_irc_file(filepath, ch, 'plain', self.mock_db.db, users, date)
 
         actions = self.mock_db.count_num_messages()
         self.assertEqual(len(actions.keys()), 2)
         self.assertEqual(actions[str(LogParser.COMMENT)], 5443)
         self.assertEqual(actions[str(LogParser.ACTION)], 109)
+
+        npeople = self.mock_db.count_num_people()
+        self.assertEqual(npeople, 46)
 
 
 if __name__ == '__main__':

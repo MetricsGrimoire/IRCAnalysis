@@ -3,8 +3,8 @@
 #
 # This script parses IRC logs and stores the extracted data in
 # a database
-# 
-# Copyright (C) 2012-2013 Bitergia
+#
+# Copyright (C) 2012-2015 Bitergia
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -251,7 +251,7 @@ def string_to_datetime(s, schema):
     except ValueError:
         raise Error("Parsing date %s to %s format" % (s, schema))
 
-def parse_irc_file(filepath, channel_id, log_format, db, date_subs=None):
+def parse_irc_file(filepath, channel_id, log_format, db, users, date_subs=None):
     """Parse a IRC log file."""
     try:
         infile = io.open(filepath, 'rt')
@@ -289,6 +289,11 @@ def parse_irc_file(filepath, channel_id, log_format, db, date_subs=None):
 
             db.insert_message(date, nick, text, what.value, channel_id)
             count_msg_new += 1
+
+            if nick and nick not in users:
+                db.insert_user(nick, None, None)
+                users.append(nick)
+
     except Exception as e:
         raise Error("Error parsing %s file: %s" % (filepath, e))
     finally:
@@ -308,6 +313,7 @@ if __name__ == '__main__':
     count_special_msg = 0
 
     if opts.logformat in ['plain','html']:
+        users = []
         channel_id = db.get_channel_id(opts.channel)
         files = os.listdir(opts.data_dir)
         files.sort()
@@ -317,7 +323,7 @@ if __name__ == '__main__':
 
                 filepath = os.path.join(opts.data_dir, logfile)
                 nmsg, nmsg_new = parse_irc_file(filepath, channel_id, opts.logformat,
-                                                db, date)
+                                                db, users, date)
 
                 count_msg += nmsg
                 count_msg_new += nmsg_new
