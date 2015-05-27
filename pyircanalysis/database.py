@@ -21,7 +21,7 @@
 # Authors:
 #   Alvaro del Castillo San Felix <acs@bitergia.com>
 #   Santiago Dueñas <sduenas@bitergia.com>
-#   
+#
 #
 
 import logging, MySQLdb
@@ -78,7 +78,6 @@ class Database(object):
         self.cursor.execute(query)
 
         # People table build always from scratch
-        # Just used to register all users in Slack yet
         try:
             self.cursor.execute("DROP TABLE people")
         except:
@@ -120,7 +119,13 @@ class Database(object):
             except MySQLdb.Error as e:
                 print("Warning: Dropping %s index" % idx.name, e)
 
-    # Queries (SELECT/INSERT) functions 
+    def fill_people_table(self):
+        query = "INSERT INTO people(nick) " + \
+            "SELECT DISTINCT(nick) FROM irclog " + \
+            "WHERE nick IS NOT NULL AND nick <> 'None'"
+        self.cursor.execute(query)
+
+    # Queries (SELECT/INSERT) functions
 
     def get_channel_id(self, name, public = None, archived = None):
         query_s = "SELECT * FROM channels WHERE name = %s"

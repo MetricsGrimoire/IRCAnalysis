@@ -251,7 +251,7 @@ def string_to_datetime(s, schema):
     except ValueError:
         raise Error("Parsing date %s to %s format" % (s, schema))
 
-def parse_irc_file(filepath, channel_id, log_format, db, users, date_subs=None):
+def parse_irc_file(filepath, channel_id, log_format, db, date_subs=None):
     """Parse a IRC log file."""
     try:
         infile = io.open(filepath, 'rt')
@@ -289,11 +289,6 @@ def parse_irc_file(filepath, channel_id, log_format, db, users, date_subs=None):
 
             db.insert_message(date, nick, text, what.value, channel_id)
             count_msg_new += 1
-
-            if nick and nick not in users:
-                db.insert_user(nick, None, None)
-                users.append(nick)
-
     except Exception as e:
         raise Error("Error parsing %s file: %s" % (filepath, e))
     finally:
@@ -313,7 +308,6 @@ if __name__ == '__main__':
     count_special_msg = 0
 
     if opts.logformat in ['plain','html']:
-        users = []
         channel_id = db.get_channel_id(opts.channel)
         files = os.listdir(opts.data_dir)
         files.sort()
@@ -323,7 +317,7 @@ if __name__ == '__main__':
 
                 filepath = os.path.join(opts.data_dir, logfile)
                 nmsg, nmsg_new = parse_irc_file(filepath, channel_id, opts.logformat,
-                                                db, users, date)
+                                                db, date)
 
                 count_msg += nmsg
                 count_msg_new += nmsg_new
@@ -331,6 +325,7 @@ if __name__ == '__main__':
                 print(e)
                 count_files_drop += 1
                 continue
+        db.fill_people_table()
     elif opts.logformat in ['slack']:
         logging.info("Slack analysis")
         slack_users = get_slack_users(opts.token)
