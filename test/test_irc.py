@@ -171,10 +171,16 @@ class TestIRCAnalysisMiscFunctions(unittest.TestCase):
         self.assertEqual(dt.month, 5)
         self.assertEqual(dt.day, 17)
 
+        dt = parse_irc_filename('channel.2013-05-17-18.33.log.txt')
+        self.assertEqual(dt.year, 2013)
+        self.assertEqual(dt.month, 5)
+        self.assertEqual(dt.day, 17)
+
         self.assertRaises(Error, parse_irc_filename, '#channel-2013.log')
         self.assertRaises(Error, parse_irc_filename, '2013.log')
         self.assertRaises(Error, parse_irc_filename, '20131310.log')
         self.assertRaises(Error, parse_irc_filename, '#2013-13-10.log')
+
 
 class TestParseIRCFile(unittest.TestCase):
 

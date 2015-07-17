@@ -114,7 +114,7 @@ def read_options():
 
 
 DATE_FILENAME_REGEXP = re.compile(r'^(\d{4}\d{2}\d{2})(\.(.*))?$')
-CHANNEL_FILENAME_REGEXP = re.compile(r'^#(.+)[\.-](\d{4}-\d{2}-\d{2})(\.(.*))?$')
+CHANNEL_FILENAME_REGEXP = re.compile(r'^#?(.+)[\.-](\d{4}-\d{2}-\d{2})(-\d{2}\.\d{2})?(\.(.*))?$')
 
 def parse_irc_filename(filename):
     """Test file name"""
