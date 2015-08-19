@@ -64,7 +64,9 @@ class Database(object):
                 "message TEXT," + \
                 "type VARCHAR(255) NULL," + \
                 "channel_id int," + \
-                "PRIMARY KEY (id)" + \
+                "PRIMARY KEY (id)," + \
+                "INDEX ircnick (nick)," + \
+                "INDEX irctype (type)" + \
                 ") ENGINE=MyISAM DEFAULT CHARSET=utf8"
         self.cursor.execute(query)
 
@@ -89,9 +91,6 @@ class Database(object):
                 "PRIMARY KEY (nick)" + \
                 ") ENGINE=MyISAM DEFAULT CHARSET=utf8"
         self.cursor.execute(query)
-
-        self.drop_indexes()
-        self.create_indexes()
 
     def drop_tables(self):
         query = "DROP TABLE IF EXISTS irclog"
