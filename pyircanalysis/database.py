@@ -48,8 +48,13 @@ class Database(object):
                                user=self.myuser,
                                passwd=self.mypassword,
                                db=self.mydb)
+        conn.set_character_set("utf8")
+
         self.conn = conn
         self.cursor = self.conn.cursor()
+        self.cursor.execute("SET NAMES utf8")
+        self.cursor.execute("SET CHARACTER SET utf8")
+        self.cursor.execute("SET character_set_connection=utf8")
 
     def close_database(self):
         self.conn.close()
